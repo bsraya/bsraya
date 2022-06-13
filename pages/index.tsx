@@ -1,15 +1,13 @@
 import type { NextPage } from 'next'
-import { Flex } from '@chakra-ui/react'
-import Layout from '../components/Layout'
+import Layout from '../components/layouts/Page'
+import { Heading, Stack } from '@chakra-ui/react'
 
 const Home: NextPage = () => {
     return (
         <Layout>
-            <Flex height="100vh" alignItems="center" justifyContent="center">
-                <Flex direction="column" background="gray.100" p={12} rounded={6}>
-                    <h1>Hello Next.js</h1>
-                </Flex>
-            </Flex>
+            <Stack align="center">
+                <Heading>This is Home page</Heading>
+            </Stack>
         </Layout>
     )
 }
