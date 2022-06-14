@@ -9,16 +9,15 @@ import {
     MenuList,
     MenuItem,
     MenuDivider,
-    useColorModeValue,
     Stack,
     useColorMode,
     Center
 
 } from '@chakra-ui/react'
-import Navlink from './Navlink';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import Navlink from './Navlink'
 import Link from 'next/link'
 import styled from '@emotion/styled'
+import Switch from './Switch'
 
 const Navbar = styled(Box)`
     position: sticky;
@@ -29,8 +28,6 @@ const Navbar = styled(Box)`
 `
 
 const Navigation: React.FC = () => {
-    const { colorMode, toggleColorMode } = useColorMode();
-
     return (
         <Navbar
             flexDirection="row"
@@ -54,22 +51,15 @@ const Navigation: React.FC = () => {
                     <Navlink href="/portfolio">Portfolio</Navlink>
                 </Flex>
                 <Stack direction={'row'} spacing={7}>
-                    <Button
-                        onClick={toggleColorMode}
-                        backgroundColor={
-                            useColorModeValue('gray.200', 'gray.700')
-                        }
-                    >
-                        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                    </Button>
-
+                    <Switch />
                     <Menu>
                         <MenuButton
-                        as={Button}
-                        rounded={'full'}
-                        variant={'link'}
-                        cursor={'pointer'}
-                        minW={0}>
+                            as={Button}
+                            rounded={'full'}
+                            variant={'link'}
+                            cursor={'pointer'}
+                            minW={0}
+                        >
                         <Avatar
                             size={'sm'}
                             src={'https://avatars.dicebear.com/api/male/username.svg'}
