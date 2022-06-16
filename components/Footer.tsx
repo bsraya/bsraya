@@ -21,8 +21,8 @@ const Footer: React.FC = () => {
     ]
 
     return (
-        <Flex as="footer" mt={10} direction="column" align="center">
-            <Flex maxW="container.md" mx="auto">
+        <Flex as="footer" marginBottom={20} direction="column" align="center">
+            <Flex maxW="container.md">
                 {link.map((item, index) => (
                     <Link
                         key={index}
