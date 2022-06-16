@@ -1,10 +1,13 @@
 import type { NextPage } from 'next'
 import Layout from '../components/layouts/Page'
+import { Heading, Stack } from '@chakra-ui/react'
 
 const Resume: NextPage = () => {
     return (
         <Layout>
-            <h1>This is Resume page</h1>
+            <Stack align="center">
+                <Heading>This is Resume page</Heading>
+            </Stack>
         </Layout>
     )
 }
