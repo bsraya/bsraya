@@ -9,6 +9,7 @@ const Switch: React.FC = () => {
             backgroundColor={
                 useColorModeValue('gray.200', 'gray.700')
             }
+            mx={2}
         >
             {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
         </Button>
