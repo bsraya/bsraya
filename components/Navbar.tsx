@@ -9,8 +9,6 @@ import {
     MenuList,
     MenuItem,
     MenuDivider,
-    Stack,
-    useColorMode,
     Center
 
 } from '@chakra-ui/react'
@@ -40,20 +38,25 @@ const Navigation: React.FC = () => {
             <Flex
                 py={2}
                 px={5}
-                maxW="container.md"
+                maxW="container.sm"
                 align="center"
                 mx="auto"
             >
-                <Flex marginRight="auto">
-                    <Navlink href="/">Home</Navlink>
-                    <Navlink href="/about">About</Navlink>
-                    <Navlink href="/resume">Resume</Navlink>
-                    <Navlink href="/portfolio">Portfolio</Navlink>
-                </Flex>
-                <Stack direction={'row'} spacing={7}>
+                <Flex>Logo</Flex>
+                <Flex marginLeft="auto">
+                    <Flex
+                        display={{ base: 'none', md: 'flex' }}
+                    >
+                        <Navlink href="/">Home</Navlink>
+                        <Navlink href="/about">About</Navlink>
+                        <Navlink href="/resume">Resume</Navlink>
+                        <Navlink href="/portfolio">Portfolio</Navlink>
+                    </Flex>
                     <Switch />
                     <Menu>
                         <MenuButton
+                            // show menu only when container is smaller than 768px
+                            display={{ base: 'none', md: 'none', sm: 'flex' }}
                             as={Button}
                             rounded={'full'}
                             variant={'link'}
@@ -101,7 +104,7 @@ const Navigation: React.FC = () => {
                         </MenuItem>
                         </MenuList>
                     </Menu>
-                </Stack>
+                </Flex>
             </Flex>
         </Navbar>
     )
