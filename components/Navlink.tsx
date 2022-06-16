@@ -5,7 +5,7 @@ const Navlink = ({ href, children }: { href: string, children: React.ReactNode }
     return (
         <Page href={href}>
             <Link
-                px={3}
+                px={4}
                 py={2}
                 rounded={'md'}
                 _hover={{
