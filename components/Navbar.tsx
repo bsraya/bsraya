@@ -47,7 +47,6 @@ const Navigation: React.FC = () => {
                     <Flex
                         display={{ base: 'none', md: 'flex' }}
                     >
-                        <Navlink href="/">Home</Navlink>
                         <Navlink href="/about">About</Navlink>
                         <Navlink href="/resume">Resume</Navlink>
                         <Navlink href="/portfolio">Portfolio</Navlink>
@@ -82,11 +81,6 @@ const Navigation: React.FC = () => {
                         </Center>
                         <br />
                         <MenuDivider />
-                        <MenuItem>
-                            <Link href="/">
-                                Home
-                            </Link>
-                        </MenuItem>
                         <MenuItem>
                             <Link href="/about">
                                 About
