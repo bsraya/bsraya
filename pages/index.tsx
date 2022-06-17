@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '../components/layouts/Page'
-import { Flex, LinkBox, LinkOverlay, Heading, Text, Button } from '@chakra-ui/react'
+import { useColorModeValue, Flex, LinkBox, LinkOverlay, Heading, Text, Button, useColorMode } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
 interface Post {
@@ -46,15 +46,15 @@ export default function Home({ posts }: { posts: Post[] }) {
                                         var randomColor = colors[Math.floor(Math.random() * colors.length)]
                                         return (
                                             <Button
-                                                key={tag}
-                                                background="white"
+                                                
                                                 mr={2}
-                                                border='2px'
-                                                borderColor={randomColor+'.700'}
+                                                background={useColorModeValue(`white`, 'rgba(26,32,44)')}
                                                 _hover={{
-                                                    // background 50% opacity
-                                                    bg: `${randomColor}.200`,
+                                                    bg: `${randomColor}.100`,
+                                                    color: 'rgba(26,32,44)',
+                                                    borderColor: `${randomColor}.700`,
                                                 }}
+                                                key={tag}
                                             >
                                                 <Text
                                                     // get random color from "colors" array

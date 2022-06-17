@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '../components/layouts/Page'
-import { Flex, LinkBox, LinkOverlay, Heading, Text, Button } from '@chakra-ui/react'
+import { Flex, LinkBox, LinkOverlay, Heading, Text, Button, useColorModeValue } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
 interface Portfolio {
@@ -47,18 +47,17 @@ export default function Portfolio({ portfolios }: { portfolios: Portfolio[] }) {
                                         return (
                                             <Button
                                                 key={tag}
-                                                background="white"
                                                 mr={2}
-                                                border='2px'
+                                                border='1px'
                                                 borderColor={randomColor+'.700'}
                                                 _hover={{
-                                                    // background 50% opacity
-                                                    bg: `${randomColor}.200`,
+                                                    bg: `${randomColor}.100`,
+                                                    color: `${randomColor}.700`,
                                                 }}
                                             >
                                                 <Text
                                                     // get random color from "colors" array
-                                                    color={randomColor+'.700'}
+                                                    color={useColorModeValue(`${randomColor}.700`, `${randomColor}.200`)}
                                                 >#</Text>
                                                 <Text>{tag}</Text>
                                             </Button>
