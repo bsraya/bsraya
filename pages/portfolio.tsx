@@ -2,7 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '../components/layouts/Page'
-import { Box, Heading, Text } from '@chakra-ui/react'
+import { Flex, LinkBox, LinkOverlay, Heading, Text } from '@chakra-ui/react'
+import NextLink from 'next/link'
 
 interface Portfolio {
     frontMatter: {
@@ -16,18 +17,45 @@ interface Portfolio {
     slug: string
 }
 
-export default function Portfolio({portfolios}: {portfolios: Portfolio[]}) {
+export default function Portfolio({ portfolios }: { portfolios: Portfolio[] }) {
+    const colors = ['red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray']
     return (
         <Layout>
-            <Heading>This is Portfolio page</Heading>
+            <Heading as="h2" size="md" mb={3}>Portfolio</Heading>
             {
                 portfolios.map((portfolio) => {
                     return (
-                        <Box key={portfolio.slug} mb={3}>   
-                            <Text>{portfolio.frontMatter.title}</Text> 
-                            <Text>{portfolio.frontMatter.description}</Text>
-                            <Text>{portfolio.frontMatter.tags}</Text>
-                        </Box>
+                        <LinkBox as="article" p='5' my={5} borderWidth='1px' rounded="md" key={portfolio.slug} >   
+                            <Text
+                                fontSize="sm"
+                                color="gray.500"
+                            >
+                                {portfolio.frontMatter.date} - {portfolio.frontMatter.readingTime} reading time
+                            </Text>
+                            <NextLink href={'/portfolio/' + portfolio.slug} passHref>
+                                <LinkOverlay >
+                                    <Heading as="h1">
+                                        {portfolio.frontMatter.title}
+                                    </Heading>
+                                </LinkOverlay>  
+                            </NextLink>
+                            <Text my={5}>{portfolio.frontMatter.description}</Text>
+                            <Flex>
+                                {
+                                    portfolio.frontMatter.tags.map((tag) => {
+                                        return (
+                                            <Flex as="span" key={tag} mr={2}>
+                                                <Text
+                                                    // get random color from "colors" array
+                                                    color={colors[Math.floor(Math.random() * colors.length)]}
+                                                >#</Text>
+                                                <Text>{tag}</Text>
+                                            </Flex>
+                                        )
+                                    })
+                                }
+                            </Flex>
+                        </LinkBox>
                     )
                 })
             }

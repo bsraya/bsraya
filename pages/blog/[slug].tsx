@@ -1,10 +1,9 @@
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote } from 'next-mdx-remote'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import React from 'react'
-
+import Layout from '../../components/layouts/Article'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 interface Props {
     frontMatter: any
     mdxSource: any
@@ -12,11 +11,11 @@ interface Props {
 
 const PostPage = ({ frontMatter, mdxSource }: Props) => {
     return (
-        <div>
+        <Layout>
             <h1>{frontMatter.title}</h1>
             <h2>{frontMatter.date}</h2>
             <MDXRemote {...mdxSource} components={{}} />
-        </div>
+        </Layout>
     )
 }
 

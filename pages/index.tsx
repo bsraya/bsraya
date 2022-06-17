@@ -2,7 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '../components/layouts/Page'
-import { Heading, Box, Text } from '@chakra-ui/react'
+import { LinkBox, LinkOverlay, Heading, Text } from '@chakra-ui/react'
+import NextLink from 'next/link'
 
 interface Post {
     frontMatter: {
@@ -19,15 +20,33 @@ interface Post {
 export default function Home ({ posts }: { posts: Post[] }) {
     return (
         <Layout>
-            <Heading as="h1">This home page</Heading>
+            <Heading as="h2" size="md" mb={3}>Recent posts</Heading>
             {
                 posts.map((post) => {
                     return (
-                        <Box key={post.slug} mb={3}>   
-                            <Text>{post.frontMatter.title}</Text> 
-                            <Text>{post.frontMatter.description}</Text>
-                            <Text>{post.frontMatter.tags}</Text>
-                        </Box>
+                        <LinkBox as="article" p='5' my={5} borderWidth='1px' rounded="md" key={post.slug}>   
+                            <Text
+                                fontSize="sm"
+                                color="gray.500"
+                            >
+                                {post.frontMatter.date} - {post.frontMatter.readingTime} reading time
+                            </Text>
+                            <NextLink href={'/blog/' + post.slug} passHref>
+                                <LinkOverlay >
+                                    <Heading as="h1">
+                                        {post.frontMatter.title}
+                                    </Heading>
+                                </LinkOverlay>  
+                            </NextLink>
+                            <Text my={5}>{post.frontMatter.description}</Text>
+                            {
+                                post.frontMatter.tags.map((tag) => {
+                                    return (
+                                        <Text as="span" key={tag} mr={2}>{"#" + tag}</Text>
+                                    )
+                                })
+                            }
+                        </LinkBox>
                     )
                 })
             }
