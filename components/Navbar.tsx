@@ -42,13 +42,16 @@ const Navigation: React.FC = () => {
                 align="center"
                 mx="auto"
             >
-                <Flex>Logo</Flex>
+                <Flex>
+                    <Link href="/" passHref>
+                        Logo
+                    </Link>
+                </Flex>
                 <Flex marginLeft="auto">
                     <Flex
                         display={{ base: 'none', md: 'flex' }}
                     >
                         <Navlink href="/about">About</Navlink>
-                        <Navlink href="/resume">Resume</Navlink>
                         <Navlink href="/portfolio">Portfolio</Navlink>
                     </Flex>
                     <Switch />
@@ -84,11 +87,6 @@ const Navigation: React.FC = () => {
                         <MenuItem>
                             <Link href="/about">
                                 About
-                            </Link>
-                        </MenuItem>
-                        <MenuItem>
-                            <Link href="/resume">
-                                Resume
                             </Link>
                         </MenuItem>
                         <MenuItem>
