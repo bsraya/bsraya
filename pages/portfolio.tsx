@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '../components/layouts/Page'
-import { Flex, LinkBox, LinkOverlay, Heading, Text } from '@chakra-ui/react'
+import { Flex, LinkBox, LinkOverlay, Heading, Text, Button } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
 interface Portfolio {
@@ -18,7 +18,7 @@ interface Portfolio {
 }
 
 export default function Portfolio({ portfolios }: { portfolios: Portfolio[] }) {
-    const colors = ['red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray']
+    const colors = ['gray', 'red', 'orange', 'yellow', 'green', 'teal', 'blue', 'cyan', 'purple', 'pink']
     return (
         <Layout>
             <Heading as="h2" size="md" mb={3}>Portfolio</Heading>
@@ -43,14 +43,25 @@ export default function Portfolio({ portfolios }: { portfolios: Portfolio[] }) {
                             <Flex>
                                 {
                                     portfolio.frontMatter.tags.map((tag) => {
+                                        var randomColor = colors[Math.floor(Math.random() * colors.length)]
                                         return (
-                                            <Flex as="span" key={tag} mr={2}>
+                                            <Button
+                                                key={tag}
+                                                background="white"
+                                                mr={2}
+                                                border='2px'
+                                                borderColor={randomColor+'.700'}
+                                                _hover={{
+                                                    // background 50% opacity
+                                                    bg: `${randomColor}.200`,
+                                                }}
+                                            >
                                                 <Text
                                                     // get random color from "colors" array
-                                                    color={colors[Math.floor(Math.random() * colors.length)]}
+                                                    color={randomColor+'.700'}
                                                 >#</Text>
                                                 <Text>{tag}</Text>
-                                            </Flex>
+                                            </Button>
                                         )
                                     })
                                 }
