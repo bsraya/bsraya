@@ -5,12 +5,12 @@ import { Box, Container } from '@chakra-ui/react'
 
 const Article: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
-        <Box as="main" pb={8}>
+        <Box as="main">
             <Seo />
             <Navbar />
             <Container
-                maxW="container.md"
-                pt={14}
+                maxW="container.sm"
+                my={20}
             >
                 {children}
             </Container>
