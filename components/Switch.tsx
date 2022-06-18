@@ -1,7 +1,7 @@
 import { Button, useColorMode, useColorModeValue } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
-const Switch: React.FC = () => {
+export default function Switch(): JSX.Element{
     const { colorMode, toggleColorMode } = useColorMode()
     return (
         <Button
@@ -15,5 +15,3 @@ const Switch: React.FC = () => {
         </Button>
     )
 }
-
-export default Switch

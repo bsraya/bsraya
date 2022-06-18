@@ -2,8 +2,8 @@ import { Flex, Link, useColorModeValue } from '@chakra-ui/react'
 import { BsGithub, BsLinkedin } from 'react-icons/bs'
 import { EmailIcon } from '@chakra-ui/icons'
 
-export default function Footer() {
-    const size = '2rem'
+export default function Footer(): JSX.Element {
+    const size = '1.5rem'
     const link = [
         {
             icon: <BsGithub style={{ fontSize: size }} />,

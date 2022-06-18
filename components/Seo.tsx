@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-const Seo = () => {
+export default function Seo(): JSX.Element {
     return (
         <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,5 +10,3 @@ const Seo = () => {
         </Head>
     )
 }
-
-export default Seo

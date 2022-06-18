@@ -1,15 +1,15 @@
 import {
-    Box,
-    Flex,
     Avatar,
+    Box,
     Button,
-    Text,
+    Center,
+    Flex,
     Menu,
     MenuButton,
     MenuList,
     MenuItem,
     MenuDivider,
-    Center
+    Text,
 
 } from '@chakra-ui/react'
 import Navlink from './Navlink'
@@ -17,15 +17,15 @@ import Link from 'next/link'
 import styled from '@emotion/styled'
 import Switch from './Switch'
 
-const Navbar = styled(Box)`
-    position: sticky;
-    z-index: 10;
-    top: 0;
-    backdrop-filter: saturate(180%) blur(20px);
-    transition: height .5s, line-height .5s;
-`
+export default function Navigation(): JSX.Element {
+    const Navbar = styled(Box)`
+        position: sticky;
+        z-index: 10;
+        top: 0;
+        backdrop-filter: saturate(180%) blur(20px);
+        transition: height .5s, line-height .5s;
+    `
 
-const Navigation: React.FC = () => {
     return (
         <Navbar
             flexDirection="row"
@@ -101,5 +101,3 @@ const Navigation: React.FC = () => {
         </Navbar>
     )
 }
-
-export default Navigation

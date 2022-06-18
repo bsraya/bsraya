@@ -1,7 +1,7 @@
 import { Link, useColorModeValue } from '@chakra-ui/react'
 import Page from 'next/link'
 
-const Navlink = ({ href, children }: { href: string, children: React.ReactNode }) => {
+export default function Navlink ({ href, children }: { href: string, children: React.ReactNode }): JSX.Element {
     return (
         <Page href={href}>
             <Link
@@ -18,5 +18,3 @@ const Navlink = ({ href, children }: { href: string, children: React.ReactNode }
         </Page>
     )
 }
-
-export default Navlink
