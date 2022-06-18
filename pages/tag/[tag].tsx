@@ -1,25 +1,15 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import NextLink from 'next/link'
-import Layout from '../../components/layouts/Page'
-import { Button, Flex, Heading, LinkBox, LinkOverlay, Text, useColorModeValue } from '@chakra-ui/react'
-
-interface Post {
-    frontMatter: {
-        title: string
-        date: string
-        readingTime: string
-        description: string
-        tags: string[]
-        publish: boolean
-    },
-    slug: string
-}
+import Layout from '../../components/Layout'
+import { Flex, Heading, Text } from '@chakra-ui/react'
+import Posts from '../../components/Posts'
+import type { IPost } from '../../types/post.type'
+import {Color} from '../../utils/color'
 
 // take "posts" as the parameter
-function Tag({ posts, tag }: { posts: Post[], tag: string }) {
-    const colors = ['gray', 'red', 'orange', 'yellow', 'green', 'teal', 'blue', 'cyan', 'purple', 'pink']
+function Tag({ posts, tag }: { posts: IPost[], tag: string }) {
+    
     return (
         <Layout>
             <Heading as="h1" size="xl">
@@ -28,59 +18,11 @@ function Tag({ posts, tag }: { posts: Post[], tag: string }) {
                     <Text
                         as="p"
                         // pick a color from the "colors" array
-                        color={colors[Math.floor(Math.random() * colors.length)]}
+                        color={Color()}
                     >&nbsp;#</Text>{tag}
                 </Flex>
             </Heading>
-            {
-                posts.map((post:Post) => (
-                    post && (
-                        <LinkBox as="article" p='5' my={5} borderWidth='1px' rounded="md" key={post.slug}>
-                            <Text
-                                fontSize="sm"
-                                color="gray.500"
-                            >
-                                {post.frontMatter.date} - {post.frontMatter.readingTime} reading time
-                            </Text>
-                            <NextLink href={'/blog/' + post.slug} passHref>
-                                <LinkOverlay >
-                                    <Heading as="h1">
-                                        {post.frontMatter.title}
-                                    </Heading>
-                                </LinkOverlay>  
-                            </NextLink>
-                            <Text my={5}>{post.frontMatter.description}</Text>
-                            <Flex>
-                                {
-                                    post.frontMatter.tags.map((tag) => {
-                                        var randomColor = colors[Math.floor(Math.random() * colors.length)]
-                                        return (
-                                            <NextLink
-                                                href={'/tag/' + tag}
-                                                key={tag}
-                                                passHref
-                                            >
-                                                <Button
-                                                    mr={2}
-                                                    background={useColorModeValue(`white`, 'rgba(26,32,44)')}
-                                                    _hover={{
-                                                        bg: `${randomColor}.100`,
-                                                        color: 'rgba(26,32,44)',
-                                                        borderColor: `${randomColor}.700`,
-                                                    }}
-                                                >
-                                                    <Text color={randomColor+'.700'}>#</Text>
-                                                    <Text>{tag}</Text>
-                                                </Button>
-                                            </NextLink>
-                                        )
-                                    })
-                                }
-                            </Flex>
-                        </LinkBox>
-                    )
-                ))
-            }
+            <Posts posts={posts} />
         </Layout>
     )
 }
@@ -93,8 +35,8 @@ const getStaticPaths = async () => {
     const set = new Set<string>()
 
     // get all tags from all posts
-    folders.forEach(name => {
-        const content = fs.readFileSync(path.join('content', 'posts', name, name + '.mdx'), 'utf8')
+    folders.forEach(slug => {
+        const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf8')
         const { data: frontMatter } = matter(content)
         frontMatter.tags.forEach(
             // tag is string type

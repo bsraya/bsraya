@@ -1,27 +1,30 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import Layout from '../../components/layouts/Article'
-import { Heading } from '@chakra-ui/react'
+import Layout from '../../components/Layout'
+import { Heading, Text } from '@chakra-ui/react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
+import Tags from './../../components/Tags'
+import type { IMdxPage } from '../../types/mdx.type'
 
-interface Props {
-    frontMatter: any
-    mdxSource: any
-}
-
-const Portfolio = ({ frontMatter, mdxSource }: Props) => {
+export default function Portfolio({ frontMatter, mdxSource }: IMdxPage): JSX.Element {
     return (
         <Layout>
+            <Text
+                fontSize="sm"
+                color="gray.500"
+            >
+                {frontMatter.date} - {frontMatter.readingTime} reading
+            </Text>
             <Heading as="h1">{frontMatter.title}</Heading>
-            <h2>{frontMatter.date}</h2>
+            <Tags tags={frontMatter.tags} />
             <MDXRemote {...mdxSource} components={{}} />
         </Layout>
     )
 }
 
-const getStaticPaths = async () => {
+export const getStaticPaths = async () => {
     const folders = fs.readdirSync(path.join('content', 'portfolios'))
 
     const paths = folders.map(name => ({
@@ -36,8 +39,7 @@ const getStaticPaths = async () => {
     }
 }
 
-// slug is the id of the post, which is a string
-const getStaticProps = async ( { params: { slug } }: any ) => {
+export const getStaticProps = async ( { params: { slug } }: { params: { slug: string } } ) => {
     const markdownWithMeta = fs.readFileSync(path.join('content', 'portfolios',
         slug, 'index.mdx'), 'utf-8')
 
@@ -47,11 +49,7 @@ const getStaticProps = async ( { params: { slug } }: any ) => {
     return {
         props: {
             frontMatter,
-            slug,
             mdxSource
         }
     }
 }
-
-export { getStaticProps, getStaticPaths }
-export default Portfolio
