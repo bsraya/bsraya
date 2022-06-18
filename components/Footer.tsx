@@ -1,9 +1,8 @@
 import { Flex, Link, useColorModeValue } from '@chakra-ui/react'
-import NextLink from 'next/link'
 import { BsGithub, BsLinkedin } from 'react-icons/bs'
-import { AiTwotoneMail } from 'react-icons/ai'
+import { EmailIcon } from '@chakra-ui/icons'
 
-const Footer: React.FC = () => {
+export default function Footer() {
     const size = '2rem'
     const link = [
         {
@@ -15,7 +14,7 @@ const Footer: React.FC = () => {
             url: 'https://www.linkedin.com/in/bijonsetyawan/'
         },
         {
-            icon: <AiTwotoneMail style={{ fontSize: size }} />,
+            icon: <EmailIcon style={{ fontSize: size }} />,
             url: 'mailto:nathan.setyawan96@gmail.com',
         },
     ]
@@ -34,10 +33,10 @@ const Footer: React.FC = () => {
                             textDecoration: 'none',
                             bg: useColorModeValue('gray.200', 'gray.700'),
                         }}
+                        href={item.url}
+                        isExternal
                     >
-                        <NextLink href={item.url} passHref={true}>
-                            {item.icon}
-                        </NextLink>
+                        {item.icon}
                     </Link>
                 ))}
             </Flex>
@@ -47,5 +46,3 @@ const Footer: React.FC = () => {
         </Flex>
     );
 }
-
-export default Footer
