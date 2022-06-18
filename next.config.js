@@ -5,6 +5,10 @@ module.exports = async () => {
     const nextConfig = {
         optimizeFonts: true,
         ignoreBuildErrors: false,
+        reactStrictMode: true,
+        compiler: {
+            emotion: true,
+        },
     }
     return nextConfig
 }
