@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '../components/layouts/Page'
-import { useColorModeValue, Flex, LinkBox, LinkOverlay, Heading, Text, Button, useColorMode } from '@chakra-ui/react'
+import { useColorModeValue, Flex, LinkBox, LinkOverlay, Heading, Text, Button } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
 interface Post {
@@ -45,23 +45,24 @@ export default function Home({ posts }: { posts: Post[] }) {
                                     post.frontMatter.tags.map((tag) => {
                                         var randomColor = colors[Math.floor(Math.random() * colors.length)]
                                         return (
-                                            <Button
-                                                
-                                                mr={2}
-                                                background={useColorModeValue(`white`, 'rgba(26,32,44)')}
-                                                _hover={{
-                                                    bg: `${randomColor}.100`,
-                                                    color: 'rgba(26,32,44)',
-                                                    borderColor: `${randomColor}.700`,
-                                                }}
+                                            <NextLink
+                                                href={'/tag/' + tag}
                                                 key={tag}
+                                                passHref
                                             >
-                                                <Text
-                                                    // get random color from "colors" array
-                                                    color={randomColor+'.700'}
-                                                >#</Text>
-                                                <Text>{tag}</Text>
-                                            </Button>
+                                                <Button
+                                                    mr={2}
+                                                    background={useColorModeValue(`white`, 'rgba(26,32,44)')}
+                                                    _hover={{
+                                                        bg: `${randomColor}.100`,
+                                                        color: 'rgba(26,32,44)',
+                                                        borderColor: `${randomColor}.700`,
+                                                    }}
+                                                >
+                                                    <Text color={randomColor+'.700'}>#</Text>
+                                                    <Text>{tag}</Text>
+                                                </Button>
+                                            </NextLink>
                                         )
                                     })
                                 }
@@ -75,13 +76,12 @@ export default function Home({ posts }: { posts: Post[] }) {
 }
 
 export const getStaticProps = async () => {
-    // get all the files in /content/posts
-    const files = fs.readdirSync(path.join('content', 'posts'))
+    // get all folders' in content/portfolios
+    const folders = fs.readdirSync(path.join(process.cwd(), 'content', 'posts'))
     
     // iterate through all the files in /content/posts
-    const posts = files.map(filename => {
-        const slug = filename.replace('.mdx', '')
-        const content = fs.readFileSync(path.join('content', 'posts', filename), 'utf-8')
+    const posts = folders.map(slug => {
+        const content = fs.readFileSync(path.join('content', 'posts', slug, slug + '.mdx'), 'utf-8')
         const { data: frontMatter } = matter(content)
         return {
             frontMatter,
