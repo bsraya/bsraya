@@ -81,7 +81,7 @@ export const getStaticProps = async () => {
     
     // iterate through all the files in /content/posts
     const posts = folders.map(slug => {
-        const content = fs.readFileSync(path.join('content', 'posts', slug, slug + '.mdx'), 'utf-8')
+        const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf-8')
         const { data: frontMatter } = matter(content)
         return {
             frontMatter,

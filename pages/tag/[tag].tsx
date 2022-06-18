@@ -122,7 +122,7 @@ const getStaticProps = async ({ params: { tag } }: any) => {
 
     // get all posts' front matter with a specific tag
     const filtered = folders.map(slug => {
-        const content = fs.readFileSync(path.join('content', 'posts', slug, slug + '.mdx'), 'utf-8')
+        const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf-8')
         const { data: frontMatter } = matter(content)
         if (frontMatter.tags.includes(tag)) {
             return {

@@ -39,7 +39,7 @@ const getStaticPaths = async () => {
 // slug is the id of the post, which is a string
 const getStaticProps = async ( { params: { slug } }: any ) => {
     const markdownWithMeta = fs.readFileSync(path.join('content', 'posts',
-        slug, slug + '.mdx'), 'utf-8')
+        slug, 'index.mdx'), 'utf-8')
 
     const { data: frontMatter, content } = matter(markdownWithMeta)
 
