@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '../../components/layouts/Article'
+import { Heading } from '@chakra-ui/react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 
@@ -10,10 +11,10 @@ interface Props {
     mdxSource: any
 }
 
-const PostPage = ({ frontMatter, mdxSource }: Props) => {
+const Portfolio = ({ frontMatter, mdxSource }: Props) => {
     return (
         <Layout>
-            <h1>{frontMatter.title}</h1>
+            <Heading as="h1">{frontMatter.title}</Heading>
             <h2>{frontMatter.date}</h2>
             <MDXRemote {...mdxSource} components={{}} />
         </Layout>
@@ -21,11 +22,11 @@ const PostPage = ({ frontMatter, mdxSource }: Props) => {
 }
 
 const getStaticPaths = async () => {
-    const files = fs.readdirSync(path.join('content', 'portfolios'))
+    const folders = fs.readdirSync(path.join('content', 'portfolios'))
 
-    const paths = files.map(filename => ({
+    const paths = folders.map(name => ({
         params: {
-            slug: filename.replace('.mdx', '')
+            slug: name
         }
     }))
 
@@ -38,7 +39,7 @@ const getStaticPaths = async () => {
 // slug is the id of the post, which is a string
 const getStaticProps = async ( { params: { slug } }: any ) => {
     const markdownWithMeta = fs.readFileSync(path.join('content', 'portfolios',
-        slug + '.mdx'), 'utf-8')
+        slug, slug + '.mdx'), 'utf-8')
 
     const { data: frontMatter, content } = matter(markdownWithMeta)
     const mdxSource = await serialize(content)
@@ -53,4 +54,4 @@ const getStaticProps = async ( { params: { slug } }: any ) => {
 }
 
 export { getStaticProps, getStaticPaths }
-export default PostPage
+export default Portfolio
