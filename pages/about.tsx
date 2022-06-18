@@ -1,8 +1,7 @@
 import { Heading, Stack, Text } from '@chakra-ui/react'
-import type { NextPage } from 'next'
-import Layout from '../components/layouts/Page'
+import Layout from '../components/Layout'
 
-const About: NextPage = () => {
+export default function About(): JSX.Element {
     return (
         <Layout>
             <Stack my={5}>
@@ -40,5 +39,3 @@ const About: NextPage = () => {
         </Layout>
     )
 }
-
-export default About
