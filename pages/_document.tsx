@@ -10,7 +10,6 @@ export default class MyDocument extends NextDocument {
                         href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
                         rel="stylesheet"
                     />
-                    <script async src="https://cdn.splitbee.io/sb.js"></script>
                 </Head>
                 <body>
                     <ColorModeScript />
