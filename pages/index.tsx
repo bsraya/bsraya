@@ -1,9 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import Layout from '../components/layouts/Page'
-import { useColorModeValue, Flex, LinkBox, LinkOverlay, Heading, Text, Button } from '@chakra-ui/react'
 import NextLink from 'next/link'
+import Layout from '../components/layouts/Page'
+import { Button, Flex, Heading, LinkBox, LinkOverlay, Text, useColorModeValue } from '@chakra-ui/react'
 
 interface Post {
     frontMatter: {
@@ -39,7 +39,7 @@ export default function Home({ posts }: { posts: Post[] }) {
                                     </Heading>
                                 </LinkOverlay>  
                             </NextLink>
-                            <Text my={5}>{post.frontMatter.description}</Text>
+                            <Text as="p" my={5}>{post.frontMatter.description}</Text>
                             <Flex>
                                 {
                                     post.frontMatter.tags.map((tag) => {
