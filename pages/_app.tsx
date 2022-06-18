@@ -14,7 +14,7 @@ const colors = {
 
 const theme = extendTheme({ colors })
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <ChakraProvider theme={theme}>
             <Component {...pageProps} />
