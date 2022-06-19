@@ -7,7 +7,6 @@ export default function Tags({ tags }: { tags: string[] }) {
     return (
         <Flex>
             {
-                // iterate through an array of strings
                 tags.map((tag: string, index: any) => {
                     var randomColor = Color()
                     return (
@@ -18,7 +17,7 @@ export default function Tags({ tags }: { tags: string[] }) {
                         >
                             <Button
                                 mr={2}
-                                background='white'
+                                background='inherit'
                                 _hover={{
                                     bg: `${randomColor}.100`,
                                     color: 'rgba(26,32,44)',

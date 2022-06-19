@@ -63,8 +63,9 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
 
     const { data: frontMatter, content } = matter(markdownWithMeta)
 
+    // pass mdxConfig
     const mdxSource = await serialize(
-        content, 
+        content,
         {
             mdxOptions: {
                 remarkPlugins: [

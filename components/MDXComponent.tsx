@@ -1,6 +1,5 @@
 import {
     Box,
-    
     List,
     ListItem,
     Heading,
@@ -8,9 +7,8 @@ import {
     Text,
     Divider,
     useColorMode,
-    Table,
-    TableContainer,
     Kbd,
+    Table,
     Thead,
     Tbody,
     Tfoot,
@@ -18,10 +16,13 @@ import {
     Th,
     Td,
     TableCaption,
+    TableContainer,
+    Textarea,
     Alert,
     Stack,
     AlertIcon,
 } from '@chakra-ui/react';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import NextLink from 'next/link';
 import Image from 'next/image';
 
@@ -165,23 +166,25 @@ const MDXComponent = {
     h6: (props: any) => (
         <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />
     ),
-    
     hr: Hr,
     a: CustomLink,
     blockquote: Quote,
     image: CustomImage,
-    Alert: (props: any) => <Alert my={5} borderRadius="0.5rem" type="left-accent" {...props} />,
-    table: (props: any) => <TableContainer><Table variant='striped' colorScheme='teal' {...props} /></TableContainer>,
     Kbd,
-    Thead,
-    Tbody,
-    Tfoot,
-    Tr,
-    Th,
-    Td,
-    TableCaption,
     Stack,
     AlertIcon,
+    Alert: (props: any) => <Alert my={5} borderRadius="0.5rem" {...props} />,
+    Textarea,
+    Text,
+    // for table
+    tr: (p: any) => <Tr {...p} />,
+    th: (p: any) => <Th {...p} />,
+    td: (p: any) => <Td {...p} />,
+    thead: (p: any) => <Thead {...p} />,
+    tbody: (p: any) => <Tbody {...p} />,
+    tfoot: (p: any) => <Tfoot {...p} />,
+    caption: (p: any) => <TableCaption {...p} />,
+    table: (props: any) => <TableContainer><Table variant="striped" colorScheme="teal" {...props} /></TableContainer>,
 };
 
 export default MDXComponent;
