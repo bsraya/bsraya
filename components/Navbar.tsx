@@ -16,6 +16,7 @@ import Navlink from './Navlink'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import Switch from './Switch'
+import Accent from './Accent'
 
 export default function Navigation(): JSX.Element {
     const Navbar = styled(Box)`
@@ -54,6 +55,7 @@ export default function Navigation(): JSX.Element {
                         <Navlink href="/about">About</Navlink>
                         <Navlink href="/portfolio">Portfolio</Navlink>
                     </Flex>
+                    <Accent />
                     <Switch />
                     <Menu>
                         <MenuButton
