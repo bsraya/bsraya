@@ -31,7 +31,7 @@ export default function Footer(): JSX.Element {
                         rounded={'md'}
                         _hover={{
                             textDecoration: 'none',
-                            bg: useColorModeValue('gray.200', 'gray.700'),
+                            bg: 'gray.700'
                         }}
                         href={item.url}
                         isExternal

@@ -18,7 +18,7 @@ export default function Tags({ tags }: { tags: string[] }) {
                         >
                             <Button
                                 mr={2}
-                                background={useColorModeValue(`white`, 'rgba(26,32,44)')}
+                                background='white'
                                 _hover={{
                                     bg: `${randomColor}.100`,
                                     color: 'rgba(26,32,44)',
