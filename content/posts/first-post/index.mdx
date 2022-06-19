@@ -1,12 +1,111 @@
 ---
 title: My First Post
-date: 'September 19, 2022'
+date: "September 19, 2022"
 readingTime: 2 mins
 description: This is my first post
-tags: ['post', 'writing']
+tags: ["post", "writing"]
 publish: true
 ---
 
-# Introduction
+<Kbd>shift</Kbd>
 
-This is my very first attempt in writing.
+<Alert status="error">
+  <AlertIcon />
+  There was an error processing your request
+</Alert>
+
+<Alert status="success">
+  <AlertIcon />
+  Data uploaded to the server. Fire on!
+</Alert>
+
+<Alert status="warning">
+  <AlertIcon />
+  Seems your account is about expire, upgrade now
+</Alert>
+
+<Alert status="info">
+  <AlertIcon />
+  Chakra is going live on August 30th. Get ready!
+</Alert>
+
+# GitHub flavored markdown
+
+```ts:main.ts {diff}
+function fancyAlert(arg) {
+-  if (arg) {
++    $.facebox({ div: "#foo" });
+!  }
+}
+```
+
+```css {2}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+```ts
+const user: User = {
+  username: "Hayes",
+  id: 0,
+};
+```
+
+You can run this `print("something")`. $1 + 1 = 2$
+
+$$
+    J(\Theta_0, \Theta_1) = \frac{1}{2N} \sum_{i=1}^N (\hat{y}_i - y_i)^2
+$$
+
+$$
+    \begin{aligned}
+        \beta_0 = \beta_0 - \frac{\alpha}{N} \sum_{i=1}^N (f(x) - y_i) \\
+        \beta_1 = \beta_1 - \frac{\alpha}{N} \sum_{i=1}^N (f(x) - y_i) x
+    \end{aligned}
+$$
+
+```go
+package main
+
+func main () {
+  fmt.Println("something")
+}
+```
+
+## Autolink literals
+
+www.example.com, https://example.com, and contact@example.com.
+
+## Footnote
+
+A note[^1]
+
+[^1]: https://google.com
+
+## Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+## Table
+
+| TO CONVERT | INTO        | MULTIPLY BY |
+| ---------- | ----------- | ----------- |
+| inches     | millimeters | 25.4        |
+| feet       | centimeters | 30.48       |
+| yards      | meters      | 0.91444     |
+
+## Tasklist
+
+- [ ] to do
+- [x] done
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ultrices erat, eu tristique neque. Sed efficitur mattis odio quis ullamcorper. Aenean aliquet dolor et nulla sollicitudin sodales. Quisque viverra purus non bibendum placerat. Curabitur luctus orci ultrices, tristique turpis vehicula, congue ligula. Sed elit enim, vehicula in pharetra nec, sagittis id elit. Fusce mattis arcu velit, eu rutrum arcu iaculis non. Maecenas rutrum malesuada est vitae semper. Etiam in quam pulvinar, bibendum ante at, ullamcorper felis. Quisque ac tellus tempus, porttitor dolor nec, dictum dui. Donec non erat sit amet nunc dapibus condimentum pretium in lorem. Nullam in eros sit amet lacus dictum pellentesque non ut tellus.
+
+Morbi felis ex, pellentesque non sem sed, molestie ullamcorper lorem. Nullam luctus placerat magna, eu facilisis risus tincidunt ac. Cras commodo ut quam in vulputate. Praesent dignissim odio ornare blandit mattis. Duis nibh odio, varius at efficitur non, scelerisque vitae leo. Praesent quam tortor, condimentum at ligula non, suscipit consectetur turpis. Curabitur sed turpis non ipsum maximus faucibus. Maecenas eu est dignissim, fermentum quam nec, rutrum quam. Phasellus ac nulla tristique, eleifend mi vel, vehicula tellus. Curabitur vitae nunc aliquam, posuere ante eget, efficitur eros. Nam lacinia, odio vestibulum sagittis fringilla, elit est accumsan risus, quis fringilla erat felis et orci. Morbi at fringilla orci. Nam tempus fringilla ex, nec imperdiet sapien ullamcorper ac.
+
+Etiam maximus efficitur nisl id viverra. Curabitur ornare turpis a justo elementum euismod. Mauris in venenatis risus. Praesent fringilla finibus elit ac malesuada. Suspendisse at posuere felis. Duis erat mi, ornare sit amet erat at, luctus hendrerit mauris. Praesent ultrices, risus hendrerit cursus elementum, tortor velit sodales risus, vitae dictum libero urna quis risus. Nulla sollicitudin mi eros. Proin placerat egestas leo non tempor. Etiam porta in sapien vitae vestibulum. Curabitur porttitor, velit ut faucibus tristique, magna tortor faucibus arcu, at placerat metus tellus ac quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi bibendum et ex nec placerat. Nunc aliquam diam quis dolor auctor, vitae placerat ligula vehicula. Quisque a luctus neque, in ornare leo. Cras vulputate eros sem, nec tempus nisl ultrices ac.
+
+Aliquam ut arcu egestas odio sollicitudin semper. Nunc vitae lacinia mauris. Aenean eleifend cursus consequat. Ut tristique eros id mattis viverra. Nam laoreet, nisi ut luctus ullamcorper, tortor odio laoreet augue, vitae eleifend quam odio non leo. Curabitur ac ipsum convallis, elementum erat nec, ultrices elit. Proin pulvinar eu nulla ac hendrerit. Nulla ac euismod nulla, at mollis ligula.
+
+Proin sed urna diam. Etiam cursus cursus sapien, quis blandit metus dictum quis. Pellentesque vel arcu mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In eget leo ipsum. Cras pharetra lacinia sem, sit amet gravida magna dignissim non. Sed nisi orci, ultrices ac augue quis, aliquam rhoncus sem. Integer ut vulputate quam. Vestibulum purus lacus, mattis ac auctor vel, aliquet non lacus. Nam ut bibendum nisi, nec sagittis tellus. Mauris vitae neque mattis, sollicitudin magna non, gravida tortor. Pellentesque tempor, lorem iaculis varius faucibus, ligula erat accumsan tortor, cursus pretium velit quam vel odio. Ut tristique est quis ex mollis scelerisque. Sed fermentum, diam id porta viverra, metus tortor varius nulla, vel feugiat dui odio at velit.
