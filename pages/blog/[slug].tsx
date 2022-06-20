@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path'
-import matter from 'gray-matter'
 import { Heading, Text } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -25,17 +24,18 @@ import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrismDiff from 'rehype-prism-diff'
 
-export default function Blog({ frontMatter, mdxSource }: IMdxPage): JSX.Element {
+// infer mdxSource parameter type hint
+export default function Blog({ mdxSource }: IMdxPage) {
     return (
         <Layout>
             <Text
                 fontSize="sm"
                 color="gray.500"
             >
-                {frontMatter.date} - {frontMatter.readingTime} reading
+                {mdxSource.frontmatter.date} - {mdxSource.frontmatter.readingTime} reading
             </Text>
-            <Heading as="h1" size='3xl' my={5}>{frontMatter.title}</Heading>
-            <Tags tags={frontMatter.tags} />
+            <Heading as="h1" size='3xl' my={5}>{mdxSource.frontmatter.title}</Heading>
+            <Tags tags={mdxSource.frontmatter.tags} />
             <MDXRemote {...mdxSource} components={MDXComponents} />
         </Layout>
     )
@@ -58,15 +58,13 @@ export const getStaticPaths = async () => {
 
 // slug is the id of the post, which is a string
 export const getStaticProps = async ( { params: { slug } }: { params: { slug: string } } ) => {
-    const markdownWithMeta = fs.readFileSync(path.join('content', 'posts',
+    const source = fs.readFileSync(path.join('content', 'posts',
         slug, 'index.mdx'), 'utf-8')
 
-    const { data: frontMatter, content } = matter(markdownWithMeta)
-
-    // pass mdxConfig
     const mdxSource = await serialize(
-        content,
+        source,
         {
+            parseFrontmatter: true,
             mdxOptions: {
                 remarkPlugins: [
                     remarkGfm,
@@ -87,7 +85,6 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
 
     return {
         props: {
-            frontMatter,
             mdxSource
         }
     }
