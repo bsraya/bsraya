@@ -22,7 +22,6 @@ import {
     Stack,
     AlertIcon,
 } from '@chakra-ui/react';
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import NextLink from 'next/link';
 import Image from 'next/image';
 
@@ -68,18 +67,18 @@ const Quote = (props: any) => {
 
     return (
         <Alert
-        mt={4}
-        w="98%"
-        bg={bgColor[colorMode]}
-        variant="left-accent"
-        status="info"
-        css={{
-            '> *:first-of-type': {
-            marginTop: 0,
-            marginLeft: 8
-            }
-        }}
-        {...props}
+            mt={4}
+            w="98%"
+            bg={bgColor[colorMode]}
+            variant="left-accent"
+            status="info"
+            css={{
+                '> *:first-of-type': {
+                marginTop: 0,
+                marginLeft: 8
+                }
+            }}
+            {...props}
         />
     );
 };
@@ -140,51 +139,43 @@ const Hr = () => {
 };
 
 const MDXComponent = {
-    i: (p: any) => <Text as="i" {...p} />,
-    small: (p: any) => <Text as="small" {...p} />,
+    i: (props: any) => <Text as="i" {...props} />,
     br: (props: any) => <Box height="24px" {...props} />,
+    small: (props: any) => <Text as="small" {...props} />,
     p: (props: any) => <Text as="p" my={5}  lineHeight="tall" {...props} />,
-    strong: (p: any) => <Text as="strong" fontWeight="semibold" {...p} />,
+    strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
     
-    li: (p: any) => <ListItem ml={4} {...p} />,
-    ul: (p: any) => <List styleType="disc" spacing={1} {...p} />,
-    ol: (p: any) => <List as="ol" styleType="decimal" spacing={1} {...p} />,
+    li: (props: any) => <ListItem ml={4} {...props} />,
+    ul: (props: any) => <List styleType="disc" spacing={1} {...props} />,
+    ol: (props: any) => <List as="ol" styleType="decimal" spacing={1} {...props} />,
     
     h1: (props: any) => <Heading as="h1" size="xl" my={4} {...props} />,
-    h2: (props: any) => (
-        <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />
-    ),
-    h3: (props: any) => (
-        <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />
-    ),
-    h4: (props: any) => (
-        <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />
-    ),
-    h5: (props: any) => (
-        <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />
-    ),
-    h6: (props: any) => (
-        <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />
-    ),
+    h2: (props: any) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
+    h3: (props: any) => <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />,
+    h4: (props: any) => <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />,
+    h5: (props: any) => <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />,
+    h6: (props: any) => <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />,
+    
+    // for table
+    tr: (props: any) => <Tr {...props} />,
+    th: (props: any) => <Th {...props} />,
+    td: (props: any) => <Td {...props} />,
+    thead: (props: any) => <Thead {...props} />,
+    tbody: (props: any) => <Tbody {...props} />,
+    tfoot: (props: any) => <Tfoot {...props} />,
+    caption: (props: any) => <TableCaption {...props} />,
+    table: (props: any) => <TableContainer><Table variant="striped" colorScheme="teal" {...props} /></TableContainer>,
+    
     hr: Hr,
     a: CustomLink,
     blockquote: Quote,
     image: CustomImage,
     Kbd,
+    Text,
     Stack,
+    Textarea,
     AlertIcon,
     Alert: (props: any) => <Alert my={5} borderRadius="0.5rem" {...props} />,
-    Textarea,
-    Text,
-    // for table
-    tr: (p: any) => <Tr {...p} />,
-    th: (p: any) => <Th {...p} />,
-    td: (p: any) => <Td {...p} />,
-    thead: (p: any) => <Thead {...p} />,
-    tbody: (p: any) => <Tbody {...p} />,
-    tfoot: (p: any) => <Tfoot {...p} />,
-    caption: (p: any) => <TableCaption {...p} />,
-    table: (props: any) => <TableContainer><Table variant="striped" colorScheme="teal" {...props} /></TableContainer>,
 };
 
 export default MDXComponent;
