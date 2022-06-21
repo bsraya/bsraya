@@ -35,7 +35,6 @@ export default function Portfolio({ mdxSource }: IMdxPage) {
                 {mdxSource.frontmatter.date} - {mdxSource.frontmatter.readingTime} reading
             </Text>
             <Heading as="h1" size='3xl' my={5}>{mdxSource.frontmatter.title}</Heading>
-            <Tags tags={mdxSource.frontmatter.tags} color={Color()}/>
             <MDXRemote {...mdxSource} components={MDXComponents} />
         </Layout>
     )

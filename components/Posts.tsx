@@ -1,7 +1,7 @@
 import Tags from './Tags'
 import NextLink from 'next/link'
 import type { IPost } from '../types/post.type'
-import { Heading, LinkBox, LinkOverlay, Text, useColorModeValue } from '@chakra-ui/react'
+import { Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
 import { Color } from '../utils/color'
 
 export default function Posts({ posts, type }: { posts: IPost[]; type: string }) {
@@ -41,12 +41,16 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
                                 </LinkOverlay>  
                             </NextLink>
                             <Text as="p" my={5}>{post.frontMatter.description}</Text>
-                            <Tags
-                                tags={
-                                    post.frontMatter.tags
-                                }
-                                color={randomColor}
-                            />
+                            {
+                                post.frontMatter.tags && (
+                                    <Tags
+                                        tags={
+                                            post.frontMatter.tags
+                                        }
+                                        color={randomColor}
+                                    />
+                                )
+                            }
                         </LinkBox>
                     )
                 })
