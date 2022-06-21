@@ -11,6 +11,7 @@ export default function ColorModeSwitch({...props}): JSX.Element {
             isRound
             variant="ghost"
             onMouseDown={toggleColorMode}
+            mr={2}
             {...props}
         />
     )
