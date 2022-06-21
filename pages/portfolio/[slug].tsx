@@ -20,11 +20,11 @@ import remarkMath from 'remark-math'
 import rehypeSlug from 'rehype-slug'
 import rehypeKatex from 'rehype-katex'
 import rehypePrismPlus from 'rehype-prism-plus'
+import rehypePrismDiff from 'rehype-prism-diff'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypePrismDiff from 'rehype-prism-diff'
 
-export default function Portfolio({ mdxSource }: IMdxPage): JSX.Element {
+export default function Portfolio({ mdxSource }: IMdxPage) {
     return (
         <Layout>
             <Text
@@ -33,7 +33,7 @@ export default function Portfolio({ mdxSource }: IMdxPage): JSX.Element {
             >
                 {mdxSource.frontmatter.date} - {mdxSource.frontmatter.readingTime} reading
             </Text>
-            <Heading as="h1">{mdxSource.frontmatter.title}</Heading>
+            <Heading as="h1" size='3xl' my={5}>{mdxSource.frontmatter.title}</Heading>
             <Tags tags={mdxSource.frontmatter.tags} />
             <MDXRemote {...mdxSource} components={MDXComponents} />
         </Layout>
@@ -74,7 +74,7 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
                     [rehypeAutolinkHeadings, { behavior: 'wrap' }],
                     rehypeKatex,
                     rehypePrismPlus,
-                    rehypePrismDiff
+                    rehypePrismDiff,
                 ],
                 format: 'mdx'
             }

@@ -8,9 +8,9 @@ export default function Navlink ({ href, children }: { href: string, children: R
                 px={4}
                 py={2}
                 rounded={'md'}
+                variant="ghost"
                 _hover={{
-                    textDecoration: 'none',
-                    bg: useColorModeValue('gray.200', 'gray.700'),
+                    textDecoration: 'underline',
                 }}
             >
                 {children}

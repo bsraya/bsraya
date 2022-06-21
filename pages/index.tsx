@@ -10,7 +10,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
     return (
         <Layout>
             <Heading as="h2" size="md" mb={3}>Recent posts</Heading>
-            <Posts posts={posts} />
+            <Posts posts={posts} type="blog" />
         </Layout>
     )
 }

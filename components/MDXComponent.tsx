@@ -8,6 +8,10 @@ import {
     Divider,
     useColorMode,
     Kbd,
+    Textarea,
+    Alert,
+    Stack,
+    AlertIcon,
     Table,
     Thead,
     Tbody,
@@ -17,25 +21,9 @@ import {
     Td,
     TableCaption,
     TableContainer,
-    Textarea,
-    Alert,
-    Stack,
-    AlertIcon,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import Image from 'next/image';
-
-const CustomImage = (props: any) => {
-    return (
-        <Image
-            width={props.width}
-            height={props.height}
-            src={props.src}
-            alt={props.alt}
-            layout="responsive" 
-        />
-    );
-};
+import NextImage from 'next/image';
 
 const CustomLink = (props: any) => {
     const { colorMode } = useColorMode();
@@ -86,19 +74,19 @@ const Quote = (props: any) => {
 const DocsHeading = (props: any) => (
     <Heading
         css={{
-        scrollMarginTop: '100px',
-        scrollSnapMargin: '100px', // Safari
-        '&[id]': {
-            pointerEvents: 'none'
-        },
-        '&[id]:before': {
-            display: 'block',
-            height: ' 6rem',
-            marginTop: '-6rem',
-            visibility: 'hidden',
-            content: `""`
-        },
-        '&[id]:hover a': { opacity: 1 }
+            scrollMarginTop: '100px',
+            scrollSnapMargin: '100px', // Safari
+            '&[id]': {
+                pointerEvents: 'none'
+            },
+            '&[id]:before': {
+                display: 'block',
+                height: ' 6rem',
+                marginTop: '-6rem',
+                visibility: 'hidden',
+                content: `""`
+            },
+            '&[id]:hover a': { opacity: 1 }
         }}
         {...props}
         mb="1em"
@@ -108,18 +96,18 @@ const DocsHeading = (props: any) => (
         {props.children}
         {props.id && (
             <Box
-            aria-label="anchor"
-            as="a"
-            color="blue.500"
-            fontWeight="normal"
-            outline="none"
-            _focus={{
-                opacity: 1,
-                boxShadow: 'outline'
-            }}
-            opacity="0"
-            ml="0.375rem"
-            href={`#${props.id}`}
+                aria-label="anchor"
+                as="a"
+                color="blue.500"
+                fontWeight="normal"
+                outline="none"
+                _focus={{
+                    opacity: 1,
+                    boxShadow: 'outline'
+                }}
+                opacity="0"
+                ml="0.375rem"
+                href={`#${props.id}`}
             >
             #
             </Box>
@@ -166,15 +154,16 @@ const MDXComponent = {
     caption: (props: any) => <TableCaption {...props} />,
     table: (props: any) => <TableContainer><Table variant="striped" colorScheme="teal" {...props} /></TableContainer>,
     
-    hr: Hr,
-    a: CustomLink,
-    blockquote: Quote,
-    image: CustomImage,
     Kbd,
     Text,
     Stack,
     Textarea,
     AlertIcon,
+    hr: Hr,
+    a: CustomLink,
+    blockquote: Quote,
+    NextImage,
+    image: (props: any) => <NextImage {...props} priority loading='lazy' />,
     Alert: (props: any) => <Alert my={5} borderRadius="0.5rem" {...props} />,
 };
 

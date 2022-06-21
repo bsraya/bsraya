@@ -1,4 +1,5 @@
-import { Button, Flex, Text, useColorModeValue } from '@chakra-ui/react'
+import { useState } from 'react';
+import { Button, Flex, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { Color } from '../utils/color'
 
@@ -17,14 +18,15 @@ export default function Tags({ tags }: { tags: string[] }) {
                         >
                             <Button
                                 mr={2}
-                                background='inherit'
+                                variant="ghost"
                                 _hover={{
-                                    bg: `${randomColor}.100`,
+                                    // append bgColor[number] with .100 to get a random color
+                                    bg: 'blue.100',
                                     color: 'rgba(26,32,44)',
                                     borderColor: `${randomColor}.700`,
                                 }}
                             >
-                                <Text color={randomColor + '.700'}>#</Text>
+                                <Text color='blue.600'>#</Text>
                                 <Text>{tag}</Text>
                             </Button>
                         </NextLink>

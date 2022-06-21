@@ -5,11 +5,8 @@ import Layout from '../../components/Layout'
 import { Flex, Heading, Text } from '@chakra-ui/react'
 import Posts from '../../components/Posts'
 import type { IPost } from '../../types/post.type'
-import {Color} from '../../utils/color'
 
-// take "posts" as the parameter
 function Tag({ posts, tag }: { posts: IPost[], tag: string }) {
-    
     return (
         <Layout>
             <Heading as="h1" size="xl">
@@ -18,11 +15,11 @@ function Tag({ posts, tag }: { posts: IPost[], tag: string }) {
                     <Text
                         as="p"
                         // pick a color from the "colors" array
-                        color={Color()}
-                    >&nbsp;#</Text>{tag}
+                        color='tagColor'
+                    >&nbsp;#</Text><Text as="p">{tag}</Text>
                 </Flex>
             </Heading>
-            <Posts posts={posts} />
+            <Posts posts={posts} type="blog" />
         </Layout>
     )
 }
@@ -30,9 +27,7 @@ function Tag({ posts, tag }: { posts: IPost[], tag: string }) {
 const getStaticPaths = async () => {
     const folders = fs.readdirSync(path.join('content', 'posts'))
 
-    // create a Set called "tags" to store all tags
-    // so that there is no multiple tags in the set
-    const set = new Set<string>()
+    const obj: Record<string, boolean> = {}
 
     // get all tags from all posts
     folders.forEach(slug => {
@@ -40,20 +35,12 @@ const getStaticPaths = async () => {
         const { data: frontMatter } = matter(content)
         frontMatter.tags.forEach(
             // tag is string type
-            (tag: string) => set.add(tag)
+            (tag: string) => obj[`/tag/${tag}`] = true
         )
-    })
-    
-    // create an array called "paths" with string type
-    const paths: string[] = []
-
-    // iterate through all the tags in "set"
-    set.forEach(tag => {
-        paths.push(`/tag/${tag}`)
     })
 
     return {
-        paths,
+        paths: Object.keys(obj),
         fallback: false
     }
 }

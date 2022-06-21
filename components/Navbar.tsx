@@ -14,21 +14,11 @@ import {
 } from '@chakra-ui/react'
 import Navlink from './Navlink'
 import Link from 'next/link'
-import styled from '@emotion/styled'
 import Switch from './Switch'
-import Accent from './Accent'
 
 export default function Navigation(): JSX.Element {
-    const Navbar = styled(Box)`
-        position: sticky;
-        z-index: 10;
-        top: 0;
-        backdrop-filter: saturate(180%) blur(20px);
-        transition: height .5s, line-height .5s;
-    `
-
     return (
-        <Navbar
+        <Box
             flexDirection="row"
             justifyContent="space-between"
             alignItems="center"
@@ -55,11 +45,9 @@ export default function Navigation(): JSX.Element {
                         <Navlink href="/about">About</Navlink>
                         <Navlink href="/portfolio">Portfolio</Navlink>
                     </Flex>
-                    <Accent />
                     <Switch />
                     <Menu>
                         <MenuButton
-                            // show menu only when container is smaller than 768px
                             display={{ base: 'none', md: 'none', sm: 'flex' }}
                             as={Button}
                             rounded={'full'}
@@ -100,6 +88,6 @@ export default function Navigation(): JSX.Element {
                     </Menu>
                 </Flex>
             </Flex>
-        </Navbar>
+        </Box>
     )
 }

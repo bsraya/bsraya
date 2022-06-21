@@ -76,7 +76,7 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
                     [rehypeAutolinkHeadings, { behavior: 'wrap' }],
                     rehypeKatex,
                     rehypePrismPlus,
-                    rehypePrismDiff
+                    rehypePrismDiff,
                 ],
                 format: 'mdx'
             }

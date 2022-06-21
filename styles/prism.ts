@@ -11,7 +11,7 @@ const prismStyles = css`
         border-radius: 0px;
     }
 
-    code-highlight {
+    .code-highlight {
         float: left; /* 1 */
         min-width: 100%; /* 2 */
     }
@@ -96,7 +96,10 @@ const prismStyles = css`
     }
 
     :not(pre) > code {
-        color: ${theme.colors.purple[400]};
+        color: ${theme.colors.purple[600]};
+        background: ${theme.colors.gray[200]};
+        padding: ${theme.space[1]} ${theme.space[2]};
+        border-radius: ${theme.radii.md};
     }
 `
 
