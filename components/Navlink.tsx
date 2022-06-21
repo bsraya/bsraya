@@ -1,4 +1,4 @@
-import { Link, useColorModeValue } from '@chakra-ui/react'
+import { Link } from '@chakra-ui/react'
 import Page from 'next/link'
 
 export default function Navlink ({ href, children }: { href: string, children: React.ReactNode }): JSX.Element {

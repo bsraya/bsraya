@@ -23,6 +23,7 @@ import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrismDiff from 'rehype-prism-diff'
+import { Color } from '../../utils/color'
 
 // infer mdxSource parameter type hint
 export default function Blog({ mdxSource }: IMdxPage) {
@@ -35,7 +36,7 @@ export default function Blog({ mdxSource }: IMdxPage) {
                 {mdxSource.frontmatter.date} - {mdxSource.frontmatter.readingTime} reading
             </Text>
             <Heading as="h1" size='3xl' my={5}>{mdxSource.frontmatter.title}</Heading>
-            <Tags tags={mdxSource.frontmatter.tags} />
+            <Tags tags={mdxSource.frontmatter.tags} color={Color()}/>
             <MDXRemote {...mdxSource} components={MDXComponents} />
         </Layout>
     )

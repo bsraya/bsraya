@@ -2,8 +2,10 @@ import Tags from './Tags'
 import NextLink from 'next/link'
 import type { IPost } from '../types/post.type'
 import { Heading, LinkBox, LinkOverlay, Text, useColorModeValue } from '@chakra-ui/react'
+import { Color } from '../utils/color'
 
 export default function Posts({ posts, type }: { posts: IPost[]; type: string }) {
+    var randomColor: string = Color()
     return (
         <>
             {
@@ -16,10 +18,10 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
                             borderWidth='2px'
                             rounded="md"
                             key={post.slug}
-                            borderColor={useColorModeValue('white', 'gray.800')}
+                            borderColor="transparent"
                             _hover={{
                                 border: '2px solid',
-                                borderColor: useColorModeValue('blue.600', 'blue.200'),
+                                borderColor: randomColor + ".400",
                                 boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
                                 transition: 'all 0.2s ease-in-out',
                                 transform: 'translateY(-10px)',
@@ -43,6 +45,7 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
                                 tags={
                                     post.frontMatter.tags
                                 }
+                                color={randomColor}
                             />
                         </LinkBox>
                     )

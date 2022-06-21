@@ -1,8 +1,9 @@
 import NextLink from 'next/link'
 import { Button, Flex, Text, useColorModeValue} from '@chakra-ui/react'
+import { Color } from '../utils/color'
 
 // pass props as an object
-export default function Tags({ tags }: { tags: string[] }) {
+export default function Tags({ tags, color }: { tags: string[], color: string }) {
     return (
         <Flex>
             {
@@ -17,10 +18,12 @@ export default function Tags({ tags }: { tags: string[] }) {
                                 mr={2}
                                 variant="ghost"
                                 _hover={{
-                                    bg: useColorModeValue('blue.200', 'blue.600'),
+                                    color: 'gray.800',
+                                    bg: `${color}.200`,
+                                    borderColor: `${color}.700`,
                                 }}
                             >
-                                <Text color={useColorModeValue('blue.600', 'blue.200')}>#</Text>
+                                <Text color={color + '.700'}>#</Text>
                                 <Text>{tag}</Text>
                             </Button>
                         </NextLink>

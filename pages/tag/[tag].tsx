@@ -11,7 +11,7 @@ function Tag({ posts, tag }: { posts: IPost[], tag: string }) {
         <Layout>
             <Heading as="h1" size="xl">
                 <Flex>
-                    {posts.length} posts tagged with
+                    {posts.length} post(s) tagged with
                     <Text
                         as="p"
                         // pick a color from the "colors" array
