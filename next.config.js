@@ -15,6 +15,7 @@ const runtimeCaching = require('next-pwa/cache')
 const withPWA = require('next-pwa')({
     pwa: {
         dest: "public",
+        display: "standalone",
         register: true,
         skipWaiting: true,
         disable: process.env.NODE_ENV === 'development',
