@@ -80,6 +80,11 @@ export default function Navigation(): JSX.Element {
                                     <br />
                                     <MenuDivider />
                                     <MenuItem>
+                                        <Link href="/">
+                                            Home
+                                        </Link>
+                                    </MenuItem>
+                                    <MenuItem>
                                         <Link href="/about">
                                             About
                                         </Link>
