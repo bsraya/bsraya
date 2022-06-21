@@ -35,7 +35,15 @@ export default function Navigation(): JSX.Element {
             >
                 <Flex>
                     <Link href="/" passHref>
-                        Logo
+                        <Text
+                            css={{
+                                fontFamily: "Virgil"
+                            }}
+                            
+                            _hover={{
+                                cursor: 'pointer',
+                            }}
+                        >Bijon Setyawan Raya</Text>
                     </Link>
                 </Flex>
                 <Flex marginLeft="auto">
