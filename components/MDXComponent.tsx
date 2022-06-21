@@ -133,11 +133,11 @@ const MDXComponent = {
     p: (props: any) => <Text as="p" my={5}  lineHeight="tall" {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
     
-    li: (props: any) => <ListItem ml={4} {...props} />,
-    ul: (props: any) => <List styleType="disc" spacing={1} {...props} />,
+    li: (props: any) => <ListItem ml={10} {...props} />,
+    ul: (props: any) => <List styleType="arrow" spacing={1} {...props} />,
     ol: (props: any) => <List as="ol" styleType="decimal" spacing={1} {...props} />,
     
-    h1: (props: any) => <Heading as="h1" size="xl" my={4} {...props} />,
+    h1: (props: any) => <DocsHeading as="h1" size="xl" fontWeight="bold" {...props} />,
     h2: (props: any) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
     h3: (props: any) => <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />,
     h4: (props: any) => <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />,
@@ -146,13 +146,13 @@ const MDXComponent = {
     
     // for table
     tr: (props: any) => <Tr {...props} />,
-    th: (props: any) => <Th {...props} />,
+    th: (props: any) => <Th fontSize="md" {...props} />,
     td: (props: any) => <Td {...props} />,
-    thead: (props: any) => <Thead {...props} />,
+    thead: (props: any) => <Thead  {...props} />,
     tbody: (props: any) => <Tbody {...props} />,
     tfoot: (props: any) => <Tfoot {...props} />,
     caption: (props: any) => <TableCaption {...props} />,
-    table: (props: any) => <TableContainer><Table variant="striped" colorScheme="teal" {...props} /></TableContainer>,
+    table: (props: any) => <TableContainer><Table variant="striped" {...props} /></TableContainer>,
     
     Kbd,
     Text,
@@ -162,8 +162,7 @@ const MDXComponent = {
     hr: Hr,
     a: CustomLink,
     blockquote: Quote,
-    NextImage,
-    image: (props: any) => <NextImage {...props} priority loading='lazy' />,
+    image: (props: any) => <NextImage {...props} layout='responsive' priority loading='lazy' />,
     Alert: (props: any) => <Alert my={5} borderRadius="0.5rem" {...props} />,
 };
 
