@@ -79,12 +79,12 @@ export default function Navigation(): JSX.Element {
                                     </Center>
                                     <br />
                                     <MenuDivider />
-                                    <MenuItem my={5} _hover={{ backgroundColor: 'transparent' }}>
+                                    <MenuItem>
                                         <Link href="/about">
                                             About
                                         </Link>
                                     </MenuItem>
-                                    <MenuItem my={5} _hover={{ backgroundColor: 'transparent' }}>
+                                    <MenuItem>
                                         <Link href="/portfolio">
                                             Portfolio
                                         </Link>

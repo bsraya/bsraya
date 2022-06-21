@@ -13,7 +13,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
             <Container
                 maxW="container.sm"
-                my={20}
+                my={10}
             >
                 <Global styles={prismStyles} />
                 {children}

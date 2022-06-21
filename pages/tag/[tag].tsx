@@ -10,14 +10,7 @@ function Tag({ posts, tag }: { posts: IPost[], tag: string }) {
     return (
         <Layout>
             <Heading as="h1" size="xl">
-                <Flex>
-                    {posts.length} post(s) tagged with
-                    <Text
-                        as="p"
-                        // pick a color from the "colors" array
-                        color='tagColor'
-                    >&nbsp;#</Text><Text as="p">{tag}</Text>
-                </Flex>
+                {posts.length} post(s) tagged with #{tag}
             </Heading>
             <Posts posts={posts} type="blog" />
         </Layout>
