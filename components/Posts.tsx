@@ -13,16 +13,16 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
                             as="article"
                             p='5'
                             my={5}
-                            borderWidth='5px'
+                            borderWidth='2px'
                             rounded="md"
                             key={post.slug}
                             borderColor={useColorModeValue('white', 'gray.800')}
                             _hover={{
-                                border: '5px solid',
-                                borderColor: useColorModeValue('blue.600', 'blue.300'),
+                                border: '2px solid',
+                                borderColor: useColorModeValue('blue.600', 'blue.200'),
                                 boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
                                 transition: 'all 0.2s ease-in-out',
-                                transform: 'translateY(-5px)'
+                                transform: 'translateY(-10px)',
                             }}
                         >   
                             <Text
