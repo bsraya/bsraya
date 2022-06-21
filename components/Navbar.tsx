@@ -48,7 +48,7 @@ export default function Navigation(): JSX.Element {
                 </Flex>
                 <Flex marginLeft="auto">
                     <Flex
-                        display={{ base: 'none', md: 'flex' }}
+                        display={{ base: 'none', md: 'flex', sm: 'none'}}
                     >
                         <Navlink href="/about">About</Navlink>
                         <Navlink href="/portfolio">Portfolio</Navlink>
@@ -56,7 +56,7 @@ export default function Navigation(): JSX.Element {
                     <Switch />
                     <Menu>
                         <MenuButton
-                            display={{ base: 'none', md: 'none', sm: 'flex' }}
+                            display={{ base: 'none', md: 'flex', sm: 'flex' }}
                             as={Button}
                             rounded={'full'}
                             variant={'link'}
