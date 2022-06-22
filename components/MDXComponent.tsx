@@ -24,6 +24,7 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import NextImage from 'next/image';
+import Series from './Series'
 
 const CustomLink = (props: any) => {
     const { colorMode } = useColorMode();
@@ -130,7 +131,7 @@ const MDXComponent = {
     i: (props: any) => <Text as="i" {...props} />,
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
-    p: (props: any) => <Text as="p" my={5}  lineHeight="tall" {...props} />,
+    p: (props: any) => <Text as="p" my={5} lineHeight="tall" {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
     
     li: (props: any) => <ListItem ml={10} {...props} />,
@@ -159,6 +160,7 @@ const MDXComponent = {
     Stack,
     Textarea,
     AlertIcon,
+    Series,
     hr: Hr,
     a: CustomLink,
     blockquote: Quote,

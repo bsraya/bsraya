@@ -21,7 +21,7 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
                             borderColor="transparent"
                             _hover={{
                                 border: '2px solid',
-                                borderColor: randomColor + ".400",
+                                borderColor: randomColor + ".500",
                                 boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
                                 transition: 'all 0.2s ease-in-out',
                                 transform: 'translateY(-10px)',
