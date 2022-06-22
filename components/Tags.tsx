@@ -19,8 +19,7 @@ export default function Tags({ tags, color }: { tags: string[], color: string })
                                 variant="ghost"
                                 _hover={{
                                     color: 'gray.800',
-                                    bg: `${color}.200`,
-                                    borderColor: `${color}.700`,
+                                    bg: color + ".200",
                                 }}
                             >
                                 <Text color={color + '.700'}>#</Text>

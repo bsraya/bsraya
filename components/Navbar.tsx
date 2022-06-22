@@ -1,19 +1,12 @@
 import {
-    Avatar,
     Box,
-    Button,
-    Center,
     Flex,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    MenuDivider,
     Text,
-    useMediaQuery
+    useMediaQuery,
 } from '@chakra-ui/react'
 import Navlink from './Navlink'
 import Link from 'next/link'
+import Dropdown from './Dropdown'
 import Switch from './Switch'
 
 export default function Navigation(): JSX.Element {
@@ -52,50 +45,7 @@ export default function Navigation(): JSX.Element {
                         isMobile ? (
                             <>
                                 <Switch />
-                                <Menu>
-                                    <MenuButton
-                                        as={Button}
-                                        rounded={'full'}
-                                        variant={'link'}
-                                        cursor={'pointer'}
-                                        minW={0}
-                                    >
-                                    <Avatar
-                                        size={'sm'}
-                                        src={'https://avatars.dicebear.com/api/male/username.svg'}
-                                    />
-                                    </MenuButton>
-                                    <MenuList alignItems={'center'}>
-                                    <br />
-                                    <Center>
-                                        <Avatar
-                                            size={'2xl'}
-                                            src={'https://avatars.dicebear.com/api/male/username.svg'}
-                                        />
-                                    </Center>
-                                    <br />
-                                    <Center>
-                                        <Text as="p">Bijon Setyawan Raya</Text>
-                                    </Center>
-                                    <br />
-                                    <MenuDivider />
-                                    <MenuItem>
-                                        <Link href="/">
-                                            Home
-                                        </Link>
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <Link href="/about">
-                                            About
-                                        </Link>
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <Link href="/portfolio">
-                                            Portfolio
-                                        </Link>
-                                    </MenuItem>
-                                    </MenuList>
-                                </Menu>
+                                <Dropdown />
                             </>
                         ): (
                             <>
