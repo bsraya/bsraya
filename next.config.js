@@ -5,6 +5,9 @@ const nextConfig = {
     optimizeFonts: true,
     ignoreBuildErrors: true,
     reactStrictMode: true,
+    eslint: {
+        dirs: ['components', 'content', 'pages', 'types', 'utils']
+    },
     compiler: {
         emotion: true,
     },

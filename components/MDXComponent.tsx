@@ -1,5 +1,6 @@
 import {
     Box,
+    Button,
     List,
     ListItem,
     Heading,
@@ -21,6 +22,7 @@ import {
     Td,
     TableCaption,
     TableContainer,
+    LinkOverlay,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import NextImage from 'next/image';
@@ -38,9 +40,9 @@ const CustomLink = (props: any) => {
 
     if (isInternalLink) {
         return (
-        <NextLink href={href} passHref>
-            <Link color={color[colorMode]} {...props} />
-        </NextLink>
+            <NextLink {...props} href={href} passHref>
+                <Link color={color[colorMode]} {...props} />
+            </NextLink>
         );
     }
 
@@ -160,6 +162,8 @@ const MDXComponent = {
     Stack,
     Textarea,
     AlertIcon,
+    Box,
+    Button,
     Series,
     hr: Hr,
     a: CustomLink,
