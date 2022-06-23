@@ -27,7 +27,7 @@ const CurrentPost = ({index, title}: {index: number, title: string}) => {
         <>
             <IconButton
                 aria-label="post index"
-                icon={<Text>{index}</Text>}
+                icon={<Text mx="auto">{index}</Text>}
                 isRound
                 background="blue.500"
                 color="gray.100"
@@ -52,7 +52,7 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
         <>
             <IconButton
                 aria-label="post index"
-                icon={<Text>{index}</Text>}
+                icon={<Text mx="auto">{index}</Text>}
                 isRound
                 background="gray.300"
                 color="gray.700"
