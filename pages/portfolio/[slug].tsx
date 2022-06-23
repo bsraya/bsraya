@@ -5,7 +5,6 @@ import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
 // components
-import Tags from './../../components/Tags'
 import Layout from '../../components/Layout'
 import MDXComponents from '../../components/MDXComponent'
 
@@ -23,18 +22,14 @@ import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePrismDiff from 'rehype-prism-diff'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import { Color } from '../../utils/color'
 
 export default function Portfolio({ mdxSource }: IMdxPage) {
     return (
         <Layout>
-            <Text
-                fontSize="sm"
-                color="gray.500"
-            >
+            <Text fontSize="sm" color="gray.500">
                 {mdxSource.frontmatter.date} - {mdxSource.frontmatter.readingTime} reading
             </Text>
-            <Heading as="h1" size='3xl' my={5}>{mdxSource.frontmatter.title}</Heading>
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
             <MDXRemote {...mdxSource} components={MDXComponents} />
         </Layout>
     )
@@ -64,6 +59,7 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
         {
             parseFrontmatter: true,
             mdxOptions: {
+                format: 'mdx',
                 remarkPlugins: [
                     remarkGfm,
                     remarkMath,
@@ -76,7 +72,6 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
                     rehypePrismPlus,
                     rehypePrismDiff,
                 ],
-                format: 'mdx'
             }
         }
     )

@@ -29,13 +29,10 @@ import { Color } from '../../utils/color'
 export default function Blog({ mdxSource }: IMdxPage) {
     return (
         <Layout>
-            <Text
-                fontSize="sm"
-                color="gray.500"
-            >
+            <Text fontSize="sm" color="gray.500">
                 {mdxSource.frontmatter.date} - {mdxSource.frontmatter.readingTime} reading
             </Text>
-            <Heading as="h1" size='3xl' my={5}>{mdxSource.frontmatter.title}</Heading>
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
             <Tags tags={mdxSource.frontmatter.tags} color={Color()}/>
             <MDXRemote {...mdxSource} components={MDXComponents} />
         </Layout>
@@ -67,6 +64,7 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
         {
             parseFrontmatter: true,
             mdxOptions: {
+                format: 'mdx',
                 remarkPlugins: [
                     remarkGfm,
                     remarkMath,
@@ -79,7 +77,6 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
                     rehypePrismPlus,
                     rehypePrismDiff,
                 ],
-                format: 'mdx'
             }
         }
     )

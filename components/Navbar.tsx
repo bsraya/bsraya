@@ -37,7 +37,7 @@ export default function Navigation(): JSX.Element {
                             _hover={{
                                 cursor: 'pointer',
                             }}
-                        >Bijon Setyawan Raya</Text>
+                        >Bijon S.R.</Text>
                     </Link>
                 </Flex>
                 <Flex marginLeft="auto">

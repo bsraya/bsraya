@@ -34,10 +34,10 @@ const prismStyles = css`
         color: ${theme.colors.gray[100]};
         border-top-left-radius: ${theme.radii.md};
         border-top-right-radius: ${theme.radii.md};
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         font-weight: 600;
         width: 100%;
-        font-family: inherit;
+        font-family: monospace;
 
         + pre[class*="language-"] {
             border-top-left-radius: 0;

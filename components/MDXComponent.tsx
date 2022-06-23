@@ -148,7 +148,7 @@ const MDXComponent = {
     
     // for table
     tr: (props: any) => <Tr {...props} />,
-    th: (props: any) => <Th fontSize="md" {...props} />,
+    th: (props: any) => <Th {...props} />,
     td: (props: any) => <Td {...props} />,
     thead: (props: any) => <Thead  {...props} />,
     tbody: (props: any) => <Tbody {...props} />,

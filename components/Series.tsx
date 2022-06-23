@@ -83,7 +83,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
             border="1px solid"
             background="gray.100"
             borderColor="gray.300"
-            width="80%"
+            width="90%"
         >   
             <Heading fontSize="lg" p={3} mx={2} color="blue.500">{series} ({posts.length} Part)</Heading>
             <Divider borderColor="gray.300" w="100%" />
