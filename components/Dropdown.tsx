@@ -1,16 +1,11 @@
 import { HamburgerIcon } from "@chakra-ui/icons";
 import {
-  Avatar,
-  Button,
-  Center,
   LinkBox,
   LinkOverlay,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
-  Text,
   IconButton,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -21,8 +16,9 @@ export default function Dropdown(): JSX.Element {
       <MenuButton
         as={IconButton}
         icon={<HamburgerIcon />}
-        variant={"link"}
-      ></MenuButton>
+        isRound
+        variant="ghost"
+      />
       <MenuList alignItems={"center"}>
         <LinkBox>
           <MenuItem>
