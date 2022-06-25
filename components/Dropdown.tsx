@@ -1,5 +1,6 @@
 import { HamburgerIcon } from "@chakra-ui/icons";
 import {
+  Box,
   LinkBox,
   LinkOverlay,
   Menu,
@@ -18,6 +19,7 @@ export default function Dropdown(): JSX.Element {
         icon={<HamburgerIcon />}
         isRound
         variant="ghost"
+        mr="auto"
       />
       <MenuList alignItems={"center"}>
         <LinkBox>
