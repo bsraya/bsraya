@@ -41,7 +41,6 @@ export default function Footer(): JSX.Element {
                             icon={item.icon}
                             variant="ghost"
                             isRound
-                            mr={5}
                         />
                     </Link>
                 ))}
