@@ -1,8 +1,8 @@
 import Tags from './Tags'
 import NextLink from 'next/link'
+import { Color } from '../utils/color'
 import type { IPost } from '../types/post.type'
 import { Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
-import { Color } from '../utils/color'
 
 export default function Posts({ posts, type }: { posts: IPost[]; type: string }) {
     var randomColor: string = Color()
