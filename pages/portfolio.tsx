@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import Layout from '../components/Layout'
 import Posts from './../components/Posts'
 import { Heading } from '@chakra-ui/react'
+import { DateTime } from 'luxon'
 import type { IPost } from '../types/post.type'
 
 export default function Portfolio({ portfolios }: { portfolios: IPost[] }): JSX.Element {
@@ -16,17 +17,23 @@ export default function Portfolio({ portfolios }: { portfolios: IPost[] }): JSX.
 }
 
 export const getStaticProps = async () => {
-    // get all folders' in content/portfolios
-    const folders = fs.readdirSync(path.join(process.cwd(), 'content', 'portfolios'))
+    // get the name of all folders in /content/portfolios
+    const files = fs.readdirSync(path.join(process.cwd(), 'content', 'portfolios'))
     
     // iterate through all the folders
-    const portfolios = folders.map(slug => {
+    var portfolios = files.map(slug => {
         const content = fs.readFileSync(path.join('content', 'portfolios', slug, 'index.mdx'), 'utf-8')
         const { data: frontMatter } = matter(content)
         return {
             frontMatter,
             slug: slug
         }
+    })
+
+    portfolios.sort((a, b) => {
+        const aDate = DateTime.fromFormat(a.frontMatter.date, "LLLL dd, yyyy")
+        const bDate = DateTime.fromFormat(b.frontMatter.date, "LLLL dd, yyyy")
+        return bDate - aDate
     })
 
     return {
