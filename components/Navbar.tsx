@@ -1,11 +1,9 @@
 import {
     Box,
     Flex,
-    Text,
     useMediaQuery,
 } from '@chakra-ui/react'
 import Navlink from './Navlink'
-import Link from 'next/link'
 import Dropdown from './Dropdown'
 import Switch from './Switch'
 
@@ -27,37 +25,23 @@ export default function Navigation(): JSX.Element {
                 align="center"
                 mx="auto"
             >
-                <Flex>
-                    <Link href="/" passHref>
-                        <Text
-                            css={{
-                                fontFamily: "Virgil"
-                            }}
-                            
-                            _hover={{
-                                cursor: 'pointer',
-                            }}
-                        >Bijon S.R.</Text>
-                    </Link>
-                </Flex>
-                <Flex marginLeft="auto">
-                    {
-                        isMobile ? (
-                            <>
-                                <Switch />
-                                <Dropdown />
-                            </>
-                        ): (
-                            <>
-                                <Flex>
-                                    <Navlink href="/about">About</Navlink>
-                                    <Navlink href="/portfolio">Portfolio</Navlink>
-                                </Flex>
-                                <Switch />
-                            </>
-                        )
-                    }
-                </Flex>
+                {
+                    isMobile ? (
+                        <>
+                            <Dropdown />
+                        </>
+                    ): (
+                        <>
+                            <Flex mr="auto">
+                                <Navlink href="/">Home</Navlink>
+                                <Navlink href="/blog">Blog</Navlink>
+                                <Navlink href="/about">About</Navlink>
+                                <Navlink href="/portfolio">Portfolio</Navlink>
+                            </Flex>
+                        </>
+                    )
+                }
+                <Switch />
             </Flex>
         </Box>
     )
