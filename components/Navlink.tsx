@@ -1,12 +1,11 @@
 import { Link } from '@chakra-ui/react'
-import Page from 'next/link'
+import NextLink from 'next/link'
 
 export default function Navlink ({ href, children }: { href: string, children: React.ReactNode }): JSX.Element {
     return (
-        <Page href={href}>
+        <NextLink href={href}>
             <Link
-                px={4}
-                py={2}
+                mr={5}
                 rounded={'md'}
                 variant="ghost"
                 _hover={{
@@ -15,6 +14,6 @@ export default function Navlink ({ href, children }: { href: string, children: R
             >
                 {children}
             </Link>
-        </Page>
+        </NextLink>
     )
 }
