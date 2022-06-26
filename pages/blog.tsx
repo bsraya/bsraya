@@ -2,75 +2,60 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { DateTime } from 'luxon'
-import { Box, Heading, Input, Text } from '@chakra-ui/react'
+import { FormControl, Heading, Input, InputGroup, InputLeftElement, InputRightElement, CloseButton, Text } from '@chakra-ui/react'
 import Layout from '../components/Layout'
 import type { IPost } from '../types/post.type'
 import Posts from '../components/Posts'
-import { useCallback, useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
+import { FiSearch } from 'react-icons/fi'
 
 export default function Blog({ posts }: { posts: IPost[] }): JSX.Element {
-    const searchRef = useRef(null) as React.MutableRefObject<HTMLInputElement | null>
-    const [query, setQuery] = useState('')
-    const [active, setActive] = useState(false)
-    const [results, setResults] = useState<IPost[]>([])
-    const searchEndpoint = (query: string) => `/api/search?q=${query}`
-
-    const onChange = useCallback((event: any) => {
-        const query = event.target.value
-        setQuery(query)
-        if (query.length) {
-            fetch(searchEndpoint(query))
-                .then((res) => res.json())
-                .then((res) => {
-                    setResults(res.results)
-                })
-        }
-        setResults([])
-    }, [])
-
-    const onFocus = () => {
-        setActive(true)
-        window.addEventListener('click', onClick)
-    }
-
-    const onClick = useCallback((event: any) => {
-        if (searchRef.current && !searchRef.current.contains(event.target)) {
-            setActive(false)
-            setQuery('')
-            setResults([])
-            window.removeEventListener('click', onClick)
-        }
-    }, [])
+    const [search, setSearch] = useState('')
+    const filteredPosts = useMemo(() => {
+        return posts.filter(
+            post =>
+                post.frontMatter.title.toLowerCase().includes(search.toLowerCase()) ||
+                post.frontMatter.description.toLowerCase().includes(search.toLowerCase())
+        )
+    }, [posts, search])
 
     return (
         <Layout>
             <Heading>Blog</Heading>
-            <>
-                <Input
-                    size='lg'
-                    placeholder='Search articles'
-                    ref={searchRef}
-                    type='text'
-                    value={query}
-                    onChange={onChange}
-                    onFocus={onFocus}
-                />
-                {
-                    active && query.length > 0 && results.length > 0 && (
-                        <Box ref={searchRef}>
-                        <Posts posts={results} type="blog" />
-                        </Box>
-                    )
-                }
-                {
-                    active && query.length > 0 && results.length === 0 && (
-                        <Text>No results found</Text>
-                    )
-                }
-            </>
+            <FormControl mt={5}>
+                <InputGroup>
+                    <InputLeftElement
+                        pointerEvents="none"
+                        fontSize="1.2em"
+                        px={0}
+                        children={<FiSearch aria-hidden />}
+                    />
+                    <Input
+                        value={search}
+                        onChange={(e: any) => setSearch(e.target.value)}
+                        placeholder="Search articles"
+                    />
+                    {
+                        search.length > 1 && (
+                            <InputRightElement
+                                children={
+                                    <CloseButton
+                                        rounded="full"
+                                        size="sm"
+                                        onClick={() => setSearch('')}
+                                    />
+                                }
+                            />
+                        )
+                    }
+                </InputGroup>
+            </FormControl>
             {
-                !active && query.length === 0 && <Posts posts={posts} type="blog" />
+                filteredPosts.length > 0 && (
+                    <Posts posts={filteredPosts} type="blog" />
+                )
             }
+            {filteredPosts.length === 0 && <Text my={12} fontSize="md">No posts found</Text>}
         </Layout>
     )
 }
