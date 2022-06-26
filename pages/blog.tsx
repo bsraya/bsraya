@@ -28,6 +28,7 @@ export default function Blog({ posts }: { posts: IPost[] }): JSX.Element {
                         pointerEvents="none"
                         fontSize="1.2em"
                         px={0}
+                        zIndex={0}
                     >
                         <FiSearch aria-hidden />
                     </InputLeftElement>
