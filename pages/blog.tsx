@@ -28,8 +28,9 @@ export default function Blog({ posts }: { posts: IPost[] }): JSX.Element {
                         pointerEvents="none"
                         fontSize="1.2em"
                         px={0}
-                        children={<FiSearch aria-hidden />}
-                    />
+                    >
+                        <FiSearch aria-hidden />
+                    </InputLeftElement>
                     <Input
                         value={search}
                         onChange={(e: any) => setSearch(e.target.value)}
@@ -37,15 +38,13 @@ export default function Blog({ posts }: { posts: IPost[] }): JSX.Element {
                     />
                     {
                         search.length > 1 && (
-                            <InputRightElement
-                                children={
-                                    <CloseButton
-                                        rounded="full"
-                                        size="sm"
-                                        onClick={() => setSearch('')}
-                                    />
-                                }
-                            />
+                            <InputRightElement>
+                                <CloseButton
+                                    rounded="full"
+                                    size="sm"
+                                    onClick={() => setSearch('')}
+                                />
+                            </InputRightElement>
                         )
                     }
                 </InputGroup>
