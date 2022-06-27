@@ -10,8 +10,8 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
     return (
         <>
             {
-                posts.map((post) => {
-                    if (post.frontMatter.publish === true) {
+                posts.map((post: IPost) => {
+                    if (post.frontMatter.publish) {
                         return(
                             <LinkBox
                                 as="article"
