@@ -3,6 +3,7 @@ import NextLink from 'next/link'
 import { Color } from '../utils/color'
 import type { IPost } from '../types/post.type'
 import { Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
+import ViewCounter from './ViewCounter'
 
 export default function Posts({ posts, type }: { posts: IPost[]; type: string }) {
     var randomColor: string = Color()
@@ -52,6 +53,7 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
                                         />
                                     )
                                 }
+                                <ViewCounter slug={post.slug} blogPage={false} />
                             </LinkBox>
                         )
                     }

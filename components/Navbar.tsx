@@ -4,7 +4,7 @@ import {
     useMediaQuery,
 } from '@chakra-ui/react'
 import Navlink from './Navlink'
-import Dropdown from './Dropdown'
+import Dropdown from './DropdownMenu'
 import Switch from './Switch'
 
 export default function Navigation(): JSX.Element {
