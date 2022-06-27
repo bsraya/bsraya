@@ -3,13 +3,13 @@ import path from 'path'
 import matter from 'gray-matter'
 import Posts from '../components/Posts'
 import Layout from '../components/Layout'
-import type { IPost } from '../types/post.type'
+import type { Post } from '../lib/types'
 import NextLink from 'next/link'
 import { DateTime } from 'luxon'
 import { Alert, AlertIcon, Box, Button, Heading, Text, Link, Flex } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 
-export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
+export default function Home({ posts }: { posts: Post[] }): JSX.Element {
     return (
         <Layout>
             <Heading as="h1" mb={2}>Bijon Setyawan Raya</Heading>

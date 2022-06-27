@@ -1,16 +1,16 @@
 import Tags from './Tags'
 import NextLink from 'next/link'
-import { Color } from '../utils/color'
-import type { IPost } from '../types/post.type'
-import { Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
+import { Color } from '../lib/color'
 import ViewCounter from './ViewCounter'
+import type { Post } from '../lib/types'
+import { Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
 
-export default function Posts({ posts, type }: { posts: IPost[]; type: string }) {
+export default function Posts({ posts, type }: { posts: Post[]; type: string }) {
     var randomColor: string = Color()
     return (
         <>
             {
-                posts.map((post: IPost) => {
+                posts.map((post: Post) => {
                     if (post.frontMatter.publish) {
                         return(
                             <LinkBox
@@ -33,7 +33,12 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
                                     fontSize="sm"
                                     color="gray.500"
                                 >
-                                    {post.frontMatter.date} - {post.frontMatter.readingTime} reading • <ViewCounter slug={post.slug} blogPage={false} />
+                                    {post.frontMatter.date} - {post.frontMatter.readingTime} reading
+                                {
+                                    type === 'blog' ? (
+                                        <> • <ViewCounter slug={post.slug} blogPage={false} /></>
+                                    ): (<></>)
+                                }
                                 </Text>
                                 <NextLink href={'/'+ type + '/' + post.slug} passHref>
                                     <LinkOverlay >

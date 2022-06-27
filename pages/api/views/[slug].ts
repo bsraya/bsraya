@@ -1,10 +1,14 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import db from '../../../lib/firebase'
 
 /* eslint-disable */
-export default async (req, res) => {
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse
+) {
     // increment the views
     if (req.method === 'POST') {
-        const ref = db.ref('views').child(req.query.slug)
+        const ref = db.ref('views').child(req.query.slug.toString())
         const { snapshot } = await ref.transaction((currentViews) => {
             if (currentViews === null) {
                 return 1
@@ -20,7 +24,7 @@ export default async (req, res) => {
 
     // fetch the views
     if (req.method === 'GET') {
-        const snapshot = await db.ref('views').child(req.query.slug).once('value')
+        const snapshot = await db.ref('views').child(req.query.slug.toString()).once('value')
         const views = snapshot.val()
 
         return res.status(200).json({ total: views })

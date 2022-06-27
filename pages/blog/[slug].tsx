@@ -10,7 +10,7 @@ import Layout from '../../components/Layout'
 import MDXComponents from '../../components/MDXComponent'
 
 // interface 
-import type { IMdxPage } from '../../types/mdx.type'
+import type { MdxPage } from '../../lib/types'
 
 // remark plugins
 import remarkGfm from 'remark-gfm'
@@ -23,10 +23,10 @@ import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrismDiff from 'rehype-prism-diff'
-import { Color } from '../../utils/color'
+import { Color } from '../../lib/color'
 import ViewCounter from '../../components/ViewCounter'
 
-export default function Blog({ mdxSource }: IMdxPage) {
+export default function Blog({ mdxSource }: MdxPage) {
     return (
         <Layout>
             <Text fontSize="sm" color="gray.500">
