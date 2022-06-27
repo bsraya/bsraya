@@ -33,7 +33,7 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
                                     fontSize="sm"
                                     color="gray.500"
                                 >
-                                    {post.frontMatter.date} - {post.frontMatter.readingTime} reading
+                                    {post.frontMatter.date} - {post.frontMatter.readingTime} reading • <ViewCounter slug={post.slug} blogPage={false} />
                                 </Text>
                                 <NextLink href={'/'+ type + '/' + post.slug} passHref>
                                     <LinkOverlay >
@@ -53,7 +53,6 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
                                         />
                                     )
                                 }
-                                <ViewCounter slug={post.slug} blogPage={false} />
                             </LinkBox>
                         )
                     }
