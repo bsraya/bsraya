@@ -27,7 +27,7 @@ import { Color } from '../../utils/color'
 import ViewCounter from '../../components/ViewCounter'
 
 // infer mdxSource parameter type hint
-export default function Blog({mdxSource, slug}: {mdxSource: IMdxPage; slug: string}) {
+export default function Blog({ mdxSource }: IMdxPage, slug: string) {
     return (
         <Layout>
             <Text fontSize="sm" color="gray.500">
@@ -36,10 +36,7 @@ export default function Blog({mdxSource, slug}: {mdxSource: IMdxPage; slug: stri
             <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontMatter.title}</Heading>
             <Tags tags={mdxSource.frontMatter.tags} color={Color()} />
             <ViewCounter slug={slug} blogPage={true} />
-            <MDXRemote
-                {...mdxSource}
-                components={MDXComponents}
-            />
+            <MDXRemote {...mdxSource} components={MDXComponents} />
         </Layout>
     )
 }
