@@ -1,5 +1,6 @@
 import db from '../../../lib/firebase'
 
+/* eslint-disable */
 export default async (req, res) => {
     // increment the views
     if (req.method === 'POST') {

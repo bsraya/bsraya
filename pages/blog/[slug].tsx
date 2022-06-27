@@ -26,16 +26,16 @@ import rehypePrismDiff from 'rehype-prism-diff'
 import { Color } from '../../utils/color'
 import ViewCounter from '../../components/ViewCounter'
 
-// infer mdxSource parameter type hint
-export default function Blog({ mdxSource }: IMdxPage, slug: string) {
+export default function Blog({ mdxSource }: IMdxPage) {
     return (
         <Layout>
             <Text fontSize="sm" color="gray.500">
-                {mdxSource.frontMatter.date} - {mdxSource.frontMatter.readingTime} reading
+                {mdxSource.frontmatter.date} - {mdxSource.frontmatter.readingTime} reading • <ViewCounter slug={mdxSource.slug} blogPage={true} />
             </Text>
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontMatter.title}</Heading>
-            <Tags tags={mdxSource.frontMatter.tags} color={Color()} />
-            <ViewCounter slug={slug} blogPage={true} />
+            
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
+            <Tags tags={mdxSource.frontmatter.tags} color={Color()} />
+            
             <MDXRemote {...mdxSource} components={MDXComponents} />
         </Layout>
     )
@@ -84,9 +84,12 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
     )
 
     return {
+        // include slug in 'mdxSource`
         props: {
-            mdxSource,
-            slug: slug,
+            mdxSource: {
+                ...mdxSource,
+                slug
+            }
         }
     }
 }

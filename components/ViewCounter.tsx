@@ -19,15 +19,12 @@ export default function ViewCounter({ slug, blogPage }: { slug: string, blogPage
     const views = new Number(data?.total);
 
     useEffect(() => {
-        const registerView = () =>
+        if (blogPage) {
             fetch(`/api/views/${slug}`, {
                 method: 'POST'
             });
-        
-        if (blogPage) {
-            registerView()
         }
-    }, [slug]);
+    }, [slug, blogPage]);
 
-    return <Text>{`${views > 0 ? views.toLocaleString() : '–––'} views`}</Text>;
+    return <Text display="inline-block" fontSize="sm" color="gray.500">{`${views > 0 ? views.toLocaleString() : '–––'} views`}</Text>;
 }
