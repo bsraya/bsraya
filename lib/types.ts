@@ -21,3 +21,7 @@ export type Post =  {
     }
     slug: string
 }
+
+export type Views = {
+    total: number;
+};
