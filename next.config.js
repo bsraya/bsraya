@@ -2,6 +2,7 @@
  * @type {import('next').NextConfig}
 */
 const nextConfig = {
+    swcMinify: true,
     optimizeFonts: true,
     ignoreBuildErrors: true,
     reactStrictMode: true,
@@ -24,8 +25,10 @@ const withPWA = require('next-pwa')({
         runtimeCaching,
     }
 })
+const withImages = require('next-images')
 
 module.exports = withPlugins([
     nextConfig,
     withPWA,
+    withImages
 ])
