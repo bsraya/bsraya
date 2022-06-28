@@ -167,7 +167,7 @@ const MDXComponent = {
     hr: Hr,
     a: CustomLink,
     blockquote: Quote,
-    image: (props: any) => <NextImage {...props} layout='responsive' priority loading='lazy' />,
+    img: (props: any) => <NextImage {...props} style={{ background: "white" }} quality={50} width={100} height={70} layout="responsive" loading='lazy' />,
     Alert: (props: any) => <Alert my={5} borderRadius="0.5rem" {...props} />,
 };
 
