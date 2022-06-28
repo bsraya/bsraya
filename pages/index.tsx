@@ -8,6 +8,9 @@ import NextLink from 'next/link'
 import { DateTime } from 'luxon'
 import { Alert, AlertIcon, Box, Button, Heading, Text, Link, Flex } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
+import useSWR from 'swr';
+import type { Views } from '../lib/types';
+import {fetcher} from '../lib/fetcher'
 
 export default function Home({ posts }: { posts: Post[] }): JSX.Element {
     return (
@@ -57,6 +60,7 @@ export const getStaticProps = async () => {
     var posts = folders.map(slug => {
         const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf-8')
         const { data: frontMatter } = matter(content)
+
         return {
             frontMatter,
             slug: slug
