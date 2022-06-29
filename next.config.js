@@ -7,7 +7,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
     reactStrictMode: true,
     eslint: {
-        dirs: ['components', 'content', 'pages', 'types', 'utils']
+        dirs: ['components', 'pages', 'lib']
     },
     compiler: {
         emotion: true,
