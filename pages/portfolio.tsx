@@ -7,7 +7,7 @@ import { Heading } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 import type { Post } from '../lib/types'
 
-export default function Portfolio({ portfolios }: { portfolios: IPost[] }): JSX.Element {
+export default function Portfolio({ portfolios }: { portfolios: Post[] }): JSX.Element {
     return (
         <Layout>
             <Heading as="h2" size="md" mb={3}>Portfolio</Heading>
