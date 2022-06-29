@@ -6,18 +6,45 @@ import Layout from '../components/Layout'
 import type { Post } from '../lib/types'
 import NextLink from 'next/link'
 import { DateTime } from 'luxon'
-import { Alert, AlertIcon, Box, Button, Heading, Text, Link, Flex } from '@chakra-ui/react'
+import { Alert, AlertIcon, Box, Button, Heading, Text, Link, Flex, useMediaQuery, HStack, VStack, Image } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import useSWR from 'swr';
-import type { Views } from '../lib/types';
-import {fetcher} from '../lib/fetcher'
 
 export default function Home({ posts }: { posts: Post[] }): JSX.Element {
+    const [isMobile] = useMediaQuery('(max-width: 768px)')
     return (
         <Layout>
-            <Heading as="h1" mb={2}>Bijon Setyawan Raya</Heading>
-            <Text>Graduate student at National Tsing Hua University</Text>
-
+            {
+                isMobile ? (
+                    <VStack align="left">
+                        <Image
+                            alt="avatar"
+                            boxSize="100px"
+                            src="/images/avatar.png"
+                        />
+                        <Box>
+                            <Heading as="h1">Bijon Setyawan Raya</Heading>
+                            <Text fontSize="sm">
+                                A Computer Science graduate student at National Tsing Hua University
+                            </Text>
+                        </Box>
+                    </VStack>
+                ) : (
+                    <HStack>
+                        <Image
+                            mr={3}
+                            alt="avatar"
+                            boxSize="100px"
+                            src="/images/avatar.png"
+                        />
+                        <Box>
+                            <Heading as="h1">Bijon Setyawan Raya</Heading>
+                            <Text fontSize="sm">
+                                A Computer Science graduate student at National Tsing Hua University
+                            </Text>
+                        </Box>
+                    </HStack>   
+                )
+            }
             <Alert mt={10} variant="left-accent" status='info'>
                 <AlertIcon
                     mt={1}
@@ -32,7 +59,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                         my={2}
                         colorScheme="blue"
                     >
-                        <NextLink href="/blog/first-post" passHref>
+                        <NextLink href="/blog/linear-algebra" passHref>
                             Bring it on!
                         </NextLink>
                     </Button>
@@ -68,14 +95,14 @@ export const getStaticProps = async () => {
     })
 
     // sort the posts by date
-    posts.sort((a, b) => {
-        const aDate = DateTime.fromFormat(a.frontMatter.date, "LLLL dd, yyyy")
-        const bDate = DateTime.fromFormat(b.frontMatter.date, "LLLL dd, yyyy")
-        return bDate - aDate
+    posts = posts.sort((a, b) => {
+        const aDate: (typeof a.frontMatter.Date) = DateTime.fromFormat(a.frontMatter.date, "LLLL dd, yyyy")
+        const bDate: (typeof a.frontMatter.Date) = DateTime.fromFormat(b.frontMatter.date, "LLLL dd, yyyy")
+        return bDate - aDate;
     })
 
     // get the first three posts
-    posts = posts.slice(0,3)
+    // posts = posts.slice(0,3)
 
     return {
         props: {
