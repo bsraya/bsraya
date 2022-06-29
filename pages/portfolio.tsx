@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import Posts from './../components/Posts'
 import { Heading } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
-import type { IPost } from '../types/post.type'
+import type { Post } from '../lib/types'
 
 export default function Portfolio({ portfolios }: { portfolios: IPost[] }): JSX.Element {
     return (
