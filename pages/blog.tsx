@@ -4,12 +4,12 @@ import matter from 'gray-matter'
 import { DateTime } from 'luxon'
 import { FormControl, Heading, Input, InputGroup, InputLeftElement, InputRightElement, CloseButton, Text } from '@chakra-ui/react'
 import Layout from '../components/Layout'
-import type { IPost } from '../types/post.type'
+import type { Post } from '../lib/types'
 import Posts from '../components/Posts'
 import { useMemo, useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
 
-export default function Blog({ posts }: { posts: IPost[] }): JSX.Element {
+export default function Blog({ posts }: { posts: Post[] }): JSX.Element {
     const [search, setSearch] = useState('')
     const filteredPosts = useMemo(() => {
         return posts.filter(
@@ -73,6 +73,8 @@ export const getStaticProps = async () => {
             slug: slug
         }
     })
+
+    posts = posts.filter(post => post.frontMatter.publish)
 
     posts.sort((a, b) => {
         const aDate = DateTime.fromFormat(a.frontMatter.date, "LLLL dd, yyyy")
