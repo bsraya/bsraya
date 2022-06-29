@@ -3,6 +3,7 @@ import path from 'path'
 import { Heading, Text } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
+import { DateTime } from 'luxon'
 
 // components
 import Tags from './../../components/Tags'
@@ -23,20 +24,19 @@ import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrismDiff from 'rehype-prism-diff'
-import { Color } from '../../lib/color'
 import ViewCounter from '../../components/ViewCounter'
 
 export default function Blog({ mdxSource }: MdxPage) {
     return (
         <Layout>
             <Text fontSize="sm" color="gray.500">
-                {mdxSource.frontmatter.date} - {mdxSource.frontmatter.readingTime} reading • <ViewCounter slug={mdxSource.slug} blogPage={true} />
+                { DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy') } - {mdxSource.frontmatter.readingTime} reading • <ViewCounter slug={mdxSource.slug} blogPage={true} />
             </Text>
             
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-            <Tags tags={mdxSource.frontmatter.tags} color={Color()} />
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>
+            <Tags tags={ mdxSource.frontmatter.tags } />
             
-            <MDXRemote {...mdxSource} components={MDXComponents} />
+            <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>
     )
 }
@@ -84,7 +84,6 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
     )
 
     return {
-        // include slug in 'mdxSource`
         props: {
             mdxSource: {
                 ...mdxSource,

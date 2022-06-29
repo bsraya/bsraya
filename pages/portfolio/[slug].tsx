@@ -3,6 +3,7 @@ import path from 'path'
 import { Heading, Text } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
+import { DateTime } from 'luxon'
 
 // components
 import Layout from '../../components/Layout'
@@ -27,10 +28,10 @@ export default function Portfolio({ mdxSource }: MdxPage) {
     return (
         <Layout>
             <Text fontSize="sm" color="gray.500">
-                {mdxSource.frontmatter.date} - {mdxSource.frontmatter.readingTime} reading
+                { DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy') } - {mdxSource.frontmatter.readingTime} reading
             </Text>
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-            <MDXRemote {...mdxSource} components={MDXComponents} />
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>
+            <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>
     )
 }

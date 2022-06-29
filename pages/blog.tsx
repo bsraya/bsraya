@@ -1,13 +1,22 @@
+import {
+    FormControl,
+    Heading,
+    Input,
+    InputGroup,
+    InputLeftElement,
+    InputRightElement,
+    CloseButton,
+    Text
+} from '@chakra-ui/react'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { DateTime } from 'luxon'
-import { FormControl, Heading, Input, InputGroup, InputLeftElement, InputRightElement, CloseButton, Text } from '@chakra-ui/react'
 import Layout from '../components/Layout'
 import type { Post } from '../lib/types'
 import Posts from '../components/Posts'
 import { useMemo, useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
+import sortPost from '../lib/sortpost'
 
 export default function Blog({ posts }: { posts: Post[] }): JSX.Element {
     const [search, setSearch] = useState('')
@@ -65,7 +74,7 @@ export const getStaticProps = async () => {
     const folders = fs.readdirSync(path.join(process.cwd(), 'content', 'posts'))
 
     // iterate through all the files in /content/posts
-    var posts = folders.map(slug => {
+    var posts: Post[] = folders.map(slug => {
         const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf-8')
         const { data: frontMatter } = matter(content)
         return {
@@ -74,13 +83,10 @@ export const getStaticProps = async () => {
         }
     })
 
-    posts = posts.filter(post => post.frontMatter.publish)
+    posts = posts.filter((post: Post) => post.frontMatter.publish)
 
-    posts.sort((a, b) => {
-        const aDate = DateTime.fromFormat(a.frontMatter.date, "LLLL dd, yyyy")
-        const bDate = DateTime.fromFormat(b.frontMatter.date, "LLLL dd, yyyy")
-        return bDate - aDate
-    })
+    // sort the posts by date
+    posts = sortPost(posts)
 
     return {
         props: {

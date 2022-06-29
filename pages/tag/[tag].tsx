@@ -2,9 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '../../components/Layout'
-import { Flex, Heading, Text } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react'
 import Posts from '../../components/Posts'
 import type { Post } from '../../lib/types'
+import sortPost from '../../lib/sortpost'
 
 function Tag({ posts, tag }: { posts: Post[], tag: string }) {
     return (
@@ -17,7 +18,7 @@ function Tag({ posts, tag }: { posts: Post[], tag: string }) {
     )
 }
 
-const getStaticPaths = async () => {
+export const getStaticPaths = async () => {
     const folders = fs.readdirSync(path.join('content', 'posts'))
 
     const obj: Record<string, boolean> = {}
@@ -38,24 +39,28 @@ const getStaticPaths = async () => {
     }
 }
 
-const getStaticProps = async ({ params: { tag } }: any) => {
+export const getStaticProps = async ({ params: { tag } }: any) => {
     // get all folders' in content/portfolios
-    const folders = fs.readdirSync(path.join('content', 'posts'))
+    const folders = fs.readdirSync(path.join(process.cwd(), 'content', 'posts'))
 
     // get all posts' front matter with a specific tag
-    const filtered = folders.map(slug => {
-        const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf-8')
+    var posts: Post[] = folders.map(slug => {
+        const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf8')
         const { data: frontMatter } = matter(content)
-        if (frontMatter.tags.includes(tag)) {
-            return {
-                frontMatter,
-                slug: slug
-            }
+
+        return {
+            frontMatter,
+            slug
         }
     })
 
-    // remove undefined elements in the "posts" array
-    const posts = filtered.filter(Boolean)
+    // only show published posts
+    posts = posts.filter((post: Post) => post.frontMatter.publish)
+
+    // filter out posts that don't have the tag
+    posts = posts.filter((post: Post) => post.frontMatter.tags.includes(tag))
+
+    posts = sortPost(posts)
 
     return {
         props: {
@@ -65,5 +70,4 @@ const getStaticProps = async ({ params: { tag } }: any) => {
     }
 }
 
-export { getStaticProps, getStaticPaths }
 export default Tag

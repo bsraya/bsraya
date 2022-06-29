@@ -1,3 +1,17 @@
+import {
+    Alert,
+    AlertIcon,
+    Box,
+    Button,
+    Heading,
+    Text,
+    Link,
+    Flex,
+    useMediaQuery,
+    HStack,
+    VStack,
+    Image
+} from '@chakra-ui/react'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -5,8 +19,7 @@ import Posts from '../components/Posts'
 import Layout from '../components/Layout'
 import type { Post } from '../lib/types'
 import NextLink from 'next/link'
-import { DateTime } from 'luxon'
-import { Alert, AlertIcon, Box, Button, Heading, Text, Link, Flex, useMediaQuery, HStack, VStack, Image } from '@chakra-ui/react'
+import sortPost from '../lib/sortpost'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 
 export default function Home({ posts }: { posts: Post[] }): JSX.Element {
@@ -84,7 +97,7 @@ export const getStaticProps = async () => {
     const folders = fs.readdirSync(path.join(process.cwd(), 'content', 'posts'))
 
     // iterate through all the files in /content/posts
-    var posts = folders.map(slug => {
+    var posts: Post[] = folders.map(slug => {
         const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf-8')
         const { data: frontMatter } = matter(content)
 
@@ -94,15 +107,12 @@ export const getStaticProps = async () => {
         }
     })
 
-    // sort the posts by date
-    posts = posts.sort((a, b) => {
-        const aDate: (typeof a.frontMatter.Date) = DateTime.fromFormat(a.frontMatter.date, "LLLL dd, yyyy")
-        const bDate: (typeof a.frontMatter.Date) = DateTime.fromFormat(b.frontMatter.date, "LLLL dd, yyyy")
-        return bDate - aDate;
-    })
+    posts = posts.filter((post: Post) => post.frontMatter.publish)
 
-    // get the first three posts
-    // posts = posts.slice(0,3)
+    // sort the posts by date
+    posts = sortPost(posts)
+
+    posts = posts.slice(0, 3)
 
     return {
         props: {

@@ -1,25 +1,11 @@
 export type MdxPage = {
-    frontMatter: {
-        title: string
-        date: string
-        readingTime: string
-        description: string
-        tags: string[]
-        publish: boolean
-    }
-    mdxSource: any
-}
+    frontMatter: { [key: string]: any; };
+    mdxSource: any;
+};
 
 export type Post =  {
-    frontMatter: {
-        title: string
-        date: string
-        readingTime: string
-        description: string
-        tags: string[]
-        publish: boolean
-    }
-    slug: string
+    frontMatter: { [key: string]: any; };
+    slug: string;
 }
 
 export type Views = {
