@@ -4,9 +4,9 @@ import matter from 'gray-matter'
 import Layout from '../../components/Layout'
 import { Flex, Heading, Text } from '@chakra-ui/react'
 import Posts from '../../components/Posts'
-import type { IPost } from '../../types/post.type'
+import type { Post } from '../../lib/types'
 
-function Tag({ posts, tag }: { posts: IPost[], tag: string }) {
+function Tag({ posts, tag }: { posts: Post[], tag: string }) {
     return (
         <Layout>
             <Heading as="h1" size="xl">
