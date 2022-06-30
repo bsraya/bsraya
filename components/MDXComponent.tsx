@@ -83,8 +83,6 @@ const DocsHeading = (props: any) => (
             },
             '&[id]:before': {
                 display: 'block',
-                height: ' 6rem',
-                marginTop: '-6rem',
                 visibility: 'hidden',
                 content: `""`
             },
@@ -92,7 +90,7 @@ const DocsHeading = (props: any) => (
         }}
         {...props}
         mb="1em"
-        mt="2em"
+        mt="1em"
     >
         <Box pointerEvents="auto">
         {props.children}
@@ -132,7 +130,7 @@ const MDXComponent = {
     i: (props: any) => <Text as="i" {...props} />,
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
-    p: (props: any) => <Text as="p" my={5} lineHeight="taller" {...props} />,
+    p: (props: any) => <Text as="p" my={10} lineHeight="taller" {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
     
     li: (props: any) => <ListItem ml={10} {...props} />,
@@ -169,7 +167,18 @@ const MDXComponent = {
     a: CustomLink,
     blockquote: Quote,
     // 384 × 262
-    img: (props: any) => <NextImage {...props} style={{ background: "white" }} width={384} height={262} layout="responsive" loading='lazy' />,
+    img: (props: any) =>
+        <Box my={10}>
+            <NextImage
+                {...props}
+                style={{ background: "white" }}
+                width={368}
+                height={250}
+                layout="responsive"
+                loading='lazy'
+            />
+        </Box>
+    ,
     Alert: (props: any) => <Alert my={5} {...props} />,
 };
 
