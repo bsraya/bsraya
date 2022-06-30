@@ -9,6 +9,7 @@ import { DateTime } from 'luxon'
 import Tags from './../../components/Tags'
 import Layout from '../../components/Layout'
 import MDXComponents from '../../components/MDXComponent'
+import ViewCounter from '../../components/ViewCounter'
 
 // interface 
 import type { MdxPage } from '../../lib/types'
@@ -25,7 +26,6 @@ import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrismDiff from 'rehype-prism-diff'
-import ViewCounter from '../../components/ViewCounter'
 
 export default function Blog({ mdxSource }: MdxPage) {
     return (
