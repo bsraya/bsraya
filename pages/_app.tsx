@@ -1,13 +1,11 @@
 import 'katex/dist/katex.min.css'
-import { useEffect } from 'react';
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
-import { Fonts } from '../styles/style'
+import Theme from '../styles/theme'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <ChakraProvider>
-            <Fonts />
+        <ChakraProvider theme={Theme}>
             <Component {...pageProps} />
         </ChakraProvider>
     )
