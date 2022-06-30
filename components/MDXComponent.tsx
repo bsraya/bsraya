@@ -132,7 +132,7 @@ const MDXComponent = {
     i: (props: any) => <Text as="i" {...props} />,
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
-    p: (props: any) => <Text as="p" lineHeight="taller" {...props} />,
+    p: (props: any) => <Text as="p" my={5} lineHeight="taller" {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
     
     li: (props: any) => <ListItem ml={10} {...props} />,
@@ -168,7 +168,8 @@ const MDXComponent = {
     hr: Hr,
     a: CustomLink,
     blockquote: Quote,
-    img: (props: any) => <NextImage {...props} style={{ background: "white" }} quality={50} width={100} height={70} layout="responsive" loading='lazy' />,
+    // 384 × 262
+    img: (props: any) => <NextImage {...props} style={{ background: "white" }} width={384} height={262} layout="responsive" loading='lazy' />,
     Alert: (props: any) => <Alert my={5} {...props} />,
 };
 
