@@ -16,6 +16,7 @@ import type { MdxPage } from '../../lib/types'
 // remark plugins
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
+import remarkUnwrapImages from 'remark-unwrap-images'
 
 // rehype pluings
 import rehypeSlug from 'rehype-slug'
@@ -70,6 +71,7 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
                 remarkPlugins: [
                     remarkGfm,
                     remarkMath,
+                    remarkUnwrapImages,
                 ],
                 rehypePlugins: [
                     rehypeSlug,
