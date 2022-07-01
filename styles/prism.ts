@@ -96,8 +96,8 @@ const prismStyles = css`
     }
 
     :not(pre) > code {
-        color: ${theme.colors.purple[600]};
-        background: ${theme.colors.gray[200]};
+        color: #FF79C6;
+        background: #282A36;
         padding: ${theme.space[1]} ${theme.space[2]};
         border-radius: ${theme.radii.md};
     }
