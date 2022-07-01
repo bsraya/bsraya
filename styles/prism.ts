@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { theme } from "@chakra-ui/react";
+import { theme, useMediaQuery } from "@chakra-ui/react";
 
 const prismStyles = css`
     .highlight-line {
@@ -103,6 +103,15 @@ const prismStyles = css`
     ::-webkit-scrollbar {
         width: ${theme.space[2]};
         height: ${theme.space[2]};
+    }
+
+    @media (max-width: ${theme.breakpoints.md}) {
+        pre[class*="language-"] {
+            font-size: ${theme.fontSizes["sm"]};
+            margin: ${theme.space[6]} 0;
+            overflow: auto;
+            min-width: 100%;
+        }
     }
 `
 
