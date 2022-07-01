@@ -8,6 +8,7 @@ import { DateTime } from 'luxon'
 // components
 import Layout from '../../components/Layout'
 import MDXComponents from '../../components/MDXComponent'
+import Authors from '../../components/Authors'
 
 // interface 
 import type { MdxPage } from '../../lib/types'
@@ -31,7 +32,8 @@ export default function Portfolio({ mdxSource }: MdxPage) {
             <Text fontSize="sm" color="gray.500">
                 { DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy') } - {mdxSource.frontmatter.readingTime} reading
             </Text>
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
+            <Authors authors={mdxSource.frontmatter.authors} />
             <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>
     )
