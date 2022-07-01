@@ -10,12 +10,12 @@ type author = {
 export default function Authors(props: any): JSX.Element {
     const authorsInfo: author[] = [
         {
-            name: "Bijon SR",
+            name: "Bijon Setyawan Raya",
             image: "https://bsraya.vercel.app/images/avatar.png",
             url: "/",
         },
         {
-            name: "Bella PD",
+            name: "Annabella Putri Dirgo",
             image: "https://i.ibb.co/FhfYZ8L/logo.png",
             url: "https://bellapd.vercel.app",
         }
@@ -27,30 +27,36 @@ export default function Authors(props: any): JSX.Element {
             <Wrap>
                 {
                     props.authors.map((name: string) => {
-                        if (name === "Bijon SR") {
+                        if (name === authorsInfo[0].name) {
                             return (
-                                <Tooltip label={authorsInfo[0].name}>
-                                        <WrapItem
-                                            _hover={{
-                                                    cursor: "pointer",
-                                                }}
+                                <Tooltip
+                                    key={name}
+                                    label={authorsInfo[0].name}
+                                >
+                                    <WrapItem
+                                        _hover={{
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        <NextLink
+                                            href={authorsInfo[0].url}
+                                            passHref
                                         >
-                                            <NextLink
-                                                    href={authorsInfo[0].url}
-                                                    passHref
-                                            >
-                                                    <Avatar
-                                                        name={authorsInfo[0].name}
-                                                        src={authorsInfo[0].image}
-                                                    />
-                                            </NextLink>
-                                        </WrapItem>
+                                            <Avatar
+                                                name={authorsInfo[0].name}
+                                                src={authorsInfo[0].image}
+                                            />
+                                        </NextLink>
+                                    </WrapItem>
                                 </Tooltip>
                             )
                         }
-                        if (name === "Bella PD") {
+                        if (name === authorsInfo[1].name) {
                             return (
-                                <Tooltip label={authorsInfo[1].name}>
+                                <Tooltip
+                                    key={name}
+                                    label={authorsInfo[1].name}
+                                >
                                     <Link
                                         href={authorsInfo[1].url}
                                         target="_blank"

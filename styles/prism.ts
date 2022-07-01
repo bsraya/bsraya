@@ -51,9 +51,6 @@ const prismStyles = css`
         margin: ${theme.space[6]} 0;
         overflow: auto;
         min-width: 100%;
-        border-radius: ${theme.radii.md};
-        border-width: 1px;
-        border-color: ${theme.colors.gray[700]};
     }
 
     .code-line {
@@ -100,6 +97,11 @@ const prismStyles = css`
         background: #282A36;
         padding: ${theme.space[1]} ${theme.space[2]};
         border-radius: ${theme.radii.md};
+    }
+
+    ::-webkit-scrollbar {
+        width: ${theme.space[2]};
+        height: ${theme.space[2]};
     }
 `
 
