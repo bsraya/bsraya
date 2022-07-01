@@ -13,15 +13,6 @@ const theme = extendTheme(config, {
         heading: "Inter, system-ui, sans-serif",
         mono: "Menlo, monospace",
     },
-    styles: {
-        global: () => ({
-            body: {
-                transitionProperty: "background",
-                transitionDuration: "0.5s",
-                transitionTimingFunction: "ease-in-out",
-            }
-        })
-    }
 })
 
 
