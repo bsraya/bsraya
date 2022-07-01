@@ -28,7 +28,11 @@ With Next.js, it will be only 1 or 2 minutes.
 
 # Chakra UI
 
-I also chose ChakraUI because it is ready to use out of the box. Unlike TailWindCSS or Theme UI, it does not require that much configuration.
+Back while developing my first personal website, I decorate the entire website from scratch.
+At the beginning, it started easy. Once the number of components increased, maintaining its styling became a challenge.
+Thus, I need something that is easy to maintain and consistent across the entire website.
+
+That was when I started considering to use ChakraUI because it is ready to use out of the box. Unlike TailWindCSS or Theme UI, it does not require that much configuration.
 The only thing that I need is to install and wrap the `<ChakraProvider>` component around all Next.js components.
 
 Moreover, customizing the theme is easy. First, I have to create a file called `theme.tsx`, under `./styles` in the main directory of the project.
@@ -70,11 +74,22 @@ Simply put, the usage of ChakraUI is pretty straight forward. Thus, it became th
 The reason I chose MDX is it allows me incorporate mathematical equations in my website.
 Some of my posts, for example the posts in the [Gradient Descent: An Optimization Algorithm](/blog/gradient-descent) series, requires alot of maths to explain.
 
+Besides that, there are still many other features that we can implement. [Click here](https://github.com/remarkjs/remark/blob/main/doc/plugins.md) to see the lists of plugins. 
+
+In my own website, I added:
+
+* [Github Flavored Markdown](https://github.github.com/gfm/#what-is-github-flavored-markdown-) styling
+* Code and syntax highlightings
+* Katex for mathematical equations
+
+I did not include that much features because more features translate to longer build time. 
+
 # Firebase
 
 Since I want to keep track the engagement of each post, I chose Firebase as the database.
-With Firebase, I can store the number of views of each post.
+With Firebase, I can store the number of views of each post. In the future, I plan to keep track the number of likes of each post.
 
 # Vercel
 
 Lastly, I chose Vercel as the hosting platform because it is the most popular hosting platform for Next.js, and it is free for hobby projects.
+Most importantly, it's easy to setup and Vercel integrates very well with Github.
