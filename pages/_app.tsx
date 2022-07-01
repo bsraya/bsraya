@@ -1,11 +1,11 @@
 import 'katex/dist/katex.min.css'
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
-import Theme from '../styles/theme'
+import theme from '../styles/theme'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <ChakraProvider theme={Theme}>
+        <ChakraProvider theme={theme}>
             <Component {...pageProps} />
         </ChakraProvider>
     )
