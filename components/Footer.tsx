@@ -21,8 +21,7 @@ export default function Footer(): JSX.Element {
             url: 'mailto:nathan.setyawan96@gmail.com',
         },
     ]
-
-    var bgColor = useColorModeValue('#fdd2d8', '#b0646f')
+    
     return (
         <Flex as="footer" marginBottom={20} direction="column" align="center">
             <Flex maxW="container.md">
@@ -42,10 +41,6 @@ export default function Footer(): JSX.Element {
                             icon={item.icon}
                             variant="ghost"
                             isRound
-                            _hover={{
-                                // if theme == light, set background to #fdd2d8
-                                backgroundColor: bgColor,
-                            }}
                         />
                     </Link>
                 ))}

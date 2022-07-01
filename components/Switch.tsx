@@ -3,7 +3,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 export default function ColorModeSwitch({...props}): JSX.Element {
     const { colorMode, toggleColorMode } = useColorMode()
-    var bgColor = useColorModeValue('#fdd2d8', '#b0646f')
+
     return (
         <IconButton
             aria-label={colorMode === 'dark' ? 'Dark Mode' : 'Light Mode'}
@@ -12,10 +12,6 @@ export default function ColorModeSwitch({...props}): JSX.Element {
             variant="ghost"
             onMouseDown={toggleColorMode}
             mr={2}
-            _hover={{
-                // if theme == light, set background to #fdd2d8
-                backgroundColor: bgColor,
-            }}
             {...props}
         />
     )
