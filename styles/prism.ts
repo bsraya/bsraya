@@ -47,7 +47,7 @@ const prismStyles = css`
     }
 
     pre[class*="language-"] {
-        font-size: ${theme.fontSizes["sm"]};
+        font-size: ${theme.fontSizes["md"]};
         margin: ${theme.space[6]} 0;
         overflow: auto;
         min-width: 100%;
