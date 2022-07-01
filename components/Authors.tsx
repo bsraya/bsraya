@@ -26,7 +26,24 @@ export default function Authors(props: any): JSX.Element {
             <Text mb={2} fontSize="sm" color="gray.500">Author(s):</Text>
             <Wrap>
                 {
-                    props.authors.map((name: string) => {
+                    (props.authors.length === 1 && props.authors[0] === authorsInfo[0].name) ?
+                    (
+                        <WrapItem>
+                            <NextLink
+                                href={authorsInfo[0].url}
+                                passHref
+                            >
+                                <Avatar
+                                    name={authorsInfo[0].name}
+                                    src={authorsInfo[0].image}
+                                    _hover={{
+                                        cursor: "pointer",
+                                    }}
+                                />
+                            </NextLink>
+                            <Text ml={3} my="auto">{authorsInfo[0].name}</Text>
+                        </WrapItem>
+                    ) : props.authors.map((name: string) => {
                         if (name === authorsInfo[0].name) {
                             return (
                                 <Tooltip
