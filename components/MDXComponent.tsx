@@ -136,12 +136,12 @@ const MDXComponent = {
     i: (props: any) => <Text as="i" {...props} />,
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
-    p: (props: any) => <Text as="p" lineHeight="taller" {...props} />,
+    p: (props: any) => <Text as="p" my={5} lineHeight="taller" {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
     
     li: (props: any) => <ListItem ml={6} {...props} />,
-    ul: (props: any) => <List as="ul" styleType="circle" mt={1} spacing={1} {...props} />,
-    ol: (props: any) => <List as="ol" styleType="decimal" mt={1} spacing={1} {...props} />,
+    ul: (props: any) => <List as="ul" styleType="circle" mt={5} spacing={1} {...props} />,
+    ol: (props: any) => <List as="ol" styleType="decimal" mt={5} spacing={1} {...props} />,
     
     h1: (props: any) => <DocsHeading as="h1" size="xl" fontWeight="bold" {...props} />,
     h2: (props: any) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
@@ -167,6 +167,7 @@ const MDXComponent = {
     AlertIcon,
     Box,
     Button,
+    button: (props: any) => <Button {...props} />,
     NextLink,
     Series,
     hr: Hr,
