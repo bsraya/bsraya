@@ -147,7 +147,7 @@ const MDXComponent = {
     h2: (props: any) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
     h3: (props: any) => <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />,
     h4: (props: any) => <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />,
-    h5: (props: any) => <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />,
+    h5: (props: any) => <DocsHeading as="h5" size="xs" fontWeight="bold" {...props} />,
     h6: (props: any) => <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />,
     
     // for table
@@ -167,7 +167,6 @@ const MDXComponent = {
     AlertIcon,
     Box,
     Button,
-    button: (props: any) => <Button {...props} />,
     NextLink,
     Series,
     hr: Hr,
