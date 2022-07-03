@@ -76,7 +76,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
     return (
         <Box
             mx="auto"
-            mt={5}
+            mt={10}
             rounded="lg"
             display="block"
             color="gray.700"
