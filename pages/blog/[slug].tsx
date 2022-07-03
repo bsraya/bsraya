@@ -10,6 +10,7 @@ import Tags from './../../components/Tags'
 import Layout from '../../components/Layout'
 import MDXComponents from '../../components/MDXComponent'
 import ViewCounter from '../../components/ViewCounter'
+import Authors from '../../components/Authors'
 
 // interface 
 import type { MdxPage } from '../../lib/types'
@@ -34,9 +35,9 @@ export default function Blog({ mdxSource }: MdxPage) {
                 { DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy') } - {mdxSource.frontmatter.readingTime} reading • <ViewCounter slug={mdxSource.slug} blogPage={true} />
             </Text>
             
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
+            <Authors authors={mdxSource.frontmatter.authors} />
             <Tags tags={ mdxSource.frontmatter.tags } />
-            
             <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>
     )
