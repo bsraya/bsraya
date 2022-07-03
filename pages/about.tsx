@@ -1,7 +1,15 @@
-import { Heading, Stack, Text } from '@chakra-ui/react'
 import Layout from '../components/Layout'
+import { AiOutlineProject } from 'react-icons/ai'
+import { FaChalkboardTeacher } from 'react-icons/fa'
+import { FiAward } from 'react-icons/fi'
+import { GiArchiveResearch } from 'react-icons/gi'
+import { MdOutlineSchool, MdOutlineWorkOutline } from 'react-icons/md'
+import { Box, Divider, Heading, HStack, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react'
+import NextLink from 'next/link'
 
 export default function About(): JSX.Element {
+    const color = "gray.300"
+
     return (
         <Layout>
             <Stack>
@@ -13,29 +21,209 @@ export default function About(): JSX.Element {
                 </Text>
             </Stack>
 
-            <Stack mt={10}>
+            <HStack my={5}>
                 <Heading as="h1">
-                    What do I do?
+                    2022
                 </Heading>
-                <Text lineHeight="taller">
-                    I have been doing Frontend Development since my third year in undergraduate, and ML/DL related projects in my fourth year. However, I expanded my skills into Backend Developement in the early of my Master&rsquo;s Degree because I wanted to know how data are handled from user interfaces then back to the database to be processed to improve user experience.
-                </Text>
-                <Text lineHeight="taller">
-                    For now, I have been working mostly on a Backend system that controls how and when ML/DL models should be run for my thesis.
-                </Text>
-            </Stack>
+                <Divider
+                    orientation="horizontal"
+                    __css={{
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: color
+                    }}
+                />
+            </HStack>
 
-            <Stack mt={10}>
+            <HStack my={5}>
+                <MdOutlineSchool size="2rem" />
+                <Text>Expect to complete a graduate degree in CS</Text>
+            </HStack>
+            
+            <HStack my={5}>
+                <FaChalkboardTeacher size="2rem" />
+                <Text>Teaching assistant in a Linear Algebra class</Text>
+            </HStack>
+
+            <HStack my={5}>
+                <GiArchiveResearch size="2rem" />
+                <Text>Graduate research assistant</Text>
+            </HStack>
+
+            <HStack my={5}>
+                <AiOutlineProject size="2rem" />
+                <NextLink
+                    passHref
+                    href="/portfolio/personal-website-v2"
+                >
+                    <Text
+                        css={{
+                            color: "#fc909f",
+                            cursor: "pointer",
+                            "&:hover": {
+                                textDecoration: "underline"
+                            }
+                        }}
+                    >Personal website v2.0</Text>
+                </NextLink>
+            </HStack>
+
+            <HStack my={5}>
                 <Heading as="h1">
-                    Why do I blog?
+                    2021
                 </Heading>
-                <Text lineHeight="taller">
-                    As a software engineer, I am required to learn as much as I can in the shortest amount of time as possible. Sometimes I can&rsquo;t retain so much information for a longer period of time if I do not use it too often. So, I will make this blog as a kind of a notebook where, not only me, everyone can learn and use for reference.
-                </Text>
-                <Text lineHeight="taller">
-                    I hope that everyone will find some of the posts useful. If you find errors in one of the post or that one of my posts interesting, I welcome emails or comments so long that they are relevant to the topic of the post.
-                </Text>
-            </Stack>
+                <Divider
+                    orientation="horizontal"
+                    __css={{
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: color
+                    }}
+                />
+            </HStack>
+
+            <HStack my={5}>
+                <MdOutlineSchool size="2rem" />
+                <Text>Completed an undergraduate degree in CS</Text>
+            </HStack>
+
+            <HStack my={5}>
+                <FaChalkboardTeacher size="2rem" />
+                <Text>Teaching assistant in an Intro. to C programming class</Text>
+            </HStack>
+
+            <HStack my={5}>
+                <MdOutlineWorkOutline size="2rem" />
+                <Text>Software engineering intern</Text>
+            </HStack>
+
+            <HStack my={5}>
+                <GiArchiveResearch size="2rem" />
+                <Text>Graduate research assistant</Text>
+            </HStack>
+
+            <HStack my={5}>
+                <AiOutlineProject size="2rem" />
+                <NextLink
+                    passHref
+                    href="/portfolio/personal-website"
+                >
+                    <Text
+                        css={{
+                            color: "#fc909f",
+                            cursor: "pointer",
+                            "&:hover": {
+                                textDecoration: "underline"
+                            }
+                        }}
+                    >Personal website</Text>
+                </NextLink>
+            </HStack>
+
+            <HStack my={5}>
+                <Heading as="h1">
+                    2020
+                </Heading>
+                <Divider
+                    orientation="horizontal"
+                    __css={{
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: color
+                    }}
+                />
+            </HStack>
+
+            <HStack my={5}>
+                <FaChalkboardTeacher size="2rem" />
+                <Text>Teaching assistant in an Intro. to C programming class</Text>
+            </HStack>
+
+            <HStack my={5}>
+                <MdOutlineWorkOutline size="2rem" />
+                <Text>Front-end development intern</Text>
+            </HStack>
+
+            <HStack my={5}>
+                <Heading as="h1">
+                    2018
+                </Heading>
+                <Divider
+                    orientation="horizontal"
+                    __css={{
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: color
+                    }}
+                />
+            </HStack>
+
+            <HStack my={5}>
+                <MdOutlineWorkOutline size="2rem" />
+                <Text>Front-end development intern</Text>
+            </HStack>
+
+            <HStack my={5}>
+                <Heading as="h1">
+                    2017
+                </Heading>
+                <Divider
+                    orientation="horizontal"
+                    __css={{
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: color
+                    }}
+                />
+            </HStack>
+
+            <HStack mt={5} mb={10}>
+                <FiAward size="2rem" />
+                <Text>Civil IoT Taiwan 2017</Text>
+            </HStack>
+
+            <Heading as="h1">
+                Technical Skills
+            </Heading>
+
+            <Heading as="h2" size="md" mt={3}>
+                Programming Languages
+            </Heading>
+            <UnorderedList mt={3} mb={5}>
+                <ListItem ml={5}>Python</ListItem>
+                <ListItem ml={5}>Golang</ListItem>
+                <ListItem ml={5}>Typescript / Javascript</ListItem>
+            </UnorderedList>
+
+            <Heading as="h2" size="md">
+                Web technologies
+            </Heading>
+            <UnorderedList mt={3} mb={5}>
+                <ListItem ml={5}>React</ListItem>
+                <ListItem ml={5}>Next.js</ListItem>
+                <ListItem ml={5}>Gatsby.js</ListItem>
+                <ListItem ml={5}>ChakraUI</ListItem>
+                <ListItem ml={5}>Cypress</ListItem>
+            </UnorderedList>
+
+            <Heading as="h2" size="md">
+                Tools
+            </Heading>
+            <UnorderedList mt={3} mb={5}>
+                <ListItem ml={5}>Git</ListItem>
+                <ListItem ml={5}>Docker</ListItem>
+                <ListItem ml={5}>Kubernetes</ListItem>
+                <ListItem ml={5}>Linux / Unix</ListItem>
+            </UnorderedList>
+            
+            <Heading as="h2" size="md">
+                Database framework
+            </Heading>
+            <UnorderedList mt={3}>
+                <ListItem ml={5}>GraphQL</ListItem>
+                <ListItem ml={5}>MongoDB</ListItem>
+                <ListItem ml={5}>PostgreSQL</ListItem>
+            </UnorderedList>
         </Layout>
     )
 }
