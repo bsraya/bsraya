@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { theme, useMediaQuery } from "@chakra-ui/react";
+import { theme } from "@chakra-ui/react";
 
 const prismStyles = css`
     .highlight-line {
