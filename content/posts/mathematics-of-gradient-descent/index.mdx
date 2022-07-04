@@ -47,7 +47,7 @@ Let's see how it works at a glance.
 
 Assume we have random data points like in the following graph.
 
-![A set of random data points](/images/posts/mathematics-of-gradient-descent/datapoints.png)
+![A set of random data points](/images/posts/mathematics-of-gradient-descent/datapoints.png "A set of random data points")
 
 We then make a regression line based on the following equation.
 
@@ -59,14 +59,14 @@ At this point, we want to find the best value for $\beta_0$ and $\beta_1$.
 Assuming that we can't come up with the best answer, we can just randomly assign some random numbers to them.
 Now, let's set $\beta_0 = 0$ and $\beta_1 = -5$, and we are going to get a regression line in the following graph.
 
-![Data points with a regression line](/images/posts/mathematics-of-gradient-descent/points_line.png)
+![Data points with a regression line](/images/posts/mathematics-of-gradient-descent/points_line.png "Data points with a regression line")
 
 The problem is that we can't simply guess random numbers and plug them in to $\beta_0$ and $\beta_1$ over and over again.
 Clearly, we need a way to automate this.
 
 Let's make a 2D graph showing the MSE graph where $\beta_0 = 0$ and $-10 \leq \beta_1 \leq 13$.
 
-![Linear Regression's MSE](/images/posts/mathematics-of-gradient-descent/cost_function.png)
+![Linear Regression's MSE](/images/posts/mathematics-of-gradient-descent/cost_function.png "Linear Regression's MSE")
 
 In the graph above, when $\beta_0 = 0$ and $\beta_1 = -5$, the MSE value is $217.42$ shown as a red dot.
 
@@ -76,13 +76,13 @@ Therefore, we are not going to guess the suitable value $\beta_1$ one by one.
 
 The ideal scenario is that we can have the red dot going down the valley slowly by itself.
 
-![Gradient Descent with low learning rate](/images/posts/mathematics-of-gradient-descent/low_lr.png)
+![Gradient Descent with low learning rate](/images/posts/mathematics-of-gradient-descent/low_lr.png "Gradient Descent with low learning rate")
 
 However, we don't want the red dot to bounce here and there.
 If so, it means that the learning rate is too high.
 Don't worry if you are not sure what learning rate is since I have [a seperate post](/blog/what-is-the-best-learning-rate) explaning what it is.
 
-![Gradient Descent with high learning rate](/images/posts/mathematics-of-gradient-descent/high_lr.png)
+![Gradient Descent with high learning rate](/images/posts/mathematics-of-gradient-descent/high_lr.png "Gradient Descent with high learning rate")
 
 In the next section, we are going to discuss how we can help our little friend The Little Red Dot going down the valley.
 Brace yourself because it is about to go down. I swear, no pun intended.

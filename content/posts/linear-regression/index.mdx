@@ -44,13 +44,13 @@ publish: false
 I am sure most of you reading this post right now are familiar with the following graph,
 and we did use $y = b + ax$ equation in high school or college to find the distance between two points in a 2D coordinate.
 
-![A Gradient Line](/images/posts/linear-regression/lr.png)
+![A Gradient Line](/images/posts/linear-regression/lr.png "A Gradient Line")
 
 Not it is able to determine the distance between two points, but it can used to get a machine learning model to learn better.
 
 Let's say that we have an Iris dataset from `sklearn-learn`. Plotting it will give us the following visualization.
 
-![Iris Dataset Scatter Plot](/images/posts/linear-regression/iris_scatter.png)
+![Iris Dataset Scatter Plot](/images/posts/linear-regression/iris_scatter.png "Iris Dataset Scatter Plot")
 
 Clearly, we can see that there are two features involved in the classification: `sepal_length` and `petal_width`.
 
@@ -77,9 +77,9 @@ Now you will be wondering their correlations whether `sepal_length` and `petal_w
 `sepal_length` and `petal_width` are said to be correlated when `sepal_length` increases, the `petal_length` also increases.
 Conversely, `sepal_length` and `petal_width` are said to be inversely correlated when `sepal_length` increases, but the `petal_width` decreases.
 
-![Positively Correlated Regression Line](/images/posts/linear-regression/positively-correlated.png)
+![Positively Correlated Regression Line](/images/posts/linear-regression/positively-correlated.png "Positively Correlated Regression Line")
 
-![Inversely Correlated Regression Line](/images/posts/linear-regression/inversely-correlated.png)
+![Inversely Correlated Regression Line](/images/posts/linear-regression/inversely-correlated.png "Inversely Correlated Regression Line")
 
 With a regression line, it can help us to predict the $y$ value given a single $x$ value.
 However, most predictions made by the regression line are not always accurate
@@ -87,7 +87,7 @@ since its ability to predict depends heavily on $\beta_0$ and $\beta_1$.
 If the values $\beta_0$ and $\beta_1$ are not tweaked correctly, the regression line will sit right far from most data points.
 Let's see an example down below where datapoints are far from the regression line.
 
-![Most data points are far from the regression line](/images/posts/linear-regression/far.png)
+![Most data points are far from the regression line](/images/posts/linear-regression/far.png "Most data points are far from the regression line")
 
 When the regression line, which is the green line, sees $x = 0$ then it predicts $y = -3$.
 In reality, $y$ should be $0.5$ when $x = 0$. Meaning that our regression line is very bad at prediction.
@@ -114,7 +114,7 @@ where $n$ is the number of data points, $\hat{y}_i$ is the predicted value, and 
 
 Let's see another example where the data points are close to the regression line.
 
-![Most data points are close from the regression line](/images/posts/linear-regression/close.png)
+![Most data points are close from the regression line](/images/posts/linear-regression/close.png "Most data points are close from the regression line")
 
 Let's calculate the MSE for this example to see if the MSE is small when the regression line is close to most data points.
 

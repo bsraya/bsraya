@@ -22,6 +22,9 @@ import {
     Td,
     TableCaption,
     TableContainer,
+    BoxProps,
+    useColorModeValue,
+    textDecoration
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import NextImage from 'next/image';
@@ -47,6 +50,43 @@ const CustomLink = (props: any) => {
 
     return <Link color={color[colorMode]} isExternal {...props} />;
 };
+
+const Images = (props: any) => {
+    if (props.title !== undefined) {
+        return (
+            <figure>
+                <img
+                    src={props.src}
+                    alt={props.alt}
+                    style={{ marginLeft: "auto", marginRight: "auto" }}
+                    width="100%"
+                    height="auto"
+                    loading='lazy'
+                />
+                <figcaption
+                    style={{
+                        textAlign: "center",
+                        fontSize: "0.9rem",
+                        fontWeight: "bold",
+                        fontStyle: "italic"
+                    }}
+                >
+                    {props.title}
+                </figcaption>
+            </figure>
+        );
+    } else {
+        return <img
+            src={props.src}
+            alt={props.alt}
+            style={{ marginLeft: "auto", marginRight: "auto" }}
+            // make the image responsive
+            width="100%"
+            height="auto"
+            loading='lazy'
+        />;
+    }
+}
 
 const Quote = (props: any) => {
     const { colorMode } = useColorMode();
@@ -172,18 +212,7 @@ const MDXComponent = {
     hr: Hr,
     a: CustomLink,
     blockquote: Quote,
-    img: (props: any) =>
-        <Box my={10}>
-            <NextImage
-                {...props}
-                style={{ background: "white" }}
-                width={368}
-                height={250}
-                layout="responsive"
-                loading='lazy'
-            />
-        </Box>
-    ,
+    img: (props: any) => <Images {...props} />,
     Alert: (props: any) => <Alert my={5} {...props} />,
 };
 
