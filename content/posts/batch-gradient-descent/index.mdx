@@ -39,6 +39,66 @@ publish: false
   currentPost="Batch Gradient Descent"
 />
 
-# Introduction
+# Setting Up The Dataset
 
-This is my third attempt in writing.
+In this example, we are going to include the [Iris Dataset](https://archive.ics.uci.edu/ml/datasets/iris) from UCI Machine Learning Repository imported from `scikit-learn`.
+There are two features in the dataset that we are going to analyse, namely `sepal_length` and `petal_width` shown in the highlighted lines.
+
+```python {7-8}
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+features = iris.data
+target = iris.target
+
+sepal_length = np.array(features[:, 0])
+petal_width = np.array(features[:, 3])
+
+species_names = list()
+
+for i in target:
+    if i == 0:
+    species_names.append('setosa')
+    elif i == 1:
+    species_names.append('versicolor')
+    else:
+    species_names.append('virginica')
+```
+
+# Setting Up A Baseline
+
+Before we implement Batch Gradient Descent in Python, we need to set a baseline to compare against our own implementation.
+So, we are going to train our dataset into the Linear Regression built-in function made by `scikit-learn`.
+
+First, let's fit our dataset to `LinearRegression()` model that we imported from `sklearn.linear_model`.
+
+```python
+linreg = LinearRegression()
+
+linreg.fit(
+    X = sepal_length.reshape(-1,1),
+    y = petal_width.reshape(-1,1)
+)
+
+print("Intercept: ",linreg.intercept_[0])
+# Intercept: -3.200215
+print("First coefficient:", linreg.coef_[0][0])
+# First coeficient: 0.75291757
+```
+
+Once we have the intercept and the coefficient values, let's make a regression line to see if the line is close to most data points.
+
+```python
+sns.scatterplot(
+    x = sepal_length,
+    y = petal_width,
+    hue = species_names
+)
+
+plt.plot(
+    sepal_length,
+    linreg.intercept_[0] +
+    linreg.coef_[0][0] * features[:, 0],
+    color='red'
+)
+```
