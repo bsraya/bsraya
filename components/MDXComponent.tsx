@@ -51,7 +51,7 @@ const CustomLink = (props: any) => {
     return <Link color={color[colorMode]} isExternal {...props} />;
 };
 
-const Images = (props: any) => {
+const CustomImages = (props: any) => {
     if (props.title !== undefined) {
         return (
             <figure>
@@ -68,10 +68,10 @@ const Images = (props: any) => {
                         textAlign: "center",
                         fontSize: "0.9rem",
                         fontWeight: "bold",
-                        fontStyle: "italic"
+                        fontStyle: "italic",
                     }}
                 >
-                    {props.title}
+                    figure: {props.title}
                 </figcaption>
             </figure>
         );
@@ -80,7 +80,6 @@ const Images = (props: any) => {
             src={props.src}
             alt={props.alt}
             style={{ marginLeft: "auto", marginRight: "auto" }}
-            // make the image responsive
             width="100%"
             height="auto"
             loading='lazy'
@@ -212,7 +211,7 @@ const MDXComponent = {
     hr: Hr,
     a: CustomLink,
     blockquote: Quote,
-    img: (props: any) => <Images {...props} />,
+    img: (props: any) => <CustomImages {...props} />,
     Alert: (props: any) => <Alert my={5} {...props} />,
 };
 
