@@ -4,7 +4,7 @@ import { FaChalkboardTeacher } from 'react-icons/fa'
 import { FiAward } from 'react-icons/fi'
 import { GiArchiveResearch } from 'react-icons/gi'
 import { MdOutlineSchool, MdOutlineWorkOutline } from 'react-icons/md'
-import { Box, Divider, Heading, HStack, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react'
+import { Divider, Heading, HStack, Link, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
 export default function About(): JSX.Element {
@@ -224,6 +224,10 @@ export default function About(): JSX.Element {
                 <ListItem ml={5}>MongoDB</ListItem>
                 <ListItem ml={5}>PostgreSQL</ListItem>
             </UnorderedList>
+
+            <Text my={5}>
+                For more details, my resume can be downloaded <Link href={process.env.RESUME_URL} color="#fc909f" isExternal>here</Link>.
+            </Text>
         </Layout>
     )
 }
