@@ -31,15 +31,15 @@ export default function Dropdown(): JSX.Element {
         </LinkBox>
         <LinkBox>
           <MenuItem>
-            <NextLink href="/blog" passHref>
-              <LinkOverlay>Blog</LinkOverlay>
+            <NextLink href="/about" passHref>
+              <LinkOverlay>About</LinkOverlay>
             </NextLink>
           </MenuItem>
         </LinkBox>
         <LinkBox>
           <MenuItem>
-            <NextLink href="/about" passHref>
-              <LinkOverlay>About</LinkOverlay>
+            <NextLink href="/blog" passHref>
+              <LinkOverlay>Blog</LinkOverlay>
             </NextLink>
           </MenuItem>
         </LinkBox>
