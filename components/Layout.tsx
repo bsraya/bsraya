@@ -12,7 +12,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <Navbar />
 
             <Container
-                maxW="container.sm"
+                maxW="container.md"
                 my={10}
             >
                 <Global styles={prismStyles} />
