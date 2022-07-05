@@ -29,6 +29,7 @@ import {
 import NextLink from 'next/link';
 import NextImage from 'next/image';
 import Series from './Series'
+import Image from 'next/image';
 
 const CustomLink = (props: any) => {
     const { colorMode } = useColorMode();
@@ -54,34 +55,32 @@ const CustomLink = (props: any) => {
 const CustomImages = (props: any) => {
     if (props.title !== undefined) {
         return (
-            <figure>
-                <img
+            <figure style={{ width: `auto`, height: "auto" }}>
+                <Image
                     src={props.src}
                     alt={props.alt}
-                    style={{ marginLeft: "auto", marginRight: "auto" }}
-                    width="100%"
-                    height="auto"
+                    width={128}
+                    height={64}
+                    layout="responsive"
                     loading='lazy'
                 />
                 <figcaption
                     style={{
                         textAlign: "center",
                         fontSize: "0.9rem",
-                        fontWeight: "bold",
-                        fontStyle: "italic",
                     }}
                 >
-                    figure: {props.title}
+                    Figure: <span style={{ fontStyle: "italic" }}>{props.title}</span>
                 </figcaption>
             </figure>
         );
     } else {
-        return <img
+        return <Image
             src={props.src}
             alt={props.alt}
-            style={{ marginLeft: "auto", marginRight: "auto" }}
-            width="100%"
-            height="auto"
+            width={128}
+            height={64}
+            layout="responsive"
             loading='lazy'
         />;
     }
