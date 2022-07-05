@@ -2,15 +2,6 @@ import { css } from "@emotion/react";
 import { theme } from "@chakra-ui/react";
 
 const prismStyles = css`
-    .highlight-line {
-        margin-left: -16px;
-        margin-right: -16px;
-        background-color: rgba(55, 65, 81, 0.5); /* Set highlight bg color */
-        border-left-width: 4px;
-        border-left-color: rgb(155 163 175); /* Set highlight accent border color */
-        border-radius: 0px;
-    }
-
     .code-highlight {
         float: left; /* 1 */
         min-width: 100%; /* 2 */
@@ -86,6 +77,8 @@ const prismStyles = css`
         background-color: rgba(55, 65, 81, 0.5); /* Set highlight bg color */
         border-left-width: 4px;
         border-left-color: rgb(155 163 175); /* Set highlight accent border color */
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
     }
 
     code, pre[class*="language-"] {
