@@ -53,8 +53,8 @@ const CustomImages = (props: any) => {
         return (
             <figure
                 style={{
-                    padding: `1rem`,
-                    background: `white`
+                    background: `white`,
+                    borderRadius: `0.5rem`
                 }}
             >
                 <Image
@@ -64,13 +64,11 @@ const CustomImages = (props: any) => {
                     height={64}
                     layout="responsive"
                     loading='lazy'
-                    
                 />
                 <figcaption
                     style={{
                         textAlign: "center",
                         fontSize: "0.9rem",
-                        fontStyle: "italic",
                         color: 'black'
                     }}
                 >
