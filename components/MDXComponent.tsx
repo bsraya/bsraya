@@ -51,7 +51,12 @@ const CustomLink = (props: any) => {
 const CustomImages = (props: any) => {
     if (props.title !== undefined) {
         return (
-            <figure>
+            <figure
+                style={{
+                    padding: `1rem`,
+                    background: `white`
+                }}
+            >
                 <Image
                     src={props.src}
                     alt={props.alt}
@@ -59,13 +64,14 @@ const CustomImages = (props: any) => {
                     height={64}
                     layout="responsive"
                     loading='lazy'
+                    
                 />
                 <figcaption
                     style={{
                         textAlign: "center",
                         fontSize: "0.9rem",
-                        // italic
                         fontStyle: "italic",
+                        color: 'black'
                     }}
                 >
                     {props.title}
