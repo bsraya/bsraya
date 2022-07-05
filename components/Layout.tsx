@@ -3,6 +3,7 @@ import Seo from './Seo'
 import Footer from './Footer'
 import { Box, Container } from '@chakra-ui/react'
 import prismStyles from '../styles/prism'
+import katexStyles from '../styles/katex'
 import { Global } from '@emotion/react';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -15,7 +16,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 maxW="container.md"
                 my={10}
             >
-                <Global styles={prismStyles} />
+                <Global
+                    styles={[prismStyles, katexStyles]}
+                />
                 {children}
             </Container>
             <Footer />
