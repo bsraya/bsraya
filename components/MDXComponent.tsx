@@ -22,12 +22,8 @@ import {
     Td,
     TableCaption,
     TableContainer,
-    BoxProps,
-    useColorModeValue,
-    textDecoration
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import NextImage from 'next/image';
 import Series from './Series'
 import Image from 'next/image';
 
@@ -55,7 +51,7 @@ const CustomLink = (props: any) => {
 const CustomImages = (props: any) => {
     if (props.title !== undefined) {
         return (
-            <figure style={{ width: `auto`, height: "auto" }}>
+            <figure>
                 <Image
                     src={props.src}
                     alt={props.alt}
@@ -68,9 +64,11 @@ const CustomImages = (props: any) => {
                     style={{
                         textAlign: "center",
                         fontSize: "0.9rem",
+                        // italic
+                        fontStyle: "italic",
                     }}
                 >
-                    Figure: <span style={{ fontStyle: "italic" }}>{props.title}</span>
+                    {props.title}
                 </figcaption>
             </figure>
         );
