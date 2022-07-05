@@ -54,7 +54,8 @@ const CustomImages = (props: any) => {
             <figure
                 style={{
                     background: `white`,
-                    borderRadius: `0.5rem`
+                    borderRadius: `0.5rem`,
+                    marginBottom: `1.5rem`
                 }}
             >
                 <Image
