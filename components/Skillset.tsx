@@ -2,7 +2,7 @@ import { Heading, Stack, UnorderedList } from "@chakra-ui/react";
 import Skill from './Skill';
 import { FaReact } from 'react-icons/fa';
 import { BsQuestion } from 'react-icons/bs';
-import { SiGatsby, SiNextdotjs, SiChakraui, SiTypescript, SiPython, SiGit, SiDocker, SiKubernetes, SiLinux, SiGraphql, SiMongodb, SiPostgresql } from "react-icons/si";
+import { SiGatsby, SiNextdotjs, SiChakraui, SiTypescript, SiPython, SiGit, SiDocker, SiKubernetes, SiLinux, SiGraphql, SiMongodb, SiPostgresql, SiCypress } from "react-icons/si";
 
 export default function Skillset(): JSX.Element {
     return (
@@ -31,6 +31,7 @@ export default function Skillset(): JSX.Element {
                     <Skill tool="Next.js" icon={SiNextdotjs} />
                     <Skill tool="Gatsby.js" icon={SiGatsby} />
                     <Skill tool="ChakraUI" icon={SiChakraui} />
+                    <Skill tool="Cypress.js" icon={SiCypress} />
                 </UnorderedList>
             </Stack>
 
