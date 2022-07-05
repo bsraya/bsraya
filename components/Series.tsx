@@ -33,7 +33,7 @@ const CurrentPost = ({index, title}: {index: number, title: string}) => {
                 color="gray.100"
                 mx={3}
                 _hover={{
-                    background: "gray.300"
+                    background: "blue.500"
                 }}
             />
             <Title
