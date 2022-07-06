@@ -62,7 +62,7 @@ const CustomImages = (props: any) => {
                     src={props.src}
                     alt={props.alt}
                     width={128}
-                    height={64}
+                    height={86}
                     layout="responsive"
                     loading='lazy'
                 />
@@ -82,7 +82,7 @@ const CustomImages = (props: any) => {
             src={props.src}
             alt={props.alt}
             width={128}
-            height={64}
+            height={86}
             layout="responsive"
             loading='lazy'
         />;
