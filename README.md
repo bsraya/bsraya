@@ -2,9 +2,9 @@
 
 I am Bijon. I am a graduate student in the [Computer Science](https://dcs.site.nthu.edu.tw/) department at [National Tsing Hua University](https://www.nthu.edu.tw/), Taiwan.
 
-![Bijon's GitHub stats](https://github-readme-stats.vercel.app/api?username=bsraya&theme=synthwave&hide_border=true)
+![Bijon's GitHub stats](https://github-readme-stats.vercel.app/api?username=bsraya&theme=radical&hide_border=true)
 
-![Bijon's most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=bsraya&layout=compact&theme=synthwave&hide_border=true)
+![Bijon's most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=bsraya&layout=compact&theme=radical&hide_border=true)
 
 <h2>Languages</h2>
 <span>
