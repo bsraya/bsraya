@@ -12,7 +12,7 @@ export default function Skill({ name, icon }: { name: string, icon: JSX.Element 
                 rounded="md"
                 mr={3}
             >
-                <Icon color="gray.700" w={12} h={12}>
+                <Icon w={12} h={12}>
                     {icon}
                 </Icon>
             </Box>

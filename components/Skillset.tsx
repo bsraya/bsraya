@@ -16,6 +16,11 @@ import Next from "../icons/next";
 import Gatsby from "../icons/gatsby";
 import Cypress from "../icons/cypress";
 import ChakraUI from "../icons/chakraui";
+import Firebase from "../icons/firebase";
+import Anaconda from "../icons/anaconda";
+import Keras from "../icons/keras";
+import Tensorflow from "../icons/tensorflow";
+import Horovod from "../icons/horovod";
 
 export default function Skillset(): JSX.Element {
     return (
@@ -46,6 +51,7 @@ export default function Skillset(): JSX.Element {
                     <Skill name="Gatsby.js" icon={Gatsby} />
                     <Skill name="ChakraUI" icon={ChakraUI} />
                     <Skill name="Cypress" icon={Cypress} />
+                    <Skill name="Firebase" icon={Firebase} />
                 </Flex>
             </Stack>
 
@@ -69,6 +75,18 @@ export default function Skillset(): JSX.Element {
                     <Skill name="GraphQL" icon={GraphQL} />
                     <Skill name="MongoDB" icon={MongoDB} />
                     <Skill name="PostgresQL" icon={PostgreSQL} />
+                </Flex>
+            </Stack>
+
+            <Stack mt={5}>
+                <Heading as="h2" size="md" >
+                    ML / DL Technologies
+                </Heading>
+                <Flex mt={3}>
+                    <Skill name="Anaconda" icon={Anaconda} />
+                    <Skill name="Keras" icon={Keras} />
+                    <Skill name="Tensorflow" icon={Tensorflow} />
+                    <Skill name="Horovod" icon={Horovod} />
                 </Flex>
             </Stack>
         </>
