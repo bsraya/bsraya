@@ -1,14 +1,11 @@
 import {
     Box,
     Flex,
-    useMediaQuery,
 } from '@chakra-ui/react'
 import Navlink from './Navlink'
-import Dropdown from './DropdownMenu'
 import Switch from './Switch'
 
 export default function Navigation(): JSX.Element {
-    const [isMobile] = useMediaQuery('(max-width: 768px)')
     return (
         <Box
             flexDirection="row"
@@ -25,22 +22,12 @@ export default function Navigation(): JSX.Element {
                 align="center"
                 mx="auto"
             >
-                {
-                    isMobile ? (
-                        <>
-                            <Dropdown />
-                        </>
-                    ): (
-                        <>
-                            <Flex mr="auto">
-                                <Navlink href="/">Home</Navlink>
-                                <Navlink href="/about">About</Navlink>
-                                <Navlink href="/blog">Blog</Navlink>
-                                <Navlink href="/portfolio">Portfolio</Navlink>
-                            </Flex>
-                        </>
-                    )
-                }
+                <Flex mr="auto">
+                    <Navlink href="/">Home</Navlink>
+                    <Navlink href="/about">About</Navlink>
+                    <Navlink href="/blog">Blog</Navlink>
+                    <Navlink href="/portfolio">Portfolio</Navlink>
+                </Flex>
                 <Switch />
             </Flex>
         </Box>
