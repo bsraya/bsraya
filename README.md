@@ -2,6 +2,10 @@
 
 I am Bijon. I am a graduate student in the [Computer Science](https://dcs.site.nthu.edu.tw/) department at [National Tsing Hua University](https://www.nthu.edu.tw/), Taiwan.
 
+![Bijon's GitHub stats](https://github-readme-stats.vercel.app/api?username=bsraya&theme=synthwave&hide_border=true)
+
+![Bijon's most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=bsraya&layout=compact&theme=synthwave&hide_border=true)
+
 <h2>Languages</h2>
 <span>
     <img src="https://www.vectorlogo.zone/logos/golang/golang-icon.svg" alt="go" width="40" height="40" style="margin-right: 1rem;" />
@@ -42,9 +46,3 @@ I am Bijon. I am a graduate student in the [Computer Science](https://dcs.site.n
     <img src="https://user-images.githubusercontent.com/16640218/34506318-84d0c06c-efe0-11e7-8831-0425772ed8f2.png" alt="horovod" width="40" height="40" style="margin-right: 1rem;" />
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/anaconda/anaconda-original-wordmark.svg" alt="anaconda" width="40" height="40" style="margin-right: 1rem;" />
 </span>
-
-<br/>
-
-![Bijon's GitHub stats](https://github-readme-stats.vercel.app/api?username=bsraya&theme=synthwave&hide_border=true)
-
-![Bijon's most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=bsraya&layout=compact&theme=synthwave&hide_border=true)
