@@ -19,7 +19,7 @@ export default function About(): JSX.Element {
 
             <Skillset />
 
-            <Text my={5}>
+            <Text mt={10} mb={5}>
                 For more details, my resume can be downloaded <Link href={process.env.RESUME_URL} color="#fc909f" isExternal>here</Link>.
             </Text>
         </Layout>
