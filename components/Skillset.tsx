@@ -33,7 +33,7 @@ export default function Skillset(): JSX.Element {
                 <Heading as="h2" size="md">
                     Programming Languages
                 </Heading>
-                <Flex mt={3} mb={5}>
+                <Flex mt={3} mb={5} wrap="wrap">
                     <Skill name="Go" icon={Go} />
                     <Skill name="Python" icon={Python} />
                     <Skill name="Javascript" icon={Javascript} />
@@ -45,7 +45,7 @@ export default function Skillset(): JSX.Element {
                 <Heading as="h2" size="md">
                     Web technologies
                 </Heading>
-                <Flex mt={3} mb={5}>
+                <Flex mt={3} mb={5} wrap="wrap">
                     <Skill name="React" icon={React} />
                     <Skill name="Next.js" icon={Next} />
                     <Skill name="Gatsby.js" icon={Gatsby} />
@@ -59,7 +59,7 @@ export default function Skillset(): JSX.Element {
                 <Heading as="h2" size="md">
                     Tools
                 </Heading>
-                <Flex mt={3} mb={5}>
+                <Flex mt={3} mb={5} wrap="wrap">
                     <Skill name="Git" icon={Git} />
                     <Skill name="Docker" icon={Docker} />
                     <Skill name="Kubernetes" icon={Kubernetes} />
@@ -71,7 +71,7 @@ export default function Skillset(): JSX.Element {
                 <Heading as="h2" size="md" >
                     Database framework
                 </Heading>
-                <Flex mt={3}>
+                <Flex mt={3} mb={5} wrap="wrap">
                     <Skill name="GraphQL" icon={GraphQL} />
                     <Skill name="MongoDB" icon={MongoDB} />
                     <Skill name="PostgresQL" icon={PostgreSQL} />
@@ -82,7 +82,7 @@ export default function Skillset(): JSX.Element {
                 <Heading as="h2" size="md" >
                     ML / DL Technologies
                 </Heading>
-                <Flex mt={3}>
+                <Flex mt={3} mb={5} wrap="wrap">
                     <Skill name="Anaconda" icon={Anaconda} />
                     <Skill name="Keras" icon={Keras} />
                     <Skill name="Tensorflow" icon={Tensorflow} />
