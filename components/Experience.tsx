@@ -33,7 +33,7 @@ export default function Experience(): JSX.Element {
             
             <HStack my={5}>
                 <FaChalkboardTeacher size="2rem" />
-                <Text>Teaching assistant in a Linear Algebra class</Text>
+                <Text>TA in a Linear Algebra class</Text>
             </HStack>
 
             <HStack my={5}>
@@ -80,7 +80,7 @@ export default function Experience(): JSX.Element {
 
             <HStack my={5}>
                 <FaChalkboardTeacher size="2rem" />
-                <Text>Teaching assistant in an Intro. to C programming class</Text>
+                <Text>TA in an Intro. to C/C++ class</Text>
             </HStack>
 
             <HStack my={5}>
@@ -127,7 +127,7 @@ export default function Experience(): JSX.Element {
 
             <HStack my={5}>
                 <FaChalkboardTeacher size="2rem" />
-                <Text>Teaching assistant in an Intro. to C programming class</Text>
+                <Text>TA in an Intro. to C/C++ class</Text>
             </HStack>
 
             <HStack my={5}>
