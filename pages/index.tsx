@@ -23,50 +23,26 @@ import { ArrowForwardIcon } from '@chakra-ui/icons'
 import Image from 'next/image'
 
 export default function Home({ posts }: { posts: Post[] }): JSX.Element {
-    const [isMobile] = useMediaQuery('(max-width: 768px)')
     return (
         <Layout>
-            {
-                isMobile ? (
-                    <VStack align="left">
-                        <Box>
-                            <Image 
-                                alt="avatar"
-                                height={100}
-                                width={100}
-                                layout="fixed"
-                                priority
-                                src="/images/avatar.png"
-                            />
-                        </Box>
-                        <Box>
-                            <Heading as="h1">Bijon Setyawan Raya</Heading>
-                            <Text fontSize="sm" mt={1}>
-                                A Computer Science graduate student at National Tsing Hua University
-                            </Text>
-                        </Box>
-                    </VStack>
-                ) : (
-                    <HStack>
-                        <Box mr={2}>
-                            <Image
-                                alt="avatar"
-                                height={100}
-                                width={100}
-                                layout="fixed"
-                                priority
-                                src="/images/avatar.png"
-                            />
-                        </Box>
-                        <Box>
-                            <Heading as="h1">Bijon Setyawan Raya</Heading>
-                            <Text fontSize="sm" mt={1}>
-                                A Computer Science graduate student at National Tsing Hua University
-                            </Text>
-                        </Box>
-                    </HStack>   
-                )
-            }
+            <Box display={{ md: 'flex' }}>
+                <Box mr={3}>
+                    <Image 
+                        alt="avatar"
+                        height={100}
+                        width={100}
+                        layout="fixed"
+                        priority
+                        src="/images/avatar.png"
+                    />
+                </Box>
+                <Box my="auto">
+                    <Heading as="h1">Bijon Setyawan Raya</Heading>
+                    <Text fontSize="sm">
+                        A Computer Science graduate student at National Tsing Hua University
+                    </Text>
+                </Box>
+            </Box>
             <Alert mt={10} variant="left-accent" status='info'>
                 <AlertIcon
                     mt={1}
