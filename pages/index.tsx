@@ -10,6 +10,7 @@ import {
     useMediaQuery,
     HStack,
     VStack,
+    Image
 } from '@chakra-ui/react'
 import fs from 'fs'
 import path from 'path'
@@ -20,7 +21,6 @@ import type { Post } from '../lib/types'
 import NextLink from 'next/link'
 import sortPost from '../lib/sortpost'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import Image from 'next/image'
 
 export default function Home({ posts }: { posts: Post[] }): JSX.Element {
     const [isMobile] = useMediaQuery('(max-width: 768px)')
@@ -29,15 +29,11 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
             {
                 isMobile ? (
                     <VStack align="left">
-                        <Box mr={3}>
-                            <Image
-                                src="/images/avatar.png"
-                                height={100}
-                                width={100}
-                                layout="fixed"
-                                alt="avatar"
-                            />
-                        </Box>
+                        <Image 
+                            alt="avatar"
+                            boxSize="100px"
+                            src="/images/avatar.png"
+                        />
                         <Box>
                             <Heading as="h1">Bijon Setyawan Raya</Heading>
                             <Text fontSize="sm" mt={1}>
@@ -47,15 +43,12 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                     </VStack>
                 ) : (
                     <HStack>
-                        <Box mr={3}>
-                            <Image
-                                src="/images/avatar.png"
-                                height={100}
-                                width={100}
-                                layout="fixed"
-                                alt="avatar"
-                            />
-                        </Box>
+                        <Image
+                            mr={3}  
+                            alt="avatar"
+                            boxSize="100px"
+                            src="/images/avatar.png"
+                        />
                         <Box>
                             <Heading as="h1">Bijon Setyawan Raya</Heading>
                             <Text fontSize="sm" mt={1}>
