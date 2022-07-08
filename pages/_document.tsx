@@ -8,8 +8,8 @@ export default class MyDocument extends NextDocument {
             <Html lang="en">
                 <Head>
                     <link
+                        href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
                         rel="stylesheet"
-                        href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
                     />
                     <link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.min.css" />
                     <link rel="manifest" href="/manifest.json" />
