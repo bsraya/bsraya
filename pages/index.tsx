@@ -26,7 +26,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
     return (
         <Layout>
             <Box display={{ md: 'flex' }}>
-                <Box mr={3}>
+                <Box mr={3} my={2}>
                     <Image 
                         alt="avatar"
                         height={100}
@@ -38,7 +38,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                 </Box>
                 <Box my="auto">
                     <Heading as="h1">Bijon Setyawan Raya</Heading>
-                    <Text fontSize="sm">
+                    <Text fontSize="sm" mt={1}>
                         A Computer Science graduate student at National Tsing Hua University
                     </Text>
                 </Box>
