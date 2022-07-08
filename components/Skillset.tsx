@@ -21,6 +21,7 @@ import Anaconda from "../icons/anaconda";
 import Keras from "../icons/keras";
 import Tensorflow from "../icons/tensorflow";
 import Horovod from "../icons/horovod";
+import Kubeflow from "../icons/kubeflow";
 
 export default function Skillset(): JSX.Element {
     return (
@@ -87,6 +88,7 @@ export default function Skillset(): JSX.Element {
                     <Skill name="Keras" icon={Keras} />
                     <Skill name="Tensorflow" icon={Tensorflow} />
                     <Skill name="Horovod" icon={Horovod} />
+                    <Skill name="Kubeflow" icon={Kubeflow} />
                 </Flex>
             </Stack>
         </>

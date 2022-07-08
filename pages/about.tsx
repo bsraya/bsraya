@@ -11,7 +11,7 @@ export default function About(): JSX.Element {
                     About me
                 </Heading>
                 <Text lineHeight="taller">
-                    Hey, I am Bijon Setyawan Raya! I am a graduate Computer Science student at National Tsing Hua University in Hsinchu, Taiwan. So far, I have been living in Taiwan for six years, and I am on my way to get my master&rsquo;s degree in Computer Science.
+                    Hey, I am Bijon Setyawan Raya! I am a graduate Computer Science student at National Tsing Hua University in Hsinchu, Taiwan.
                 </Text>
             </Stack>
 
