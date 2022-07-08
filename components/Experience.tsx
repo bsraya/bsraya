@@ -28,7 +28,7 @@ export default function Experience(): JSX.Element {
 
             <HStack my={5}>
                 <MdOutlineSchool size="2rem" />
-                <Text>Expect to complete a graduate degree in CS</Text>
+                <Text>Master's degree in CS</Text>
             </HStack>
             
             <HStack my={5}>
@@ -75,7 +75,7 @@ export default function Experience(): JSX.Element {
 
             <HStack my={5}>
                 <MdOutlineSchool size="2rem" />
-                <Text>Completed an undergraduate degree in CS</Text>
+                <Text>Bachelor's degree in CS</Text>
             </HStack>
 
             <HStack my={5}>
