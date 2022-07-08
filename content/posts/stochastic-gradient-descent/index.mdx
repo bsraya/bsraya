@@ -1,7 +1,7 @@
 ---
 title: Stochastic Gradient Descent
-date: "2022-09-23"
-readingTime: 3 mins
+date: "2022-04-04"
+readingTime: 8 mins
 description: Linear Regression + another version of Gradient Descent in Python
 tags: [ml, optimization, python]
 authors: ["Bijon Setyawan Raya"]
@@ -39,7 +39,7 @@ publish: false
   currentPost="Stochastic Gradient Descent"
 />
 
-Previously, we have learned that BGD updates $\beta_0$ and $\beta_1$ only after it has seen the entire dataset. 
+Previously, we have learned that BGD updates $\beta_0$ and $\beta_1$ only after it has seen the entire dataset.
 As for MBGD, it only updates them after it has seen a fraction of of the entire dataset.
 
 In this post, we are going to implement another variation of Gradient Descent called Stochastic Gradient Descent, and now I am going to call it SGD throughout this post.
@@ -131,6 +131,7 @@ The equations above is a variation of Gradient Descent algorithm that helps us t
 # Coding
 
 We are going to need two functions to implement SGD.
+
 1. `predict(...)` which received a single data point and returns the predicted value of the data point.
 2. `sgd(...)` which received a list of data points and returns the updated coefficients presented in a dataframe.
 
@@ -142,7 +143,7 @@ def sgd(x, y, df, epochs, alpha = 0.01):
     intercept = 2.0
     coefficient = -7.5
     sum_error = 0
-    
+
     rand = np.random.randint(0, len(x))
     prediction = predict(intercept, coefficient, x[rand])
     sum_error = sum_error + (((prediction - y[rand]) ** 2) / 2)
@@ -159,7 +160,7 @@ def sgd(x, y, df, epochs, alpha = 0.01):
         b1_error = (prediction - y_i) * x_i
 
         intercept = intercept - alpha * b0_error
-        coefficient = coefficient - alpha * b1_error 
+        coefficient = coefficient - alpha * b1_error
 
         sum_error = (((prediction - y_i) ** 2) / 2)
         df.loc[i] = [intercept, coefficient, sum_error]
