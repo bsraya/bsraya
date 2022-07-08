@@ -10,7 +10,8 @@ export default function Skill({ name, icon }: { name: string, icon: JSX.Element 
                 h="max-content"
                 bgColor="white"
                 rounded="md"
-                mr={3}
+                mr={1}
+                mt={1}
             >
                 <Icon w={12} h={12}>
                     {icon}

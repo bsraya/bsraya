@@ -36,7 +36,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                         />
                         <Box>
                             <Heading as="h1">Bijon Setyawan Raya</Heading>
-                            <Text fontSize="sm">
+                            <Text fontSize="sm" mt={1}>
                                 A Computer Science graduate student at National Tsing Hua University
                             </Text>
                         </Box>
@@ -51,7 +51,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                         />
                         <Box>
                             <Heading as="h1">Bijon Setyawan Raya</Heading>
-                            <Text fontSize="sm">
+                            <Text fontSize="sm" mt={1}>
                                 A Computer Science graduate student at National Tsing Hua University
                             </Text>
                         </Box>
