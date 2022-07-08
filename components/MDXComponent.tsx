@@ -181,8 +181,8 @@ const MDXComponent = {
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
     
     li: (props: any) => <ListItem ml={6} {...props} />,
-    ul: (props: any) => <List as="ul" styleType="circle" mt={5} spacing={1} {...props} />,
-    ol: (props: any) => <List as="ol" styleType="decimal" mt={5} spacing={1} {...props} />,
+    ul: (props: any) => <List as="ul" styleType="circle" my={1} spacing={1} {...props} />,
+    ol: (props: any) => <List as="ol" styleType="decimal" my={1} spacing={1} {...props} />,
     
     h1: (props: any) => <DocsHeading as="h1" size="xl" fontWeight="bold" {...props} />,
     h2: (props: any) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
@@ -199,7 +199,7 @@ const MDXComponent = {
     tbody: (props: any) => <Tbody {...props} />,
     tfoot: (props: any) => <Tfoot {...props} />,
     caption: (props: any) => <TableCaption {...props} />,
-    table: (props: any) => <TableContainer><Table variant="striped" {...props} /></TableContainer>,
+    table: (props: any) => <TableContainer><Table variant="striped" __css={{ overflowX: `auto`, minWidth: `100%` }} {...props} /></TableContainer>,
     
     Kbd,
     Text,
