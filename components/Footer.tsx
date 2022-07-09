@@ -1,4 +1,4 @@
-import { Flex, Link, IconButton, useColorModeValue } from '@chakra-ui/react'
+import { Flex, Link, IconButton } from '@chakra-ui/react'
 import { FiGithub, FiLinkedin } from 'react-icons/fi'
 import { MdOutlineMail } from 'react-icons/md'
 

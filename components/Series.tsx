@@ -1,4 +1,13 @@
-import { Heading, Box, Divider, Text, Flex, LinkBox, LinkOverlay, IconButton } from "@chakra-ui/react";
+import {
+    Heading,
+    Box,
+    Divider,
+    Text,
+    Flex,
+    LinkBox,
+    LinkOverlay,
+    IconButton
+} from "@chakra-ui/react";
 import NextLink from 'next/link';
 
 interface IPost {

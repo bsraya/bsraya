@@ -27,8 +27,13 @@ const withPWA = require('next-pwa')({
 })
 const withImages = require('next-images')
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+})
+
 module.exports = withPlugins([
     nextConfig,
     withPWA,
-    withImages
+    [withBundleAnalyzer],
+    withImages,
 ])

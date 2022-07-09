@@ -1,4 +1,4 @@
-import { Flex, Heading, Stack, Tooltip, Box, Icon } from "@chakra-ui/react";
+import { Flex, Heading, Stack } from "@chakra-ui/react";
 import Skill from './Skill';
 import PostgreSQL from "../icons/postgresql";
 import MongoDB from "../icons/mongodb";

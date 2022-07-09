@@ -7,8 +7,6 @@ export default class MyDocument extends NextDocument {
         return (
             <Html lang="en">
                 <Head>
-                    <link rel="preconnect" href="https://fonts.googleapis.com/" crossOrigin="anonymous" />
-                    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                     <link
                         as="font"
                         href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
