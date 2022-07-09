@@ -45,7 +45,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                     </Text>
                 </Box>
             </Box>
-            <Alert mt={10} variant="left-accent" status='info'>
+            {/* <Alert mt={10} variant="left-accent" status='info'>
                 <AlertIcon
                     mt={1}
                     mb="auto"
@@ -64,7 +64,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                         </NextLink>
                     </Button>
                 </Box>
-            </Alert>
+            </Alert> */}
 
             <Heading as="h2" size="md" mt={10} mb={3}>Recent posts</Heading>
             <Posts posts={posts} type="blog" />
