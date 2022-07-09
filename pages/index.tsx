@@ -7,9 +7,7 @@ import {
     Text,
     Link,
     Flex,
-    useMediaQuery,
-    HStack,
-    VStack
+    chakra
 } from '@chakra-ui/react'
 import fs from 'fs'
 import path from 'path'
@@ -20,7 +18,11 @@ import type { Post } from '../lib/types'
 import NextLink from 'next/link'
 import sortPost from '../lib/sortpost'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import Image from 'next/image'
+import NextImage from 'next/image'
+
+const Image = chakra(NextImage, {
+    shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt', 'layout', 'priority'].includes(prop)
+})
 
 export default function Home({ posts }: { posts: Post[] }): JSX.Element {
     return (

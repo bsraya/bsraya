@@ -4,7 +4,7 @@
 const nextConfig = {
     swcMinify: true,
     optimizeFonts: true,
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
     reactStrictMode: true,
     eslint: {
         dirs: ['components', 'pages', 'lib', 'icons']

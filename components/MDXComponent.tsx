@@ -22,10 +22,11 @@ import {
     Td,
     TableCaption,
     TableContainer,
+    chakra,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Series from './Series'
-import Image from 'next/image';
+import NextImage from 'next/image';
 
 const CustomLink = (props: any) => {
     const { colorMode } = useColorMode();
@@ -48,44 +49,59 @@ const CustomLink = (props: any) => {
     return <Link color={color[colorMode]} isExternal {...props} />;
 };
 
+const ChakraImage = chakra(NextImage, {
+    shouldForwardProp: (prop) => ['src', 'alt', 'width', 'height', 'quality', 'layout', 'loading'].includes(prop),
+})
+
 const CustomImages = (props: any) => {
     if (props.title !== undefined) {
         return (
-            <figure
+            <Box
                 style={{
-                    background: `white`,
+                    display: 'block',
+                    backgroundColor: 'white',
                     borderRadius: `0.5rem`,
-                    marginBottom: `1.5rem`
                 }}
+                my={5}
             >
-                <Image
+                <figure>
+                    <ChakraImage
+                        src={props.src}
+                        alt={props.alt}
+                        width={128}
+                        height={86}
+                        quality={80}
+                        sizes="50vw"
+                        layout="responsive"
+                        loading='lazy'
+                    />
+                    <figcaption
+                        style={{
+                            textAlign: "center",
+                            fontSize: "0.9rem",
+                            color: 'gray'
+                        }}
+                    >
+                        {props.title}
+                    </figcaption>
+                </figure>
+            </Box>
+        );
+    } else {
+        return (
+            <Box my={5}>
+                <ChakraImage
                     src={props.src}
                     alt={props.alt}
                     width={128}
                     height={86}
+                    quality={80}
+                    sizes="50vw"
                     layout="responsive"
                     loading='lazy'
                 />
-                <figcaption
-                    style={{
-                        textAlign: "center",
-                        fontSize: "0.9rem",
-                        color: 'black'
-                    }}
-                >
-                    {props.title}
-                </figcaption>
-            </figure>
-        );
-    } else {
-        return <Image
-            src={props.src}
-            alt={props.alt}
-            width={128}
-            height={86}
-            layout="responsive"
-            loading='lazy'
-        />;
+            </Box>
+    );
     }
 }
 
