@@ -40,7 +40,7 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                             </Text>
                             <NextLink href={'/'+ type + '/' + post.slug} passHref>
                                 <LinkOverlay >
-                                    <Heading as="h1">
+                                    <Heading size="lg">
                                         {post.frontMatter.title}
                                     </Heading>
                                 </LinkOverlay>  
