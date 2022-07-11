@@ -29,7 +29,7 @@ import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 export default function Portfolio({ mdxSource }: MdxPage) {
-    const publishDate = DateTime.fromISO(mdxSource.frontMatter.date).toFormat('LLLL dd, yyyy')
+    const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
     return (
         <Layout>
             <Seo title={ mdxSource.frontmatter.title } publish={ publishDate } type="article" />
