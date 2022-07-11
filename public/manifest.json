@@ -1,11 +1,12 @@
 {
     "theme_color": "#fc909f",
-    "background_color": "#fc909f",  
+    "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
     "name": "Bijon Setyawan Raya",
     "short_name": "Bijon",
+    "description": "Bijon Setyawan Raya",
     "icons": [
         {
             "src": "/icon-192x192.png",
