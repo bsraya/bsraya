@@ -8,7 +8,7 @@ export default function About(): JSX.Element {
     const resumeLink = "https://drive.google.com/file/d/1n2HO7mkmi0_TTvP5SyOY4Dj2nKUrKb80/view?usp=sharing"
     return (
         <Layout>
-            <Seo title="Blog" type="website" />
+            <Seo title="About" type="website" />
             <Stack>
                 <Heading as="h1">
                     About me
