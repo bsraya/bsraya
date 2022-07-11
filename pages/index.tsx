@@ -1,8 +1,5 @@
 import {
-    Alert,
-    AlertIcon,
     Box,
-    Button,
     Heading,
     Text,
     Link,
@@ -19,6 +16,7 @@ import NextLink from 'next/link'
 import sortPost from '../lib/sortpost'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import NextImage from 'next/image'
+import Seo from '../components/Seo'
 
 const Image = chakra(NextImage, {
     shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt', 'layout', 'priority'].includes(prop)
@@ -27,6 +25,7 @@ const Image = chakra(NextImage, {
 export default function Home({ posts }: { posts: Post[] }): JSX.Element {
     return (
         <Layout>
+            <Seo title="Home" type="website" />
             <Box display={{ md: 'flex' }}>
                 <Box mr={3} my={2}>
                     <Image 

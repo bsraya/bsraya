@@ -11,6 +11,7 @@ import Layout from '../../components/Layout'
 import MDXComponents from '../../components/MDXComponent'
 import ViewCounter from '../../components/ViewCounter'
 import Authors from '../../components/Authors'
+import Seo from '../../components/Seo'
 
 // interface 
 import type { MdxPage } from '../../lib/types'
@@ -30,14 +31,16 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrismDiff from 'rehype-prism-diff'
 
 export default function Blog({ mdxSource }: MdxPage) {
+    const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
     return (
         <Layout>
+            <Seo title={mdxSource.frontmatter.title} publish={ publishDate } type="article" />
             <Text fontSize="sm" color="gray.500">
-                { DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy') } - {mdxSource.frontmatter.readingTime} reading • <ViewCounter slug={mdxSource.slug} blogPage={true} />
+                { publishDate } - { mdxSource.frontmatter.readingTime } reading • <ViewCounter slug={ mdxSource.slug } blogPage={true} />
             </Text>
             
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-            <Authors authors={mdxSource.frontmatter.authors} />
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>
+            <Authors authors={ mdxSource.frontmatter.authors } />
             <Tags tags={ mdxSource.frontmatter.tags } />
             <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>

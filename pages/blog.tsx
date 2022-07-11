@@ -17,6 +17,7 @@ import Posts from '../components/Posts'
 import { useMemo, useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
 import sortPost from '../lib/sortpost'
+import Seo from '../components/Seo'
 
 export default function Blog({ posts }: { posts: Post[] }): JSX.Element {
     const [search, setSearch] = useState('')
@@ -30,6 +31,7 @@ export default function Blog({ posts }: { posts: Post[] }): JSX.Element {
 
     return (
         <Layout>
+            <Seo title="Blog" type="website" />
             <Heading>Blog</Heading>
             <FormControl mt={5}>
                 <InputGroup>

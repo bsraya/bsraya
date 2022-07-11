@@ -9,7 +9,6 @@ import { Global } from '@emotion/react';
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <Box as="main">
-            <Seo />
             <Navbar />
 
             <Container

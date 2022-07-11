@@ -6,10 +6,12 @@ import Posts from './../components/Posts'
 import { Heading } from '@chakra-ui/react'
 import type { Post } from '../lib/types'
 import sortPost from '../lib/sortpost'
+import Seo from '../components/Seo'
 
 export default function Portfolio({ portfolios }: { portfolios: Post[] }): JSX.Element {
     return (
         <Layout>
+            <Seo title="Portfolio" type="website" />
             <Heading>Portfolio</Heading>
             <Posts posts={portfolios} type="portfolio" />
         </Layout>

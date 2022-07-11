@@ -6,10 +6,12 @@ import { Heading } from '@chakra-ui/react'
 import Posts from '../../components/Posts'
 import type { Post } from '../../lib/types'
 import sortPost from '../../lib/sortpost'
+import Seo from '../../components/Seo'
 
 function Tag({ posts, tag }: { posts: Post[], tag: string }) {
     return (
         <Layout>
+            <Seo title="Blog" type="website" />
             <Heading as="h1" size="xl">
                 {posts.length} post(s) tagged with #{tag}
             </Heading>
