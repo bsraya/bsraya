@@ -1,12 +1,14 @@
 import Layout from '../components/Layout'
 import Experience from '../components/Experience'
 import Skillset from '../components/Skillset'
+import Seo from '../components/Seo'
 import {  Heading, Link, Stack, Text } from '@chakra-ui/react'
 
 export default function About(): JSX.Element {
     const resumeLink = "https://drive.google.com/file/d/1n2HO7mkmi0_TTvP5SyOY4Dj2nKUrKb80/view?usp=sharing"
     return (
         <Layout>
+            <Seo title="Blog" type="website" />
             <Stack>
                 <Heading as="h1">
                     About me

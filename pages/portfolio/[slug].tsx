@@ -32,7 +32,12 @@ export default function Portfolio({ mdxSource }: MdxPage) {
     const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
     return (
         <Layout>
-            <Seo title={ mdxSource.frontmatter.title } publish={ publishDate } type="article" />
+            <Seo
+                type="article"
+                publish={ publishDate }
+                title={ mdxSource.frontmatter.title } 
+                description={ mdxSource.frontmatter.description }
+            />
             <Text fontSize="sm" color="gray.500">
                 { publishDate } - { mdxSource.frontmatter.readingTime } reading
             </Text>

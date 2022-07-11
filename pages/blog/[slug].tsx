@@ -34,9 +34,14 @@ export default function Blog({ mdxSource }: MdxPage) {
     const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
     return (
         <Layout>
-            <Seo title={mdxSource.frontmatter.title} publish={ publishDate } type="article" />
+            <Seo
+                type="article"
+                publish={ publishDate }
+                title={ mdxSource.frontmatter.title }
+                description={ mdxSource.frontmatter.description }
+            />
             <Text fontSize="sm" color="gray.500">
-                { publishDate } - { mdxSource.frontmatter.readingTime } reading • <ViewCounter slug={ mdxSource.slug } blogPage={true} />
+                { publishDate } - { mdxSource.frontmatter.readingTime } reading • <ViewCounter slug={ mdxSource.slug } blogPage={ true } />
             </Text>
             
             <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>

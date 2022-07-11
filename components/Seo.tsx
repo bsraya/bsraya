@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-export default function Seo({ title, publish, type }: { title: string, publish?: string, type: string }): JSX.Element {
+export default function Seo({ title, publish, description, type }: { title: string, publish?: string, description?: string, type: string }): JSX.Element {
     const router = useRouter();
     const meta = {
         author: "Bijon Setyawan Raya",
@@ -17,7 +17,10 @@ export default function Seo({ title, publish, type }: { title: string, publish?:
             <meta name="robots" content="follow, index" />
             <meta property="og:url" content={`https://bsraya.com${router.asPath}`} />
             <link rel="canonical" href={`https://bsraya.com${router.asPath}`} />
-            <meta content="A Fullstack junior developer" name="description" />
+            {
+                !description ? <meta content={meta.description} name="description" /> 
+                    : <meta content={description} name="description" />
+            }
             <meta property="og:type" content={type} />
             <meta property="og:site_name" content={meta.author} />
             <meta property="og:description" content={meta.description} />
