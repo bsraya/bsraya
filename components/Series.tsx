@@ -94,7 +94,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
             borderColor="gray.300"
             width="90%"
         >   
-            <Heading fontSize="lg" p={3} mx={2} color="blue.500">{series} ({posts.length} Part)</Heading>
+            <Heading fontSize="lg" p={3} mx={2} color="blue.500">{series} ({posts.length} Parts)</Heading>
             <Divider borderColor="gray.300" w="100%" />
             {
                 posts.map((post: IPost) => {
