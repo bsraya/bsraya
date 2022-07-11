@@ -17,19 +17,29 @@ export default function Seo({ title, publish, description, type }: { title: stri
             <meta name="robots" content="follow, index" />
             <meta property="og:url" content={`https://bsraya.com${router.asPath}`} />
             <link rel="canonical" href={`https://bsraya.com${router.asPath}`} />
-            {
-                !description ? <meta content={meta.description} name="description" /> 
-                    : <meta content={description} name="description" />
-            }
             <meta property="og:type" content={type} />
             <meta property="og:site_name" content={meta.author} />
-            <meta property="og:description" content={meta.description} />
             <meta property="og:title" content={title + " - " + meta.author} />
             <meta property="og:image" content={meta.image} />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={title + " - " + meta.author} />
-            <meta name="twitter:description" content={meta.description} />
             <meta name="twitter:image" content={meta.image} />
+            {
+                !description ? (
+                    <>
+                        <meta name="description" content={meta.description}  /> 
+                        <meta property="og:description" content={meta.description} />
+                        <meta name="twitter:description" content={meta.description} />
+                    </>
+                )
+                : (
+                    <>
+                        <meta name="description" content={description} />
+                        <meta property="og:description" content={description} />
+                        <meta name="twitter:description" content={description} />
+                    </>
+                )
+            }
             {publish && (
                 <meta property="article:published_time" content={publish} />
             )}
