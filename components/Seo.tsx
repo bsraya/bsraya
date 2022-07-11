@@ -16,6 +16,7 @@ export default function Seo({ title, publish, description, type }: { title: stri
             <meta name="author" content={meta.author} />
             <meta name="robots" content="follow, index" />
             <link rel="canonical" href={`https://bsraya.com${router.asPath}`} />
+            <link rel="icon" href="https://www.bsraya.com/images/avatar.png" />
             <meta property="og:url" content={`https://bsraya.com${router.asPath}`} />
             <meta property="og:type" content={type} />
             <meta property="og:site_name" content={meta.author} />
@@ -42,9 +43,11 @@ export default function Seo({ title, publish, description, type }: { title: stri
                     </>
                 )
             }
-            {publish && (
-                <meta property="article:published_time" content={publish} />
-            )}
+            {
+                publish && (
+                    <meta property="article:published_time" content={publish} />
+                )
+            }
         </Head>
     )
 }
