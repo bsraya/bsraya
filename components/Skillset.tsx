@@ -1,4 +1,4 @@
-import { Flex, Heading, Stack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import Skill from './Skill';
 import PostgreSQL from "../icons/postgresql";
 import MongoDB from "../icons/mongodb";
@@ -25,7 +25,7 @@ import Kubeflow from "../icons/kubeflow";
 
 export default function Skillset(): JSX.Element {
     return (
-        <>
+        <Box mt="4rem">
             <Heading as="h1">
                 Technical Skills
             </Heading>
@@ -42,7 +42,7 @@ export default function Skillset(): JSX.Element {
                 </Flex>
             </Stack>
 
-            <Stack mt={5}>
+            <Stack mt={10}>
                 <Heading as="h2" size="md">
                     Web technologies
                 </Heading>
@@ -56,7 +56,7 @@ export default function Skillset(): JSX.Element {
                 </Flex>
             </Stack>
 
-            <Stack mt={5}>
+            <Stack mt={10}>
                 <Heading as="h2" size="md">
                     Tools
                 </Heading>
@@ -68,7 +68,7 @@ export default function Skillset(): JSX.Element {
                 </Flex>
             </Stack>
 
-            <Stack mt={5}>
+            <Stack mt={10}>
                 <Heading as="h2" size="md" >
                     Database framework
                 </Heading>
@@ -79,7 +79,7 @@ export default function Skillset(): JSX.Element {
                 </Flex>
             </Stack>
 
-            <Stack mt={5}>
+            <Stack mt={10}>
                 <Heading as="h2" size="md" >
                     ML / DL Technologies
                 </Heading>
@@ -91,6 +91,6 @@ export default function Skillset(): JSX.Element {
                     <Skill name="Kubeflow" icon={Kubeflow} />
                 </Flex>
             </Stack>
-        </>
+        </Box>
     )
 }
