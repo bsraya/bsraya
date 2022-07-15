@@ -6,7 +6,7 @@ export default function Seo({ title, publish, description, type }: { title: stri
     const meta = {
         author: "Bijon Setyawan Raya",
         description: 'A junior fullstack developer.',
-        image: 'https://www.bsraya.com/_next/image?url=%2Fimages%2Favatar.png&w=128&q=75',
+        image: 'https://www.bsraya.com/images/avatar.png',
     }
     return (
         <Head>
