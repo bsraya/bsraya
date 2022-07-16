@@ -6,7 +6,7 @@ export default function Seo({ title, publish, description, type }: { title: stri
     const meta = {
         author: "Bijon Setyawan Raya",
         description: 'A junior fullstack developer.',
-        image: 'https://www.bsraya.com/images/avatar.png',
+        avatar: 'https://www.bsraya.com/images/avatar.png',
     }
     return (
         <Head>
@@ -16,17 +16,17 @@ export default function Seo({ title, publish, description, type }: { title: stri
             <meta name="viewport" content="width=device-width" />
             <meta name="author" content={ meta.author } />
             <link rel="canonical" href={ `https://bsraya.com${router.asPath}` } />
-            <link rel="icon" href={ meta.image } />
+            <link rel="icon" href={ meta.avatar } />
 
             <meta property="og:type" content={ type } />
             <meta property="og:url" content={ `https://bsraya.com${router.asPath}` } />
             <meta property="og:title" content={ title + " - " + meta.author } />
-            <meta property="og:image" content={ meta.image } />
+            <meta property="og:image" content={ meta.avatar } />
 
             <meta property="twitter:card" content="summary_large_image" />
             <meta property="twitter:url" content="@BijonRaya" />
             <meta property="twitter:creator" content={ `https://bsraya.com${router.asPath}` } />
-            <meta property="twitter:image" content={ meta.image } />
+            <meta property="twitter:image" content={ meta.avatar } />
             {
                 !description ? (
                     <>
