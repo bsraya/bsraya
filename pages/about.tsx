@@ -13,18 +13,17 @@ export default function About(): JSX.Element {
                 <Heading as="h1">
                     About me
                 </Heading>
-                <Text lineHeight="taller">
+                <Text lineHeight="taller" color="gray.500">
                     Hey, I am Bijon Setyawan Raya! I am a graduate Computer Science student at National Tsing Hua University in Hsinchu, Taiwan.
+                </Text>
+                <Text lineHeight="taller" color="gray.500">
+                    Here, I mentioned briefly about my background and my skillset. For more details, my resume can be downloaded <Link href={resumeLink} color="#fc909f" isExternal>here</Link>.
                 </Text>
             </Stack>
 
             <Experience />
 
             <Skillset />
-
-            <Text mt={10} mb={5}>
-                For more details, my resume can be downloaded <Link href={resumeLink} color="#fc909f" isExternal>here</Link>.
-            </Text>
         </Layout>
     )
 }
