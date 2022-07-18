@@ -6,7 +6,8 @@ import {
     Flex,
     LinkBox,
     LinkOverlay,
-    IconButton
+    IconButton,
+    useColorModeValue
 } from "@chakra-ui/react";
 import NextLink from 'next/link';
 
@@ -31,77 +32,93 @@ const Title = ({ props, title }: { props: any, title: string }) => {
     )
 }
 
-const CurrentPost = ({index, title}: {index: number, title: string}) => {
-    return(
-        <>
+const CurrentPost = ({ index, title }: { index: number, title: string }) => {
+    const fontColor = useColorModeValue('#fc909f', '#fdd2d8')
+    return (
+        <Flex>
             <IconButton
                 aria-label="post index"
                 icon={<Text mx="auto">{index}</Text>}
                 isRound
-                background="blue.500"
-                color="gray.100"
+                background="#fdd2d8"
+                color="gray.800"
                 mx={3}
                 _hover={{
-                    background: "blue.500"
+                    background: "#fdd2d8"
                 }}
             />
             <Title
                 props={{
-                    color: "blue.500",
+                    color: fontColor,
                     fontWeight: "bold"
                 }}
                 title={title}
             />
-        </>
+        </Flex>
     )
 }
 
 const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
+    const fontColor = useColorModeValue('gray.700', 'gray.100')
+    const bgColor = useColorModeValue('gray.100', 'gray.700')
     return (
-        <>
+        <Flex>
             <IconButton
                 aria-label="post index"
                 icon={<Text mx="auto">{index}</Text>}
                 isRound
-                background="gray.300"
-                color="gray.700"
+                background={bgColor}
+                color={fontColor}
                 mx={3}
                 _hover={{
-                    background: "gray.300"
+                    background: {bgColor}
                 }}
             />
             <Title
                 props={{
-                    color: "gray.700"
+                    color: {fontColor}
                 }}
                 title={title}
             />
-        </>
+        </Flex>
     )
 }
 
 // "Series" is a component that displays a list of related posts, just like the one from the "dev.to" website
 export default function Series({ series, posts, currentPost }: { series: string, posts: IPost[], currentPost: string }) {
+    const bgColor = useColorModeValue('white', 'gray.800')
+    const fontColor = useColorModeValue('#fc909f', '#fdd2d8')
     return (
         <Box
             mx="auto"
             my={10}
-            rounded="lg"
+            borderRadius="lg"
             display="block"
-            color="gray.700"
             border="1px solid"
-            background="gray.100"
+            background={bgColor}
             borderColor="gray.300"
             width="90%"
         >   
-            <Heading fontSize="lg" p={3} mx={2} color="blue.500">{series} ({posts.length} Parts)</Heading>
+            <Heading
+                p={3}
+                mx={2}
+                fontSize="lg"
+                color={fontColor}
+            >{series} ({posts.length} Parts)</Heading>
             <Divider borderColor="gray.300" w="100%" />
             {
                 posts.map((post: IPost) => {
                         var index = posts.indexOf(post) + 1;
                         return (
                             <NextLink key={index} href={"/blog/" + post.slug} >
-                                <LinkBox key={post.slug} _hover={{ cursor: "pointer", background: "gray.50", color: "blue.500"}} rounded="lg">
+                                <LinkBox
+                                    key={post.slug}
+                                    _hover={{
+                                        cursor: "pointer",
+                                        color: fontColor
+                                    }}
+                                    borderBottomRadius={index === posts.length ? "md" : "none"}
+                                >
                                     <LinkOverlay>
                                         <Flex mx={3} py={3}>
                                             {
