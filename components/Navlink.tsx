@@ -20,7 +20,7 @@ export default function Navlink ({ href, children }: { href: string, children: R
             <Link
                 mr={5}
                 variant="ghost"
-                fontWeight="bold"
+                fontWeight="semibold"
                 color={isActive ? fontColor : 'gray.400'}
                 _hover={{ color: fontColor }}
                 _active={{ color: fontColor }}
