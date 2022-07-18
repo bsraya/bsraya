@@ -8,7 +8,7 @@ import { HStack, Heading, Divider, Text, useColorModeValue, Box } from "@chakra-
 
 export default function Experience(): JSX.Element {
     const color = "gray.300"
-    const linkColor = useColorModeValue("#fc909f", "#fdd2d8")
+    const linkColor = useColorModeValue("#fc909f", "#f8afa6")
 
     return (
         <>

@@ -33,7 +33,7 @@ const CustomLink = (props: any) => {
     const { colorMode } = useColorMode();
     const color = {
         light: "#fc909f",
-        dark: "#fdd2d8"
+        dark: "#f8afa6"
     }
 
     const href = props.href;
@@ -147,7 +147,7 @@ const DocsHeading = (props: any) => {
     const { colorMode } = useColorMode();
     const color = {
         light: "#fc909f",
-        dark: "#fdd2d8"
+        dark: "#f8afa6"
     };
     return (
         <Heading

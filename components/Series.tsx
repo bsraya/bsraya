@@ -33,7 +33,7 @@ const Title = ({ props, title }: { props: any, title: string }) => {
 }
 
 const CurrentPost = ({ index, title }: { index: number, title: string }) => {
-    const fontColor = useColorModeValue('#fc909f', '#fdd2d8')
+    const fontColor = useColorModeValue('#fc909f', '#f8afa6')
     return (
         <Flex>
             <IconButton
@@ -87,7 +87,7 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
 // "Series" is a component that displays a list of related posts, just like the one from the "dev.to" website
 export default function Series({ series, posts, currentPost }: { series: string, posts: IPost[], currentPost: string }) {
     const bgColor = useColorModeValue('white', 'gray.800')
-    const fontColor = useColorModeValue('#fc909f', '#fdd2d8')
+    const fontColor = useColorModeValue('#fc909f', '#f8afa6')
     return (
         <Box
             mx="auto"
