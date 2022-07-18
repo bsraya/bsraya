@@ -47,7 +47,7 @@ const CustomLink = (props: any) => {
         );
     }
 
-    return <><Link color={color[colorMode]} isExternal {...props} /> <ExternalLinkIcon mx='2px' /></>;
+    return <><Link color={color[colorMode]} isExternal {...props} /> <ExternalLinkIcon mx='2px' mb="4px" /></>;
 };
 
 const ChakraImage = chakra(NextImage, {

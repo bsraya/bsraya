@@ -16,7 +16,6 @@ export default function Navlink ({ href, children }: { href: string, children: R
     }
 
     return (
-        // if href is equal to current path, then it will be active
         <NextLink href={href}>
             <Link
                 mr={5}
