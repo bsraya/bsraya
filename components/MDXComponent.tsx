@@ -27,6 +27,7 @@ import {
 import NextLink from 'next/link';
 import Series from './Series'
 import NextImage from 'next/image';
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 const CustomLink = (props: any) => {
     const { colorMode } = useColorMode();
@@ -46,7 +47,7 @@ const CustomLink = (props: any) => {
         );
     }
 
-    return <Link color={color[colorMode]} isExternal {...props} />;
+    return <><Link color={color[colorMode]} isExternal {...props} /> <ExternalLinkIcon mx='2px' /></>;
 };
 
 const ChakraImage = chakra(NextImage, {
