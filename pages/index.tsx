@@ -39,7 +39,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                 </Box>
                 <Box my="auto">
                     <Heading as="h1">Bijon Setyawan Raya</Heading>
-                    <Text fontSize="sm" mt={1}>
+                    <Text fontSize="md" mt={1}>
                         A Computer Science graduate student at National Tsing Hua University
                     </Text>
                 </Box>
