@@ -27,19 +27,20 @@ import {
 import NextLink from 'next/link';
 import Series from './Series'
 import NextImage from 'next/image';
-import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { ExternalLinkIcon, LinkIcon } from '@chakra-ui/icons'
 
 const CustomLink = (props: any) => {
     const { colorMode } = useColorMode();
     const color = {
-        light: 'blue.500',
-        dark: 'blue.300'
-    };
+        light: "#fc909f",
+        dark: "#fdd2d8"
+    }
 
     const href = props.href;
-    const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+    const isInternalLink = href && href.startsWith('/');
+    const isInternalLinkHeader = href && href.startsWith('#');
 
-    if (isInternalLink) {
+    if (isInternalLinkHeader) {
         return (
             <NextLink {...props} href={href} passHref>
                 <Link color={color[colorMode]} {...props} />
@@ -47,7 +48,18 @@ const CustomLink = (props: any) => {
         );
     }
 
-    return <><Link color={color[colorMode]} isExternal {...props} /> <ExternalLinkIcon mx='2px' mb="4px" /></>;
+    if (isInternalLink) {
+        return (
+            <NextLink {...props} href={href} passHref>
+                <>
+                    <Link color={color[colorMode]} {...props} />
+                    <LinkIcon mx='5px' mb="8px" />
+                </>
+            </NextLink>
+        )
+    }
+
+    return <><Link color={color[colorMode]} isExternal {...props} /><ExternalLinkIcon mx='5px' mb="4px" /></>;
 };
 
 const ChakraImage = chakra(NextImage, {
@@ -134,8 +146,8 @@ const Quote = (props: any) => {
 const DocsHeading = (props: any) => {
     const { colorMode } = useColorMode();
     const color = {
-        light: 'blue.500',
-        dark: 'blue.300'
+        light: "#fc909f",
+        dark: "#fdd2d8"
     };
     return (
         <Heading
