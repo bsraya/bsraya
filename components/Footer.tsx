@@ -1,4 +1,4 @@
-import { Flex, Link, IconButton } from '@chakra-ui/react'
+import { Flex, Link, IconButton, useColorModeValue } from '@chakra-ui/react'
 import { FiGithub, FiLinkedin } from 'react-icons/fi'
 import { MdOutlineMail } from 'react-icons/md'
 
@@ -21,7 +21,8 @@ export default function Footer(): JSX.Element {
             url: 'mailto:nathan.setyawan96@gmail.com',
         },
     ]
-    
+    const fontColor = useColorModeValue('light', 'dark')
+    const hoveredBgColor = useColorModeValue('lighter', 'darker')
     return (
         <Flex as="footer" marginBottom={20} direction="column" align="center">
             <Flex maxW="container.md">
@@ -41,12 +42,9 @@ export default function Footer(): JSX.Element {
                             icon={item.icon}
                             variant="ghost"
                             isRound
-                            color="pink.300"
-                            _dark={{
-                                color: "pink.600",
-                            }}
+                            color={fontColor}
                             _hover={{
-                                bgColor: "pink.50"
+                                bgColor: hoveredBgColor
                             }}
                         />
                     </Link>

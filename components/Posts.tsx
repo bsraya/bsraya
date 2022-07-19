@@ -6,7 +6,7 @@ import type { Post } from '../lib/types'
 import { Heading, LinkBox, LinkOverlay, Text, useColorModeValue } from '@chakra-ui/react'
 
 export default function Posts({ posts, type }: { posts: Post[]; type: string }) {
-    const hoveredBorderColor = useColorModeValue('pink.300', 'pink.600')
+    const hoveredBorderColor = useColorModeValue('light', 'dark')
     return (
         <>
             {

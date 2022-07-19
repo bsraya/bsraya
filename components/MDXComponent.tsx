@@ -21,12 +21,10 @@ import {
     Td,
     TableCaption,
     TableContainer,
-    chakra,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import Series from './Series'
-import NextImage from 'next/image';
-import { ExternalLinkIcon, LinkIcon } from '@chakra-ui/icons'
+import Series from './Series';
+import { ExternalLinkIcon, LinkIcon } from '@chakra-ui/icons';
 
 const CustomLink = (props: any) => {
     const href = props.href;
@@ -38,9 +36,9 @@ const CustomLink = (props: any) => {
             <NextLink {...props} href={href} passHref>
                 <Link
                     {...props}
-                    color="pink.300"
+                    color="dark"
                     _dark={{
-                        color: "pink.600"
+                        color: "light"
                     }}
                 />
             </NextLink>
@@ -53,9 +51,9 @@ const CustomLink = (props: any) => {
                 <>
                     <Link
                         {...props}
-                        color="pink.300"
+                        color="dark"
                         _dark={{
-                            color: "pink.600"
+                            color: "light"
                         }}
                     />
                     <LinkIcon mx='5px' mb="8px" />
@@ -68,9 +66,9 @@ const CustomLink = (props: any) => {
         <>
             <Link
                 {...props}
-                color="pink.300"
+                color="dark"
                 _dark={{
-                    color: "pink.600"
+                    color: "light"
                 }}
             /><ExternalLinkIcon mx='5px' mb="4px" />
         </>
@@ -116,12 +114,11 @@ const Quote = (props: any) => {
         <Alert
             mt={4}
             w="98%"
-            bg='pink.50'
+            bg='purple.50'
             _dark={{
-                bg: 'pink.900'
+                bg: 'purple.900'
             }}
             variant="left-accent"
-            status="warning"
             css={{
                 '> *:first-of-type': {
                     marginTop: 0,
@@ -158,9 +155,9 @@ const DocsHeading = (props: any) => {
                     <Box
                         aria-label="anchor"
                         as="a"
-                        color="pink.300"
+                        color="dark"
                         _dark={{
-                            color: "pink.600"
+                            color: "light"
                         }}
                         fontWeight="normal"
                         outline="none"
@@ -210,7 +207,27 @@ const MDXComponent = {
     tbody: (props: any) => <Tbody {...props} />,
     tfoot: (props: any) => <Tfoot {...props} />,
     caption: (props: any) => <TableCaption {...props} />,
-    table: (props: any) => <TableContainer><Table variant="striped" colorScheme="pink" __css={{ overflowX: `auto`, minWidth: `100%` }} {...props} /></TableContainer>,
+    table: (props: any) => (
+        <TableContainer
+            sx={{
+                overflow: 'auto',
+                '&::-webkit-scrollbar': {
+                    width: '0.5rem',
+                    height: '0.5rem',
+                    backgroundColor: `rgba(0, 0, 0, 0.05)`,
+                },
+                '&::-webkit-scrollbar-thumb': {
+                    backgroundColor: "#BD93F9",
+                },
+            }}
+        >
+            <Table
+                {...props}
+                variant="striped"
+                colorScheme="purple"
+            />
+        </TableContainer>
+    ),
     
     Kbd,
     Text,

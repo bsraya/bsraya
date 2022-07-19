@@ -17,19 +17,20 @@ interface IPost {
 
 const CurrentPost = ({ index, title }: { index: number, title: string }) => {
     return (
-        <Flex>
+        <Flex width="100%" px={2}>
             <IconButton
                 aria-label="post index"
                 icon={<Text mx="auto">{index}</Text>}
                 isRound
-                background="pink.300"
-                color="gray.100"
-                mx={3}
+                background="dark"
+                color="purple.50"
+                mr={3}
                 _hover={{
-                    background: "pink.300"
+                    background: "dark"
                 }}
                 _dark={{
-                    background: "pink.600"
+                    background: "light",
+                    color: "darker"
                 }}
             />
             <Text
@@ -48,24 +49,29 @@ const CurrentPost = ({ index, title }: { index: number, title: string }) => {
 
 const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
     return (
-        <Flex>
+        <Flex width="100%" px={2}>
             <IconButton
                 aria-label="post index"
                 icon={<Text mx="auto">{index}</Text>}
                 isRound
                 background='gray.100'
-                color="gray.700"
+                color="gray.500"
                 _dark={{
                     color: 'gray.100',
-                    bgColor: 'gray.700'
+                    bgColor: 'gray.500'
                 }}
-                mx={3}
+                mr={3}
                 _hover={{
                     bgColor: 'none'
                 }}
             />
             <Text
                 my="auto"
+                css={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap"
+                }}
                 _dark={{
                     color: 'gray.100'
                 }}
@@ -96,9 +102,9 @@ export default function Series({ series, posts, currentPost }: { series: string,
                 p={3}
                 mx={2}
                 fontSize="lg"
-                color="pink.300"
+                color="dark"
                 _dark={{
-                    color: "pink.600"   
+                    color: "light"   
                 }}
             >{series} ({posts.length} Parts)</Heading>
             <Divider borderColor="gray.300" w="100%" />
@@ -111,7 +117,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
                                     key={post.slug}
                                     _hover={{
                                         cursor: "pointer",
-                                        bgColor: "rgb(248, 175, 166, 0.2)"
+                                        bgColor: "rgba(128, 90, 213, 0.3)"
                                     }}
                                     borderBottomRadius={index === posts.length ? "md" : "none"}
                                 >

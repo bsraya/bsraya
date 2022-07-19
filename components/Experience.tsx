@@ -46,13 +46,13 @@ export default function Experience(): JSX.Element {
                         href="/portfolio/personal-website-v2"
                     >
                         <Text
-                            color="pink.300"
+                            color="dark"
                             cursor="pointer"
                             _hover={{
                                 textDecoration: "underline"
                             }}
                             _dark={{
-                                color: "pink.600"
+                                color: "light"
                             }}
                         >Personal website v2.0</Text>
                     </NextLink>
@@ -99,10 +99,10 @@ export default function Experience(): JSX.Element {
                         href="/portfolio/personal-website"
                     >
                         <Text
-                            color="pink.300"
+                            color="dark"
                             cursor="pointer"
                             _dark={{
-                                color: "pink.600"
+                                color: "light"
                             }}
                             _hover={{
                                 textDecoration: "underline"
