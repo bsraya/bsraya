@@ -30,12 +30,6 @@ import NextImage from 'next/image';
 import { ExternalLinkIcon, LinkIcon } from '@chakra-ui/icons'
 
 const CustomLink = (props: any) => {
-    const { colorMode } = useColorMode();
-    const color = {
-        light: "#fc909f",
-        dark: "#f8afa6"
-    }
-
     const href = props.href;
     const isInternalLink = href && href.startsWith('/');
     const isInternalLinkHeader = href && href.startsWith('#');
@@ -43,7 +37,13 @@ const CustomLink = (props: any) => {
     if (isInternalLinkHeader) {
         return (
             <NextLink {...props} href={href} passHref>
-                <Link color={color[colorMode]} {...props} />
+                <Link
+                    {...props}
+                    color="#fc909f"
+                    _dark={{
+                        color: "#f8afa6"
+                    }}
+                />
             </NextLink>
         );
     }
@@ -52,14 +52,30 @@ const CustomLink = (props: any) => {
         return (
             <NextLink {...props} href={href} passHref>
                 <>
-                    <Link color={color[colorMode]} {...props} />
+                    <Link
+                        {...props}
+                        color="#fc909f"
+                        _dark={{
+                            color: "#f8afa6"
+                        }}
+                    />
                     <LinkIcon mx='5px' mb="8px" />
                 </>
             </NextLink>
         )
     }
 
-    return <><Link color={color[colorMode]} isExternal {...props} /><ExternalLinkIcon mx='5px' mb="4px" /></>;
+    return (
+        <>
+            <Link
+                {...props}
+                color="#fc909f"
+                _dark={{
+                    color: "#f8afa6"
+                }}
+            /><ExternalLinkIcon mx='5px' mb="4px" />
+        </>
+    )
 };
 
 const ChakraImage = chakra(NextImage, {
@@ -119,17 +135,14 @@ const CustomImages = (props: any) => {
 }
 
 const Quote = (props: any) => {
-    const { colorMode } = useColorMode();
-    const bgColor = {
-        light: 'blue.50',
-        dark: 'blue.900'
-    };
-
     return (
         <Alert
             mt={4}
             w="98%"
-            bg={bgColor[colorMode]}
+            bg="blue.50"
+            _dark={{
+                bg: 'blue.900',
+            }}
             variant="left-accent"
             status="info"
             css={{
@@ -144,11 +157,6 @@ const Quote = (props: any) => {
 };
 
 const DocsHeading = (props: any) => {
-    const { colorMode } = useColorMode();
-    const color = {
-        light: "#fc909f",
-        dark: "#f8afa6"
-    };
     return (
         <Heading
             css={{
@@ -173,7 +181,8 @@ const DocsHeading = (props: any) => {
                     <Box
                         aria-label="anchor"
                         as="a"
-                        color={color[colorMode]}
+                        color="#fc909f"
+                        _dark={{ color: '#f8afa6' }}
                         fontWeight="normal"
                         outline="none"
                         _focus={{
