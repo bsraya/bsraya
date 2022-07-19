@@ -21,7 +21,7 @@ export default function Footer(): JSX.Element {
             url: 'mailto:nathan.setyawan96@gmail.com',
         },
     ]
-    const fontColor = useColorModeValue('light', 'dark')
+    const fontColor = useColorModeValue('dark', 'light')
     const hoveredBgColor = useColorModeValue('lighter', 'darker')
     return (
         <Flex as="footer" marginBottom={20} direction="column" align="center">
