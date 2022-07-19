@@ -111,7 +111,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
                                     key={post.slug}
                                     _hover={{
                                         cursor: "pointer",
-                                        bgColor: "rgb(248, 175, 166, 0.1)"
+                                        bgColor: "rgb(248, 175, 166, 0.2)"
                                     }}
                                     borderBottomRadius={index === posts.length ? "md" : "none"}
                                 >
