@@ -22,10 +22,8 @@ export default function Navlink ({ href, children }: { href: string, children: R
                 fontWeight="semibold"
                 color={isActive ? 'black' : 'gray.400'}
                 _hover={{ color: 'black' }}
-                // set the active color if isActive is true
                 _active={{ color: 'black' }}
                 _dark={{
-                    // if active
                     color: isActive ? 'white' : 'gray.400',
                     '&:hover': {
                         color: 'white'
