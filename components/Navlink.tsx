@@ -4,14 +4,13 @@ import { useRouter } from 'next/router'
 
 export default function Navlink ({ href, children }: { href: string, children: React.ReactNode }): JSX.Element {
     const router = useRouter()
-    const fontColor = useColorModeValue('black', 'white')
     var isActive = router.pathname === href
 
-    if (href.includes("/blog")) {
+    if (href.includes("blog")) {
         isActive = router.pathname.includes("/blog")
     }
 
-    if (href.includes("/portfolio")) {
+    if (href.includes("portfolio")) {
         isActive = router.pathname.includes("/portfolio")
     }
 
@@ -21,9 +20,20 @@ export default function Navlink ({ href, children }: { href: string, children: R
                 mr={5}
                 variant="ghost"
                 fontWeight="semibold"
-                color={isActive ? fontColor : 'gray.400'}
-                _hover={{ color: fontColor }}
-                _active={{ color: fontColor }}
+                color={isActive ? 'black' : 'gray.400'}
+                _hover={{ color: 'black' }}
+                // set the active color if isActive is true
+                _active={{ color: 'black' }}
+                _dark={{
+                    // if active
+                    color: isActive ? 'white' : 'gray.400',
+                    '&:hover': {
+                        color: 'white'
+                    },
+                    '&:active': {
+                        color: 'white'
+                    }
+                }}
             >{children}</Link>
         </NextLink>
     )
