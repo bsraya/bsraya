@@ -4,11 +4,10 @@ import { FaChalkboardTeacher } from 'react-icons/fa'
 import { FiAward } from 'react-icons/fi'
 import { GiArchiveResearch } from 'react-icons/gi'
 import { MdOutlineSchool, MdOutlineWorkOutline } from 'react-icons/md'
-import { HStack, Heading, Divider, Text, useColorModeValue, Box } from "@chakra-ui/react";
+import { HStack, Heading, Divider, Text, Box } from "@chakra-ui/react";
 
 export default function Experience(): JSX.Element {
     const color = "gray.300"
-    const linkColor = useColorModeValue("#fc909f", "#f8afa6")
 
     return (
         <>
@@ -19,11 +18,9 @@ export default function Experience(): JSX.Element {
                     </Heading>
                     <Divider
                         orientation="horizontal"
-                        __css={{
-                            borderWidth: "1px",
-                            borderStyle: "solid",
-                            borderColor: color
-                        }}
+                        borderColor={color}
+                        borderStyle="solid"
+                        borderWidth="1px"
                     />
                 </HStack>
 
@@ -49,12 +46,13 @@ export default function Experience(): JSX.Element {
                         href="/portfolio/personal-website-v2"
                     >
                         <Text
-                            css={{
-                                color: linkColor,
-                                cursor: "pointer",
-                                "&:hover": {
-                                    textDecoration: "underline"
-                                }
+                            color="#fc909f"
+                            cursor="pointer"
+                            _hover={{
+                                textDecoration: "underline"
+                            }}
+                            _dark={{
+                                color: "#f8afa6"
                             }}
                         >Personal website v2.0</Text>
                     </NextLink>
@@ -68,11 +66,9 @@ export default function Experience(): JSX.Element {
                     </Heading>
                     <Divider
                         orientation="horizontal"
-                        __css={{
-                            borderWidth: "1px",
-                            borderStyle: "solid",
-                            borderColor: color
-                        }}
+                        borderColor={color}
+                        borderStyle="solid"
+                        borderWidth="1px"
                     />
                 </HStack>
 
@@ -103,12 +99,13 @@ export default function Experience(): JSX.Element {
                         href="/portfolio/personal-website"
                     >
                         <Text
-                            css={{
-                                color: linkColor,
-                                cursor: "pointer",
-                                "&:hover": {
-                                    textDecoration: "underline"
-                                }
+                            color="#fc909f"
+                            cursor="pointer"
+                            _dark={{
+                                color: "#f8afa6"
+                            }}
+                            _hover={{
+                                textDecoration: "underline"
                             }}
                         >Personal website</Text>
                     </NextLink>
@@ -122,11 +119,9 @@ export default function Experience(): JSX.Element {
                     </Heading>
                     <Divider
                         orientation="horizontal"
-                        __css={{
-                            borderWidth: "1px",
-                            borderStyle: "solid",
-                            borderColor: color
-                        }}
+                        borderColor={color}
+                        borderStyle="solid"
+                        borderWidth="1px"
                     />
                 </HStack>
 
@@ -148,11 +143,9 @@ export default function Experience(): JSX.Element {
                     </Heading>
                     <Divider
                         orientation="horizontal"
-                        __css={{
-                            borderWidth: "1px",
-                            borderStyle: "solid",
-                            borderColor: color
-                        }}
+                        borderColor={color}
+                        borderStyle="solid"
+                        borderWidth="1px"
                     />
                 </HStack>
 
@@ -169,11 +162,9 @@ export default function Experience(): JSX.Element {
                     </Heading>
                     <Divider
                         orientation="horizontal"
-                        __css={{
-                            borderWidth: "1px",
-                            borderStyle: "solid",
-                            borderColor: color
-                        }}
+                        borderColor={color}
+                        borderStyle="solid"
+                        borderWidth="1px"
                     />
                 </HStack>
 

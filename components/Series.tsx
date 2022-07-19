@@ -7,7 +7,6 @@ import {
     LinkBox,
     LinkOverlay,
     IconButton,
-    useColorModeValue
 } from "@chakra-ui/react";
 import NextLink from 'next/link';
 
@@ -16,24 +15,7 @@ interface IPost {
     slug: string;
 }
 
-const Title = ({ props, title }: { props: any, title: string }) => {
-    return (
-        <Text
-            my="auto"
-            css={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap"
-            }}
-            {...props}
-        >
-            {title}
-        </Text>
-    )
-}
-
 const CurrentPost = ({ index, title }: { index: number, title: string }) => {
-    const fontColor = useColorModeValue('#fc909f', '#f8afa6')
     return (
         <Flex>
             <IconButton
@@ -47,47 +29,55 @@ const CurrentPost = ({ index, title }: { index: number, title: string }) => {
                     background: "#fdd2d8"
                 }}
             />
-            <Title
-                props={{
-                    color: fontColor,
-                    fontWeight: "bold"
+            <Text
+                my="auto"
+                css={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap"
                 }}
-                title={title}
-            />
+                _dark={{
+                    color: '#f8afa6'
+                }}
+            >
+                {title}
+            </Text>
         </Flex>
     )
 }
 
 const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
-    const fontColor = useColorModeValue('gray.700', 'gray.100')
-    const bgColor = useColorModeValue('gray.100', 'gray.700')
     return (
         <Flex>
             <IconButton
                 aria-label="post index"
                 icon={<Text mx="auto">{index}</Text>}
                 isRound
-                background={bgColor}
-                color={fontColor}
+                background='gray.100'
+                color="gray.700"
+                _dark={{
+                    color: 'gray.100',
+                    bgColor: 'gray.700'
+                }}
                 mx={3}
                 _hover={{
-                    background: {bgColor}
+                    bgColor: 'none'
                 }}
             />
-            <Title
-                props={{
-                    color: {fontColor}
+            <Text
+                my="auto"
+                _dark={{
+                    color: 'gray.100'
                 }}
-                title={title}
-            />
+            >
+                {title}
+            </Text>
         </Flex>
     )
 }
 
 // "Series" is a component that displays a list of related posts, just like the one from the "dev.to" website
 export default function Series({ series, posts, currentPost }: { series: string, posts: IPost[], currentPost: string }) {
-    const bgColor = useColorModeValue('white', 'gray.800')
-    const fontColor = useColorModeValue('#fc909f', '#f8afa6')
     return (
         <Box
             mx="auto"
@@ -95,7 +85,10 @@ export default function Series({ series, posts, currentPost }: { series: string,
             borderRadius="lg"
             display="block"
             border="1px solid"
-            background={bgColor}
+            background="white"
+            _dark={{
+                bgColor: 'gray.800',
+            }}
             borderColor="gray.300"
             width="90%"
         >   
@@ -103,7 +96,10 @@ export default function Series({ series, posts, currentPost }: { series: string,
                 p={3}
                 mx={2}
                 fontSize="lg"
-                color={fontColor}
+                color='#fc909f'
+                _dark={{
+                    color: '#f8afa6'    
+                }}
             >{series} ({posts.length} Parts)</Heading>
             <Divider borderColor="gray.300" w="100%" />
             {
@@ -115,7 +111,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
                                     key={post.slug}
                                     _hover={{
                                         cursor: "pointer",
-                                        color: fontColor
+                                        bgColor: "rgb(248, 175, 166, 0.1)"
                                     }}
                                     borderBottomRadius={index === posts.length ? "md" : "none"}
                                 >

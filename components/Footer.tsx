@@ -41,6 +41,10 @@ export default function Footer(): JSX.Element {
                             icon={item.icon}
                             variant="ghost"
                             isRound
+                            color='#fc909f'
+                            _dark={{
+                                color: '#f8afa6',
+                            }}
                         />
                     </Link>
                 ))}

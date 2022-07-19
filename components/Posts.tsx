@@ -3,10 +3,9 @@ import NextLink from 'next/link'
 import { DateTime } from 'luxon'
 import ViewCounter from './ViewCounter'
 import type { Post } from '../lib/types'
-import { Heading, LinkBox, LinkOverlay, Text, useColorModeValue } from '@chakra-ui/react'
+import { Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
 
 export default function Posts({ posts, type }: { posts: Post[]; type: string }) {
-    const borderColor = useColorModeValue('gray.200', 'gray.500')
     return (
         <>
             {
@@ -19,7 +18,10 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                             borderWidth='2px'
                             rounded="md"
                             key={post.slug}
-                            borderColor={borderColor}
+                            borderColor="gray.200"
+                            _dark={{
+                                borderColor: 'gray.500',
+                            }}
                             _hover={{
                                 border: '2px solid',
                                 borderColor: "#fc909f",

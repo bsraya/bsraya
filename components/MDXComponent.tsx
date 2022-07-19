@@ -7,7 +7,6 @@ import {
     Link,
     Text,
     Divider,
-    useColorMode,
     Kbd,
     Textarea,
     Alert,
@@ -202,13 +201,7 @@ const DocsHeading = (props: any) => {
 }
 
 const Hr = () => {
-    const { colorMode } = useColorMode();
-    const borderColor = {
-        light: 'gray.400',
-        dark: 'gray.600'
-    };
-
-    return <Divider borderColor={borderColor[colorMode]} my={4} w="100%" />;
+    return <Divider borderColor="gray.400" _dark={{ borderColor: 'gray.600' }} my={4} w="100%" />;
 };
 
 const MDXComponent = {

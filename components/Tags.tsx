@@ -21,7 +21,7 @@ export default function Tags({ tags }: { tags: string[] }) {
                                     bg: "#fdd2d8",
                                 }}
                             >
-                                <Text color={"#f79489"}>#</Text>
+                                <Text color={"rgb(247, 148, 137, 0.9)"}>#</Text>
                                 <Text>{tag}</Text>
                             </Button>
                         </NextLink>
