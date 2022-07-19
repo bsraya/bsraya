@@ -35,6 +35,7 @@ const CurrentPost = ({ index, title }: { index: number, title: string }) => {
             />
             <Text
                 my="auto"
+                fontWeight="bold"
                 css={{
                     overflow: "hidden",
                     textOverflow: "ellipsis",
@@ -54,11 +55,10 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
                 aria-label="post index"
                 icon={<Text mx="auto">{index}</Text>}
                 isRound
-                background='gray.100'
-                color="gray.500"
+                background='gray.300'
+                color="gray.50"
                 _dark={{
-                    color: 'gray.100',
-                    bgColor: 'gray.500'
+                    bgColor: 'gray.600'
                 }}
                 mr={3}
                 _hover={{
@@ -72,9 +72,7 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap"
                 }}
-                _dark={{
-                    color: 'gray.100'
-                }}
+                color="gray.500"
             >
                 {title}
             </Text>
