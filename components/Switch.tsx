@@ -11,6 +11,12 @@ export default function ColorModeSwitch({...props}): JSX.Element {
             isRound
             variant="ghost"
             onMouseDown={toggleColorMode}
+            _hover={{
+                bgColor: "rgb(248, 175, 166, 0.2)"
+            }}
+            _pressed={{
+                bgColor: "rgb(248, 175, 166, 0.2)"
+            }}
             {...props}
         />
     )

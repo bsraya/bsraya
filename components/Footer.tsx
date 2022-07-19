@@ -45,6 +45,9 @@ export default function Footer(): JSX.Element {
                             _dark={{
                                 color: '#f8afa6',
                             }}
+                            _hover={{
+                                bgColor: "rgb(248, 175, 166, 0.2)"
+                            }}
                         />
                     </Link>
                 ))}
