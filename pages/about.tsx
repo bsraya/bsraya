@@ -19,7 +19,7 @@ export default function About(): JSX.Element {
                     Hey, I am Bijon Setyawan Raya! I am a graduate Computer Science student at National Tsing Hua University in Hsinchu, Taiwan.
                 </Text>
                 <Text lineHeight="taller" color="gray.500">
-                    Here, I mentioned briefly about my background and my skillset. For more details, my resume can be downloaded <><Link href={resumeLink} color="#fc909f" _dark={{color: "#f8afa6"}} isExternal>here</Link><ExternalLinkIcon mx="5px" mb="4px" /></>.
+                    Here, I mentioned briefly about my background and my skillset. For more details, my resume can be downloaded <><Link href={resumeLink} color="pink.300" _dark={{color: "pink.600"}} isExternal>here</Link><ExternalLinkIcon mx="5px" mb="4px" /></>.
                 </Text>
             </Stack>
 

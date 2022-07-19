@@ -38,9 +38,9 @@ const CustomLink = (props: any) => {
             <NextLink {...props} href={href} passHref>
                 <Link
                     {...props}
-                    color="#fc909f"
+                    color="pink.300"
                     _dark={{
-                        color: "#f8afa6"
+                        color: "pink.600"
                     }}
                 />
             </NextLink>
@@ -53,9 +53,9 @@ const CustomLink = (props: any) => {
                 <>
                     <Link
                         {...props}
-                        color="#fc909f"
+                        color="pink.300"
                         _dark={{
-                            color: "#f8afa6"
+                            color: "pink.600"
                         }}
                     />
                     <LinkIcon mx='5px' mb="8px" />
@@ -68,18 +68,14 @@ const CustomLink = (props: any) => {
         <>
             <Link
                 {...props}
-                color="#fc909f"
+                color="pink.300"
                 _dark={{
-                    color: "#f8afa6"
+                    color: "pink.600"
                 }}
             /><ExternalLinkIcon mx='5px' mb="4px" />
         </>
     )
 };
-
-const ChakraImage = chakra(NextImage, {
-    shouldForwardProp: (prop) => ['src', 'alt', 'width', 'height', 'quality', 'layout', 'loading'].includes(prop),
-})
 
 const CustomImages = (props: any) => {
     if (props.title !== undefined) {
@@ -93,16 +89,7 @@ const CustomImages = (props: any) => {
                 my={5}
             >
                 <figure>
-                    <ChakraImage
-                        src={props.src}
-                        alt={props.alt}
-                        width={128}
-                        height={86}
-                        quality={80}
-                        sizes="50vw"
-                        layout="responsive"
-                        loading='lazy'
-                    />
+                    <img src={props.src} alt={props.alt} width="100%" height="auto" loading='lazy' />
                     <figcaption
                         style={{
                             textAlign: "center",
@@ -118,18 +105,9 @@ const CustomImages = (props: any) => {
     } else {
         return (
             <Box my={5}>
-                <ChakraImage
-                    src={props.src}
-                    alt={props.alt}
-                    width={128}
-                    height={86}
-                    quality={80}
-                    sizes="50vw"
-                    layout="responsive"
-                    loading='lazy'
-                />
+                <img src={props.src} alt={props.alt} width="100%" height="auto" loading='lazy' />
             </Box>
-    );
+        );
     }
 }
 
@@ -138,9 +116,9 @@ const Quote = (props: any) => {
         <Alert
             mt={4}
             w="98%"
-            bg='red.100'
+            bg='pink.50'
             _dark={{
-                bg: 'red.700'
+                bg: 'pink.900'
             }}
             variant="left-accent"
             status="warning"
@@ -180,8 +158,10 @@ const DocsHeading = (props: any) => {
                     <Box
                         aria-label="anchor"
                         as="a"
-                        color="#fc909f"
-                        _dark={{ color: '#f8afa6' }}
+                        color="pink.300"
+                        _dark={{
+                            color: "pink.600"
+                        }}
                         fontWeight="normal"
                         outline="none"
                         _focus={{
@@ -201,7 +181,7 @@ const DocsHeading = (props: any) => {
 }
 
 const Hr = () => {
-    return <Divider borderColor="gray.400" _dark={{ borderColor: 'gray.600' }} my={4} w="100%" />;
+    return <Divider borderColor="gray.300" _dark={{ borderColor: 'gray.600' }} my={4} w="100%" />;
 };
 
 const MDXComponent = {
@@ -230,7 +210,7 @@ const MDXComponent = {
     tbody: (props: any) => <Tbody {...props} />,
     tfoot: (props: any) => <Tfoot {...props} />,
     caption: (props: any) => <TableCaption {...props} />,
-    table: (props: any) => <TableContainer><Table variant="striped" __css={{ overflowX: `auto`, minWidth: `100%` }} {...props} /></TableContainer>,
+    table: (props: any) => <TableContainer><Table variant="striped" colorScheme="pink" __css={{ overflowX: `auto`, minWidth: `100%` }} {...props} /></TableContainer>,
     
     Kbd,
     Text,

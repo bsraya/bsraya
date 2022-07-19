@@ -41,12 +41,12 @@ export default function Footer(): JSX.Element {
                             icon={item.icon}
                             variant="ghost"
                             isRound
-                            color='#fc909f'
+                            color="pink.300"
                             _dark={{
-                                color: '#f8afa6',
+                                color: "pink.600",
                             }}
                             _hover={{
-                                bgColor: "rgb(248, 175, 166, 0.2)"
+                                bgColor: "pink.50"
                             }}
                         />
                     </Link>

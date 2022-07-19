@@ -22,11 +22,14 @@ const CurrentPost = ({ index, title }: { index: number, title: string }) => {
                 aria-label="post index"
                 icon={<Text mx="auto">{index}</Text>}
                 isRound
-                background="#fdd2d8"
-                color="gray.800"
+                background="pink.300"
+                color="gray.100"
                 mx={3}
                 _hover={{
-                    background: "#fdd2d8"
+                    background: "pink.300"
+                }}
+                _dark={{
+                    background: "pink.600"
                 }}
             />
             <Text
@@ -35,9 +38,6 @@ const CurrentPost = ({ index, title }: { index: number, title: string }) => {
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap"
-                }}
-                _dark={{
-                    color: '#f8afa6'
                 }}
             >
                 {title}
@@ -96,9 +96,9 @@ export default function Series({ series, posts, currentPost }: { series: string,
                 p={3}
                 mx={2}
                 fontSize="lg"
-                color='#fc909f'
+                color="pink.300"
                 _dark={{
-                    color: '#f8afa6'    
+                    color: "pink.600"   
                 }}
             >{series} ({posts.length} Parts)</Heading>
             <Divider borderColor="gray.300" w="100%" />

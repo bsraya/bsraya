@@ -9,13 +9,14 @@ export default function ColorModeSwitch({...props}): JSX.Element {
             aria-label={colorMode === 'dark' ? 'Dark Mode' : 'Light Mode'}
             icon={colorMode === 'dark' ? <MoonIcon /> : <SunIcon />}
             isRound
-            variant="ghost"
+            colorScheme="transparent"
+            color="pink.300"
+            _dark={{
+                color: "pink.600",
+            }}
             onMouseDown={toggleColorMode}
             _hover={{
-                bgColor: "rgb(248, 175, 166, 0.2)"
-            }}
-            _pressed={{
-                bgColor: "rgb(248, 175, 166, 0.2)"
+                bgColor: "pink.50"
             }}
             {...props}
         />

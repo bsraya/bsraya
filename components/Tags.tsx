@@ -17,10 +17,10 @@ export default function Tags({ tags }: { tags: string[] }) {
                                 variant="ghost"
                                 _hover={{
                                     color: 'gray.800',
-                                    bg: "red.100"
+                                    bg: "pink.100"
                                 }}
                             >
-                                <Text color={"red.300"}>#</Text>
+                                <Text color={"pink.300"} _dark={{color: "pink.600"}}>#</Text>
                                 <Text>{tag}</Text>
                             </Button>
                         </NextLink>
