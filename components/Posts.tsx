@@ -19,9 +19,6 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                             rounded="md"
                             key={post.slug}
                             borderColor="gray.200"
-                            _dark={{
-                                borderColor: 'gray.500',
-                            }}
                             _hover={{
                                 border: '2px solid',
                                 borderColor: "#fc909f",
