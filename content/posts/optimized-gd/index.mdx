@@ -3,7 +3,7 @@ title: "Optimized GD 🔥"
 date: "2022-07-18"
 readingTime: 2 mins
 description: Putting some turbo boost into our gradient descent code
-tags: [python, optimization, prorgamming]
+tags: [python, optimization]
 authors: ["Bijon Setyawan Raya"]
 publish: true
 ---
@@ -19,8 +19,110 @@ publish: true
   currentPost="Appending elements to a list in Python"
 />
 
-> lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisi vel consectetur consectetur, nisl nunc consectetur nisi, euismod consectetur nisi nisi vel nisi.
+In this series, we will be discussing what's wrong with my gradient descent code and how to optimize it.
+I wanted to make this post because whenever I did experiments with it, I should wait at least 3-5 mins to finish.
 
-```python:main.py
-print(something)
+<Alert status="info" variant="left-accent">
+  <AlertIcon />
+  Most of the code in this post is from my previous post, [Gradient Descent series](/blog/gradient-descent).
+</Alert>
+
+# How to Optimize?
+
+Reading many blogs about Python optimization, the most common way is to use built-in functions and libraries.
+Let's see if it's true.
+
+The following is the code that I use to convert numbers into its corresponding name.
+
+```python
+from sklearn import datasets
+from time import time
+
+iris = datasets.load_iris()
+target = iris.target
+species_names = list()
+
+start = time()
+for i in target:
+    if i == 0:
+        species_names.append('setosa')
+    elif i == 1:
+        species_names.append('versicolor')
+    else:
+        species_names.append('virginica')
+end = time()
+
+print(f"time required: {(end - start):.5f}") # 0.00034 seconds
 ```
+
+# List Comprehension
+
+I personally prefer typical `if-else` way of coding since it makes the code more readable and easy to understand.
+With list comprehension, even though it makes the code shorter, but it's rather hard for most people to understand.
+However, we are going to test if it's faster than list append + `if-else` way.
+
+```python
+start = time()
+species_names = [
+    'setosa' if i == 0 else
+    'versicolor' if i == 1 else
+    'virginica' for i in target
+]
+end = time()
+print(f"time required: {(end - start):.5f}") # 0.00020 seconds
+```
+
+# Numpy
+
+Let's look at the other way, say we are going to use Numpy.
+
+```python
+species_names = np.array([])
+
+start = time()
+for i in target:
+    if i == 0:
+        species_names = np.append(species_names, "setosa")
+    elif i == 1:
+        species_names = np.append(species_names, "versicolor")
+    else:
+        species_names = np.append(species_names, "virginica")
+end = time()
+
+print(f"time required: {(end - start):.5f}") # 0.00234 seconds
+```
+
+Why is `np.array([])` slower at appending compared to list? If you print out `np.append.__doc__`, you will see the following docstring.
+
+```text
+  ...
+    Returns
+    -------
+    append : ndarray
+        A copy of `arr` with `values` appended to `axis`.  Note that
+        `append` does not occur in-place: a new array is allocated and
+        filled.  If `axis` is None, `out` is a flattened array.
+  ...
+```
+
+The reason why `np.append` is slower than `list.append` because it always make a copy of a thing and store it at a new array. That particular process is resource expensive.
+
+However, there is a work around. We can do list comprehension first and save the result in Numpy array to make it faster.
+
+```python
+start = time()
+species_names = np.array([
+    'setosa' if i == 0 else
+    'versicolor' if i == 1 else
+    'virginica' for i in target
+])
+end = time()
+print(f"time required: {(end - start):.5f}") # 0.00047 seconds
+```
+
+# Keypoints
+
+1. We have tested list and numpy array
+2. There are two ways working with list: list with if-else or list comprehension
+3. Appending elements to numpy array is the slowest since it always make a copy of a thing and store it at a new array
+4. List comprehension is the fastest compared to list with if-else and numpy array
