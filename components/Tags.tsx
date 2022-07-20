@@ -19,6 +19,7 @@ export default function Tags({ tags }: { tags: string[] }) {
                                     color: 'gray.100',
                                     bg: "darker"
                                 }}
+                                py={2}
                             >
                                 <Text color="purple.300" _dark={{color: "dark"}}>#</Text>
                                 <Text>{tag}</Text>
