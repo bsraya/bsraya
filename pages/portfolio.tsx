@@ -31,6 +31,8 @@ export const getStaticProps = async () => {
             slug: slug
         }
     })
+    
+    portfolios = portfolios.filter((portfolio: Post) => portfolio.frontMatter.publish)
 
     portfolios = sortPost(portfolios)
 
