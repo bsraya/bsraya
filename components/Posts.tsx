@@ -46,14 +46,18 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                     </Heading>
                                 </LinkOverlay>  
                             </NextLink>
-                            <Text as="p" my={5} color="gray.500">{post.frontMatter.description}</Text>
                             {
-                                post.frontMatter.tags && (
-                                    <Tags
-                                        tags={
-                                            post.frontMatter.tags
-                                        }
-                                    />
+                                post.frontMatter.tags ? (
+                                    <>
+                                        <Text as="p" my={5} color="gray.500">{post.frontMatter.description}</Text>
+                                        <Tags
+                                            tags={
+                                                post.frontMatter.tags
+                                            }
+                                        />
+                                    </>
+                                ) : (
+                                    <Text as="p" mt={5} color="gray.500">{post.frontMatter.description}</Text>
                                 )
                             }
                         </LinkBox>
