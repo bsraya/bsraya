@@ -5,7 +5,7 @@ import prismStyles from '../styles/prism'
 import katexStyles from '../styles/katex'
 import { Global } from '@emotion/react';
 import { useState, useEffect } from 'react'
-import {TriangleUpIcon} from '@chakra-ui/icons'
+import { TriangleUpIcon } from '@chakra-ui/icons'
 
 // create a "back to top" button so that when pressed, it scrolls to the top
 const BackToTopButton = () => {
@@ -14,23 +14,26 @@ const BackToTopButton = () => {
     const [isAtTop, setIsAtTop] = useState(true)
 
     useEffect(() => {
-        const onScroll = () => {
-            const scrollTop = window.pageYOffset
-            const isAtTop = scrollTop === 0
-            setIsAtTop(isAtTop)
-            setIsScrolling(true)
-            setTimeout(() => {
-                setIsScrolling(false)
-            }, 300)
+        const handleScroll = () => {
+            const isTop = window.scrollY < 100
+            if (isTop !== isAtTop) {
+                setIsAtTop(isTop)
+            }
+            if (isTop !== isScrolling) {
+                setIsScrolling(isTop)
+            }
         }
-        window.addEventListener('scroll', onScroll)
+        window.addEventListener('scroll', handleScroll)
         return () => {
-            window.removeEventListener('scroll', onScroll)
+            window.removeEventListener('scroll', handleScroll)
         }
-    }, [])
+    }, [isAtTop, isScrolling])
 
-    const onClick = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+    const handleClick = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
     }
 
     useEffect(() => {
@@ -58,7 +61,7 @@ const BackToTopButton = () => {
                 opacity: 0.5,
                 cursor: 'not-allowed',
             }}
-            onClick={onClick}
+            onClick={handleClick}
         >
             <IconButton
                 aria-label='Back to top button'
