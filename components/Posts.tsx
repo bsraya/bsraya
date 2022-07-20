@@ -6,6 +6,7 @@ import type { Post } from '../lib/types'
 import { Heading, LinkBox, LinkOverlay, Text, useColorModeValue } from '@chakra-ui/react'
 
 export default function Posts({ posts, type }: { posts: Post[]; type: string }) {
+    const borderColor = useColorModeValue('gray.200', 'gray.500')
     const hoveredBorderColor = useColorModeValue('light', 'dark')
     return (
         <>
@@ -19,7 +20,7 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                             borderWidth='2px'
                             rounded="md"
                             key={post.slug}
-                            borderColor="gray.200"
+                            borderColor={borderColor}
                             _hover={{
                                 border: '2px solid',
                                 borderColor: hoveredBorderColor,
