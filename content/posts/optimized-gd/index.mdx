@@ -1,7 +1,7 @@
 ---
 title: "Optimized GD 🔥"
 date: "2022-07-18"
-readingTime: 2 mins
+readingTime: 7 mins
 description: Putting some turbo boost into our gradient descent code
 tags: [python, optimization]
 authors: ["Bijon Setyawan Raya"]
@@ -54,9 +54,9 @@ print(f"time required: {(end - start):.5f}") # 0.00034 seconds
 
 # List Comprehension
 
-I personally prefer typical `if-else` way of coding since it makes the code more readable and easy to understand.
+I personally prefer typical if-else paradigm of coding since it makes the code more readable and easy to understand.
 With list comprehension, even though it makes the code shorter, but it's rather hard for most people to understand.
-However, we are going to test if it's faster than list append + `if-else` way.
+However, we are going to test if it's faster than list append with if-else
 
 ```python
 start = time()
@@ -89,7 +89,7 @@ end = time()
 print(f"time required: {(end - start):.5f}") # 0.00234 seconds
 ```
 
-Why is `np.array([])` slower at appending compared to list? If you print out `np.append.__doc__`, you will see the following docstring.
+Why is Numpy array slower at appending compared to list? If you print out `np.append.__doc__`, you will see the following docstring.
 
 ```text
   ...
@@ -102,7 +102,7 @@ Why is `np.array([])` slower at appending compared to list? If you print out `np
   ...
 ```
 
-The reason why `np.append` is slower than `list.append` because it always make a copy of a thing and store it at a new array. That particular process is resource expensive.
+The reason why appending elements into Numpy array is slow because it always make a copy of a thing and store it at a new array. That particular process is resource expensive.
 
 However, there is a work around. We can do list comprehension first and save the result in Numpy array to make it faster.
 
