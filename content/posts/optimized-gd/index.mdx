@@ -92,14 +92,14 @@ print(f"time required: {(end - start):.5f}") # 0.00234 seconds
 Why is Numpy array slower at appending compared to list? If you print out `np.append.__doc__`, you will see the following docstring.
 
 ```text
-  ...
-    Returns
-    -------
-    append : ndarray
-        A copy of `arr` with `values` appended to `axis`.  Note that
-        `append` does not occur in-place: a new array is allocated and
-        filled.  If `axis` is None, `out` is a flattened array.
-  ...
+...
+  Returns
+  -------
+  append : ndarray
+      A copy of `arr` with `values` appended to `axis`.  Note that
+      `append` does not occur in-place: a new array is allocated and
+      filled.  If `axis` is None, `out` is a flattened array.
+...
 ```
 
 The reason why appending elements into Numpy array is slow because it always make a copy of a thing and store it at a new array. That particular process is resource expensive.
