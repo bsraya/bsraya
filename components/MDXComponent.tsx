@@ -82,14 +82,20 @@ const CustomImages = (props: any) => {
                 style={{
                     display: 'block',
                     backgroundColor: 'white',
-                    borderRadius: `0.5rem`,
+                    
                 }}
+                borderRadius="md"
                 my={5}
+                p={5}
+                _dark={{
+                    opacity: 0.9
+                }}
             >
                 <figure>
                     <img src={props.src} alt={props.alt} width="100%" height="auto" loading='lazy' />
                     <figcaption
                         style={{
+                            marginTop: '1rem',
                             textAlign: "center",
                             fontSize: "0.9rem",
                             color: 'gray'
@@ -102,7 +108,15 @@ const CustomImages = (props: any) => {
         );
     } else {
         return (
-            <Box my={5}>
+            <Box
+                p={5}
+                my={5}
+                borderRadius="0.5rem"
+                // set opacity to 0.8 and contrast to 1.2 in dark mode
+                _dark={{
+                    opacity: 0.9
+                }}
+            >
                 <img src={props.src} alt={props.alt} width="100%" height="auto" loading='lazy' />
             </Box>
         );
