@@ -3,30 +3,62 @@ title: Schedulearn
 date: "2022-07-01"
 readingTime: 3 mins
 description: Scheduling Deep Learning models made easy
-authors: ["Bijon Setyawan Raya"]
+authors: ["Bijon Setyawan Raya", "Annabella Putri Dirgo", "Marcelino Gilbert Tagore"]
 publish: false
 ---
 
-This project is my graduate thesis project. I call it "schedulearn" because it is a system that helps you schedule your training jobs.
-I will be explaining how I came up with this idea, and how I implemented it in Python.
-
-In the following sections, you will encounter numerous technical aspects.
-However, [About me](/about) bear with me since [webpage](https://test.com) I will simplify things as much as I can, especially for ones who don't have any background in CS or programming.
-
 # Introduction
+
+This project is my graduate thesis project. I call it "schedulearn" because it is a system that helps you schedule deep learning models.
+The main objective of this project is to help you schedule deep learning models with the least amount of effort.
+Thus, users can focus more  less on the resources and, most importantly, more on develiring quality models and.
+
+In this post I will be explaining how I came up with the implementation, and how I implemented it in Python.
+I am sure some of you might not have or have limited background in software engineering, but I will simplify things as much as I can.
 
 # Tech Stacks
 
-Here are some of the tools to make this project possible:
+## I. Frontend
+
+1. [React](https://reactjs.org/)
+2. [Next.js](https://nextjs.org/)
+3. [Chakra-ui](https://chakra-ui.com/)
+
+## II. Backend
 
 1. [FastAPI](https://fastapi.tiangolo.com/)
 2. [SQLModel](https://sqlmodel.tiangolo.com/)
 3. [Pydantic](https://pydantic-docs.helpmanual.io/)
-4. [Docker](https://docker-py.readthedocs.io/en/stable/index.html)
-5. [Horovod](https://horovod.readthedocs.io/en/stable/)
+4. [SQLite](https://www.sqlite.org/)
+5. [Docker](https://docker-py.readthedocs.io/en/stable/index.html)
+6. [Celery](https://celery.readthedocs.io/en/stable/index.html)
+7. [Horovod](https://horovod.readthedocs.io/en/stable/)
 
 # Implementation
 
+![Schedulearn design](/images/portfolios/schedulearn/schedulearn-design.png "Schedulearn design")
+
+In the figure above, I present a rather simple design of the system in which the 
+API help you to schedule deep learning models. 
+
+## I. User Interface 
+
+Clearly, users will intract mostly with a dedicated user interface for Schedulearn. In the user interface, users can
+just write down what the model should be called and the number of GPUs they want to use.
+
+![Schedulearn user interface](/images/portfolios/schedulearn/ui.jpg "Schedulearn user interface")
+
+For the user interface, I decided to use Next and ChakraUI since those are the two tools that I am familiar the most.
+Besides that, those two tools really sped up and simplified the development process. 
+
+## II. API
+
+
+
 # Observations
+
+
+# Future Works
+
 
 # Conclusion
