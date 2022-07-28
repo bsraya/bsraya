@@ -8,7 +8,7 @@ type author = {
 }
 
 export default function Authors(props: any): JSX.Element {
-    const authorsInfo: author[] = [
+    const authors: author[] = [
         {
             name: "Bijon Setyawan Raya",
             image: "https://bsraya.vercel.app/images/avatar.png",
@@ -18,78 +18,64 @@ export default function Authors(props: any): JSX.Element {
             name: "Annabella Putri Dirgo",
             image: "https://i.ibb.co/FhfYZ8L/logo.png",
             url: "https://bellapd.vercel.app",
+        },
+        {
+            name: "Marcelino Gilbert Tagore",
+            image: "",
+            url: "https://marcelinogilbert.vercel.app",
         }
     ]
+
+    // if an author both exists in props.authors and authors, then it will be rendered
+    const citedAuthors: author[] = authors.filter((author: author) => {
+        return props.authors.includes(author.name)
+    })
 
     return (
         <Box mb={5}>
             <Text mb={2} fontSize="sm" color="gray.500">Author(s):</Text>
             <Wrap>
                 {
-                    (props.authors.length === 1 && props.authors[0] === authorsInfo[0].name) ?
+                    (citedAuthors.length === 1 && citedAuthors[0].name === authors[0].name) ?
                     (
                         <WrapItem>
                             <NextLink
-                                href={authorsInfo[0].url}
+                                href={authors[0].url}
                                 passHref
                             >
                                 <Avatar
-                                    name={authorsInfo[0].name}
-                                    src={authorsInfo[0].image}
+                                    name={authors[0].name}
+                                    src={authors[0].image}
                                     _hover={{
                                         cursor: "pointer",
                                     }}
                                 />
                             </NextLink>
-                            <Text ml={3} my="auto">{authorsInfo[0].name}</Text>
+                            <Text ml={3} my="auto">{authors[0].name}</Text>
                         </WrapItem>
-                    ) : props.authors.map((name: string) => {
-                        if (name === authorsInfo[0].name) {
+                    ) : (
+                        citedAuthors.map((author: author) => {
                             return (
                                 <Tooltip
-                                    key={name}
-                                    label={authorsInfo[0].name}
-                                >
-                                    <WrapItem
-                                        _hover={{
-                                            cursor: "pointer",
-                                        }}
-                                    >
-                                        <NextLink
-                                            href={authorsInfo[0].url}
-                                            passHref
-                                        >
-                                            <Avatar
-                                                name={authorsInfo[0].name}
-                                                src={authorsInfo[0].image}
-                                            />
-                                        </NextLink>
-                                    </WrapItem>
-                                </Tooltip>
-                            )
-                        }
-                        if (name === authorsInfo[1].name) {
-                            return (
-                                <Tooltip
-                                    key={name}
-                                    label={authorsInfo[1].name}
+                                    key={author.name}
+                                    label={author.name}
                                 >
                                     <Link
-                                        href={authorsInfo[1].url}
+                                        href={author.url}
                                         target="_blank"
                                         isExternal
                                     >
                                         <WrapItem>
                                             <Avatar
-                                                name={authorsInfo[1].name}
-                                                src={authorsInfo[1].image}
+                                                name={author.name}
+                                                src={author.image}
                                             />
                                         </WrapItem>
                                     </Link>
                                 </Tooltip>
                             )
-                        }
-                    })
+                        })
+                    )
                 }
             </Wrap>
         </Box>
