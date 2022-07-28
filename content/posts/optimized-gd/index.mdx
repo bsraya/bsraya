@@ -13,8 +13,12 @@ publish: true
   posts={[
     {
       title: "Appending elements to a list in Python",
-      slug: "gradient-descent-code-optimization",
+      slug: "optimized-gd",
     },
+    {
+      title: "Matrix Manipulation with Numpy",
+      slug: "matrix-manipulation-with-numpy",
+    }
   ]}
   currentPost="Appending elements to a list in Python"
 />
@@ -26,79 +30,107 @@ Note that most of the code in this post is from my previous post, [Gradient Desc
 
 # How to Optimize?
 
-Reading many blogs about Python optimization, the most common way is to use built-in functions and libraries.
+Reading many blogs about Python optimization, most of the writers suggested that it was adviseable to use built-in functions and frameworks.
 Let's see if it's true.
 
-The following is the code that I use to convert numbers into its corresponding name.
+Before starting, create a new Python notebook since `%%timeit` only works in Python notebooks.
+
+If you just started learning Python, it's recommended to type the code in this post manually instead of copy and paste.
+Make sure that you type the code in each code block in this post into seperate code cells in your Python notebook.
+
+First, let's import the dataset from Scikit-learn
 
 ```python
 from sklearn import datasets
-from time import time
+from timeit import timeit
 
 iris = datasets.load_iris()
 target = iris.target
-species_names = list()
-
-start = time()
-for i in target:
-    if i == 0:
-        species_names.append('setosa')
-    elif i == 1:
-        species_names.append('versicolor')
-    else:
-        species_names.append('virginica')
-end = time()
-
-print(f"time required: {(end - start):.5f}") # 0.00034 seconds
 ```
+
+Once the dataset is imported, create a function so that we can test it using a Python built-in function called `timeit`. 
+
+```python
+def list_append(target):
+    species_names = list()
+    for i in range(len(target)):
+        if target[i] == 0:
+            species_names.append('setosa')
+        elif target[i] == 1:
+            species_names.append('versicolor')
+        else:
+            species_names.append('virginica')
+    return species_names
+
+%%timeit
+list_append(target)
+
+# Returns:
+# 61.8 µs ± 1.12 µs per loop 
+# (mean ± std. dev. of 7 runs, 10000 loops each)
+```
+
+There you go! the speed turns out to be 61.8 microseconds, and that is the baseline in this entire post.
 
 # List Comprehension
 
 I personally prefer typical if-else paradigm of coding since it makes the code more readable and easy to understand.
-With list comprehension, even though it makes the code shorter, but it's rather hard for most people to understand.
-However, we are going to test if it's faster than list append with if-else
+Even though it makes the code look shorter, but it's rather hard for little or no relevant background programmers to understand.
+
+Regardless of my opinion, we are going to prove if it's faster than the baseline.
 
 ```python
-start = time()
-species_names = [
-    'setosa' if i == 0 else
-    'versicolor' if i == 1 else
-    'virginica' for i in target
-]
-end = time()
-print(f"time required: {(end - start):.5f}") # 0.00020 seconds
+def list_comprehension(target):
+    return [
+        'setosa' if i == 0 else
+        'versicolor' if i == 1 else
+        'virginica' for i in target
+    ]
+
+%%timeit
+list_comprehension(target)
+
+# Returns:
+# 40.2 µs ± 274 ns per loop 
+# (mean ± std. dev. of 7 runs, 10000 loops each)
 ```
 
 # Numpy
 
-Let's look at the other way, say we are going to use Numpy.
+Since using Numpy is quite common in Deep and Machine Learning projects, let's see Numpy is any better.
 
 ```python
-species_names = np.array([])
+def numpy_array(target):
+    species_names = np.array([])
+    for i in target:
+        if i == 0:
+            species_names = np.append(species_names, "setosa")
+        elif i == 1:
+            species_names = np.append(species_names, "versicolor")
+        else:
+            species_names = np.append(species_names, "virginica")
+    return species_names
 
-start = time()
-for i in target:
-    if i == 0:
-        species_names = np.append(species_names, "setosa")
-    elif i == 1:
-        species_names = np.append(species_names, "versicolor")
-    else:
-        species_names = np.append(species_names, "virginica")
-end = time()
+%%timeit
+numpy_array(target)
 
-print(f"time required: {(end - start):.5f}") # 0.00234 seconds
+# Returns:
+# 843 µs ± 15.2 µs per loop 
+# (mean ± std. dev. of 7 runs, 10000 loops each)
 ```
 
-Why is Numpy array slower at appending compared to list? If you print out `np.append.__doc__`, you will see the following docstring.
+Turned out that Numpy is way slower compared to the two previous methods. Why is it slower at appending compared to list? If you print out `np.append.__doc__`, you will see the following docstring.
 
 ```text
 ...
-  Returns
-  -------
-  append : ndarray
-      A copy of `arr` with `values` appended to `axis`.  Note that
-      `append` does not occur in-place: a new array is allocated and
-      filled.  If `axis` is None, `out` is a flattened array.
+
+Returns
+-------
+append : ndarray
+    A copy of `arr` with `values` appended to `axis`.  Note that
+    `append` does not occur in-place: a new array is allocated and
+    filled.  If `axis` is None, `out` is a flattened array.
+
 ...
 ```
 
@@ -107,14 +139,19 @@ The reason why appending elements into Numpy array is slow because it always mak
 However, there is a work around. We can do list comprehension first and save the result in Numpy array to make it faster.
 
 ```python
-start = time()
-species_names = np.array([
-    'setosa' if i == 0 else
-    'versicolor' if i == 1 else
-    'virginica' for i in target
-])
-end = time()
-print(f"time required: {(end - start):.5f}") # 0.00047 seconds
+def numpy_list_comprehension(target):
+    return np.array([
+        'setosa' if i == 0 else
+        'versicolor' if i == 1 else
+        'virginica' for i in target
+    ])
+
+%%timeit
+numpy_list_comprehension(target)
+
+# Returns:
+# 59.6 µs ± 3.02 µs per loop 
+# (mean ± std. dev. of 7 runs, 10000 loops each)
 ```
 
 # Keypoints

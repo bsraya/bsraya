@@ -5,13 +5,13 @@ import {
     ListItem,
     Heading,
     Link,
-    Text,
     Divider,
     Kbd,
     Textarea,
     Alert,
     Stack,
     AlertIcon,
+    Text,
     Table,
     Thead,
     Tbody,
@@ -47,31 +47,35 @@ const CustomLink = (props: any) => {
 
     if (isInternalLink) {
         return (
-            <NextLink {...props} href={href} passHref>
-                <>
-                    <Link
-                        {...props}
-                        color="dark"
-                        _dark={{
-                            color: "light"
-                        }}
-                    />
-                    <LinkIcon mx='5px' mb="8px" />
-                </>
+            <NextLink
+                {...props}
+                href={href}
+                passHref
+            >
+                <Link
+                    {...props}
+                    color="dark"
+                    _dark={{
+                        color: "light"
+                    }}
+                >
+                    {props.children}<LinkIcon mx='5px' mb="8px" />
+                </Link>
             </NextLink>
         )
     }
 
     return (
-        <>
-            <Link
-                {...props}
-                color="dark"
-                _dark={{
-                    color: "light"
-                }}
-            /><ExternalLinkIcon mx='5px' mb="4px" />
-        </>
+        <Link
+            {...props}
+            color="dark"
+            _dark={{
+                color: "light"
+            }}
+            display="inline"
+        >
+            {props.children}<ExternalLinkIcon mx='5px' mb="4px" />
+        </Link>
     )
 };
 
