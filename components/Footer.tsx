@@ -1,23 +1,23 @@
 import { Flex, Link, IconButton, useColorModeValue } from '@chakra-ui/react'
-import { FiGithub, FiLinkedin } from 'react-icons/fi'
-import { MdOutlineMail } from 'react-icons/md'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { FiMail } from 'react-icons/fi'
 
 export default function Footer(): JSX.Element {
     const size = '1.5rem'
     const link = [
         {
             key: 'github',
-            icon: <FiGithub style={{ fontSize: size }} />,
+            icon: <FaGithub style={{ fontSize: size }} />,
             url: 'https://github.com/bsraya',
         },
         {
             key: 'linkedin',
-            icon: <FiLinkedin style={{ fontSize: size }} />,
+            icon: <FaLinkedin style={{ fontSize: size }} />,
             url: 'https://www.linkedin.com/in/bijonsetyawan/'
         },
         {
             key: 'email',
-            icon: <MdOutlineMail style={{ fontSize: size }} />,
+            icon: <FiMail style={{ fontSize: size }} />,
             url: 'mailto:nathan.setyawan96@gmail.com',
         },
     ]
@@ -30,9 +30,9 @@ export default function Footer(): JSX.Element {
                     <Link
                         key={item.key}
                         as="a"
-                        px={4}
+                        px={1}
                         py={2}
-                        rounded={'xl'}
+                        rounded={'lg'}
                         href={item.url}
                         isExternal
                     >
@@ -41,7 +41,6 @@ export default function Footer(): JSX.Element {
                             aria-label={item.key}
                             icon={item.icon}
                             variant="ghost"
-                            isRound
                             color={fontColor}
                             _hover={{
                                 bgColor: hoveredBgColor
@@ -51,7 +50,7 @@ export default function Footer(): JSX.Element {
                 ))}
             </Flex>
             <Flex as="p" mt={2}>
-                Bijon Setyawan Raya © {new Date().getFullYear()}
+                © Bijon Setyawan Raya {new Date().getFullYear()}
             </Flex>
         </Flex>
     );
