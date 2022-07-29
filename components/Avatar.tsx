@@ -5,20 +5,20 @@ const MyAvatar = () => {
         "sex": "man",
         "faceColor": "#F9C9B6",
         "earSize": "small",
-        "eyeStyle": "circle",
-        "noseStyle": "round",
+        "eyeStyle": "oval",
+        "noseStyle": "long",
         "mouthStyle": "laugh",
         "shirtStyle": "hoody",
         "glassesStyle": "none",
         "hairColor": "#000",
         "hairStyle": "thick",
         "hatStyle": "none",
-        "hatColor": "#D2EFF3",
+        "hatColor": "#000",
         "eyeBrowStyle": "up",
         "shirtColor": "#F4D150",
-        "bgColor": "#fff"
+        "bgColor": "#FFEDEF"
     }
-    
+
     // @ts-ignore
     const myConfig = genConfig(config)
 
