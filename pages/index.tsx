@@ -17,6 +17,7 @@ import sortPost from '../lib/sortpost'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import NextImage from 'next/image'
 import Seo from '../components/Seo'
+import MyAvatar from '../components/Avatar'
 
 const Image = chakra(NextImage, {
     shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt', 'layout', 'priority'].includes(prop)
@@ -28,14 +29,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
             <Seo title="Home" type="website" />
             <Box display={{ md: 'flex' }}>
                 <Box mr={3} my={2}>
-                    <Image 
-                        alt="avatar"
-                        height={100}
-                        width={100}
-                        layout="fixed"
-                        priority
-                        src="/images/avatar.png"
-                    />
+                    <MyAvatar />
                 </Box>
                 <Box my="auto">
                     <Heading as="h1">Bijon Setyawan Raya</Heading>
@@ -44,6 +38,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                     </Text>
                 </Box>
             </Box>
+            
             {/* <Alert mt={10} variant="left-accent" status='info'>
                 <AlertIcon
                     mt={1}
