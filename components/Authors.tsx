@@ -11,7 +11,7 @@ export default function Authors(props: any): JSX.Element {
     const authors: author[] = [
         {
             name: "Bijon Setyawan Raya",
-            image: "https://bsraya.vercel.app/images/avatar.png",
+            image: "https://bsraya.com/images/avatar.png",
             url: "/",
         },
         {

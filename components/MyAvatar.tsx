@@ -1,6 +1,6 @@
 import Avatar, { genConfig } from 'react-nice-avatar'
 
-const MyAvatar = () => {
+export default function MyAvatar({size}: {size: string}) {
     const config = {
         "sex": "man",
         "faceColor": "#F9C9B6",
@@ -23,8 +23,6 @@ const MyAvatar = () => {
     const myConfig = genConfig(config)
 
     return (
-        <Avatar style={{ width: '6rem', height: '6rem' }} {...myConfig} />
+        <Avatar style={{ width: size, height: size }} {...myConfig} />
     )
 }
-
-export default MyAvatar
