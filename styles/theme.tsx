@@ -1,4 +1,4 @@
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react"
+import { extendTheme, type ThemeConfig, theme as base } from "@chakra-ui/react"
 
 const config: ThemeConfig = {
     initialColorMode: "light",
@@ -7,10 +7,11 @@ const config: ThemeConfig = {
 
 // customize fonts add "config" to the theme as well
 const theme = extendTheme(config, {
+    ...extendTheme,
     fonts: {
-        body: "Inter, system-ui, sans-serif",
-        heading: "Inter, system-ui, sans-serif",
-        mono: "Menlo, monospace",
+        body: `Inter, ${base.fonts?.heading}`,
+        heading: `Montserrat, ${base.fonts?.heading}`,
+        mono: "Fira Code",
     },
     colors: {
         lighter: "#E9D8FD",
@@ -18,6 +19,15 @@ const theme = extendTheme(config, {
         dark: "#6B46C1",
         darker: "#44337A"
     },
+    // global sttyles
+    styles: {
+        global: () => ({
+            body: {
+                fontSize: "18px",
+                lineHeight: "2",
+            }
+        })
+    }
 })
 
 

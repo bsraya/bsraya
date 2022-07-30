@@ -204,12 +204,12 @@ const MDXComponent = {
     i: (props: any) => <Text as="i" {...props} />,
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
-    p: (props: any) => <Text as="p" my={5} lineHeight="taller" {...props} />,
+    p: (props: any) => <Text as="p" my={5} maxWidth="75ch" wordBreak={'break-word'} {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
     
     li: (props: any) => <ListItem ml={6} {...props} />,
-    ul: (props: any) => <List as="ul" styleType="circle" my={1} spacing={1} {...props} />,
-    ol: (props: any) => <List as="ol" styleType="decimal" my={1} spacing={1} {...props} />,
+    ul: (props: any) => <List as="ul" styleType="circle" spacing={1} {...props} />,
+    ol: (props: any) => <List as="ol" styleType="decimal" spacing={1} {...props} />,
     
     h1: (props: any) => <DocsHeading as="h1" size="xl" fontWeight="bold" {...props} />,
     h2: (props: any) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
