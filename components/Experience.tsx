@@ -1,7 +1,6 @@
 import NextLink from 'next/link'
-import { AiOutlineProject } from 'react-icons/ai'
 import { FaChalkboardTeacher } from 'react-icons/fa'
-import { FiAward } from 'react-icons/fi'
+import { FiAward, FiFolder } from 'react-icons/fi'
 import { GiArchiveResearch } from 'react-icons/gi'
 import { MdOutlineSchool, MdOutlineWorkOutline } from 'react-icons/md'
 import { HStack, Heading, Divider, Text, Box } from "@chakra-ui/react";
@@ -40,7 +39,7 @@ export default function Experience(): JSX.Element {
                 </HStack>
 
                 <HStack my={5}>
-                    <AiOutlineProject size="2rem" />
+                    <FiFolder size="2rem" />
                     <NextLink
                         passHref
                         href="/portfolio/personal-website-v2"
@@ -93,7 +92,7 @@ export default function Experience(): JSX.Element {
                 </HStack>
 
                 <HStack my={5}>
-                    <AiOutlineProject size="2rem" />
+                    <FiFolder size="2rem" />
                     <NextLink
                         passHref
                         href="/portfolio/personal-website"
