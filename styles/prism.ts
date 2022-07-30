@@ -7,17 +7,6 @@ const prismStyles = css`
         min-width: 100%; /* 2 */
     }
 
-    .code-line {
-        line-height: 2em;
-        display: block;
-        padding-left: 16px;
-        padding-right: 16px;
-        margin-left: -16px;
-        margin-right: -16px;
-        border-left-width: 4px;
-        border-left-color: rgba(31, 41, 55, 0); /* Set code block color */
-    }
-
     .rehype-code-title {
         margin: ${theme.space[6]} 0 0;
         padding: ${theme.space[2]} ${theme.space[5]};
@@ -28,7 +17,7 @@ const prismStyles = css`
         font-size: 0.9rem;
         font-weight: 600;
         width: 100%;
-        font-family: monospace;
+        font-family: ${theme.fonts.mono};
 
         + pre[class*="language-"] {
             border-top-left-radius: 0;
@@ -40,11 +29,16 @@ const prismStyles = css`
     pre[class*="language-"] {
         font-size: ${theme.fontSizes["md"]};
         margin: ${theme.space[6]} 0;
-        overflow: auto;
         min-width: 100%;
+
+        ::-webkit-scrollbar {
+            height: 0.5em;
+            
+        }
     }
 
     .code-line {
+        font-family: "Fira Code", monospace;
         line-height: 2em;
         display: block;
         padding-left: 16px;
@@ -82,6 +76,7 @@ const prismStyles = css`
     }
 
     code, pre[class*="language-"] {
+        font-family: "Fira Code", monospace;
         color: ${theme.colors.gray[50]};
     }
 
@@ -93,17 +88,9 @@ const prismStyles = css`
         border-radius: ${theme.radii.md};
     }
 
-    ::-webkit-scrollbar {
-        width: ${theme.space[2]};
-        height: ${theme.space[2]};
-    }
-
     @media (max-width: ${theme.breakpoints.md}) {
         pre[class*="language-"] {
             font-size: ${theme.fontSizes["sm"]};
-            margin: ${theme.space[6]} 0;
-            overflow: auto;
-            min-width: 100%;
         }
     }
 `
