@@ -1,10 +1,10 @@
 import {
     Box,
+    Link,
     Flex,
     useColorMode,
     useBreakpointValue,
     useColorModeValue,
-    IconButton
 } from '@chakra-ui/react'
 import Nextlink from 'next/link'
 import Dropdown from './DropdownMenu'
@@ -12,9 +12,8 @@ import Navlink from './Navlink'
 import Switch from './Switch'
 
 export default function Navigation(): JSX.Element {
-    const { colorMode, toggleColorMode } = useColorMode()
+    const { colorMode } = useColorMode()
     const isDesktop = useBreakpointValue({ base: false, md: true })
-    const hoveredBgColor = useColorModeValue('lighter', 'darker')
     return (
         <Box
             flexDirection="row"
@@ -43,18 +42,12 @@ export default function Navigation(): JSX.Element {
                     ) : (
                         <>  
                             <Nextlink href="/">
-                                <IconButton
-                                    aria-label="Home button"
-                                    icon={
-                                        colorMode === 'dark' ? <img src="/images/light.png" alt="logo" width={20} height={20} />
-                                        : <img src="/images/dark.png" alt="logo" width={20} height={20} />
+                                <Link cursor="pointer">    
+                                    {
+                                        colorMode === 'dark' ? <img src="/images/icon-light.png" alt="logo" width={64} height={64} />
+                                        : <img src="/images/icon-dark.png" alt="logo" width={64} height={64} />
                                     }
-                                    isRound
-                                    colorScheme="transparent"
-                                    _hover={{
-                                        bgColor: hoveredBgColor
-                                    }}
-                                />   
+                                </Link>
                             </Nextlink>
                             
                             <Flex ml="auto">
