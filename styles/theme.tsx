@@ -19,7 +19,6 @@ const theme = extendTheme(config, {
         dark: "#6B46C1",
         darker: "#44337A"
     },
-    // global sttyles
     styles: {
         global: () => ({
             body: {
