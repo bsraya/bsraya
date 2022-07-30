@@ -1,0 +1,50 @@
+---
+title: "Storing Data"
+date: "2022-07-18"
+readingTime: 7 mins
+description: Putting some turbo boost into our gradient descent code
+tags: [python, optimization]
+authors: ["Bijon Setyawan Raya"]
+publish: true
+---
+
+<Series
+    series="Optimized GD 🔥"
+    posts={[
+        {
+            title: "Appending Elements",
+            slug: "optimized-gd",
+        },
+        {
+            title: "Storing Numbers",
+            slug: "storing-numbers",
+        }
+    ]}
+    currentPost="Storing Numbers"
+/>
+
+```python
+def gd_with_df(x, y, epochs, df, alpha = 0.01):
+    intercept, coefficient = 2.0, -7.5
+    predictions = predict(intercept, coefficient, x)
+    sum_error = np.sum((predictions - y) ** 2) / (2 * len(x))
+    df.loc[0] = [intercept, coefficient, sum_error]
+    for epoch in range(1, epochs + 1):
+        predictions = predict(intercept, coefficient, x)
+        b0_error = (1/len(x)) * np.sum(predictions - y)
+        b1_error = (1/len(x)) * np.sum((predictions - y) * x)
+        intercept = intercept - alpha * b0_error
+        coefficient = coefficient - alpha * b1_error 
+        sum_error = np.sum((predictions - y) ** 2) / (2 * len(x))
+        df.loc[epoch] = [intercept, coefficient, sum_error]
+        sum_error = 0
+    return df
+```
+
+| Iteration | Dataframe (mins)  | List (mins) | Dictionary (mins) |
+| --------- | ----------- | ----- | ---------- |
+| 1000      | 0.03038917779 | 0.0014468948 | 0.00134635766 |
+| 10000     | 0.31236910025 | 0.0114454468 | 0.01122100353 |
+| 100000    | 5.76115766764 | 0.1045463562 | 0.10649653673 |
+| 1000000   | I can take a nap | 1.10759801865 | 1.11417066256 |
+| 10000000  | $*&!^@*&#@( | 10.9875214219 | 10.5218910098 |
