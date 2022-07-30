@@ -36,7 +36,7 @@ I am sure some of you might not have or have limited background in software engi
 
 # Implementation
 
-![Schedulearn design](/images/portfolios/schedulearn/schedulearn-design.png "Schedulearn design")
+![Schedulearn design](/images/portfolios/schedulearn/design.png "Schedulearn design")
 
 In the figure above, I present a rather simple design of the system in which the 
 API help you to schedule deep learning models. 
@@ -53,12 +53,43 @@ Besides that, those two tools really sped up and simplified the development proc
 
 ## II. API
 
+The API consists of two parts:
+
+1. The endpoints
+2. The scheduler
+    * The scheduling mechanism
+    * The placement mechanism
+
+## I. Endpoints
+
+In this system, users can interact with several endpoints of the API:
+
+1. `POST` endpoint where they can send their model to be trained.
+2. `GET` endpoint where they can check the status of one or multiple models.
+3. `DELETE` endpoint where they can delete one or multiple models.
+
+## II. Scheduler
+
+The scheduler is the core of the system. It is responsible for scheduling the models. 
+Meaning, the system will tell where each model should go and how much resources each model should use.
+
+### The Scheduling Mechanism
+
+This mechanism will tell which models should go. For example, there is a Tensorflow model that requires 2 GPUs.
+Meanwhile, there are only two servers, one with 1 GPU and another with 2 GPUs.
+It's obvious that the Tensorflow model should go to the latter, 
+given the model requires that much resources to run optimally.
+
+### The Placement Mechanism
+
+After a model is scheduled into a certain machine, the scheduler will tell on what GPUs the model should be placed.
 
 
 # Observations
 
 
+# Conclusion
+
+
 # Future Works
 
-
-# Conclusion
