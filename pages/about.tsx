@@ -6,7 +6,7 @@ import { Heading, Link, Stack, Text } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 export default function About(): JSX.Element {
-    const resumeLink = "https://drive.google.com/file/d/1Je_YZylmlP-45oL8G7CJ1p7qlYYSbXvk/view?usp=sharing"
+    const resumeLink = "https://drive.google.com/file/d/19T0UwJQ3l_v4mStC_3-2g5jRJxYTkZKK/view?usp=sharing"
 
     return (
         <Layout>
