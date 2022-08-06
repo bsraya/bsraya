@@ -10,8 +10,8 @@ import {
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 
-function CustomLink ({ heading }: { heading: string }) {
-    const color = useColorModeValue("dark", "light")
+function CustomLink({ heading }: { heading: string }) {
+    const hoverColor = useColorModeValue("dark", "light")
     const id = heading.toLowerCase().replace(/\s+/g, '-')
     const router = useRouter()
 
@@ -35,9 +35,10 @@ function CustomLink ({ heading }: { heading: string }) {
             size="md"
             cursor="pointer"
             textDecoration="none"
+            color="gray.500"
             _hover={{
                 textDecoration: 'underline',
-                color: color
+                color: hoverColor
             }}
             onClick={handleClick}
         >

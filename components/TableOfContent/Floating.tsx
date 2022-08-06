@@ -11,9 +11,8 @@ import {
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-
 function FloatingLink ({ heading }: { heading: string }) {
-    const color = useColorModeValue("dark", "light")
+    const hoverColor = useColorModeValue("dark", "light")
     const id = heading.toLowerCase().replace(/\s+/g, '-')
     const router = useRouter()
 
@@ -38,7 +37,7 @@ function FloatingLink ({ heading }: { heading: string }) {
             textDecoration="none"
             _hover={{
                 textDecoration: 'underline',
-                color: color
+                color: hoverColor
             }}
             onClick={handleClick}
         >
@@ -48,6 +47,8 @@ function FloatingLink ({ heading }: { heading: string }) {
 }
 
 export default function FloatingToC({ headings }: { headings: string[] }) {
+    const bgColor = useColorModeValue('white', 'gray.800')
+    const fontColor = useColorModeValue('black', 'white')
     const [isVisible, setIsVisible] = useState(false)
     const [isScrolling, setIsScrolling] = useState(false)
     const [isAtTop, setIsAtTop] = useState(true)
@@ -83,18 +84,22 @@ export default function FloatingToC({ headings }: { headings: string[] }) {
                 // if mdxSource.headings is not null, then render the headings
                 headings !== null && headings.length > 0 && (
                     <Box
-                        position="fixed"
-                        // put it on the right top corner
+                        p={5}
                         top={5}
                         right={5}
                         zIndex={10}
-                        display={isVisible ? 'block' : 'none'}
-                        // set the width of the floating table of contents to be dynamic
-                        // based on the size of right side of the screen
+                        bg={bgColor}
                         width="300px"
-                        p={5}
+                        position="fixed"
                         borderRadius={10}
-                        bg="gray.900"
+                        border="2px solid"
+                        borderColor={fontColor}
+                        display={isVisible ? 'block' : 'none'}
+                        boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
+                        // set box shadow for dark mode
+                        _dark={{
+                            boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
+                        }}
                     >
                         <Accordion
                             allowToggle

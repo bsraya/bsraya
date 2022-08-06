@@ -36,8 +36,11 @@ export default function Dropdown(): JSX.Element {
               zIndex={5}
               border="2px solid"
               borderColor={color}
-              boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
               alignItems={["center", "flex-start"]}
+              boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
+              _dark={{
+                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
+              }}
             >
               <Link href="https://github.com/bsraya" _hover={{ textDecoration: 'none' }} isExternal>
                 <MenuItem>
