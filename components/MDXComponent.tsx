@@ -211,11 +211,10 @@ const MDXComponent = {
     ul: (props: any) => <List as="ul" styleType="circle" spacing={1} {...props} />,
     ol: (props: any) => <List as="ol" styleType="decimal" spacing={1} {...props} />,
     
-    h1: (props: any) => <DocsHeading as="h1" size="xl" fontWeight="bold" {...props} />,
-    h2: (props: any) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
-    h3: (props: any) => <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />,
-    h4: (props: any) => <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />,
-    h5: (props: any) => <DocsHeading as="h5" size="xs" fontWeight="bold" {...props} />,
+    h2: (props: any) => <DocsHeading as="h2" size="xl" fontWeight="bold" {...props} />,
+    h3: (props: any) => <DocsHeading as="h3" size="lg" fontWeight="bold" {...props} />,
+    h4: (props: any) => <DocsHeading as="h4" size="md" fontWeight="bold" {...props} />,
+    h5: (props: any) => <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />,
     h6: (props: any) => <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />,
     
     // for table

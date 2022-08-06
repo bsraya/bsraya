@@ -28,7 +28,7 @@ I wanted to make this post because whenever I did experiments with it, I should 
 
 Note that most of the code in this post is from my previous post, [Gradient Descent series](/blog/gradient-descent).
 
-# How to Optimize?
+## How to Optimize?
 
 Reading many blogs about Python optimization, most of the writers suggested that it was adviseable to use built-in functions and frameworks.
 Let's see if it's true.
@@ -72,7 +72,7 @@ list_append(target)
 
 There you go! the speed turns out to be 61.8 microseconds, and that is the baseline in this entire post.
 
-# List Comprehension
+## List Comprehension
 
 I personally prefer typical if-else paradigm of coding since it makes the code more readable and easy to understand.
 Even though it makes the code look shorter, but it's rather hard for little or no relevant background programmers to understand.
@@ -95,7 +95,7 @@ list_comprehension(target)
 # (mean ± std. dev. of 7 runs, 10000 loops each)
 ```
 
-# Numpy
+## Numpy
 
 Since using Numpy is quite common in Deep and Machine Learning projects, let's see Numpy is any better.
 
@@ -154,7 +154,7 @@ numpy_list_comprehension(target)
 # (mean ± std. dev. of 7 runs, 10000 loops each)
 ```
 
-# Keypoints
+## Keypoints
 
 1. We have tested how long it takes to append elements to a list and a Numpy array
 2. There are two ways of appending elements to a list: with if-else and list comprehension

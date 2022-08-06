@@ -44,7 +44,7 @@ As for MBGD, it only updates them after it has seen a fraction of of the entire 
 
 In this post, we are going to implement another variation of Gradient Descent called Stochastic Gradient Descent, and now I am going to call it SGD throughout this post.
 
-# Introduction
+## Introduction
 
 SGD is an optimization algorithm that is derived from BGD and MBGD.
 Since we are dealing with Linear Regresison, this algorithm helps us to find the best fit line for our data.
@@ -53,7 +53,7 @@ As the regression line moves toward where most data points sit, the lost functio
 
 Before we start, we should get ourselves familiar with the mathematical part of this algorithm.
 
-# Mathematics of SGD
+## Mathematics of SGD
 
 The whole idea of SGD is that it updates the parameters each time we see a random data points.
 
@@ -128,7 +128,7 @@ $$
 
 The equations above is a variation of Gradient Descent algorithm that helps us to approximate the minimum value of the cost function by updating $\beta_0$ and $\beta_1$ iteratively.
 
-# Coding
+## Coding
 
 We are going to need two functions to implement SGD.
 
@@ -172,7 +172,7 @@ That's exactly what the 16th and 18th lines of the code above are doing.
 
 Apart from that, the rest of the code looks exactly the same like the ones in BGD and MBGD.
 
-# References
+## References
 
 1. O. Artem. _Stochastic, Batch, and Mini-Batch Gradient Descent_. Source [https://towardsdatascience.com/stochastic-batch-and-mini-batch-gradient-descent-demystified-8b28978f7f5](https://towardsdatascience.com/stochastic-batch-and-mini-batch-gradient-descent-demystified-8b28978f7f5)
 2. P. Sushant. _Batch, Mini Batch, and Stochastic Gradient Descent_. Source [https://towardsdatascience.com/batch-mini-batch-stochastic-gradient-descent-7a62ecba642a](https://towardsdatascience.com/batch-mini-batch-stochastic-gradient-descent-7a62ecba642a)

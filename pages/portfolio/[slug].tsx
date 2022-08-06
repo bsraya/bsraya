@@ -1,15 +1,21 @@
 import fs from 'fs'
 import path from 'path'
-import { Heading, Text } from '@chakra-ui/react'
+import {
+    Text,
+    Heading,
+    useBreakpointValue
+} from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
 
 // components
-import Layout from '../../components/Layout'
-import MDXComponents from '../../components/MDXComponent'
-import Authors from '../../components/Authors'
 import Seo from '../../components/Seo'
+import Layout from '../../components/Layout'
+import Authors from '../../components/Authors'
+import MDXComponents from '../../components/MDXComponent'
+import FixedToC from '../../components/TableOfContent/Fixed'
+import FloatingToC from '../../components/TableOfContent/Floating'
 
 // interface 
 import type { MdxPage } from '../../lib/types'
@@ -30,6 +36,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 export default function Portfolio({ mdxSource }: MdxPage) {
     const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
+    const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
     return (
         <Layout>
             <Seo
@@ -42,7 +49,9 @@ export default function Portfolio({ mdxSource }: MdxPage) {
                 { publishDate } - { mdxSource.frontmatter.readingTime } reading
             </Text>
             <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>
-            <Authors authors={ mdxSource.frontmatter.authors } />
+            <Authors authors={mdxSource.frontmatter.authors} />
+            <FixedToC headings={mdxSource.headings} />
+            { isDesktop && <FloatingToC headings={mdxSource.headings} /> }
             <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>
     )
@@ -82,7 +91,10 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
                 rehypePlugins: [
                     rehypeSlug,
                     rehypeCodeTitles,
-                    [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+                    [
+                        rehypeAutolinkHeadings,
+                        { behavior: 'wrap', properties: { className: ['anchor'] } }
+                    ],
                     rehypeKatex,
                     rehypePrismPlus,
                     rehypePrismDiff,
@@ -91,9 +103,27 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
         }
     )
 
+    // generate the regex to find sentence that starts like "## This is A Heading"
+    const regex = new RegExp(/^##\s+(.*)/gm)
+    const titleMatches = source.toString().match(regex)
+    var headings: string[] = []
+
+    // if there is one or more matches
+    if (titleMatches !== null) {
+        // remove "## " from the headings
+        const titleWithoutHastags = titleMatches?.map(match => match.replace(/^##\s+/, ''))
+    
+        // remove symbols from the headings
+        headings = titleWithoutHastags?.map(heading => heading.replace(/[^\w\s]/gi, ''))
+    }
+
     return {
         props: {
-            mdxSource
+            mdxSource: {
+                ...mdxSource,
+                headings,
+                slug
+            }
         }
     }
 }

@@ -39,7 +39,7 @@ publish: false
   currentPost="Batch Gradient Descent"
 />
 
-# Setting Up The Dataset
+## Setting Up The Dataset
 
 In this example, we are going to include the [Iris Dataset](https://archive.ics.uci.edu/ml/datasets/iris) from UCI Machine Learning Repository imported from `scikit-learn`.
 There are two features in the dataset that we are going to analyse, namely `sepal_length` and `petal_width` shown in the highlighted lines.
@@ -65,7 +65,7 @@ for i in target:
     species_names.append('virginica')
 ```
 
-# Setting Up A Baseline
+## Setting Up A Baseline
 
 Before we implement Batch Gradient Descent in Python, we need to set a baseline to compare against our own implementation.
 So, we are going to train our dataset into the Linear Regression built-in function made by `scikit-learn`.
@@ -122,7 +122,7 @@ $$
 
 with MSE value around $0.191$. The equation above is going to be our base line for this experiment to determine how good our own Gradient Descent implementation.
 
-# Implemetation
+## Implemetation
 
 Remember that in the first part of this series, we have customized the cost function, which is the MSE, simply by multiplying it by half and named it **One Half Mean Squared Error**.
 
@@ -189,7 +189,7 @@ Now, let's see how the movement of the intercept and the coefficient variabels o
 
 ![The movement of the intercept and the coefficient variabels on a contour map](/images/posts/batch-gradient-descent/contour.png "The movement of the intercept and the coefficient variabels on a contour map")
 
-# Conclusion
+## Conclusion
 
 Here are some keypoints for Batch Gradient Descent:
 
@@ -202,7 +202,7 @@ Here are some keypoints for Batch Gradient Descent:
 Since I wanted to present you an easy and succint explanation of Batch Gradient Descent, so I decided to not to include all the codes for the sake of simplicity.
 If you want to know how to implement it in more details, please [click here](https://www.kaggle.com/bijonsetyawan/batch-gradient-descent) to check the Python notebook on Kaggle.
 
-# References
+## References
 
 1. M. Jack. _3D Gradient Descent in Python_. Source [https://jackmckew.dev/3d-gradient-descent-in-python.html](https://jackmckew.dev/3d-gradient-descent-in-python.html)
 2. T. Arseny. _Gradient Descent From Scratch_. Source [https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc](https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc)

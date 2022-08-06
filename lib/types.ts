@@ -1,6 +1,8 @@
 export type MdxPage = {
     frontMatter: { [key: string]: any; };
     mdxSource: any;
+    headings: any;
+    slug: string;
 };
 
 export type Post =  {

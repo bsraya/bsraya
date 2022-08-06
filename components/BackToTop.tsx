@@ -42,8 +42,8 @@ export default function BackToTop() {
     return (
         <Box
             position="fixed"
-            bottom="20px"
-            right="20px"
+            bottom={5}
+            right={5}
             zIndex={10}
             display={isVisible ? 'block' : 'none'}
             cursor="pointer"

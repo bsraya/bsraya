@@ -5,7 +5,12 @@ import theme from '../styles/theme'
 export default class MyDocument extends NextDocument {
     render() {
         return (
-            <Html lang="en">
+            <Html
+                lang="en"
+                style={{
+                    scrollBehavior: 'smooth'
+                }}
+            >
                 <Head>
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
                     <link
