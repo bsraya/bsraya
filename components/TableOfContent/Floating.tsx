@@ -48,7 +48,7 @@ function FloatingLink ({ heading }: { heading: string }) {
 
 export default function FloatingToC({ headings }: { headings: string[] }) {
     const bgColor = useColorModeValue('white', 'gray.800')
-    const fontColor = useColorModeValue('black', 'white')
+    const fontColor = useColorModeValue('dark', 'light')
     const [isVisible, setIsVisible] = useState(false)
     const [isScrolling, setIsScrolling] = useState(false)
     const [isAtTop, setIsAtTop] = useState(true)
@@ -109,7 +109,7 @@ export default function FloatingToC({ headings }: { headings: string[] }) {
                         >
                             <AccordionItem>
                                 <AccordionButton>
-                                    <Text size="lg" my={4} fontWeight="bold">
+                                    <Text color={fontColor} size="lg" my={4} fontWeight="bold">
                                         Table of Content
                                     </Text>
                                     <AccordionIcon ml="auto" />

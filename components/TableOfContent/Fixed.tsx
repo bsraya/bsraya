@@ -12,8 +12,8 @@ import { useRouter } from 'next/router'
 
 function CustomLink({ heading }: { heading: string }) {
     const hoverColor = useColorModeValue("dark", "light")
-    const id = heading.toLowerCase().replace(/\s+/g, '-')
     const router = useRouter()
+    const id = heading.toLowerCase().replace(/\s+/g, '-')
 
     // smooth scroll to heading
     const handleClick = () => {
@@ -31,11 +31,10 @@ function CustomLink({ heading }: { heading: string }) {
             as="h2"
             mt={4}
             mb={5}
-            ml={10}
+            ml={3}
             size="md"
             cursor="pointer"
             textDecoration="none"
-            color="gray.500"
             _hover={{
                 textDecoration: 'underline',
                 color: hoverColor
@@ -48,6 +47,7 @@ function CustomLink({ heading }: { heading: string }) {
 }
 
 export default function FixedToC({ headings }: { headings: string[] }) {
+    const fontColor = useColorModeValue('dark', 'light')
     return (
         <>
             {
@@ -56,7 +56,7 @@ export default function FixedToC({ headings }: { headings: string[] }) {
                     <Accordion allowToggle my={10}>
                         <AccordionItem>
                             <AccordionButton>
-                                <Heading as="h2" size="lg" mt={4} mb={3}>
+                                <Heading color={fontColor} as="h2" size="lg" mt={4} mb={3}>
                                     Table of Content
                                 </Heading>
                                 <AccordionIcon ml="auto" />
