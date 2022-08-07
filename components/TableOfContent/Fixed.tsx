@@ -31,7 +31,7 @@ function CustomLink({ heading }: { heading: string }) {
             as="h2"
             mt={4}
             mb={5}
-            ml={3}
+            ml={1}
             size="md"
             cursor="pointer"
             textDecoration="none"
