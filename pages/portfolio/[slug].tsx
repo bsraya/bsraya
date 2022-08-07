@@ -12,8 +12,8 @@ import { DateTime } from 'luxon'
 // components
 import Seo from '../../components/Seo'
 import Layout from '../../components/Layout'
-import Authors from '../../components/Authors'
-import MDXComponents from '../../components/MDXComponent'
+import Authors from '../../components/Blog/Authors'
+import MDXComponents from '../../components/Blog/MDXComponent'
 import FixedToC from '../../components/TableOfContent/Fixed'
 import FloatingToC from '../../components/TableOfContent/Floating'
 

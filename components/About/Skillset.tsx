@@ -1,21 +1,21 @@
 import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import Skill from './Skill';
-import SQLite from "../icons/sqlite";
-import Go from "../icons/go";
-import Python from "../icons/python";
-import Typescript from "../icons/typescript";
-import React from "../icons/react";
-import Linux from "../icons/linux";
-import Kubernetes from "../icons/kubernetes";
-import Docker from "../icons/docker";
-import Git from "../icons/git";
-import Next from "../icons/next";
-import Cypress from "../icons/cypress";
-import ChakraUI from "../icons/chakraui";
-import Firebase from "../icons/firebase";
-import Anaconda from "../icons/anaconda";
-import Keras from "../icons/keras";
-import Horovod from "../icons/horovod";
+import SQLite from "../../icons/sqlite";
+import Go from "../../icons/go";
+import Python from "../../icons/python";
+import Typescript from "../../icons/typescript";
+import React from "../../icons/react";
+import Linux from "../../icons/linux";
+import Kubernetes from "../../icons/kubernetes";
+import Docker from "../../icons/docker";
+import Git from "../../icons/git";
+import Next from "../../icons/next";
+import Cypress from "../../icons/cypress";
+import ChakraUI from "../../icons/chakraui";
+import Firebase from "../../icons/firebase";
+import Anaconda from "../../icons/anaconda";
+import Keras from "../../icons/keras";
+import Horovod from "../../icons/horovod";
 
 export default function Skillset(): JSX.Element {
     return (

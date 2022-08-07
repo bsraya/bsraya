@@ -1,9 +1,10 @@
-import Layout from '../components/Layout'
-import Experience from '../components/Experience'
-import Skillset from '../components/Skillset'
-import Seo from '../components/Seo'
 import { Heading, Link, Stack, Text } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
+
+import Seo from '../components/Seo'
+import Layout from '../components/Layout'
+import Experience from '../components/About/Experience'
+import Skillset from '../components/About/Skillset'
 
 export default function About(): JSX.Element {
     const resumeLink = "https://drive.google.com/file/d/19T0UwJQ3l_v4mStC_3-2g5jRJxYTkZKK/view?usp=sharing"

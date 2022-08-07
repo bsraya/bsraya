@@ -4,11 +4,10 @@ import {
     Flex,
     useColorMode,
     useBreakpointValue,
-    useColorModeValue,
 } from '@chakra-ui/react'
 import Nextlink from 'next/link'
-import Dropdown from './DropdownMenu'
-import Navlink from './Navlink'
+import Dropdown from './Dropdown'
+import Navlink from './Link'
 import Switch from './Switch'
 
 export default function Navigation(): JSX.Element {
