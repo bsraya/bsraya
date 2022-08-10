@@ -9,7 +9,7 @@ const config: ThemeConfig = {
 const theme = extendTheme(config, {
     ...extendTheme,
     fonts: {
-        body: `Inter, ${base.fonts?.heading}`,
+        body: `Inter, ${base.fonts?.body}`,
         heading: `Montserrat, ${base.fonts?.heading}`,
         mono: "Fira Code",
     },

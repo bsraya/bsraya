@@ -47,6 +47,9 @@ export default function BackToTop() {
             zIndex={10}
             display={isVisible ? 'block' : 'none'}
             cursor="pointer"
+            onClick={handleClick}
+            boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
+            borderRadius="md"
             _focus={{
                 outline: 'none',
             }}
@@ -54,7 +57,10 @@ export default function BackToTop() {
                 opacity: 0.5,
                 cursor: 'not-allowed',
             }}
-            onClick={handleClick}
+            // set box shadow for dark mode
+            _dark={{
+                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
+            }}
         >
             <IconButton
                 aria-label='Back to top button'

@@ -22,7 +22,7 @@ export default function Authors(props: any): JSX.Element {
         {
             name: "Marcelino Gilbert Tagore",
             image: "",
-            url: "https://marcelinogilbert.vercel.app",
+            url: "https://marcelinogilbertt.vercel.app",
         }
     ]
 
@@ -40,12 +40,12 @@ export default function Authors(props: any): JSX.Element {
                     (
                         <WrapItem>
                             <NextLink
-                                href={authors[0].url}
                                 passHref
+                                href={authors[0].url}
                             >
                                 <Avatar
-                                    name={authors[0].name}
                                     src={authors[0].image}
+                                    name={authors[0].name}
                                     _hover={{
                                         cursor: "pointer",
                                     }}
