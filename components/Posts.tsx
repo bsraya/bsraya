@@ -1,7 +1,7 @@
 import Tags from './Tags'
 import NextLink from 'next/link'
 import { DateTime } from 'luxon'
-import ViewCounter from './ViewCounter'
+import ViewCounter from './Counter/View'
 import type { Post } from '../lib/types'
 import { Heading, LinkBox, LinkOverlay, Text, useColorModeValue } from '@chakra-ui/react'
 
