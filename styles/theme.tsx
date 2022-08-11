@@ -1,4 +1,4 @@
-import { extendTheme, type ThemeConfig, theme as base } from "@chakra-ui/react"
+import { extendTheme, type ThemeConfig, theme as base, textDecoration } from "@chakra-ui/react"
 
 const config: ThemeConfig = {
     initialColorMode: "light",
@@ -24,6 +24,9 @@ const theme = extendTheme(config, {
             body: {
                 fontSize: "18px",
                 lineHeight: "2",
+            },
+            a: {
+                textUnderlinePosition: "under"
             }
         })
     }

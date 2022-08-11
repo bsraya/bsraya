@@ -58,6 +58,10 @@ const CustomLink = (props: any) => {
                     _dark={{
                         color: "light"
                     }}
+                    textDecoration="underline"
+                    _hover={{
+                        textDecoration: "none"
+                    }}
                 >
                     {props.children}<LinkIcon mx='5px' mb="8px" />
                 </Link>
@@ -73,6 +77,10 @@ const CustomLink = (props: any) => {
                 color: "light"
             }}
             display="inline"
+            textDecoration="underline"
+            _hover={{
+                textDecoration: "none"
+            }}
         >
             {props.children}<ExternalLinkIcon mx='5px' mb="4px" />
         </Link>
