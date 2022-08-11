@@ -57,7 +57,7 @@ export default function FixedToC({ headings }: { headings: string[] }) {
                         <AccordionItem>
                             <AccordionButton>
                                 <Heading color={fontColor} as="h2" size="lg" mt={4} mb={3}>
-                                    Table of Content
+                                    Table of Contents
                                 </Heading>
                                 <AccordionIcon ml="auto" />
                             </AccordionButton>

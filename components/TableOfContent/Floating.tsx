@@ -110,7 +110,7 @@ export default function FloatingToC({ headings }: { headings: string[] }) {
                             <AccordionItem>
                                 <AccordionButton>
                                     <Text color={fontColor} size="lg" my={4} fontWeight="bold">
-                                        Table of Content
+                                        Table of Contents
                                     </Text>
                                     <AccordionIcon ml="auto" />
                                 </AccordionButton>
