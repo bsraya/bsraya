@@ -14,7 +14,6 @@ import {
     Icon
 } from '@chakra-ui/react'
 import { FaBookmark } from 'react-icons/fa'
-import { ChevronRightIcon } from '@chakra-ui/icons'
 import React, { useState, useEffect } from 'react'
 
 function CustomButton({ onOpen }: { onOpen: () => void }) {
@@ -88,9 +87,43 @@ function CustomButton({ onOpen }: { onOpen: () => void }) {
     )
 }
 
+function CustomLink({ heading, onClose }: { heading: string, onClose: () => void }) {
+    const color = useColorModeValue("dark", "light")
+    return (
+        <Link
+            as="a"
+            color="gray.500"
+            variant="ghost"
+            width="100%"
+            fontSize="md"
+            fontWeight="bold"
+            textDecoration="none"
+            cursor="pointer"
+            _hover={{
+                color: color,
+                textDecoration: 'underline'
+            }}
+            onClick={() => {
+                const id = heading.toLowerCase().replace(/\s+/g, '-')
+                const element = document.getElementById(id)
+                if (element) {
+                    element.scrollIntoView({
+                        block: 'start',
+                    })
+                }
+                setTimeout(() => {
+                    onClose()
+                }, 700)
+            }}
+        >
+            # {heading}
+        </Link>
+    )
+}
+
 export default function MobileToC({ headings }: { headings: string[] }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const color = useColorModeValue("dark", "light")
+
     return (
         <Box
             position="fixed"
@@ -112,42 +145,11 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                     <DrawerBody>
                         <VStack>
                         {
-                            headings.map((heading, index) => (
-                                <Link
-                                    key={index}
-                                    as="a"
-                                    color="gray.500"
-                                    variant="ghost"
-                                    width="100%"
-                                    fontSize="md"
-                                    fontWeight="bold"
-                                    textDecoration="none"
-                                    cursor="pointer"
-                                    _hover={{
-                                        color: color,
-                                        textDecoration: 'underline'
-                                    }}
-                                    // when link is clicked, scroll to the heading
-                                    // and close the drawer
-                                    onClick={() => {
-                                        const id = heading.toLowerCase().replace(/\s+/g, '-')
-                                        const element = document.getElementById(id)
-                                        if (element) {
-                                            element.scrollIntoView({
-                                                block: 'start',
-                                            })
-                                        }
-                                        // wait for the scroll to finish and then close the drawer
-                                        setTimeout(() => {
-                                            onClose()
-                                        }, 700)
-                                    }}
-                                >
-                                    # {heading}
-                                </Link>
+                            headings.map((heading: string, index: number) => (
+                                <CustomLink key={index} heading={heading} onClose={onClose} />
                             ))
-                            }
-                            </VStack>
+                        }
+                        </VStack>
                     </DrawerBody>
                 </DrawerContent>
             </Drawer>
