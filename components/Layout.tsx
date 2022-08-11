@@ -5,7 +5,6 @@ import prismStyles from '../styles/prism'
 import katexStyles from '../styles/katex'
 import { Global } from '@emotion/react';
 import BackToTop from './Navigation/BackToTop'
-import MobileToC from './TableOfContent/Mobile'
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
@@ -20,7 +19,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 />
                 {children}
             </Container>
-            <MobileToC />
             <BackToTop />
             <Footer />
         </Box>

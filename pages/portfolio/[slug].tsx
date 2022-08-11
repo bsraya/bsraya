@@ -16,6 +16,7 @@ import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
 import FixedToC from '../../components/TableOfContent/Fixed'
 import FloatingToC from '../../components/TableOfContent/Floating'
+import MobileToC from '../../components/TableOfContent/Mobile'
 
 // interface 
 import type { MdxPage } from '../../lib/types'
@@ -37,6 +38,8 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 export default function Portfolio({ mdxSource }: MdxPage) {
     const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
     const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
+    const isMobile = useBreakpointValue({ base: true, md: true, lg: false })
+    
     return (
         <Layout>
             <Seo
@@ -52,6 +55,7 @@ export default function Portfolio({ mdxSource }: MdxPage) {
             <Authors authors={mdxSource.frontmatter.authors} />
             <FixedToC headings={mdxSource.headings} />
             { isDesktop && <FloatingToC headings={mdxSource.headings} /> }
+            { isMobile && <MobileToC headings={mdxSource.headings} /> }
             <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>
     )
