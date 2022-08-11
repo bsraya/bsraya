@@ -140,7 +140,7 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                                         // wait for the scroll to finish and then close the drawer
                                         setTimeout(() => {
                                             onClose()
-                                        }, 1000)
+                                        }, 700)
                                     }}
                                 >
                                     # {heading}
