@@ -41,6 +41,7 @@ const CurrentPost = ({ index, title }: { index: number, title: string }) => {
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap"
                 }}
+                fontStyle="normal"
             >
                 {title}
             </Text>
@@ -68,14 +69,15 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
             />
             <Text
                 my="auto"
+                color="gray.700"
+                fontStyle="normal"
+                _dark={{
+                    color: 'gray.300'
+                }}
                 css={{
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap"
-                }}
-                color="gray.700"
-                _dark={{
-                    color: 'gray.300'
                 }}
             >
                 {title}
@@ -119,7 +121,9 @@ export default function Series({ series, posts, currentPost }: { series: string,
                                     key={post.slug}
                                     _hover={{
                                         cursor: "pointer",
-                                        bgColor: "rgba(128, 90, 213, 0.3)"
+                                        // bgColor: "rgba(128, 90, 213, 0.3)"
+                                        // bgColor set to 'dark' with 0.3 opacity
+                                        bgColor: "rgba(0, 163, 196, 0.3)"
                                     }}
                                     borderBottomRadius={index === posts.length ? "md" : "none"}
                                 >

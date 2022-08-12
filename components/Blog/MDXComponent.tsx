@@ -40,6 +40,8 @@ const CustomLink = (props: any) => {
                     _dark={{
                         color: "light"
                     }}
+                    // text set to not italic
+                    fontStyle="normal"
                 />
             </NextLink>
         );

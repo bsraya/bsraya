@@ -30,6 +30,7 @@ export default function Navigation(): JSX.Element {
                 maxW="container.md"
                 align="center"
                 mx="auto"
+                fontFamily="heading"
             >
                 {
                     isDesktop ? (
