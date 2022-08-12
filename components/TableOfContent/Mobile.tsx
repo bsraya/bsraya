@@ -1,23 +1,26 @@
 import {
-    Link,
-    Drawer,
-    DrawerBody,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    useDisclosure,
-    DrawerCloseButton,
     Box,
+    Text,
+    Link,
+    Icon,
     IconButton,
+    Menu,
+    MenuItem,
+    MenuList,
+    MenuButton,
+    MenuDivider,
+    useBreakpointValue,
     useColorModeValue,
-    VStack,
-    Icon
 } from '@chakra-ui/react'
-import { FaBookmark } from 'react-icons/fa'
+import { IoBook } from 'react-icons/io5'
 import React, { useState, useEffect } from 'react'
 
-function CustomButton({ onOpen }: { onOpen: () => void }) {
-    const color = useColorModeValue("dark", "light")
+export default function MobileToC({ headings }: { headings: string[] }) {
+    const isMobile = useBreakpointValue({ base: true, md: false })
+    const borderColor = useColorModeValue('dark', 'light')
+    const bgColor = useColorModeValue('white', 'gray.800')
+    const color = useColorModeValue('gray.800', 'gray,400')
+
     const [isVisible, setIsVisible] = useState(false)
     const [isScrolling, setIsScrolling] = useState(false)
     const [isAtTop, setIsAtTop] = useState(true)
@@ -53,106 +56,71 @@ function CustomButton({ onOpen }: { onOpen: () => void }) {
             right={5}
             zIndex={10}
             display={isVisible ? 'block' : 'none'}
-            cursor="pointer"
-            onClick={onOpen}
-            boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
-            borderRadius="md"
-            _focus={{
-                outline: 'none',
-            }}
-            _disabled={{
-                opacity: 0.5,
-                cursor: 'not-allowed',
-            }}
-            // set box shadow for dark mode
-            _dark={{
-                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
-            }}
         >
-            <IconButton
-                aria-label='Table of contents button'
-                icon={
-                    // <ChevronRightIcon color={color} />
-                    <Icon as={FaBookmark} color={color} />
-                }
-                colorScheme="transparent"
-                border="2px solid"
-                borderColor={color}
-                bgColor="white"
-                _dark={{
-                    bgColor: "gray.800",
-                }}
-            />
-        </Box>
-    )
-}
-
-function CustomLink({ heading, onClose }: { heading: string, onClose: () => void }) {
-    const color = useColorModeValue("dark", "light")
-    return (
-        <Link
-            as="a"
-            color="gray.500"
-            variant="ghost"
-            width="100%"
-            fontSize="md"
-            fontWeight="bold"
-            textDecoration="none"
-            cursor="pointer"
-            _hover={{
-                color: color,
-                textDecoration: 'underline'
-            }}
-            onClick={() => {
-                const id = heading.toLowerCase().replace(/\s+/g, '-')
-                const element = document.getElementById(id)
-                if (element) {
-                    element.scrollIntoView({
-                        block: 'start',
-                    })
-                }
-                setTimeout(() => {
-                    onClose()
-                }, 700)
-            }}
-        >
-            # {heading}
-        </Link>
-    )
-}
-
-export default function MobileToC({ headings }: { headings: string[] }) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-
-    return (
-        <Box
-            position="fixed"
-            bottom={20}
-            right={5}
-            zIndex={10}
-        >
-            <CustomButton onOpen={onOpen} />
-            <Drawer
-                isOpen={isOpen}
-                placement='left'
-                onClose={onClose}
-                size='xs'
-            >
-                <DrawerOverlay />
-                <DrawerContent>
-                    <DrawerCloseButton />
-                    <DrawerHeader fontWeight="bold">Table of Contents</DrawerHeader>
-                    <DrawerBody>
-                        <VStack>
-                        {
-                            headings.map((heading: string, index: number) => (
-                                <CustomLink key={index} heading={heading} onClose={onClose} />
-                            ))
-                        }
-                        </VStack>
-                    </DrawerBody>
-                </DrawerContent>
-            </Drawer>
+            {
+                isMobile && (
+                    <Menu isLazy>
+                        <MenuButton
+                            as={IconButton}
+                            icon={
+                                <Icon as={IoBook} color={borderColor} />
+                            }
+                            variant="ghost"
+                            border="2px solid"
+                            borderColor={borderColor}
+                            borderRadius="md"
+                            boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
+                            _dark={{
+                                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
+                            }}
+                            colorScheme="transparent"
+                            bgColor={bgColor}
+                        />
+                        <MenuList
+                            zIndex={5}
+                            border="2px solid"
+                            borderColor={borderColor}
+                            alignItems={["center", "flex-start"]}
+                            boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
+                            _dark={{
+                                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
+                            }}
+                            fontFamily="heading"
+                        >
+                            <Text
+                                size="md"
+                                mx={3}
+                                fontWeight="bold"
+                            >
+                                Table of Contents
+                            </Text>
+                            <MenuDivider />
+                            {
+                                headings.map((heading, index) => (
+                                    <Link
+                                        href={`#${heading}`}
+                                        key={index}
+                                        _hover={{ textDecoration: 'none' }}
+                                        onClick={() => {
+                                            const id = heading.toLowerCase().replace(/\s+/g, '-')
+                                            const element = document.getElementById(id)
+                                            if (element) {
+                                                element.scrollIntoView({
+                                                    block: 'start',
+                                                })
+                                            }
+                                        }}
+                                    >
+                                        <MenuItem fontSize="md" color={color}>
+                                            {index+1}. {heading}
+                                        </MenuItem>
+                                    </Link>
+                                ))
+                            }
+                        </MenuList>
+                    </Menu>
+                )
+            }
         </Box>
     )
 }
