@@ -44,30 +44,29 @@ export default function Navigation(): JSX.Element {
                         </>
                     ) : (
                         <>  
-                            <Nextlink href="/">
-                                <Link cursor="pointer">    
-                                    <IconButton
-                                        aria-label="Logo"
-                                        icon={
-                                            <Image
-                                                src={imgUrl}
-                                                alt="Logo"
-                                                height={32}
-                                                width={64}
-                                                priority
-                                                loading='eager'
-                                            />
-                                        }
-                                        bg="transparent"
-                                        _hover={{ bg: 'transparent' }}
-                                    />
-                                </Link>
-                            </Nextlink>
-                            
-                            <Flex ml="auto">
-                                <Switch />
-                                <Dropdown />
+                            <Dropdown />
+                            <Flex mx="auto">
+                                <Nextlink href="/">
+                                    <Link cursor="pointer">    
+                                        <IconButton
+                                            aria-label="Logo"
+                                            icon={
+                                                <Image
+                                                    src={imgUrl}
+                                                    alt="Logo"
+                                                    height={32}
+                                                    width={64}
+                                                    priority
+                                                    loading='eager'
+                                                />
+                                            }
+                                            bg="transparent"
+                                            _hover={{ bg: 'transparent' }}
+                                        />
+                                    </Link>
+                                </Nextlink>
                             </Flex>
+                            <Switch />
                         </>
                     )
                 }

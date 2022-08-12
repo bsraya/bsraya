@@ -13,11 +13,17 @@ const theme = extendTheme(config, {
         heading: `Montserrat, ${base.fonts?.heading}`,
         mono: "Fira Code",
     },
+    // colors: {
+    //     lighter: "#E9D8FD",
+    //     light: "#B794F4",
+    //     dark: "#6B46C1",
+    //     darker: "#44337A"
+    // },
     colors: {
-        lighter: "#E9D8FD",
-        light: "#B794F4",
-        dark: "#6B46C1",
-        darker: "#44337A"
+        lighter: "#9DECF9",
+        light: "#76E4F7",
+        dark: "#00A3C4",
+        darker: "#086F83",
     },
     styles: {
         global: () => ({
