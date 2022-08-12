@@ -9,8 +9,9 @@ const config: ThemeConfig = {
 const theme = extendTheme(config, {
     ...extendTheme,
     fonts: {
-        body: `Inter, ${base.fonts?.body}`,
-        heading: `Montserrat, ${base.fonts?.heading}`,
+        // set body font family to 'Cormorant Garamond', serif
+        body: `Alice, serif`,
+        heading: `Montserrat`,
         mono: "Fira Code",
     },
     // colors: {
@@ -28,11 +29,12 @@ const theme = extendTheme(config, {
     styles: {
         global: () => ({
             body: {
-                fontSize: "18px",
+                fontSize: "20px",
                 lineHeight: "2",
             },
             a: {
-                textUnderlinePosition: "under"
+                textUnderlinePosition: "under",
+                fontStyle: "italic",
             }
         })
     }

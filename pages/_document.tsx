@@ -20,13 +20,14 @@ export default class MyDocument extends NextDocument {
                     />
                     <link
                         as="font"
-                        rel="preload"
+                        rel="stylesheet"
                         crossOrigin="anonymous"
-                        href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+                        href="https://fonts.googleapis.com/css2?family=Alice&display=swap"
                     />
                     <link
                         as="font"
-                        rel="preload"
+                        rel="stylesheet"
+                        crossOrigin="anonymous"
                         href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
                     />
                     <link
