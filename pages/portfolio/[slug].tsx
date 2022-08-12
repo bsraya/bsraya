@@ -48,7 +48,7 @@ export default function Portfolio({ mdxSource }: MdxPage) {
                 title={ mdxSource.frontmatter.title } 
                 description={ mdxSource.frontmatter.description }
             />
-            <Text fontSize="sm" color="gray.500">
+            <Text fontSize="md" color="gray.500">
                 { publishDate } - { mdxSource.frontmatter.readingTime } reading
             </Text>
             <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>

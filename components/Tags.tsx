@@ -20,8 +20,9 @@ export default function Tags({ tags }: { tags: string[] }) {
                                     bg: "darker"
                                 }}
                                 px={3}
+                                fontFamily="heading"
                             >
-                                <Text color="purple.300" _dark={{color: "dark"}}>#</Text>
+                                <Text color="cyan.300" _dark={{color: "dark"}}>#</Text>
                                 <Text>{tag}</Text>
                             </Button>
                         </NextLink>

@@ -49,7 +49,7 @@ export default function Blog({ mdxSource }: MdxPage) {
                 title={ mdxSource.frontmatter.title }
                 description={ mdxSource.frontmatter.description }
             />
-            <Text fontSize="sm" color="gray.500">
+            <Text fontSize="md" color="gray.500">
                 { publishDate } - { mdxSource.frontmatter.readingTime } reading • <ViewCounter slug={ mdxSource.slug } blogPage={ true } />
             </Text>
             
