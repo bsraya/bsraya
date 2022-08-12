@@ -15,7 +15,7 @@ import Layout from '../../components/Layout'
 import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
 import FixedToC from '../../components/TableOfContent/Fixed'
-import FloatingToC from '../../components/TableOfContent/Floating'
+import SideToC from '../../components/TableOfContent/Side'
 import MobileToC from '../../components/TableOfContent/Mobile'
 
 // interface 
@@ -54,8 +54,8 @@ export default function Portfolio({ mdxSource }: MdxPage) {
             <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>
             <Authors authors={mdxSource.frontmatter.authors} />
             <FixedToC headings={mdxSource.headings} />
-            { isDesktop && <FloatingToC headings={mdxSource.headings} /> }
             { isMobile && <MobileToC headings={mdxSource.headings} /> }
+            { isDesktop && <SideToC headings={mdxSource.headings} /> }
             <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>
     )

@@ -12,7 +12,7 @@ const katexStyles = css`
     }
 
     .math::-webkit-scrollbar-thumb {
-        background-color: #BD93F9;
+        background-color: #A0AEC0;
     }
 `
 

@@ -245,14 +245,14 @@ const MDXComponent = {
                     backgroundColor: `rgba(0, 0, 0, 0.05)`,
                 },
                 '&::-webkit-scrollbar-thumb': {
-                    backgroundColor: "#BD93F9",
+                    backgroundColor: "gray.400",
                 },
             }}
         >
             <Table
                 {...props}
                 variant="striped"
-                colorScheme="purple"
+                colorScheme="cyan"
             />
         </TableContainer>
     ),

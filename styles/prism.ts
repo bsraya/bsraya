@@ -32,10 +32,15 @@ const prismStyles = css`
         min-width: 100%;
 
         ::-webkit-scrollbar {
-            height: 0.5em;
-            
+            height: 0.5rem;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #A0AEC0 !important;,
         }
     }
+
+    pre[class*="language-"]
 
     .code-line {
         font-family: "Fira Code", monospace;

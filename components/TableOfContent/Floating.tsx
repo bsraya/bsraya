@@ -93,6 +93,7 @@ export default function FloatingToC({ headings }: { headings: string[] }) {
                         position="fixed"
                         borderRadius={10}
                         border="2px solid"
+                        fontFamily="heading"
                         borderColor={fontColor}
                         display={isVisible ? 'block' : 'none'}
                         boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
