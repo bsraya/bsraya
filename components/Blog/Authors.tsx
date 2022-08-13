@@ -51,7 +51,13 @@ export default function Authors(props: any): JSX.Element {
                                     }}
                                 />
                             </NextLink>
-                            <Text ml={3} my="auto">{authors[0].name}</Text>
+                            <Text
+                                    fontSize="md"
+                                    fontWeight="bold"
+                                ml={3}
+                                my="auto"
+                                fontFamily="Montserrat, sans-serif"    
+                            >{authors[0].name}</Text>
                         </WrapItem>
                     ) : (
                         citedAuthors.map((author: author) => {

@@ -26,40 +26,23 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                     <MyAvatar size="6rem" />
                 </Box>
                 <Box my="auto">
-                    <Heading as="h1">Bijon Setyawan Raya</Heading>
+                    <Heading as="h1" fontWeight="bold" fontFamily="heading">Bijon Setyawan Raya</Heading>
                     <Text fontSize="md" mt={1}>
                         A Computer Science graduate student at National Tsing Hua University
                     </Text>
                 </Box>
             </Box>
-            
-            {/* <Alert mt={10} variant="left-accent" status='info'>
-                <AlertIcon
-                    mt={1}
-                    mb="auto"
-                />
-                <Box lineHeight="taller">
-                    I am currently a TA in a <Text display="inline-flex" fontWeight="bold">Linear Algebra</Text> course at National Tsing Hua University.
-                    <Text>
-                        Please click on the link below to see some of the topics I have covered.
-                    </Text>
-                    <Button
-                        my={2}
-                        colorScheme="blue"
-                    >
-                        <NextLink href="/blog/linear-algebra" passHref>
-                            Bring it on!
-                        </NextLink>
-                    </Button>
-                </Box>
-            </Alert> */}
 
             <Heading as="h2" size="md" mt="4rem" mb={3}>Recent posts</Heading>
             <Posts posts={posts} type="blog" />
             <NextLink href="/blog" passHref>
-                <Link _hover={{textDecoration: "none"}}>
-                    <Flex >
-                        <Text >Read all posts</Text><ArrowForwardIcon ml={2} my="auto" />
+                <Link textDecoration="underline" _hover={{textDecoration: "none"}}>
+                    <Flex>
+                        <Text fontStyle="normal">Read all posts</Text>
+                        <ArrowForwardIcon
+                            ml={2}
+                            my="auto"
+                        />
                     </Flex>
                 </Link>
             </NextLink>

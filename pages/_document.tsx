@@ -28,6 +28,12 @@ export default class MyDocument extends NextDocument {
                         as="font"
                         rel="stylesheet"
                         crossOrigin="anonymous"
+                        href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+                    />
+                    <link
+                        as="font"
+                        rel="stylesheet"
+                        crossOrigin="anonymous"
                         href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
                     />
                     <link

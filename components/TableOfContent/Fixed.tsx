@@ -6,9 +6,11 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-    useColorModeValue
+    useColorModeValue,
+    Icon, Flex
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import { AiOutlineMenuUnfold } from 'react-icons/ai'
 
 function CustomLink({ heading }: { heading: string }) {
     const hoverColor = useColorModeValue("dark", "light")
@@ -31,7 +33,7 @@ function CustomLink({ heading }: { heading: string }) {
             as="h2"
             mt={4}
             mb={5}
-            ml={1}
+            ml={10}
             size="md"
             cursor="pointer"
             textDecoration="none"
@@ -41,7 +43,7 @@ function CustomLink({ heading }: { heading: string }) {
             }}
             onClick={handleClick}
         >
-            # {heading}
+            {heading}
         </Heading>
     )
 }
@@ -56,9 +58,20 @@ export default function FixedToC({ headings }: { headings: string[] }) {
                     <Accordion allowToggle my={10}>
                         <AccordionItem>
                             <AccordionButton>
-                                <Heading color={fontColor} as="h2" size="lg" mt={4} mb={3}>
-                                    Table of Contents
-                                </Heading>
+                                <Flex>
+                                    <Icon
+                                        as={AiOutlineMenuUnfold}
+                                        my="auto"
+                                        mr={4}
+                                        color={fontColor}
+                                        // set size
+                                        w={8}
+                                        h={8}
+                                    />
+                                    <Heading color={fontColor} as="h2" size="lg" mt={4} mb={3}>
+                                        Table of Contents
+                                    </Heading>
+                                </Flex>
                                 <AccordionIcon ml="auto" />
                             </AccordionButton>
                             <AccordionPanel pb={6}>

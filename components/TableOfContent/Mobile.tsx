@@ -12,15 +12,12 @@ import {
     useBreakpointValue,
     useColorModeValue,
 } from '@chakra-ui/react'
-import { IoBook } from 'react-icons/io5'
+import { AiOutlineMenuUnfold } from 'react-icons/ai'
 import React, { useState, useEffect } from 'react'
 
 export default function MobileToC({ headings }: { headings: string[] }) {
     const isMobile = useBreakpointValue({ base: true, md: false })
-    const borderColor = useColorModeValue('dark', 'light')
-    const bgColor = useColorModeValue('white', 'gray.800')
-    const color = useColorModeValue('gray.800', 'gray,400')
-
+    const color = useColorModeValue('gray.800', 'gray.50')
     const [isVisible, setIsVisible] = useState(false)
     const [isScrolling, setIsScrolling] = useState(false)
     const [isAtTop, setIsAtTop] = useState(true)
@@ -63,23 +60,24 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                         <MenuButton
                             as={IconButton}
                             icon={
-                                <Icon as={IoBook} color={borderColor} />
+                                <Icon as={AiOutlineMenuUnfold} color={color} />
                             }
                             variant="ghost"
                             border="2px solid"
-                            borderColor={borderColor}
+                            borderColor={color}
                             borderRadius="md"
                             boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
                             _dark={{
+                                bgColor: "gray.800",
                                 boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
                             }}
                             colorScheme="transparent"
-                            bgColor={bgColor}
+                            bgColor="white"
                         />
                         <MenuList
                             zIndex={5}
                             border="2px solid"
-                            borderColor={borderColor}
+                            borderColor={color}
                             alignItems={["center", "flex-start"]}
                             boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
                             _dark={{
@@ -112,7 +110,7 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                                         }}
                                     >
                                         <MenuItem fontSize="md" color={color}>
-                                            {index+1}. {heading}
+                                            {heading}
                                         </MenuItem>
                                     </Link>
                                 ))

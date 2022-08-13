@@ -3,7 +3,7 @@ import { Box, IconButton, useColorModeValue } from '@chakra-ui/react'
 import { TriangleUpIcon } from '@chakra-ui/icons'
 
 export default function BackToTop() {
-    const color = useColorModeValue("dark", "light")
+    const color = useColorModeValue('gray.800', 'gray.50')
     const [isVisible, setIsVisible] = useState(false)
     const [isScrolling, setIsScrolling] = useState(false)
     const [isAtTop, setIsAtTop] = useState(true)

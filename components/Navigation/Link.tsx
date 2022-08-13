@@ -18,8 +18,8 @@ export default function Navlink ({ href, children }: { href: string, children: R
         <NextLink href={href}>
             <Link
                 mr={5}
+                fontSize="md"
                 variant="ghost"
-                fontWeight="semibold"
                 fontStyle="normal"
                 color={isActive ? 'black' : 'gray.400'}
                 _hover={{ color: 'black' }}
@@ -27,14 +27,14 @@ export default function Navlink ({ href, children }: { href: string, children: R
                 // all letters capitalized
                 textTransform="uppercase"
                 // distance between letters
-                letterSpacing="wide"
+                letterSpacing="1px"
                 _dark={{
                     color: isActive ? 'white' : 'gray.400',
                     '&:hover': {
                         color: 'white'
                     },
                     '&:active': {
-                        color: 'white'
+                        color: 'white',
                     }
                 }}
             >{children}</Link>

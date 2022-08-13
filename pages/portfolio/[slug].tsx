@@ -1,6 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import {
+    Flex,
+    Icon,
     Text,
     Heading,
     useBreakpointValue
@@ -8,6 +10,7 @@ import {
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
+import { BsBook } from 'react-icons/bs'
 
 // components
 import Seo from '../../components/Seo'
@@ -48,10 +51,16 @@ export default function Portfolio({ mdxSource }: MdxPage) {
                 title={ mdxSource.frontmatter.title } 
                 description={ mdxSource.frontmatter.description }
             />
-            <Text fontSize="md" color="gray.500">
-                { publishDate } - { mdxSource.frontmatter.readingTime } reading
+            <Text fontSize="md" color="gray.500" fontFamily="heading">
+                { publishDate }
             </Text>
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
+            <Flex my={2}>
+                <Icon as={BsBook} mr={2} mt={2} color="dark" />
+                <Text>
+                    {mdxSource.frontmatter.readingTime} reading
+                </Text>
+            </Flex>
             <Authors authors={mdxSource.frontmatter.authors} />
             <FixedToC headings={mdxSource.headings} />
             { isMobile && <MobileToC headings={mdxSource.headings} /> }

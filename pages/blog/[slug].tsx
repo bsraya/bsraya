@@ -3,11 +3,14 @@ import path from 'path'
 import {
     Text,
     Heading,
-    useBreakpointValue
+    useBreakpointValue,
+    Flex,
+    Icon
 } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
+import { BsBook, BsEye } from 'react-icons/bs'
 
 // components
 import Seo from '../../components/Seo'
@@ -49,17 +52,30 @@ export default function Blog({ mdxSource }: MdxPage) {
                 title={ mdxSource.frontmatter.title }
                 description={ mdxSource.frontmatter.description }
             />
-            <Text fontSize="md" color="gray.500">
-                { publishDate } - { mdxSource.frontmatter.readingTime } reading • <ViewCounter slug={ mdxSource.slug } blogPage={ true } />
+            <Text fontSize="md" color="gray.500" fontFamily="heading">
+                { publishDate }
             </Text>
             
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{ mdxSource.frontmatter.title }</Heading>
+            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
+            <Flex my={2}>
+                <Icon as={BsBook} mr={2} mt={2} color="dark" />
+                <Text>
+                    {mdxSource.frontmatter.readingTime} reading
+                </Text>
+                <Icon as={BsEye} ml={5} mr={2} mt={2} color="dark" />
+                <ViewCounter slug={mdxSource.slug} blogPage={false} />
+            </Flex>
             <Authors authors={ mdxSource.frontmatter.authors } />
-            <Tags tags={mdxSource.frontmatter.tags} />
+            
             <FixedToC headings={mdxSource.headings} />
             { isMobile && <MobileToC headings={mdxSource.headings} /> }
             { isDesktop && <SideToC headings={mdxSource.headings} /> }
-            <MDXRemote { ...mdxSource } components={ MDXComponents } />
+            <MDXRemote {...mdxSource} components={MDXComponents} />
+            
+            <Heading as="h1" fontSize="2rem" mt={10} mb={5}>
+                Tags
+            </Heading>
+            <Tags tags={mdxSource.frontmatter.tags} />
         </Layout>
     )
 }

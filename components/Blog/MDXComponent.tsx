@@ -252,7 +252,6 @@ const MDXComponent = {
             <Table
                 {...props}
                 variant="striped"
-                colorScheme="cyan"
             />
         </TableContainer>
     ),

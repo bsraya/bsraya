@@ -3,7 +3,7 @@ import { Box, Icon, Tooltip } from "@chakra-ui/react";
 // pass string and <svg>
 export default function Skill({ name, icon }: { name: string, icon: JSX.Element }) {
     return (
-        <Tooltip label={name}>
+        <Tooltip label={name} fontFamily="heading">
             <Box
                 p={2}
                 w="max-content"

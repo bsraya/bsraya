@@ -3,11 +3,13 @@ import NextLink from 'next/link'
 import { DateTime } from 'luxon'
 import ViewCounter from './Counter/View'
 import type { Post } from '../lib/types'
-import { Heading, LinkBox, LinkOverlay, Text, useColorModeValue } from '@chakra-ui/react'
+import { BsBook, BsEye } from 'react-icons/bs'
+import { Box, Heading, LinkBox, LinkOverlay, Text, useColorModeValue, Flex, useBreakpointValue, Icon } from '@chakra-ui/react'
 
 export default function Posts({ posts, type }: { posts: Post[]; type: string }) {
     const borderColor = useColorModeValue('gray.200', 'gray.500')
     const hoveredBorderColor = useColorModeValue('light', 'dark')
+    const isDesktop = useBreakpointValue({ base: false, md: true })
     return (
         <>
             {
@@ -15,52 +17,41 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                     return(
                         <LinkBox
                             as="article"
-                            p='5'
                             my={5}
-                            borderWidth='2px'
                             rounded="md"
                             key={post.slug}
-                            borderColor={borderColor}
-                            _hover={{
-                                border: '2px solid',
-                                borderColor: hoveredBorderColor,
-                                boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
-                                transition: 'all 0.2s ease-in-out',
-                                transform: 'translateY(-10px)',
-                            }}
+                            borderWidth="1px"
+                            p={5}
                         >   
                             <Text
-                                fontSize="sm"
+                                fontSize="md"
                                 color="gray.500"
+                                fontFamily="Montserrat, sans-serif"
                             >
-                                { DateTime.fromISO(post.frontMatter.date).toFormat("LLLL dd, yyyy") } - { post.frontMatter.readingTime } reading
-                            {
-                                type === 'blog' ? (
-                                    <> • <ViewCounter slug={post.slug} blogPage={false} /></>
-                                ): (<></>)
-                            }
+                                { DateTime.fromISO(post.frontMatter.date).toFormat("LLLL dd, yyyy") }
                             </Text>
                             <NextLink href={'/'+ type + '/' + post.slug} passHref>
                                 <LinkOverlay fontStyle="normal">
-                                    <Heading>
+                                    <Heading as="h2" fontFamily="heading" fontSize="2rem" fontWeight="bold">
                                         {post.frontMatter.title}
                                     </Heading>
+                                    <Flex my={2}>
+                                        <Icon as={BsBook} mr={2} mt={2} color="dark" />
+                                        <Text>
+                                            {post.frontMatter.readingTime} reading
+                                        </Text>
+                                        
+                                        {
+                                            type === 'blog' && (
+                                                <>
+                                                    <Icon as={BsEye} ml={5} mr={2} mt={2} color="dark" /><ViewCounter slug={post.slug} blogPage={false} />
+                                                </>
+                                            )
+                                        }
+                                    </Flex>
                                 </LinkOverlay>  
                             </NextLink>
-                            {
-                                post.frontMatter.tags ? (
-                                    <>
-                                        <Text as="p" my={5} color="gray.500">{post.frontMatter.description}</Text>
-                                        <Tags
-                                            tags={
-                                                post.frontMatter.tags
-                                            }
-                                        />
-                                    </>
-                                ) : (
-                                    <Text as="p" mt={5} color="gray.500">{post.frontMatter.description}</Text>
-                                )
-                            }
+                            <Text as="p" color="gray.500">{post.frontMatter.description}</Text>
                         </LinkBox>
                     )
                 })
