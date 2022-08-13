@@ -60,7 +60,7 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                     </HStack>
                                 </LinkOverlay>  
                             </NextLink>
-                            <Text as="p" color="gray.500">{post.frontMatter.description}</Text>
+                            <Text as="p" color="gray.500" mt={5}>{post.frontMatter.description}</Text>
                         </LinkBox>
                     )
                 })
