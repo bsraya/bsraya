@@ -45,6 +45,7 @@ export default function Blog({ mdxSource }: MdxPage) {
     const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
     const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
     const isMobile = useBreakpointValue({ base: true, md: true, lg: false })
+    const fontSize = isDesktop ? 'md' : 'sm'
     return (
         <Layout>
             <Seo
@@ -54,24 +55,24 @@ export default function Blog({ mdxSource }: MdxPage) {
                 description={ mdxSource.frontmatter.description }
             />
             <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-            <HStack my={2} spacing={5} fontFamily="heading">
+            <HStack my={2} spacing={3} fontFamily="heading">
                 <Flex>
-                    <Icon as={BsCalendar4} h={5} w={5} mr={2} mt={2} color="dark" />
-                    <Text>
+                    <Icon as={BsCalendar4} h={5} w={5} mr={2} my="auto" color="dark" />
+                    <Text fontSize={fontSize}>
                         {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLL dd, yyyy")}
                     </Text>
                 </Flex>
 
                 <Flex>
-                    <Icon as={BsBook} h={5} w={5} mr={2} mt={2} color="dark" />
-                    <Text>
+                    <Icon as={BsBook} h={5} w={5} mr={2} my="auto" color="dark" />
+                    <Text fontSize={fontSize}>
                         {mdxSource.frontmatter.readingTime}
                     </Text>
                 </Flex>
                 
                 <Flex>
-                    <Icon as={BsEye} h={5} w={5} mr={2} mt={2} color="dark" />
-                    <Text><ViewCounter slug={mdxSource.slug} blogPage={false} /> views</Text>
+                    <Icon as={BsEye} h={5} w={5} mr={2} my="auto" color="dark" />
+                    <Text fontSize={fontSize}><ViewCounter slug={mdxSource.slug} blogPage={false} /> views</Text>
                 </Flex>
             </HStack>
             <Authors authors={ mdxSource.frontmatter.authors } />

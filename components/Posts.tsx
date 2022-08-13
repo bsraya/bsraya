@@ -7,9 +7,9 @@ import { BsBook, BsEye, BsCalendar4 } from 'react-icons/bs'
 import { Box, Heading, LinkBox, LinkOverlay, Text, useColorModeValue, Flex, useBreakpointValue, Icon, HStack } from '@chakra-ui/react'
 
 export default function Posts({ posts, type }: { posts: Post[]; type: string }) {
-    const borderColor = useColorModeValue('gray.200', 'gray.500')
-    const hoveredBorderColor = useColorModeValue('light', 'dark')
     const isDesktop = useBreakpointValue({ base: false, md: true })
+    const fontSize = isDesktop ? 'md' : 'sm'
+
     return (
         <>
             {
@@ -30,15 +30,15 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                     </Heading>
                                     <HStack my={2} spacing={3} fontFamily="heading">
                                         <Flex>
-                                            <Icon as={BsCalendar4} h={5} w={5} mr={2} mt={1} color="dark" />
-                                            <Text fontSize="sm">
+                                            <Icon as={BsCalendar4} h={5} w={5} mr={2} my="auto" color="dark" />
+                                            <Text fontSize={fontSize}>
                                                 {DateTime.fromISO(post.frontMatter.date).toFormat("LLL dd, yyyy")}
                                             </Text>
                                         </Flex>
 
                                         <Flex>
-                                            <Icon as={BsBook} h={5} w={5} mr={2} mt={1} color="dark" />
-                                            <Text fontSize="sm">
+                                            <Icon as={BsBook} h={5} w={5} mr={2} my="auto" color="dark" />
+                                            <Text fontSize={fontSize}>
                                                 {post.frontMatter.readingTime}
                                             </Text>
                                         </Flex>
@@ -46,8 +46,8 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                         {
                                             type === 'blog' && (
                                                 <Flex>
-                                                    <Icon as={BsEye} h={5} w={5} mr={2} mt={1} color="dark" />
-                                                    <Text fontSize="sm"><ViewCounter slug={post.slug} blogPage={false} /></Text>
+                                                    <Icon as={BsEye} h={5} w={5} mr={2} my="auto" color="dark" />
+                                                    <Text fontSize={fontSize}><ViewCounter slug={post.slug} blogPage={false} /> views</Text>
                                                 </Flex>
                                             )
                                         }
