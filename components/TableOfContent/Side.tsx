@@ -41,42 +41,45 @@ export default function SideToC({ headings }: { headings: string[] }) {
             display={isVisible ? 'block' : 'none'}
         >
             {
-                headings.map((heading, index) => (
-                    <Link
-                        href={`#${heading}`}
-                        key={index}
-                        color="gray.400"
-                        _hover={{ 
-                            textDecoration: 'none'
-                        }}
-                        onClick={() => {
-                            const id = heading.toLowerCase().replace(/\s+/g, '-')
-                            // get the position of the heading
-                            const element = document.getElementById(id)
-                            if (element) {
-                                element.scrollIntoView({
-                                    block: 'start',
-                                })
-                            }
-                        }}
-                    >
-                        <Text
-                            fontSize="md"
+                headings.map((heading, index) => {
+                    const id = heading.toLowerCase().replace(/\s+/g, '-')
+                    return(
+                        <Link
+                            href={`#${id}`}
+                            key={index}
                             color="gray.400"
-                            mb={5}
-                            ml={-1}
                             _hover={{
-                                color: fontColor,
-                                fontSize: "xl"
+                                textDecoration: 'none'
                             }}
-                            // smooth transition
-                            transition="all 0.1s ease-in-out"
+                            onClick={() => {
+                                const id = heading.toLowerCase().replace(/\s+/g, '-')
+                                // get the position of the heading
+                                const element = document.getElementById(id)
+                                if (element) {
+                                    element.scrollIntoView({
+                                        block: 'start',
+                                    })
+                                }
+                            }}
                         >
-                            {/* {index+1}. {heading} */}
-                            &mdash; {heading}
-                        </Text>
-                    </Link>
-                ))
+                            <Text
+                                fontSize="md"
+                                color="gray.400"
+                                mb={5}
+                                ml={-1}
+                                _hover={{
+                                    color: fontColor,
+                                    fontSize: "xl"
+                                }}
+                                // smooth transition
+                                transition="all 0.1s ease-in-out"
+                            >
+                                {/* {index+1}. {heading} */}
+                                &mdash; {heading}
+                            </Text>
+                        </Link>
+                    )
+                })
             }
         </Box>
     )
