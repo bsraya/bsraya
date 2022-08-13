@@ -1,7 +1,8 @@
 import useSWR from 'swr';
 import { useEffect } from 'react';
 import type { Views } from '../../lib/types';
-import {fetcher} from '../../lib/fetcher'
+import { fetcher } from '../../lib/fetcher'
+import { Text } from '@chakra-ui/react'
 
 export default function ViewCounter({ slug, blogPage }: { slug: string, blogPage: boolean }) {
     const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher);
@@ -15,5 +16,5 @@ export default function ViewCounter({ slug, blogPage }: { slug: string, blogPage
         }
     }, [slug, blogPage]);
 
-    return <>{`${views > 0 ? views.toLocaleString() : '–––'} views`}</>
+    return <Text fontSize="sm">{`${views > 0 ? views.toLocaleString() : '–––'} views`}</Text>
 }
