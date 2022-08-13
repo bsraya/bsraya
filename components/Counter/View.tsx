@@ -16,5 +16,5 @@ export default function ViewCounter({ slug, blogPage }: { slug: string, blogPage
         }
     }, [slug, blogPage]);
 
-    return <Text fontSize="sm">{`${views > 0 ? views.toLocaleString() : '–––'} views`}</Text>
+    return <>{views > 0 ? views.toLocaleString() : '–––'}</>
 }

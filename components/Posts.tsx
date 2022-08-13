@@ -28,18 +28,18 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                     <Heading as="h2" fontFamily="heading" fontSize="2rem" fontWeight="bold">
                                         {post.frontMatter.title}
                                     </Heading>
-                                    <HStack my={2} spacing={5} fontFamily="heading">
+                                    <HStack my={2} spacing={3} fontFamily="heading">
                                         <Flex>
                                             <Icon as={BsCalendar4} h={5} w={5} mr={2} mt={1} color="dark" />
-                                            <Text fontSize="sm" mr={2}>
-                                                {DateTime.fromISO(post.frontMatter.date).toFormat("LLLL dd, yyyy")}
+                                            <Text fontSize="sm">
+                                                {DateTime.fromISO(post.frontMatter.date).toFormat("LLL dd, yyyy")}
                                             </Text>
                                         </Flex>
 
                                         <Flex>
                                             <Icon as={BsBook} h={5} w={5} mr={2} mt={1} color="dark" />
                                             <Text fontSize="sm">
-                                                {post.frontMatter.readingTime} reading
+                                                {post.frontMatter.readingTime}
                                             </Text>
                                         </Flex>
 
@@ -47,7 +47,7 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                             type === 'blog' && (
                                                 <Flex>
                                                     <Icon as={BsEye} h={5} w={5} mr={2} mt={1} color="dark" />
-                                                    <ViewCounter slug={post.slug} blogPage={false} />
+                                                    <Text fontSize="sm"><ViewCounter slug={post.slug} blogPage={false} /></Text>
                                                 </Flex>
                                             )
                                         }
