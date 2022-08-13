@@ -3,8 +3,18 @@ import NextLink from 'next/link'
 import { DateTime } from 'luxon'
 import ViewCounter from './Counter/View'
 import type { Post } from '../lib/types'
-import { BsBook, BsEye, BsCalendar4 } from 'react-icons/bs'
-import { Box, Heading, LinkBox, LinkOverlay, Text, useColorModeValue, Flex, useBreakpointValue, Icon, HStack } from '@chakra-ui/react'
+import { BiTime } from 'react-icons/bi'
+import { BsEye, BsCalendar4 } from 'react-icons/bs'
+import {
+    Text,
+    Flex,
+    Icon,
+    HStack,
+    LinkBox,
+    Heading,
+    LinkOverlay,
+    useBreakpointValue,
+} from '@chakra-ui/react'
 
 export default function Posts({ posts, type }: { posts: Post[]; type: string }) {
     const isDesktop = useBreakpointValue({ base: false, md: true })
@@ -25,19 +35,15 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                         >
                             <NextLink href={'/'+ type + '/' + post.slug} passHref>
                                 <LinkOverlay fontStyle="normal">
+                                    <Text color="gray.500" fontSize="md">
+                                        {DateTime.fromISO(post.frontMatter.date).toFormat("LLLL dd, yyyy")}
+                                    </Text>
                                     <Heading as="h2" fontFamily="heading" fontSize="2rem" fontWeight="bold">
                                         {post.frontMatter.title}
                                     </Heading>
                                     <HStack my={2} spacing={3} fontFamily="heading">
                                         <Flex>
-                                            <Icon as={BsCalendar4} h={5} w={5} mr={2} my="auto" color="dark" />
-                                            <Text fontSize={fontSize}>
-                                                {DateTime.fromISO(post.frontMatter.date).toFormat("LLL dd, yyyy")}
-                                            </Text>
-                                        </Flex>
-
-                                        <Flex>
-                                            <Icon as={BsBook} h={5} w={5} mr={2} my="auto" color="dark" />
+                                            <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
                                             <Text fontSize={fontSize}>
                                                 {post.frontMatter.readingTime}
                                             </Text>

@@ -11,7 +11,8 @@ import {
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
-import { BsBook, BsCalendar4 } from 'react-icons/bs'
+import { BiTime } from 'react-icons/bi'
+import { BsCalendar4 } from 'react-icons/bs'
 
 // components
 import Seo from '../../components/Seo'
@@ -52,6 +53,9 @@ export default function Portfolio({ mdxSource }: MdxPage) {
                 title={ mdxSource.frontmatter.title } 
                 description={ mdxSource.frontmatter.description }
             />
+            <Text color="gray.500" fontSize="md">
+                {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
+            </Text>
             <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
             <HStack my={2} spacing={3} fontFamily="heading">
                 <Flex>
@@ -62,7 +66,7 @@ export default function Portfolio({ mdxSource }: MdxPage) {
                 </Flex>
 
                 <Flex>
-                    <Icon as={BsBook} h={5} w={5} mr={2} my="auto" color="dark" />
+                    <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
                     <Text fontSize={fontSize}>
                         {mdxSource.frontmatter.readingTime}
                     </Text>
