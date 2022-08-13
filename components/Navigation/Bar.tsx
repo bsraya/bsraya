@@ -13,10 +13,8 @@ import Navlink from './Link'
 import Switch from './Switch'
 
 export default function Navigation(): JSX.Element {
-    const { colorMode } = useColorMode()
-    const isDesktop = useBreakpointValue({ base: false, md: true })
-    const imgUrl = colorMode === 'light' ? '/images/icon-light.png' : '/images/icon-dark.png'
-    
+    const isDesktop = useBreakpointValue({ base: false, md: true }) 
+
     return (
         <Box
             flexDirection="row"
@@ -47,27 +45,8 @@ export default function Navigation(): JSX.Element {
                         </>
                     ) : (
                         <>  
-                            <Dropdown />
-                            <Flex mx="auto">
-                                <Nextlink href="/">
-                                    <Link cursor="pointer">    
-                                        <IconButton
-                                            aria-label="Logo"
-                                            icon={
-                                                <Image
-                                                    src={imgUrl}
-                                                    alt="Logo"
-                                                    height={32}
-                                                    width={64}
-                                                    priority
-                                                    loading='eager'
-                                                />
-                                            }
-                                            bg="transparent"
-                                            _hover={{ bg: 'transparent' }}
-                                        />
-                                    </Link>
-                                </Nextlink>
+                            <Flex mr="auto">
+                                <Dropdown />
                             </Flex>
                             <Switch />
                         </>
