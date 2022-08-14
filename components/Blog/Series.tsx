@@ -42,6 +42,7 @@ const CurrentPost = ({ index, title }: { index: number, title: string }) => {
                     whiteSpace: "nowrap"
                 }}
                 fontStyle="normal"
+                fontFamily="heading"
             >
                 {title}
             </Text>

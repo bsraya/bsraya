@@ -79,7 +79,7 @@ export default function Blog({ mdxSource }: MdxPage) {
             { isDesktop && <SideToC headings={mdxSource.headings} /> }
             <MDXRemote {...mdxSource} components={MDXComponents} />
             
-            <Heading as="h1" fontSize="2rem" mt={10} mb={5}>
+            <Heading as="h1" fontSize="4xl" mt={10} mb="2.5rem">
                 Tags
             </Heading>
             <Tags tags={mdxSource.frontmatter.tags} />
