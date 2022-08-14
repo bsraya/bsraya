@@ -35,7 +35,7 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                         >
                             <NextLink href={'/'+ type + '/' + post.slug} passHref>
                                 <LinkOverlay fontStyle="normal">
-                                    <Text color="gray.500" fontSize="md">
+                                    <Text color="gray.500" fontSize="md" fontFamily="heading">
                                         {DateTime.fromISO(post.frontMatter.date).toFormat("LLLL dd, yyyy")}
                                     </Text>
                                     <Heading as="h2" fontFamily="heading" fontSize="2rem" fontWeight="bold">

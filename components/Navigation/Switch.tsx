@@ -3,7 +3,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 export default function ColorModeSwitch({...props}): JSX.Element {
     const { colorMode, toggleColorMode } = useColorMode()
-    const color = useColorModeValue('gray.800', 'gray.50')
+    const color = useColorModeValue('gray.800', 'whiteAlpha.900')
     return (
         <IconButton
             aria-label={colorMode === 'dark' ? 'Dark Mode' : 'Light Mode'}

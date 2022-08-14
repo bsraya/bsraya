@@ -20,7 +20,7 @@ import NextLink from "next/link";
 
 export default function Dropdown(): JSX.Element {
   const isMobile = useBreakpointValue({ base: true, md: false })
-  const color = useColorModeValue('gray.800', 'gray.50')
+  const color = useColorModeValue('gray.800', 'whiteAlpha.900')
   return (
     <Box>
       {

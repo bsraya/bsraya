@@ -44,7 +44,7 @@ export default function Footer(): JSX.Element {
                     </Link>
                 ))}
             </Flex>
-            <Flex as="p" mt={2}>
+            <Flex as="p" mt={2} fontFamily="heading">
                 © Bijon Setyawan Raya {new Date().getFullYear()}
             </Flex>
         </Flex>

@@ -4,7 +4,7 @@ date: "2022-07-01"
 readingTime: 3 mins
 description: Scheduling Deep Learning models made easy
 authors: ["Bijon Setyawan Raya", "Annabella Putri Dirgo", "Marcelino Gilbert Tagore"]
-publish: false
+publish: true
 ---
 
 ## Introduction
@@ -53,16 +53,9 @@ Besides that, those two tools really sped up and simplified the development proc
 
 ### API
 
-The API consists of two parts:
-
-1. The endpoints
-2. The scheduler
-    * The scheduling mechanism
-    * The placement mechanism
+The API consists of two parts: __*the endpoints*__ and __*the scheduler*__.
 
 #### Endpoints
-
-In this system, users can interact with several endpoints of the API:
 
 1. `POST` endpoint where they can send their model to be trained.
 2. `GET` endpoint where they can check the status of one or multiple models.
@@ -73,14 +66,14 @@ In this system, users can interact with several endpoints of the API:
 The scheduler is the core of the system. It is responsible for scheduling the models. 
 Meaning, the system will tell where each model should go and how much resources each model should use.
 
-##### The Scheduling Mechanism
+##### Scheduling Mechanism
 
 This mechanism will tell which models should go. For example, there is a Tensorflow model that requires 2 GPUs.
 Meanwhile, there are only two servers, one with 1 GPU and another with 2 GPUs.
 It's obvious that the Tensorflow model should go to the latter, 
 given the model requires that much resources to run optimally.
 
-##### The Placement Mechanism
+##### Placement Mechanism
 
 After a model is scheduled into a certain machine, the scheduler will tell on what GPUs the model should be placed.
 

@@ -28,7 +28,7 @@ const prismStyles = css`
 
     pre[class*="language-"] {
         font-size: ${theme.fontSizes["md"]};
-        margin: ${theme.space[6]} 0;
+        margin: ${theme.space[10]} 0;
         min-width: 100%;
 
         ::-webkit-scrollbar {
@@ -39,8 +39,6 @@ const prismStyles = css`
             background-color: #A0AEC0 !important;,
         }
     }
-
-    pre[class*="language-"]
 
     .code-line {
         font-family: "Fira Code", monospace;

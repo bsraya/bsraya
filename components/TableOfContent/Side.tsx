@@ -2,7 +2,7 @@ import { Box, Heading, Link, Text, useColorModeValue } from '@chakra-ui/react'
 import React, { useState, useEffect } from 'react'
 
 export default function SideToC({ headings }: { headings: string[] }) {
-    const fontColor = useColorModeValue('gray.800', 'gray.50')
+    const fontColor = useColorModeValue('gray.800', 'whiteAlpha.900')
     const [isVisible, setIsVisible] = useState(false)
     const [isScrolling, setIsScrolling] = useState(false)
     const [isAtTop, setIsAtTop] = useState(true)

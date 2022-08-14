@@ -38,7 +38,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
             <NextLink href="/blog" passHref>
                 <Link textDecoration="underline" _hover={{textDecoration: "none"}}>
                     <Flex>
-                        <Text fontStyle="normal">Read all posts</Text>
+                        <Text fontStyle="normal" fontFamily="heading">Read all posts</Text>
                         <ArrowForwardIcon
                             ml={2}
                             my="auto"

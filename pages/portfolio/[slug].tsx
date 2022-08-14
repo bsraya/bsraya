@@ -53,18 +53,11 @@ export default function Portfolio({ mdxSource }: MdxPage) {
                 title={ mdxSource.frontmatter.title } 
                 description={ mdxSource.frontmatter.description }
             />
-            <Text color="gray.500" fontSize="md">
+            <Text color="gray.500" fontSize="md" fontFamily="heading">
                 {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
             </Text>
             <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
             <HStack my={2} spacing={3} fontFamily="heading">
-                <Flex>
-                    <Icon as={BsCalendar4} h={5} w={5} mr={2} my="auto" color="dark" />
-                    <Text fontSize={fontSize}>
-                        {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLL dd, yyyy")}
-                    </Text>
-                </Flex>
-
                 <Flex>
                     <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
                     <Text fontSize={fontSize}>

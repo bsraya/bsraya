@@ -175,8 +175,7 @@ const DocsHeading = (props: any) => {
                 '&[id]:hover a': { opacity: 1 }
             }}
             {...props}
-            mt="2em"
-            mb="0.5em"
+            mt="2.5em"
         >
             <Box pointerEvents="auto">
                 {props.children}
@@ -214,12 +213,12 @@ const MDXComponent = {
     i: (props: any) => <Text as="i" {...props} />,
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
-    p: (props: any) => <Text as="p" my={5} maxWidth="85ch" wordBreak={'break-word'} {...props} />,
+    p: (props: any) => <Text as="p" mt={5} mb={10} maxWidth="85ch" wordBreak={'break-word'} {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
     
     li: (props: any) => <ListItem ml={6} {...props} />,
-    ul: (props: any) => <List as="ul" styleType="circle" spacing={1} {...props} />,
-    ol: (props: any) => <List as="ol" styleType="decimal" spacing={1} {...props} />,
+    ul: (props: any) => <List as="ul" styleType="circle" my={10} spacing={2} {...props} />,
+    ol: (props: any) => <List as="ol" styleType="decimal" my={10} spacing={2} {...props} />,
     
     h2: (props: any) => <DocsHeading as="h2" size="xl" fontWeight="bold" {...props} />,
     h3: (props: any) => <DocsHeading as="h3" size="lg" fontWeight="bold" {...props} />,

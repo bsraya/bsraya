@@ -12,7 +12,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
 import { BiTime } from 'react-icons/bi'
-import { BsEye, BsCalendar } from 'react-icons/bs'
+import { BsEye } from 'react-icons/bs'
 
 // components
 import Seo from '../../components/Seo'
@@ -55,7 +55,7 @@ export default function Blog({ mdxSource }: MdxPage) {
                 title={ mdxSource.frontmatter.title }
                 description={ mdxSource.frontmatter.description }
             />
-            <Text color="gray.500" fontSize="md">
+            <Text color="gray.500" fontSize="md" fontFamily="heading">
                 {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
             </Text>
             <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
