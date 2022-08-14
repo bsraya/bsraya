@@ -1,24 +1,24 @@
 import {
-    Box,
-    Button,
-    List,
-    ListItem,
-    Heading,
-    Link,
-    Divider,
+    Tr,
+    Th,
+    Td,
     Kbd,
-    Textarea,
+    Box,
+    Link,
+    List,
+    Text,
     Alert,
     Stack,
-    AlertIcon,
-    Text,
     Table,
     Thead,
     Tbody,
     Tfoot,
-    Tr,
-    Th,
-    Td,
+    Button,
+    Heading,
+    Divider,
+    Textarea,
+    ListItem,
+    AlertIcon,
     TableCaption,
     TableContainer,
 } from '@chakra-ui/react';
@@ -93,16 +93,15 @@ const CustomImages = (props: any) => {
     if (props.title !== undefined) {
         return (
             <Box
+                my={5}
+                p={5}
+                borderRadius="md"
+                _dark={{
+                    opacity: 0.9
+                }}
                 style={{
                     display: 'block',
                     backgroundColor: 'white',
-                    
-                }}
-                borderRadius="md"
-                my={5}
-                p={5}
-                _dark={{
-                    opacity: 0.9
                 }}
             >
                 <figure>
@@ -213,8 +212,8 @@ const MDXComponent = {
     i: (props: any) => <Text as="i" {...props} />,
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
-    p: (props: any) => <Text as="p" mt={5} mb={10} maxWidth="85ch" wordBreak={'break-word'} {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
+    p: (props: any) => <Text as="p" mt={5} mb={10} maxWidth="85ch" wordBreak={'break-word'} {...props} />,
     
     li: (props: any) => <ListItem ml={6} {...props} />,
     ul: (props: any) => <List as="ul" styleType="circle" my={10} spacing={2} {...props} />,

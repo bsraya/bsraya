@@ -1,4 +1,12 @@
-import { Avatar, Wrap, WrapItem, Box, Text, Tooltip, Link } from '@chakra-ui/react'
+import {
+    Box,
+    Text,
+    Link,
+    Wrap,
+    Avatar,
+    Tooltip,
+    WrapItem,
+} from '@chakra-ui/react'
 import NextLink from 'next/link'
 
 type author = {

@@ -1,12 +1,12 @@
 import {
-    Heading,
     Box,
-    Divider,
     Text,
     Flex,
     LinkBox,
-    LinkOverlay,
+    Divider,
+    Heading,
     IconButton,
+    LinkOverlay,
 } from "@chakra-ui/react";
 import NextLink from 'next/link';
 
@@ -36,13 +36,13 @@ const CurrentPost = ({ index, title }: { index: number, title: string }) => {
             <Text
                 my="auto"
                 fontWeight="bold"
+                fontStyle="normal"
+                fontFamily="heading"
                 css={{
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap"
                 }}
-                fontStyle="normal"
-                fontFamily="heading"
             >
                 {title}
             </Text>
@@ -56,6 +56,7 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
             <IconButton
                 aria-label="post index"
                 icon={<Text mx="auto">{index}</Text>}
+                mr={3}
                 isRound
                 background='gray.200'
                 color="gray.700"
@@ -63,7 +64,6 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
                     color: 'gray.300',
                     bgColor: 'gray.700'
                 }}
-                mr={3}
                 _hover={{
                     bgColor: 'none'
                 }}
@@ -72,6 +72,7 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
                 my="auto"
                 color="gray.700"
                 fontStyle="normal"
+                fontFamily="heading"
                 _dark={{
                     color: 'gray.300'
                 }}
