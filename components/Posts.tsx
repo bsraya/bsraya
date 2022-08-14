@@ -41,7 +41,7 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                     <Heading as="h2" fontFamily="heading" fontSize="2rem" fontWeight="bold">
                                         {post.frontMatter.title}
                                     </Heading>
-                                    <HStack my={2} spacing={3} fontFamily="heading">
+                                    <HStack my={2} spacing={5} fontFamily="heading">
                                         <Flex>
                                             <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
                                             <Text fontSize={fontSize}>

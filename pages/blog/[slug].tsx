@@ -59,7 +59,7 @@ export default function Blog({ mdxSource }: MdxPage) {
                 {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
             </Text>
             <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-            <HStack my={2} spacing={3} fontFamily="heading">
+            <HStack my={2} spacing={5} fontFamily="heading">
                 <Flex>
                     <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
                     <Text fontSize={fontSize}>
