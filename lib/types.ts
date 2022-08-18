@@ -3,6 +3,7 @@ export type MdxPage = {
     mdxSource: any;
     headings: any;
     slug: string;
+    relatedPosts: Post[] | null;
 };
 
 export type Post =  {

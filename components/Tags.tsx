@@ -17,14 +17,25 @@ export default function Tags({ tags }: { tags: string[] }) {
                                 mr={2}
                                 variant="ghost"
                                 px={3}
-                                color="gray.100"
-                                bg={color}
+                                bg="gray.200"
+                                _dark={{
+                                    bg: 'gray.500',
+                                    '&:hover': {
+                                        bg: 'gray.400'
+                                    }
+                                }}
                                 _hover={{
-                                    bgColor: 'gray.400'
+                                    bgColor: 'gray.300'
                                 }}
                                 fontFamily="Montserrat, sans-serif"
                             >
-                                <Text>{tag}</Text>
+                                <Text
+                                    color="gray.500"
+                                    _dark={{
+                                        color: "gray.200"
+                                    }}
+                                    fontSize="sm"
+                                >{tag}</Text>
                             </Button>
                         </NextLink>
                     )

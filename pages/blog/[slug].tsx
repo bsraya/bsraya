@@ -14,6 +14,9 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
 import { BiTime } from 'react-icons/bi'
 import { BsEye } from 'react-icons/bs'
+import { GetHeadings } from '../../lib/getHeadings'
+import { GetPostsByTags } from '../../lib/getPostsByTags'
+
 
 // components
 import Seo from '../../components/Seo'
@@ -25,6 +28,7 @@ import MDXComponents from '../../components/Blog/MDXComponent'
 import FixedToC from '../../components/TableOfContent/Fixed'
 import MobileToC from '../../components/TableOfContent/Mobile'
 import SideToC from '../../components/TableOfContent/Side'
+import Posts from '../../components/Posts'
 
 // interface 
 import type { MdxPage } from '../../lib/types'
@@ -110,6 +114,11 @@ export default function Blog({ mdxSource }: MdxPage) {
             <MDXRemote {...mdxSource} components={MDXComponents} />
             
             <Heading as="h1" fontSize="4xl" mt={10} mb="2.5rem">
+                Related Posts
+            </Heading>
+            <Posts posts={mdxSource.relatedPosts} type="blog" />
+
+            <Heading as="h1" fontSize="4xl" mt={10} mb="2.5rem">
                 Tags
             </Heading>
             <Tags tags={mdxSource.frontmatter.tags} />
@@ -136,7 +145,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ( { params: { slug } }: { params: { slug: string } } ) => {
     const source = fs.readFileSync(path.join('content', 'posts',
         slug, 'index.mdx'), 'utf-8')
-
+    
     const mdxSource = await serialize(
         source,
         {
@@ -167,26 +176,20 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
         }
     )
 
-    // generate the regex to find sentence that starts like "## This is A Heading"
-    const regex = new RegExp(/^##\s+(.*)/gm)
-    const titleMatches = source.toString().match(regex)
-    var headings: string[] = []
+    var headings: string[] = GetHeadings(source)
 
-    // if there is one or more matches
-    if (titleMatches !== null) {
-        // remove "## " from the headings
-        const titleWithoutHastags = titleMatches?.map(match => match.replace(/^##\s+/, ''))
-    
-        // remove symbols from the headings
-        headings = titleWithoutHastags?.map(heading => heading.replace(/[^\w\s]/gi, ''))
-    }
+    // @ts-ignore
+    var relatedPosts = GetPostsByTags(mdxSource.frontmatter.title, mdxSource.frontmatter.tags)
+    relatedPosts = relatedPosts.filter(post => post.slug !== slug)
+    relatedPosts = relatedPosts.slice(0, 3)
 
     return {
         props: {
             mdxSource: {
                 ...mdxSource,
                 headings,
-                slug
+                slug,
+                relatedPosts
             }
         }
     }

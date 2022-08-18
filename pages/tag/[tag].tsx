@@ -5,8 +5,9 @@ import Layout from '../../components/Layout'
 import { Heading } from '@chakra-ui/react'
 import Posts from '../../components/Posts'
 import type { Post } from '../../lib/types'
-import sortPost from '../../lib/sortpost'
+import sortPost from '../../lib/sortPost'
 import Seo from '../../components/Seo'
+import {GetPostsByTag, GetPostsByTags} from '../../lib/getPostsByTags'
 
 function Tag({ posts, tag }: { posts: Post[], tag: string }) {
     return (
@@ -42,27 +43,8 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { tag } }: any) => {
-    // get all folders' in content/portfolios
-    const folders = fs.readdirSync(path.join(process.cwd(), 'content', 'posts'))
-
-    // get all posts' front matter with a specific tag
-    var posts: Post[] = folders.map(slug => {
-        const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf8')
-        const { data: frontMatter } = matter(content)
-
-        return {
-            frontMatter,
-            slug
-        }
-    })
-
-    // only show published posts
-    posts = posts.filter((post: Post) => post.frontMatter.publish)
-
-    // filter out posts that don't have the tag
-    posts = posts.filter((post: Post) => post.frontMatter.tags.includes(tag))
-
-    posts = sortPost(posts)
+    const postsWithTag = GetPostsByTag(tag)
+    var posts = sortPost(postsWithTag)
 
     return {
         props: {

@@ -16,7 +16,7 @@ import type { Post } from '../lib/types'
 import Posts from '../components/Posts'
 import { useMemo, useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
-import sortPost from '../lib/sortpost'
+import sortPost from '../lib/sortPost'
 import Seo from '../components/Seo'
 
 export default function Blog({ posts }: { posts: Post[] }): JSX.Element {
