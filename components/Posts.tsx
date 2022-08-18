@@ -46,18 +46,18 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                                     pl={2}
                                                     pr={2}
                                                     borderRadius="md"
-                                                    bg="gray.500"
+                                                    bg="gray.200"
                                                     _dark={{
-                                                        bg: 'gray.200'
+                                                        bg: 'gray.500'
                                                     }}
                                                 >
                                                     <Text
                                                         m="auto"
                                                         fontSize="sm"
                                                         fontFamily="heading"
-                                                        color="gray.200"
+                                                        color="gray.500"
                                                         _dark={{
-                                                            color: "gray.500"
+                                                            color: "gray.200"
                                                         }}
                                                     >
                                                         Series
