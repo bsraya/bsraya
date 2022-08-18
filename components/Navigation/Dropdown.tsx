@@ -1,26 +1,24 @@
-import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Text,
-  useColorModeValue,
   Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  IconButton,
   Link,
   HStack,
   VStack,
+  IconButton,
+  MenuItem,
+  MenuList,
+  MenuButton,
   MenuDivider,
-  useBreakpointValue
+  useBreakpointValue,
 } from "@chakra-ui/react";
-import { FiGithub, FiHome, FiUser, FiFolder } from "react-icons/fi";
-import { BiPencil } from "react-icons/bi";
 import NextLink from "next/link";
+import { BiPencil } from "react-icons/bi";
+import { HamburgerIcon } from "@chakra-ui/icons";
+import { FiGithub, FiHome, FiUser, FiFolder } from "react-icons/fi";
 
 export default function Dropdown(): JSX.Element {
   const isMobile = useBreakpointValue({ base: true, md: false })
-  const color = useColorModeValue('gray.800', 'whiteAlpha.900')
   return (
     <Box>
       {
@@ -28,17 +26,25 @@ export default function Dropdown(): JSX.Element {
           <Menu isLazy>
             <MenuButton
               as={IconButton}
-              icon={<HamburgerIcon color={color} />}
+              icon={
+                <HamburgerIcon
+                  color='gray.800'
+                  _dark={{
+                    color: 'whiteAlpha.900'
+                  }}
+                />
+              }
               isRound
               variant="ghost"
             />
             <MenuList
               zIndex={5}
               border="2px solid"
-              borderColor={color}
+              borderColor="gray.800"
               alignItems={["center", "flex-start"]}
               boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
               _dark={{
+                borderColor: 'whiteAlpha.900',
                 boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
               }}
             >
