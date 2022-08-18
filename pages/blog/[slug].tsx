@@ -1,12 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 import {
+    Box,
+    Icon,
+    Flex,
     Text,
+    HStack,
     Heading,
     useBreakpointValue,
-    Flex,
-    Icon,
-    HStack
+    useColorModeValue,
 } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -47,6 +49,8 @@ export default function Blog({ mdxSource }: MdxPage) {
     const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
     const isMobile = useBreakpointValue({ base: true, md: true, lg: false })
     const fontSize = isDesktop ? 'md' : 'sm'
+    const tagFontColor = useColorModeValue('gray.500', 'gray.200')
+    const tagBg = useColorModeValue('gray.200', 'gray.500')
     return (
         <Layout>
             <Seo
@@ -55,9 +59,32 @@ export default function Blog({ mdxSource }: MdxPage) {
                 title={ mdxSource.frontmatter.title }
                 description={ mdxSource.frontmatter.description }
             />
-            <Text color="gray.500" fontSize="md" fontFamily="heading">
-                {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
-            </Text>
+            <HStack>
+                <Text color="gray.500" fontSize="md" fontFamily="heading">
+                    {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
+                </Text>
+                {
+                    mdxSource.frontmatter.series && (
+                        <Box
+                            h={7}
+                            pl={2}
+                            pr={2}
+                            bg={tagBg}
+                            display="flex"
+                            borderRadius="md"
+                        >
+                            <Text
+                                m="auto"
+                                color={tagFontColor}
+                                fontSize="sm"
+                                fontFamily="heading"
+                            >
+                                Series
+                            </Text>
+                        </Box>
+                    )
+                }
+            </HStack>
             <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
             <HStack my={2} spacing={5} fontFamily="heading">
                 <Flex>
