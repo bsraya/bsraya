@@ -1,5 +1,3 @@
-import fs from 'fs'
-import path from 'path'
 import {
     Box,
     Icon,
@@ -9,6 +7,8 @@ import {
     Heading,
     useBreakpointValue
 } from '@chakra-ui/react'
+import fs from 'fs'
+import path from 'path'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
@@ -16,7 +16,6 @@ import { BiTime } from 'react-icons/bi'
 import { BsEye } from 'react-icons/bs'
 import { GetHeadings } from '../../lib/getHeadings'
 import { GetPostsByTags } from '../../lib/getPostsByTags'
-
 
 // components
 import Seo from '../../components/Seo'

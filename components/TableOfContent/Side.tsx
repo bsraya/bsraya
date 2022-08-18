@@ -1,4 +1,4 @@
-import { Box, Heading, Link, Text, useColorModeValue } from '@chakra-ui/react'
+import { Box, Link, Text, useColorModeValue } from '@chakra-ui/react'
 import React, { useState, useEffect } from 'react'
 
 export default function SideToC({ headings }: { headings: string[] }) {

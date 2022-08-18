@@ -1,13 +1,13 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import Layout from '../../components/Layout'
-import { Heading } from '@chakra-ui/react'
-import Posts from '../../components/Posts'
-import type { Post } from '../../lib/types'
-import sortPost from '../../lib/sortPost'
 import Seo from '../../components/Seo'
-import {GetPostsByTag, GetPostsByTags} from '../../lib/getPostsByTags'
+import Posts from '../../components/Posts'
+import Layout from '../../components/Layout'
+import sortPost from '../../lib/sortPost'
+import type { Post } from '../../lib/types'
+import { Heading } from '@chakra-ui/react'
+import { GetPostsByTag } from '../../lib/getPostsByTags'
 
 function Tag({ posts, tag }: { posts: Post[], tag: string }) {
     return (

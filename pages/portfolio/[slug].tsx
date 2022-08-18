@@ -1,5 +1,3 @@
-import fs from 'fs'
-import path from 'path'
 import {
     Flex,
     Icon,
@@ -8,6 +6,8 @@ import {
     Heading,
     useBreakpointValue,
 } from '@chakra-ui/react'
+import fs from 'fs'
+import path from 'path'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
