@@ -16,6 +16,8 @@ import Firebase from "../../icons/firebase";
 import Anaconda from "../../icons/anaconda";
 import Keras from "../../icons/keras";
 import Horovod from "../../icons/horovod";
+import Ruby from "../../icons/ruby";
+import Rails from "../../icons/rails";
 
 export default function Skillset(): JSX.Element {
     return (
@@ -32,6 +34,7 @@ export default function Skillset(): JSX.Element {
                     <Skill name="Go" icon={Go} />
                     <Skill name="Python" icon={Python} />
                     <Skill name="Typescript" icon={Typescript} />
+                    <Skill name="Ruby" icon={Ruby} />
                 </Flex>
             </Stack>
 
@@ -44,6 +47,7 @@ export default function Skillset(): JSX.Element {
                     <Skill name="Next.js" icon={Next} />
                     <Skill name="ChakraUI" icon={ChakraUI} />
                     <Skill name="Cypress" icon={Cypress} />
+                    <Skill name="Ruby on Rails" icon={Rails} />
                 </Flex>
             </Stack>
 
