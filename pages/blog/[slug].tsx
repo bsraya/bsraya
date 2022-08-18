@@ -7,8 +7,7 @@ import {
     Text,
     HStack,
     Heading,
-    useBreakpointValue,
-    useColorModeValue,
+    useBreakpointValue
 } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -49,8 +48,7 @@ export default function Blog({ mdxSource }: MdxPage) {
     const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
     const isMobile = useBreakpointValue({ base: true, md: true, lg: false })
     const fontSize = isDesktop ? 'md' : 'sm'
-    const tagFontColor = useColorModeValue('gray.500', 'gray.200')
-    const tagBg = useColorModeValue('gray.200', 'gray.500')
+
     return (
         <Layout>
             <Seo
@@ -69,15 +67,20 @@ export default function Blog({ mdxSource }: MdxPage) {
                             h={7}
                             pl={2}
                             pr={2}
-                            bg={tagBg}
-                            display="flex"
                             borderRadius="md"
+                            bg="gray.500"
+                            _dark={{
+                                bg: 'gray.200'
+                            }}
                         >
                             <Text
                                 m="auto"
-                                color={tagFontColor}
                                 fontSize="sm"
                                 fontFamily="heading"
+                                color="gray.200"
+                                _dark={{
+                                    color: "gray.500"
+                                }}
                             >
                                 Series
                             </Text>
