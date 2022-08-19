@@ -4,7 +4,6 @@ import matter from 'gray-matter'
 import sortPosts from '../../lib/sortPosts'
 import type { Post } from '../../lib/types'
 import { Box, Heading } from "@chakra-ui/react";
-import { DateTime } from 'luxon'
 
 export default function RelatedPosts({ tags }: { tags: string[] }) {
     const folders = fs.readdirSync(path.join('content', 'posts'))
