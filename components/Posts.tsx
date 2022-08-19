@@ -45,10 +45,12 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                                     h={7}
                                                     pl={2}
                                                     pr={2}
+                                                    bg="gray.100"
                                                     borderRadius="md"
-                                                    bg="gray.200"
+                                                    boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
                                                     _dark={{
-                                                        bg: 'gray.500'
+                                                        bg: 'gray.500',
+                                                        boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
                                                     }}
                                                 >
                                                     <Text
