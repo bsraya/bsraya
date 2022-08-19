@@ -183,7 +183,8 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
     // @ts-ignore
     var relatedPosts = getPostsByTags(mdxSource.frontmatter.tags)
     relatedPosts = relatedPosts.filter(post => post.slug !== slug)
-    relatedPosts = relatedPosts.slice(0, 3)
+    // get 3 random posts
+    relatedPosts = relatedPosts.sort(() => Math.random() - 0.5).slice(0, 3)
 
     return {
         props: {
