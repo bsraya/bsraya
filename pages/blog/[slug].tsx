@@ -14,8 +14,8 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
 import { BiTime } from 'react-icons/bi'
 import { BsEye } from 'react-icons/bs'
-import getHeadings from '../../lib/getheadings'
-import { getPostsByTags } from '../../lib/getposts'
+import getHeadings from '../../lib/getHeadings'
+import { getPostsByTags } from '../../lib/getPosts'
 
 // components
 import Seo from '../../components/Seo'
