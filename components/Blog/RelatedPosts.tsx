@@ -1,14 +1,10 @@
 import NextLink from 'next/link'
-import ViewCounter from '../Counter/View'
 import type { Post } from '../../lib/types'
 import {
     Box,
     Text,
-    Flex,
-    Icon,
     Stack,
     HStack,
-    VStack,
     LinkBox,
     Heading,
     LinkOverlay,
@@ -72,10 +68,9 @@ export default function RelatedPosts({ posts, type }: { posts: Post[]; type: str
                                                     <Text
                                                         m="auto"
                                                         fontSize="sm"
-                                                        fontFamily="heading"
-                                                        color="gray.700"
+                                                        color="gray.500"
                                                         _dark={{
-                                                            color: "gray.200"
+                                                            color: "gray.100"
                                                         }}
                                                     >
                                                         Series
