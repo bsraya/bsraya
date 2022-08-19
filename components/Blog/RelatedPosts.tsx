@@ -1,9 +1,18 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import SortPost from '../../lib/sortPost'
+// import SortPost from '../../lib/sortPost'
 import type { Post } from '../../lib/types'
 import { Box, Heading } from "@chakra-ui/react";
+import { DateTime } from 'luxon'
+
+function SortPost(posts: Post[]) {
+    return posts.sort((a: Post, b: Post) => {
+        const aDate: (typeof a.frontMatter.date) = DateTime.fromISO(a.frontMatter.date)
+        const bDate: (typeof a.frontMatter.date) = DateTime.fromISO(b.frontMatter.date)
+        return bDate - aDate;
+    })
+}
 
 export default function RelatedPosts({ tags }: { tags: string[] }) {
     const folders = fs.readdirSync(path.join('content', 'posts'))
