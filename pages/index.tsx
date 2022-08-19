@@ -12,7 +12,7 @@ import Posts from '../components/Posts'
 import Layout from '../components/Layout'
 import type { Post } from '../lib/types'
 import NextLink from 'next/link'
-import sortPost from '../lib/sortPosts'
+import sortPosts from '../lib/sortPosts'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import Seo from '../components/Seo'
 import MyAvatar from '../components/MyAvatar'
@@ -68,7 +68,7 @@ export const getStaticProps = async () => {
     posts = posts.filter((post: Post) => post.frontMatter.publish)
 
     // sort the posts by date
-    posts = sortPost(posts)
+    posts = sortPosts(posts)
 
     posts = posts.slice(0, 3)
 

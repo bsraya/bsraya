@@ -16,7 +16,7 @@ import type { Post } from '../lib/types'
 import Posts from '../components/Posts'
 import { useMemo, useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
-import sortPost from '../lib/sortPosts'
+import sortPosts from '../lib/sortPosts'
 import Seo from '../components/Seo'
 
 export default function Blog({ posts }: { posts: Post[] }): JSX.Element {
@@ -88,7 +88,7 @@ export const getStaticProps = async () => {
     posts = posts.filter((post: Post) => post.frontMatter.publish)
 
     // sort the posts by date
-    posts = sortPost(posts)
+    posts = sortPosts(posts)
 
     return {
         props: {

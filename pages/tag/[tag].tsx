@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 import Seo from '../../components/Seo'
 import Posts from '../../components/Posts'
 import Layout from '../../components/Layout'
-import sortPost from '../../lib/sortPosts'
+import sortPosts from '../../lib/sortPosts'
 import type { Post } from '../../lib/types'
 import { Heading } from '@chakra-ui/react'
 import { getPostsByTag } from '../../lib/getPosts'
@@ -44,7 +44,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { tag } }: any) => {
     const postsWithTag = getPostsByTag(tag)
-    var posts = sortPost(postsWithTag)
+    var posts = sortPosts(postsWithTag)
 
     return {
         props: {
