@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import type { Post } from '../../lib/types'
 import { Box, Heading } from "@chakra-ui/react";
-import sortPosts from '../../lib/sortPosts';
+import { sortPosts } from '../../lib/posts';
 
 export default function RelatedPosts({ tags }: { tags: string[] }) {
     const folders = fs.readdirSync(path.join('content', 'posts'))

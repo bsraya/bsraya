@@ -12,7 +12,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
 import { BiTime } from 'react-icons/bi'
-import getHeadings from '../../lib/getHeadings'
+import getHeadings from '../../lib/headings'
 
 // components
 import Seo from '../../components/Seo'

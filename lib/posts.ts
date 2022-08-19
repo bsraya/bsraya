@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import type { Post } from './types'
+import { DateTime } from 'luxon'
 
 export function getPostsByTag(tag: string): Post[] {
     const folders = fs.readdirSync(path.join('content', 'posts'))
@@ -37,4 +38,12 @@ export function getPostsByTags(tags: string[]): Post[] {
     )
 
     return uniquePosts
+}
+
+export function sortPosts(posts: Post[]): Post[] {
+    return posts.sort((a: Post, b: Post) => {
+        const aDate: (typeof a.frontMatter.date) = DateTime.fromISO(a.frontMatter.date)
+        const bDate: (typeof a.frontMatter.date) = DateTime.fromISO(b.frontMatter.date)
+        return bDate - aDate;
+    })
 }
