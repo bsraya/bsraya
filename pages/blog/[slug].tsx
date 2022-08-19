@@ -178,7 +178,7 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
     var headings: string[] = getHeadings(source)
 
     // @ts-ignore
-    var relatedPosts = getPostsByTags(mdxSource.frontmatter.title, mdxSource.frontmatter.tags)
+    var relatedPosts = getPostsByTags(mdxSource.frontmatter.tags)
     relatedPosts = relatedPosts.filter(post => post.slug !== slug)
     relatedPosts = relatedPosts.slice(0, 3)
 

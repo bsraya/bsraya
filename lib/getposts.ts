@@ -23,10 +23,18 @@ export function getPostsByTag(tag: string) {
     return posts.filter((post: Post) => post.frontMatter.tags.includes(tag))
 }
 
-export function getPostsByTags(title: string, tags: string[]): Post[] {
+export function getPostsByTags(tags: string[]): Post[] {
     const posts: Post[] = []
     tags.forEach(tag => {
         posts.push(...getPostsByTag(tag))
     })
-    return posts
+
+    // remove duplicate posts
+    const uniquePosts = posts.filter((post, index, self) =>
+        index === self.findIndex((p) => (
+            p.slug === post.slug
+        ))
+    )
+
+    return uniquePosts
 }
