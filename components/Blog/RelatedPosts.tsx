@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import sortPost from '../../lib/sortposts'
+import sortPost from '../../lib/sortPosts'
 import type { Post } from '../../lib/types'
 import { Box, Heading } from "@chakra-ui/react";
 import { DateTime } from 'luxon'

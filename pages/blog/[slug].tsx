@@ -15,7 +15,7 @@ import { DateTime } from 'luxon'
 import { BiTime } from 'react-icons/bi'
 import { BsEye } from 'react-icons/bs'
 import getHeadings from '../../lib/getHeadings'
-import { getPostsByTags } from '../../lib/getposts'
+import { getPostsByTags } from '../../lib/getPosts'
 
 // components
 import Seo from '../../components/Seo'
