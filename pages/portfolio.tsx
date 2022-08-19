@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import Posts from './../components/Posts'
 import { Heading } from '@chakra-ui/react'
 import type { Post } from '../lib/types'
-import SortPost from '../lib/sortPost'
+import sortPost from '../lib/sortPost'
 import Seo from '../components/Seo'
 
 export default function Portfolio({ portfolios }: { portfolios: Post[] }): JSX.Element {
@@ -34,7 +34,7 @@ export const getStaticProps = async () => {
     
     portfolios = portfolios.filter((portfolio: Post) => portfolio.frontMatter.publish)
 
-    portfolios = SortPost(portfolios)
+    portfolios = sortPost(portfolios)
 
     return {
         props: {
