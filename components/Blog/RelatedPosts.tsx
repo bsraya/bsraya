@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import sortPost from '../../lib/sortPost'
+import SortPost from '../../lib/sortPost'
 import type { Post } from '../../lib/types'
 import { Box, Heading } from "@chakra-ui/react";
 
@@ -26,7 +26,7 @@ export default function RelatedPosts({ tags }: { tags: string[] }) {
         return post.frontMatter.tags.some((tag: string) => tags.includes(tag))
     })
     
-    var sortedPosts = sortPost(posts)
+    var sortedPosts = SortPost(posts)
 
     // take the first 3
     sortedPosts = sortedPosts.slice(0, 3)
