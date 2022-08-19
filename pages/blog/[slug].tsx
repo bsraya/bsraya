@@ -45,6 +45,7 @@ import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrismDiff from 'rehype-prism-diff'
+import RelatedPosts from '../../components/Blog/RelatedPosts'
 
 export default function Blog({ mdxSource }: MdxPage) {
     const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
@@ -71,10 +72,12 @@ export default function Blog({ mdxSource }: MdxPage) {
                             pl={2}
                             pr={2}
                             borderRadius="md"
-                            bg="gray.200"
+                            bg="gray.100"
                             _dark={{
-                                bg: 'gray.500'
+                                bg: 'gray.500',
+                                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
                             }}
+                            boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
                         >
                             <Text
                                 m="auto"
@@ -82,7 +85,7 @@ export default function Blog({ mdxSource }: MdxPage) {
                                 fontFamily="heading"
                                 color="gray.500"
                                 _dark={{
-                                    color: "gray.200"
+                                    color: "gray.100"
                                 }}
                             >
                                 Series
@@ -115,7 +118,7 @@ export default function Blog({ mdxSource }: MdxPage) {
             <Heading as="h1" fontSize="4xl" mt={10} mb="2.5rem">
                 Related Posts
             </Heading>
-            <Posts posts={mdxSource.relatedPosts} type="blog" />
+            <RelatedPosts posts={mdxSource.relatedPosts} type="blog" />
 
             <Heading as="h1" fontSize="4xl" mt={10} mb="2.5rem">
                 Tags
