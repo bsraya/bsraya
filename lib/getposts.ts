@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import type { Post } from './types'
 
-export function GetPostsByTag(tag: string) {
+export function getPostsByTag(tag: string) {
     const folders = fs.readdirSync(path.join('content', 'posts'))
 
     // get all posts' front matter with a specific tag
@@ -23,10 +23,10 @@ export function GetPostsByTag(tag: string) {
     return posts.filter((post: Post) => post.frontMatter.tags.includes(tag))
 }
 
-export function GetPostsByTags(title: string, tags: string[]): Post[] {
+export function getPostsByTags(title: string, tags: string[]): Post[] {
     const posts: Post[] = []
     tags.forEach(tag => {
-        posts.push(...GetPostsByTag(tag))
+        posts.push(...getPostsByTag(tag))
     })
     return posts
 }

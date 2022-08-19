@@ -15,7 +15,7 @@ import { DateTime } from 'luxon'
 import { BiTime } from 'react-icons/bi'
 import { BsEye } from 'react-icons/bs'
 import getHeadings from '../../lib/getheadings'
-import { GetPostsByTags } from '../../lib/getposts'
+import { getPostsByTags } from '../../lib/getposts'
 
 // components
 import Seo from '../../components/Seo'
@@ -178,7 +178,7 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
     var headings: string[] = getHeadings(source)
 
     // @ts-ignore
-    var relatedPosts = GetPostsByTags(mdxSource.frontmatter.title, mdxSource.frontmatter.tags)
+    var relatedPosts = getPostsByTags(mdxSource.frontmatter.title, mdxSource.frontmatter.tags)
     relatedPosts = relatedPosts.filter(post => post.slug !== slug)
     relatedPosts = relatedPosts.slice(0, 3)
 

@@ -7,7 +7,7 @@ import Layout from '../../components/Layout'
 import sortPost from '../../lib/sortposts'
 import type { Post } from '../../lib/types'
 import { Heading } from '@chakra-ui/react'
-import { GetPostsByTag } from '../../lib/getposts'
+import { getPostsByTag } from '../../lib/getposts'
 
 function Tag({ posts, tag }: { posts: Post[], tag: string }) {
     return (
@@ -43,7 +43,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { tag } }: any) => {
-    const postsWithTag = GetPostsByTag(tag)
+    const postsWithTag = getPostsByTag(tag)
     var posts = sortPost(postsWithTag)
 
     return {
