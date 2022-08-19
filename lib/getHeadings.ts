@@ -1,4 +1,4 @@
-export function GetHeadings(content: string): string[] {
+export default function getHeadings(content: string): string[] {
     const regex = new RegExp(/^##\s+(.*)/gm)
     const titleMatches = content.toString().match(regex)
 

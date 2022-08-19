@@ -4,10 +4,10 @@ import matter from 'gray-matter'
 import Seo from '../../components/Seo'
 import Posts from '../../components/Posts'
 import Layout from '../../components/Layout'
-import sortPost from '../../lib/sortPost'
+import sortPost from '../../lib/sortposts'
 import type { Post } from '../../lib/types'
 import { Heading } from '@chakra-ui/react'
-import { GetPostsByTag } from '../../lib/getPostsByTags'
+import { GetPostsByTag } from '../../lib/getposts'
 
 function Tag({ posts, tag }: { posts: Post[], tag: string }) {
     return (

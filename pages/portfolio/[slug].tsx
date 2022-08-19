@@ -12,7 +12,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
 import { BiTime } from 'react-icons/bi'
-import { GetHeadings } from '../../lib/getHeadings'
+import getHeadings from '../../lib/getheadings'
 
 // components
 import Seo from '../../components/Seo'
@@ -120,7 +120,7 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
         }
     )
 
-    var headings: string[] = GetHeadings(source)
+    var headings: string[] = getHeadings(source)
 
     return {
         props: {
