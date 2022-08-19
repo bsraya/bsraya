@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import sortPosts from '../../lib/sortPosts'
+import sortPosts from '../../lib/sortposts'
 import type { Post } from '../../lib/types'
 import { Box, Heading } from "@chakra-ui/react";
 
