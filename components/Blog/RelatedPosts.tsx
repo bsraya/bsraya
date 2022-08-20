@@ -15,7 +15,8 @@ import {
 export default function RelatedPosts({ posts, type }: { posts: Post[]; type: string }) {
     const isDesktop = useBreakpointValue({ base: false, md: true })
     const fontSize = isDesktop ? 'md' : 'sm'
-    const bgColor = useColorModeValue('white', 'gray.500')
+    const padding = isDesktop ? '3' : '2'
+    const bgColor = useColorModeValue('white', 'gray.600')
     return (
         <>
             {
@@ -25,7 +26,7 @@ export default function RelatedPosts({ posts, type }: { posts: Post[]; type: str
                             Related Posts
                         </Heading>
                         <Stack
-                            spacing={2}
+                            spacing={5}
                             direction={isDesktop ? 'row' : 'column'}
                         >
                             {
@@ -41,7 +42,13 @@ export default function RelatedPosts({ posts, type }: { posts: Post[]; type: str
                                             borderWidth="1px"
                                             boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
                                             _dark={{
-                                                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
+                                                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)',
+                                                '&:hover': {
+                                                    bg: 'gray.500'
+                                                },
+                                            }}
+                                            _hover={{
+                                                bg: 'gray.50'
                                             }}
                                         >
                                             <NextLink href={'/' + type + '/' + post.slug} passHref>
@@ -49,7 +56,11 @@ export default function RelatedPosts({ posts, type }: { posts: Post[]; type: str
                                                     <Heading as="h2" fontFamily="heading" fontSize="1.5rem" fontWeight="bold">
                                                         {post.frontMatter.title}
                                                     </Heading>
-                                                    <HStack spacing={5} mt={3}>
+                                                    <HStack
+                                                        spacing={isDesktop ? 0 : 3}
+                                                        mt={3}
+                                                        display={isDesktop ? 'block' : 'flex'}
+                                                    >
                                                         <Text
                                                             fontSize={fontSize}
                                                             color="gray.500"
@@ -62,22 +73,25 @@ export default function RelatedPosts({ posts, type }: { posts: Post[]; type: str
                                                         {
                                                             post.frontMatter.series && (
                                                                 <Box
-                                                                    h={7}
-                                                                    pl={2}
-                                                                    pr={2}
+                                                                    px={padding}
                                                                     borderRadius="md"
-                                                                    bg="gray.200"
                                                                     _dark={{
-                                                                        bg: 'gray.600'
+                                                                        bg: 'gray.500',
+                                                                        borderColor: 'gray.400'
                                                                     }}
+                                                                    border="1px solid"
+                                                                    borderColor="gray.500"
+                                                                    width="fit-content"
+                                                                    ml={0}
                                                                 >
                                                                     <Text
-                                                                        m="auto"
-                                                                        fontSize="sm"
+                                                                        fontSize={fontSize}
                                                                         color="gray.500"
                                                                         _dark={{
                                                                             color: "gray.100"
                                                                         }}
+                                                                        fontFamily="Montserrat, sans-serif"
+                                                                        fontWeight={600}
                                                                     >
                                                                         Series
                                                                     </Text>
