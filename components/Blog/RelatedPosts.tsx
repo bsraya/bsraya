@@ -21,7 +21,7 @@ export default function RelatedPosts({ posts, type }: { posts: Post[]; type: str
         <>
             {
                 posts.length > 0 && (
-                    <Box>
+                    <Box mt="5.6rem">
                         <Heading as="h1" fontSize="4xl" mt={10} mb="2.5rem">
                             Related Posts
                         </Heading>
@@ -75,26 +75,20 @@ export default function RelatedPosts({ posts, type }: { posts: Post[]; type: str
                                                                 <Box
                                                                     px={padding}
                                                                     borderRadius="md"
+                                                                    bg="inherit"
                                                                     _dark={{
-                                                                        bg: 'gray.500',
-                                                                        borderColor: 'gray.400'
+                                                                        borderColor: 'gray.400',
+                                                                        color: "gray.100"
                                                                     }}
                                                                     border="1px solid"
                                                                     borderColor="gray.500"
                                                                     width="fit-content"
-                                                                    ml={0}
+                                                                    color="gray.500"
+                                                                    fontSize={fontSize}
+                                                                    fontFamily="Montserrat, sans-serif"
+                                                                    fontWeight={600}
                                                                 >
-                                                                    <Text
-                                                                        fontSize={fontSize}
-                                                                        color="gray.500"
-                                                                        _dark={{
-                                                                            color: "gray.100"
-                                                                        }}
-                                                                        fontFamily="Montserrat, sans-serif"
-                                                                        fontWeight={600}
-                                                                    >
-                                                                        Series
-                                                                    </Text>
+                                                                    Series
                                                                 </Box>
                                                             )
                                                         }

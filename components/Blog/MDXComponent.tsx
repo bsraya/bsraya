@@ -22,9 +22,12 @@ import {
     TableCaption,
     TableContainer,
 } from '@chakra-ui/react';
+import {
+    LinkIcon,
+    ExternalLinkIcon,
+} from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import Series from './Series';
-import { ExternalLinkIcon, LinkIcon } from '@chakra-ui/icons';
 
 const CustomLink = (props: any) => {
     const href = props.href;
@@ -254,15 +257,15 @@ const MDXComponent = {
         </TableContainer>
     ),
     
+    Box,
     Kbd,
     Text,
     Stack,
-    Textarea,
-    AlertIcon,
-    Box,
-    Button,
-    NextLink,
     Series,
+    Button,
+    Textarea,
+    NextLink,
+    AlertIcon,
     hr: Hr,
     a: CustomLink,
     blockquote: Quote,
