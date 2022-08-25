@@ -9,18 +9,10 @@ const config: ThemeConfig = {
 const theme = extendTheme(config, {
     ...extendTheme,
     fonts: {
-        // set body font family to 'Cormorant Garamond', serif
-        // body: `Alice, serif`,
         body: `Inter, sans-serif`,
         heading: `Montserrat, serif`,
         mono: "Fira Code",
     },
-    // colors: {
-    //     lighter: "#E9D8FD",
-    //     light: "#B794F4",
-    //     dark: "#6B46C1",
-    //     darker: "#44337A"
-    // },
     colors: {
         lighter: "#9DECF9",
         light: "#76E4F7",

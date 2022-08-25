@@ -144,10 +144,6 @@ const Quote = (props: any) => {
         <Alert
             mt={4}
             w="98%"
-            bg='purple.50'
-            _dark={{
-                bg: 'purple.900'
-            }}
             variant="left-accent"
             css={{
                 '> *:first-of-type': {
