@@ -28,6 +28,7 @@ import {
 } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import Series from './Series';
+import Image from 'next/image'
 
 const CustomLink = (props: any) => {
     const href = props.href;
@@ -96,7 +97,7 @@ const CustomImages = (props: any) => {
     if (props.title !== undefined) {
         return (
             <Box
-                my={5}
+                my={10}
                 p={5}
                 borderRadius="md"
                 _dark={{
@@ -108,7 +109,14 @@ const CustomImages = (props: any) => {
                 }}
             >
                 <figure>
-                    <img src={props.src} alt={props.alt} width="100%" height="auto" loading='lazy' />
+                    <Image
+                        src={props.src}
+                        alt={props.alt}
+                        width="1024"
+                        height="512"
+                        layout="responsive"
+                        loading='lazy'
+                    />
                     <figcaption
                         style={{
                             marginTop: '1rem',
@@ -128,12 +136,18 @@ const CustomImages = (props: any) => {
                 p={5}
                 my={5}
                 borderRadius="0.5rem"
-                // set opacity to 0.8 and contrast to 1.2 in dark mode
                 _dark={{
                     opacity: 0.9
                 }}
             >
-                <img src={props.src} alt={props.alt} width="100%" height="auto" loading='lazy' />
+                <Image
+                    src={props.src}
+                    alt={props.alt}
+                    width="1024"
+                    height="512"
+                    layout="intrinsic"
+                    loading='lazy'
+                />
             </Box>
         );
     }
