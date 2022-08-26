@@ -8,8 +8,8 @@ import {
     LinkBox,
     Heading,
     LinkOverlay,
+    useColorModeValue,
     useBreakpointValue,
-    useColorModeValue
 } from '@chakra-ui/react'
 
 function Cards({ posts, type }: { posts: Post[], type: string }) {
