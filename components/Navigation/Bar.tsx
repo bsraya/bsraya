@@ -1,12 +1,9 @@
 import {
     Box,
-    Link,
     Flex,
-    useColorMode,
+    Text,
     useBreakpointValue,
-    IconButton,
 } from '@chakra-ui/react'
-import Image from 'next/image'
 import Nextlink from 'next/link'
 import Dropdown from './Dropdown'
 import Navlink from './Link'
@@ -44,10 +41,19 @@ export default function Navigation(): JSX.Element {
                         </>
                     ) : (
                         <>  
-                            <Flex mr="auto">
+                            <Nextlink href="/" passHref>
+                                <Text
+                                    _hover={{
+                                        transform: "translateY(-2px)",
+                                        transition: "all 0.2s ease-in-out",
+                                        cursor: "pointer",
+                                    }}
+                                >@bsraya</Text>
+                            </Nextlink>
+                            <Flex ml="auto">
+                                <Switch />
                                 <Dropdown />
                             </Flex>
-                            <Switch />
                         </>
                     )
                 }
