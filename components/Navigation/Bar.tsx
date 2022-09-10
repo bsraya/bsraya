@@ -43,6 +43,8 @@ export default function Navigation(): JSX.Element {
                         <>  
                             <Nextlink href="/" passHref>
                                 <Text
+                                    fontFamily="Fira Code, monospace"
+                                    fontWeight="bold"
                                     _hover={{
                                         transform: "translateY(-2px)",
                                         transition: "all 0.2s ease-in-out",
