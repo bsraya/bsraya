@@ -13,7 +13,6 @@ import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
 import { BiTime } from 'react-icons/bi'
-import { BsEye } from 'react-icons/bs'
 import getHeadings from '../../lib/headings'
 import { getPostsByTags } from '../../lib/posts'
 
@@ -22,7 +21,6 @@ import Seo from '../../components/Seo'
 import Tags from './../../components/Tags'
 import Layout from '../../components/Layout'
 import Authors from '../../components/Blog/Authors'
-import ViewCounter from '../../components/Counter/View'
 import MDXComponents from '../../components/Blog/MDXComponent'
 import FixedToC from '../../components/TableOfContent/Fixed'
 import MobileToC from '../../components/TableOfContent/Mobile'
@@ -96,15 +94,10 @@ export default function Blog({ mdxSource }: MdxPage) {
             <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
             <HStack my={2} spacing={5} fontFamily="heading">
                 <Flex>
-                    <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
+                    <Icon as={BiTime} h={5} w={5} mr={2} my="auto" />
                     <Text fontSize={fontSize}>
                         {mdxSource.frontmatter.readingTime}
                     </Text>
-                </Flex>
-                
-                <Flex>
-                    <Icon as={BsEye} h={5} w={5} mr={2} my="auto" color="dark" />
-                    <Text fontSize={fontSize}><ViewCounter slug={mdxSource.slug} blogPage={false} /> views</Text>
                 </Flex>
             </HStack>
             <Authors authors={ mdxSource.frontmatter.authors } />

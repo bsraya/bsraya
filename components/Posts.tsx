@@ -1,6 +1,5 @@
 import NextLink from 'next/link'
 import { DateTime } from 'luxon'
-import ViewCounter from './Counter/View'
 import type { Post } from '../lib/types'
 import { BiTime } from 'react-icons/bi'
 import { BsEye } from 'react-icons/bs'
@@ -73,20 +72,11 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                     </Heading>
                                     <HStack my={2} spacing={5} fontFamily="heading">
                                         <Flex>
-                                            <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
+                                            <Icon as={BiTime} h={5} w={5} mr={2} my="auto" />
                                             <Text fontSize={fontSize}>
                                                 {post.frontMatter.readingTime}
                                             </Text>
                                         </Flex>
-
-                                        {
-                                            type === 'blog' && (
-                                                <Flex>
-                                                    <Icon as={BsEye} h={5} w={5} mr={2} my="auto" color="dark" />
-                                                    <Text fontSize={fontSize}><ViewCounter slug={post.slug} blogPage={false} /> views</Text>
-                                                </Flex>
-                                            )
-                                        }
                                     </HStack>
                                 </LinkOverlay>  
                             </NextLink>
