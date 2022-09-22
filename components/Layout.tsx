@@ -9,11 +9,11 @@ import BackToTop from './Navigation/BackToTop'
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <Box as="main">
-            <Navbar />
             <Container
                 my={10}
-                maxW="container.md"
+                maxW="container.lg"
             >
+                <Navbar />
                 <Global
                     styles={[prismStyles, katexStyles]}
                 />

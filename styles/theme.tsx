@@ -21,6 +21,9 @@ const theme = extendTheme(config, {
     },
     styles: {
         global: () => ({
+            "*": {
+                borderStyle: "none",
+            },
             body: {
                 fontSize: "18px",
                 lineHeight: "2",

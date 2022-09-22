@@ -20,12 +20,9 @@ export default function Navigation(): JSX.Element {
             as="nav"
         >
             <Flex
-                py={2}
-                px={5}
-                maxW="container.md"
-                align="center"
+                mb={10}
                 mx="auto"
-                mt={2}
+                align="center"
                 fontFamily="Montserrat, sans-serif"
             >
                 {

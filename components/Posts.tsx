@@ -16,9 +16,6 @@ import {
 } from '@chakra-ui/react'
 
 export default function Posts({ posts, type }: { posts: Post[]; type: string }) {
-    const isDesktop = useBreakpointValue({ base: false, md: true })
-    const fontSize = isDesktop ? 'md' : 'sm'
-
     return (
         <>
             {
@@ -29,7 +26,17 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                             my={5}
                             rounded="md"
                             key={post.slug}
-                            borderWidth="1px"
+                            border="1px solid"
+                            borderColor="gray.200"
+                            _dark={{
+                                borderColor: 'gray.600',
+                                "&:hover": {
+                                    borderColor: 'gray.400'
+                                }
+                            }}
+                            _hover={{
+                                borderColor: 'gray.400'
+                            }}
                             p={5}
                         >
                             <NextLink href={'/'+ type + '/' + post.slug} passHref>

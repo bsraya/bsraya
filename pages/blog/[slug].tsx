@@ -24,7 +24,6 @@ import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
 import FixedToC from '../../components/TableOfContent/Fixed'
 import MobileToC from '../../components/TableOfContent/Mobile'
-import SideToC from '../../components/TableOfContent/Side'
 
 // interface 
 import type { MdxPage } from '../../lib/types'
@@ -103,10 +102,8 @@ export default function Blog({ mdxSource }: MdxPage) {
             <Authors authors={ mdxSource.frontmatter.authors } />
             
             <FixedToC headings={mdxSource.headings} />
-            { isMobile && <MobileToC headings={mdxSource.headings} /> }
-            { isDesktop && <SideToC headings={mdxSource.headings} /> }
+            {isMobile && <MobileToC headings={mdxSource.headings} />}
             <MDXRemote {...mdxSource} components={MDXComponents} />
-            
             <RelatedPosts posts={mdxSource.relatedPosts} type="blog" />
 
             <Heading as="h1" fontSize="4xl" mt={10} mb="2.5rem">
