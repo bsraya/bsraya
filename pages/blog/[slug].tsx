@@ -106,7 +106,7 @@ export default function Blog({ mdxSource }: MdxPage) {
             <MDXRemote {...mdxSource} components={MDXComponents} />
             <RelatedPosts posts={mdxSource.relatedPosts} type="blog" />
 
-            <Heading as="h1" fontSize="4xl" mt={10} mb="2.5rem">
+            <Heading as="h1" fontSize="4xl" mt={10} mb="1rem">
                 Tags
             </Heading>
             <Tags tags={mdxSource.frontmatter.tags} />

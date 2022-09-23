@@ -31,7 +31,6 @@ function Cards({ posts, type }: { posts: Post[], type: string }) {
                         p={5}
                         width="100%"
                         bg={bgColor}
-                        borderWidth="1px"
                         boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
                         _dark={{
                             boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)',
@@ -106,13 +105,12 @@ function Cards({ posts, type }: { posts: Post[], type: string }) {
 }
 
 export default function RelatedPosts({ posts, type }: { posts: Post[]; type: string }) {
-    const isDesktop = useBreakpointValue({ base: false, md: true })
     return (
         <>
             {
                 posts.length > 0 && (
                     <Box>
-                        <Heading as="h1" fontSize="4xl" mt={10} mb="2.5rem">
+                        <Heading as="h1" fontSize="4xl" mt={10} mb="1rem">
                             Related Posts
                         </Heading>
                         <Cards posts={posts} type={type} />
