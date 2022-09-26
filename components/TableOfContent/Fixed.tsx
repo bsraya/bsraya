@@ -40,9 +40,8 @@ function CustomLink({ heading }: { heading: string }) {
     return (
         <Heading
             as="h2"
-            mt={4}
-            mb={5}
-            ml={10}
+            my={5}
+            ml={5}
             size="md"
             cursor="pointer"
             textDecoration="none"
@@ -104,7 +103,7 @@ export default function FixedToC({ headings }: { headings: string[] }) {
                                     <Icon
                                         as={AiOutlineMenuUnfold}
                                         my="auto"
-                                        mx={4}
+                                        mx={2}
                                         w={8}
                                         h={8}
                                     />
@@ -112,12 +111,12 @@ export default function FixedToC({ headings }: { headings: string[] }) {
                                         as="h2"
                                         size="md"
                                         my={5}
-                                        mr={10}
+                                        mr="auto"
                                     >
                                         Table of Contents
                                     </Heading>
                                 </Flex>
-                                <AccordionIcon ml="auto" />
+                                <AccordionIcon ml={10} />
                             </AccordionButton>
                             <AccordionPanel pb={6}>
                                 {
