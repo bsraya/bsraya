@@ -16,7 +16,6 @@ export default function Navigation(): JSX.Element {
             mt={5}
             as="nav"
             align="center"
-            fontFamily="Open Sans, sans-serif"
         >
             <Nextlink href="/" passHref>
                 <Text
