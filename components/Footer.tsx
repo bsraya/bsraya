@@ -1,52 +1,43 @@
-import { Flex, Link, IconButton } from '@chakra-ui/react'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { FiMail } from 'react-icons/fi'
+import { Box, Flex, Text, Divider, Link } from '@chakra-ui/react'
 
 export default function Footer(): JSX.Element {
-    const size = '1.5rem'
-    const link = [
+    const links = [
         {
-            key: 'github',
-            icon: <FaGithub style={{ fontSize: size }} />,
+            name: 'GitHub',
             url: 'https://github.com/bsraya',
         },
         {
-            key: 'linkedin',
-            icon: <FaLinkedin style={{ fontSize: size }} />,
+            name: 'LinkedIn',
             url: 'https://www.linkedin.com/in/bijonsetyawan/'
         },
         {
-            key: 'email',
-            icon: <FiMail style={{ fontSize: size }} />,
+            name: 'Email',
             url: 'mailto:nathan.setyawan96@gmail.com',
         },
     ]
 
     return (
-        <Flex as="footer" marginBottom={20} direction="column" align="center">
-            <Flex maxW="container.md">
-                {link.map((item) => (
-                    <Link
-                        key={item.key}
-                        as="a"
-                        px={1}
-                        py={2}
-                        rounded={'lg'}
-                        href={item.url}
-                        isExternal
-                    >
-                        <IconButton
-                            key={item.key}
-                            aria-label={item.key}
-                            icon={item.icon}
-                            variant="ghost"
-                        />
-                    </Link>
-                ))}
+        <Box w="90%" mx="auto">
+            <Divider/>
+            <Flex as="footer" mt="0.5rem" mb="2rem">
+                <Text mr="auto">
+                    © Bijon Setyawan Raya {new Date().getFullYear()}
+                </Text>
+                <Flex>
+                    {links.map((item) => (
+                        <Link
+                            key={item.name}
+                            as="a"
+                            fontStyle="normal"
+                            px={2}
+                            href={item.url}
+                            isExternal
+                        >
+                            <Text>{item.name}</Text>
+                        </Link>
+                    ))}
+                </Flex>
             </Flex>
-            <Flex as="p" mt={2} fontFamily="heading">
-                © Bijon Setyawan Raya {new Date().getFullYear()}
-            </Flex>
-        </Flex>
+        </Box>
     );
 }
