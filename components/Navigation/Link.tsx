@@ -17,7 +17,7 @@ export default function Navlink ({ href, children }: { href: string, children: R
     return (
         <NextLink href={href}>
             <Link
-                mr={5}
+                m={5}
                 fontSize="md"
                 variant="ghost"
                 fontStyle="normal"
