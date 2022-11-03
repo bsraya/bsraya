@@ -25,7 +25,7 @@ const theme = extendTheme(config, {
                 borderStyle: "none",
             },
             body: {
-                fontSize: "18px",
+                fontSize: "22px",
                 lineHeight: "2",
             },
             a: {
