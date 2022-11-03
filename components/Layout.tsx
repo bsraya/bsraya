@@ -8,20 +8,22 @@ import BackToTop from './Navigation/BackToTop'
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
-        <Box as="main">
-            <Container
-                my={10}
-                maxW="container.lg"
-            >
-                <Navbar />
-                <Global
-                    styles={[prismStyles, katexStyles]}
-                />
-                {children}
-            </Container>
-            <BackToTop />
-            <Footer />
-        </Box>
+        <>
+            <Navbar />
+            <Box as="main" >
+                <Container
+                    my={10}
+                    maxW="container.lg"
+                >
+                    <Global
+                        styles={[prismStyles, katexStyles]}
+                    />
+                    {children}
+                </Container>
+                <BackToTop />
+                <Footer />
+            </Box>
+        </>
     );
 }
 
