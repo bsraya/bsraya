@@ -9,8 +9,8 @@ const config: ThemeConfig = {
 const theme = extendTheme(config, {
     ...extendTheme,
     fonts: {
-        body: `Inter, sans-serif`,
-        heading: `Montserrat, serif`,
+        body: `Open Sans, sans-serif`,
+        heading: `Open Sans, sans-serif`,
         mono: "Fira Code",
     },
     colors: {
