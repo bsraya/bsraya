@@ -19,21 +19,11 @@ export default function Navlink ({ href, children }: { href: string, children: R
             <Link
                 m={5}
                 variant="ghost"
-                fontStyle="normal"
-                color={isActive ? 'black' : 'gray.400'}
-                _hover={{ color: 'black' }}
-                _active={{ color: 'black' }}
-                // distance between letters
+                fontWeight="700"
+                color={isActive ? "#023C72" : 'gray.300'}
+                _hover={{ color: "#023C72" }}
+                _active={{ color: "#023C72" }}
                 letterSpacing="1px"
-                _dark={{
-                    color: isActive ? 'white' : 'gray.400',
-                    '&:hover': {
-                        color: 'white'
-                    },
-                    '&:active': {
-                        color: 'white',
-                    }
-                }}
             >{children}</Link>
         </NextLink>
     )
