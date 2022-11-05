@@ -17,7 +17,7 @@ export default function Footer(): JSX.Element {
     ]
 
     return (
-        <Box w="90%" mx="auto">
+        <Box w="90%" mx="auto" fontSize="1rem">
             <Divider/>
             <Flex as="footer" mt="0.5rem" mb="2rem">
                 <Text mr="auto">
