@@ -26,11 +26,10 @@ const theme = extendTheme(config, {
             },
             body: {
                 fontSize: "22px",
-                lineHeight: "2",
+                lineHeight: "1.5",
             },
             a: {
-                textUnderlinePosition: "under",
-                fontStyle: "italic",
+                textUnderlinePosition: "under"
             }
         })
     }
