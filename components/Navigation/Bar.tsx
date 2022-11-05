@@ -3,6 +3,7 @@ import {
     Flex,
     Text,
     useBreakpointValue,
+    VStack,
 } from '@chakra-ui/react'
 import Nextlink from 'next/link'
 import Dropdown from './Dropdown'
@@ -13,38 +14,47 @@ export default function Navigation(): JSX.Element {
     const isDesktop = useBreakpointValue({ base: false, md: true }) 
     return (
         <Flex
-            mt={5}
+            mt="1.5rem"
             as="nav"
             align="center"
         >
             <Nextlink href="/" passHref>
                 <Text
-                    fontFamily="PT Serif, serif"
-                    fontWeight="bold"
-                    fontSize="2xl"
-                    ml="2rem"
+                    fontFamily="Open Sans, sans-serif"
+                    fontSize="2rem"
+                    ml="1rem"
+                    fontWeight="700"
                     _hover={{
-                        transform: "translateY(-2px)",
-                        transition: "all 0.2s ease-in-out",
+                        color: "#023C72",
                         cursor: "pointer",
                     }}
-                >Bijon S. Raya</Text>
+                >Bijon</Text>
             </Nextlink>
-            {
-                isDesktop ? (
-                    <Flex ml="auto" mr="2rem" border="1px solid" borderColor="gray.200">
-                        <Navlink href="/">Home</Navlink>
-                        <Navlink href="/about">About</Navlink>
-                        <Navlink href="/blog">Blog</Navlink>
-                        <Navlink href="/portfolio">Portfolio</Navlink>
-                    </Flex>
-                ) : (
-                    <Flex ml="auto" mr="2rem">
-                        <Switch />
+            
+            <VStack
+                ml="auto"
+                position="fixed"
+                top="1.5rem"
+                right="5"
+                bg="white"
+                _dark={{
+                    bg: "gray.700",
+                }}
+                alignItems="self-end"
+            >
+                {
+                    isDesktop ? (
+                        <>
+                            <Navlink href="/">Home</Navlink>
+                            <Navlink href="/about">About</Navlink>
+                            <Navlink href="/blog">Blog</Navlink>
+                            <Navlink href="/portfolio">Portfolio</Navlink>
+                        </>
+                    ) : (
                         <Dropdown />
-                    </Flex>
-                )
-            }
+                    )
+                }
+            </VStack>
         </Flex>
     )
 }
