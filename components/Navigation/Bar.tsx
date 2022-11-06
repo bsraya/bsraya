@@ -3,12 +3,10 @@ import {
     Flex,
     Text,
     useBreakpointValue,
-    VStack,
 } from '@chakra-ui/react'
+import Navlink from './Link'
 import Nextlink from 'next/link'
 import Dropdown from './Dropdown'
-import Navlink from './Link'
-import Switch from './Switch'
 
 export default function Navigation(): JSX.Element {
     const isDesktop = useBreakpointValue({ base: false, md: true }) 
@@ -16,32 +14,20 @@ export default function Navigation(): JSX.Element {
         <Flex
             mt="1.5rem"
             as="nav"
-            align="center"
         >
             <Nextlink href="/" passHref>
                 <Text
-                    fontFamily="Open Sans, sans-serif"
+                    fontFamily="Fira Code"
                     fontSize="2rem"
                     ml="1rem"
-                    fontWeight="700"
                     _hover={{
                         color: "#023C72",
                         cursor: "pointer",
                     }}
-                >Bijon</Text>
+                >bsraya</Text>
             </Nextlink>
             
-            <VStack
-                ml="auto"
-                position="fixed"
-                top="1.5rem"
-                right="5"
-                bg="white"
-                _dark={{
-                    bg: "gray.700",
-                }}
-                alignItems="self-end"
-            >
+            <Box ml="auto">
                 {
                     isDesktop ? (
                         <>
@@ -54,7 +40,7 @@ export default function Navigation(): JSX.Element {
                         <Dropdown />
                     )
                 }
-            </VStack>
+            </Box>
         </Flex>
     )
 }
