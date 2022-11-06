@@ -3,6 +3,7 @@ import {
     Heading,
     SimpleGrid,
     Text,
+    Flex,
     VStack,
     useBreakpointValue,
     LinkBox,
@@ -27,9 +28,14 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                 align="left"
                 justify="left"
             >
-                <Box my={ isDesktop ? "15rem" : "10rem"}>
-                    <Heading as="h1" fontSize="5rem">
-                    A Fullstack Developer
+                <Box my={ isDesktop ? "27.5rem" : "20rem"}>
+                    <Heading
+                        as="h1"
+                        fontSize="5rem"
+                        fontFamily="Fira Code"
+                        fontWeight="400"
+                    >
+                        Bijon Setyawan Raya.
                     </Heading>
                     <VStack
                         mt={3}
@@ -38,7 +44,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                         justify="left"
                     >
                         <Text>
-                            Bijon develops both frontend and backend applications.
+                            I develop both frontend and backend applications.
                         </Text>
                         <Text>
                             Based in Taipei, Taiwan.
@@ -47,24 +53,24 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                 </Box>
                 
                 <Box>
-                    <Heading as="h2" fontSize="3rem">
+                    <Heading as="h2" fontSize="3rem" fontWeight="400">
                         Latest Project
                     </Heading>
                     <SimpleGrid
-                        // when the screen is smaller than 600px, the grid will be 1 column
-                        // when the screen is larger than 600px, the grid will be 2 columns
                         columns={ isDesktop ? 2 : 1 }
                         spacing="10"
                         mt="5"
                     >
-                        <Box>
-                            <Image
-                                src="/images/portfolios/personal-website/dark-mode.png"
-                                alt="Next.js"
-                                width={500}
-                                height={500}
-                            />
-                        </Box>
+                        <Image
+                            src="/images/portfolios/personal-website/dark-mode.png"
+                            alt="Next.js"
+                            loading='lazy'
+                            width={800}
+                            height={500}
+                            placeholder="blur"
+                            blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
+                            style={{ marginLeft: "auto", marginRight: "auto" }}
+                        />
                         <LinkBox
                             as='article'
                         >
@@ -83,11 +89,11 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                 </Box>
                 
                 <Box>
-                    <Heading as="h2" fontSize="3rem">
+                    <Heading as="h2" fontSize="3rem" fontWeight="400">
                         Latest Posts
                     </Heading>
                     <SimpleGrid
-                        columns={ isDesktop ? 3 : 1 }
+                        columns={ isDesktop ? 2 : 1 }
                         spacing="10"
                         mt="5"
                     >
@@ -96,22 +102,43 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                                 as='article'
                                 key={post.slug}
                             >
-                                <Box key={post.slug} p="5">
+                                <Box
+                                    key={post.slug}
+                                    p="5"
+                                >
                                     <Image
-                                        src="/images/portfolios/personal-website-v2/pw.png"
+                                        src="/images/posts/mathematics-of-gradient-descent/high_lr.png"
                                         alt="Next.js"
-                                        width={500}
+                                        loading='lazy'
+                                        width={800}
                                         height={500}
+                                        placeholder="blur"
+                                        blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
                                         style={{ marginLeft: "auto", marginRight: "auto" }}
                                     />
-                                    <Heading as="h3" fontSize="2rem" my={3}>
+                                    <Heading as="h3" fontSize="2rem" my={1}>
                                         <LinkOverlay href={`/blog/${post.slug}`} _hover={{ color: "#023C72" }}>
                                             {post.frontMatter.title}
                                         </LinkOverlay>
                                     </Heading>
-                                    <Text fontSize="1rem">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum reprehenderit dicta praesentium vel omnis sunt soluta deleniti quia eligendi est eaque tenetur sed at, voluptas officia quis nulla placeat numquam.
-                                    </Text>
+                                    {
+                                        post.frontMatter.tags.map((tag: string) => (
+                                            <Text
+                                                key={tag}
+                                                as="a"
+                                                fontSize="sm"
+                                                color="gray.500"
+                                                mr={2}
+                                                href={`/tags/${tag}`}
+                                                fontFamily="Fira Code"
+                                                _hover={{
+                                                    textDecoration: "underline",
+                                                }}
+                                            >
+                                                #{tag}
+                                            </Text>
+                                        ))
+                                    }
                                 </Box>
                             </LinkBox>
                         ))}
