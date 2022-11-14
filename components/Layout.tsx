@@ -14,7 +14,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <Box as="main" >
                 <Container
                     my={10}
-                    maxWidth="100%"
+                    maxWidth="1440px"
                 >
                     <Global
                         styles={[prismStyles, katexStyles]}
