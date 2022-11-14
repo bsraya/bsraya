@@ -26,10 +26,9 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
             <Seo title="Home" type="website" />
             <VStack
                 spacing="10rem"
-                align="center"
-
+                align="left"
             >
-                <Container my="15rem" maxWidth="1440px">
+                <Box my="15rem">
                     <Heading
                         as="h1"
                         fontSize="5rem"
@@ -51,18 +50,16 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                             Based in Taipei, Taiwan.
                         </Text>
                     </VStack>
-                </Container>
+                </Box>
                 
-                <Container my="15rem" maxWidth="1440px">
-                    <Flex mb="3rem">
-                        <Heading
-                            as="h2"
-                            fontSize="3rem"
-                            fontWeight="400"
-                        >
-                            Latest Project
-                        </Heading>
-                    </Flex>
+                <Box>
+                    <Heading
+                        as="h2"
+                        fontSize="3rem"
+                        fontWeight="400"
+                    >
+                        Latest Project
+                    </Heading>
                     <SimpleGrid
                         columns={ isDesktop ? 2 : 1 }
                         spacing="5"
@@ -73,7 +70,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                             alt="Next.js"
                             loading='lazy'
                             width={1200}
-                            height={500}
+                            height={700}
                             placeholder="blur"
                             blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
                             style={{ marginLeft: "auto", marginRight: "auto" }}
@@ -93,9 +90,9 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                             </Box>
                         </LinkBox>
                     </SimpleGrid>
-                </Container>
+                </Box>
                 
-                <Container my="15rem" maxWidth="1440px">
+                <Box>
                     <Flex>
                         <Heading as="h2" fontSize="3rem" fontWeight="400">
                             Latest Posts
@@ -115,16 +112,6 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                                     key={post.slug}
                                     p="5"
                                 >
-                                    <Image
-                                        src="https://images.unsplash.com/photo-1435527173128-983b87201f4d"
-                                        alt="Next.js"
-                                        loading='lazy'
-                                        width={800}
-                                        height={300}
-                                        placeholder="blur"
-                                        blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
-                                        style={{ marginLeft: "auto", marginRight: "auto" }}
-                                    />
                                     <Heading as="h3" fontSize="2rem" my={1}>
                                         <LinkOverlay href={`/blog/${post.slug}`} _hover={{ color: "links" }}>
                                             {post.frontMatter.title}
@@ -157,7 +144,7 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                             </LinkBox>
                         ))}
                     </SimpleGrid>
-                </Container>
+                </Box>
             </VStack>
         </Layout>
     )
