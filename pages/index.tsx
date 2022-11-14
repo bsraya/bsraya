@@ -3,11 +3,12 @@ import {
     Heading,
     SimpleGrid,
     Text,
-    Flex,
+    Container,
     VStack,
     useBreakpointValue,
     LinkBox,
     LinkOverlay,
+    Flex,
 } from '@chakra-ui/react'
 import fs from 'fs'
 import path from 'path'
@@ -25,10 +26,10 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
             <Seo title="Home" type="website" />
             <VStack
                 spacing="10rem"
-                align="left"
-                justify="left"
+                align="center"
+
             >
-                <Box my={ isDesktop ? "27.5rem" : "20rem"}>
+                <Container my="15rem" maxWidth="1440px">
                     <Heading
                         as="h1"
                         fontSize="5rem"
@@ -50,22 +51,28 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                             Based in Taipei, Taiwan.
                         </Text>
                     </VStack>
-                </Box>
+                </Container>
                 
-                <Box>
-                    <Heading as="h2" fontSize="3rem" fontWeight="400">
-                        Latest Project
-                    </Heading>
+                <Container my="15rem" maxWidth="1440px">
+                    <Flex mb="3rem">
+                        <Heading
+                            as="h2"
+                            fontSize="3rem"
+                            fontWeight="400"
+                        >
+                            Latest Project
+                        </Heading>
+                    </Flex>
                     <SimpleGrid
                         columns={ isDesktop ? 2 : 1 }
-                        spacing="10"
+                        spacing="5"
                         mt="5"
                     >
                         <Image
                             src="/images/portfolios/personal-website/dark-mode.png"
                             alt="Next.js"
                             loading='lazy'
-                            width={800}
+                            width={1200}
                             height={500}
                             placeholder="blur"
                             blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
@@ -74,9 +81,9 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                         <LinkBox
                             as='article'
                         >
-                            <Box>
+                            <Box p="2rem">
                                 <Heading as="h3" fontSize="2rem" mb={3}>
-                                    <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "#023C72" }}>
+                                    <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "links" }}>
                                         Schedulearn
                                     </LinkOverlay>
                                 </Heading>
@@ -86,14 +93,16 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                             </Box>
                         </LinkBox>
                     </SimpleGrid>
-                </Box>
+                </Container>
                 
-                <Box>
-                    <Heading as="h2" fontSize="3rem" fontWeight="400">
-                        Latest Posts
-                    </Heading>
+                <Container my="15rem" maxWidth="1440px">
+                    <Flex>
+                        <Heading as="h2" fontSize="3rem" fontWeight="400">
+                            Latest Posts
+                        </Heading>
+                    </Flex>
                     <SimpleGrid
-                        columns={ isDesktop ? 2 : 1 }
+                        columns={ isDesktop ? 3 : 1 }
                         spacing="10"
                         mt="5"
                     >
@@ -107,43 +116,48 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                                     p="5"
                                 >
                                     <Image
-                                        src="/images/posts/mathematics-of-gradient-descent/high_lr.png"
+                                        src="https://images.unsplash.com/photo-1435527173128-983b87201f4d"
                                         alt="Next.js"
                                         loading='lazy'
                                         width={800}
-                                        height={500}
+                                        height={300}
                                         placeholder="blur"
                                         blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
                                         style={{ marginLeft: "auto", marginRight: "auto" }}
                                     />
                                     <Heading as="h3" fontSize="2rem" my={1}>
-                                        <LinkOverlay href={`/blog/${post.slug}`} _hover={{ color: "#023C72" }}>
+                                        <LinkOverlay href={`/blog/${post.slug}`} _hover={{ color: "links" }}>
                                             {post.frontMatter.title}
                                         </LinkOverlay>
                                     </Heading>
-                                    {
-                                        post.frontMatter.tags.map((tag: string) => (
-                                            <Text
-                                                key={tag}
-                                                as="a"
-                                                fontSize="sm"
-                                                color="gray.500"
-                                                mr={2}
-                                                href={`/tags/${tag}`}
-                                                fontFamily="Fira Code"
-                                                _hover={{
-                                                    textDecoration: "underline",
-                                                }}
-                                            >
-                                                #{tag}
-                                            </Text>
-                                        ))
-                                    }
+                                    <Text>
+                                        {post.frontMatter.description}
+                                    </Text>
+                                    <Box>
+                                        {
+                                            post.frontMatter.tags.map((tag: string) => (
+                                                <Text
+                                                    key={tag}
+                                                    as="a"
+                                                    fontSize="sm"
+                                                    color="gray.500"
+                                                    mr={2}
+                                                    href={`/tags/${tag}`}
+                                                    fontFamily="Fira Code"
+                                                    _hover={{
+                                                        textDecoration: "underline",
+                                                    }}
+                                                >
+                                                    #{tag}
+                                                </Text>
+                                            ))
+                                        }
+                                    </Box>
                                 </Box>
                             </LinkBox>
                         ))}
                     </SimpleGrid>
-                </Box>
+                </Container>
             </VStack>
         </Layout>
     )
@@ -169,7 +183,7 @@ export const getStaticProps = async () => {
     // sort the posts by date
     posts = sortPosts(posts)
 
-    posts = posts.slice(0, 3)
+    posts = posts.slice(0, 6)
 
     return {
         props: {
