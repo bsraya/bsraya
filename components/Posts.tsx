@@ -1,23 +1,25 @@
 import NextLink from 'next/link'
 import { DateTime } from 'luxon'
 import type { Post } from '../lib/types'
-import { BiTime } from 'react-icons/bi'
-import { BsEye } from 'react-icons/bs'
 import {
     Box,
     Text,
-    Flex,
-    Icon,
     HStack,
     LinkBox,
     Heading,
     LinkOverlay,
+    SimpleGrid,
     useBreakpointValue
 } from '@chakra-ui/react'
 
 export default function Posts({ posts, type }: { posts: Post[]; type: string }) {
+    const isDesktop = useBreakpointValue({ base: false, md: true })
     return (
-        <>
+        <SimpleGrid
+            columns={ isDesktop ? 3 : 1 }
+            spacing="10"
+            mt="5"
+        >
             {
                 posts.map((post: Post) => {
                     return(
@@ -26,18 +28,11 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                             my={5}
                             rounded="md"
                             key={post.slug}
-                            border="1px solid"
-                            borderColor="gray.200"
-                            _dark={{
-                                borderColor: 'gray.600',
-                                "&:hover": {
-                                    borderColor: 'gray.400'
-                                }
-                            }}
-                            _hover={{
-                                borderColor: 'gray.400'
-                            }}
                             p={5}
+                            mb="3rem"
+                            _hover={{
+                                color: "links",
+                            }}
                         >
                             <NextLink href={'/'+ type + '/' + post.slug} passHref>
                                 <LinkOverlay fontStyle="normal">
@@ -79,11 +74,11 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                                     </Heading>
                                 </LinkOverlay>  
                             </NextLink>
-                            <Text as="p" color="gray.500" mt={5}>{post.frontMatter.description}</Text>
+                            <Text as="p" color="gray.500" mt={3}>{post.frontMatter.description}</Text>
                         </LinkBox>
                     )
                 })
             }
-        </>
+        </SimpleGrid>
     )
 }

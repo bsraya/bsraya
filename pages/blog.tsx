@@ -47,6 +47,7 @@ export default function Blog({ posts }: { posts: Post[] }): JSX.Element {
                         value={search}
                         onChange={(e: any) => setSearch(e.target.value)}
                         placeholder="Search articles"
+                        fontFamily="Fira Code"
                     />
                     {
                         search.length > 1 && (
