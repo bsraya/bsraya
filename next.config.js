@@ -12,6 +12,10 @@ const nextConfig = {
     compiler: {
         emotion: true,
     },
+    images: {
+        domains: ['images.unsplash.com', 'cdn.pixabay.com', 'images.pexel.com'],
+        formats: ['image/webp'],
+    }
 }
 
 const withPlugins = require('next-compose-plugins')
