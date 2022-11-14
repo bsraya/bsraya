@@ -20,9 +20,9 @@ export default function Navlink ({ href, children }: { href: string, children: R
                 m={5}
                 variant="ghost"
                 fontFamily="Fira Code"
-                color={isActive ? "#023C72" : 'gray.300'}
-                _hover={{ color: "#023C72" }}
-                _active={{ color: "#023C72" }}
+                color={isActive ? "links" : 'gray.300'}
+                _hover={{ color: "links" }}
+                _active={{ color: "links" }}
                 letterSpacing="1px"
             >{children}</Link>
         </NextLink>

@@ -14,10 +14,10 @@ const theme = extendTheme(config, {
         mono: "Fira Code, , sans-serif",
     },
     colors: {
-        lighter: "#9DECF9",
-        light: "#76E4F7",
-        dark: "#00A3C4",
-        darker: "#086F83",
+        // links: "#6a94ac",
+        // links: "#4e23d8",
+        // links: "#9b89b4",
+        links: "#a46aff",
     },
     styles: {
         global: () => ({
@@ -26,7 +26,7 @@ const theme = extendTheme(config, {
             },
             body: {
                 fontSize: "22px",
-                lineHeight: "1.5",
+                lineHeight: "1.75",
             },
             a: {
                 textUnderlinePosition: "under"
