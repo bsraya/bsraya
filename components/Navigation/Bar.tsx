@@ -18,11 +18,10 @@ export default function Navigation(): JSX.Element {
             <Nextlink href="/" passHref>
                 <Text
                     fontFamily="Fira Code"
-                    fontSize="2rem"
+                    fontSize="2xl"
                     ml="1rem"
                     _hover={{
-                        color: "#023C72",
-                        cursor: "pointer",
+                        color: "links",
                     }}
                 >bsraya</Text>
             </Nextlink>
