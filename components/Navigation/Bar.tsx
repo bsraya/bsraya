@@ -22,6 +22,7 @@ export default function Navigation(): JSX.Element {
                     ml="1rem"
                     _hover={{
                         color: "links",
+                        cursor: "pointer",
                     }}
                 >bsraya</Text>
             </Nextlink>
