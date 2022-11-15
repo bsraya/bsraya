@@ -16,7 +16,7 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
     const isDesktop = useBreakpointValue({ base: false, md: true })
     return (
         <SimpleGrid
-            columns={ isDesktop ? 3 : 1 }
+            columns={ isDesktop ? 2 : 1 }
             spacing="10"
             mt="5"
         >
@@ -30,9 +30,6 @@ export default function Posts({ posts, type }: { posts: Post[]; type: string }) 
                             key={post.slug}
                             p={5}
                             mb="3rem"
-                            _hover={{
-                                color: "links",
-                            }}
                         >
                             <NextLink href={'/'+ type + '/' + post.slug} passHref>
                                 <LinkOverlay fontStyle="normal">
