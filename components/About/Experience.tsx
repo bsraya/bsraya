@@ -18,10 +18,8 @@ export default function Experience(): JSX.Element {
     return (
         <>
             <Box my={10}>
-                <Flex >
-                    <Heading as="h2" size="lg">Fullstack Developer</Heading>
-                    <Text ml="auto" style={{ fontStyle: "italic" }}> October 2022 - present</Text>
-                </Flex>
+                <Text ml="auto" style={{ fontStyle: "italic" }}> October 2022 - present</Text>
+                <Heading as="h2" size="lg">Fullstack Developer</Heading>
                 <Text mb={2} style={{ fontStyle: "italic" }}>
                     Faria Education Group - Taipei, Taiwan
                 </Text>
@@ -39,10 +37,8 @@ export default function Experience(): JSX.Element {
             </Box>
 
             <Box my={10}>
-                <Flex>
-                    <Heading as="h2" size="lg">Graduate Research Assistant</Heading>
-                    <Text ml="auto" style={{ fontStyle: "italic" }}> February 2021 - Present</Text>
-                </Flex>
+                <Text ml="auto" style={{ fontStyle: "italic" }}> February 2021 - Present</Text>
+                <Heading as="h2" size="lg">Graduate Research Assistant</Heading>
                 <Text mb={2} style={{ fontStyle: "italic" }}>
                     National Tsing Hua University - Hsinchu, Taiwan
                 </Text>
@@ -64,10 +60,8 @@ export default function Experience(): JSX.Element {
             </Box>
 
             <Box my={10}>
-                <Flex>
-                    <Heading as="h2" size="lg">Software Engineer (Intern)</Heading>
-                    <Text ml="auto" style={{ fontStyle: "italic" }}> July 2021 - August 2021</Text>
-                </Flex>
+                <Text ml="auto" style={{ fontStyle: "italic" }}> July 2021 - August 2021</Text>
+                <Heading as="h2" size="lg">Software Engineer (Intern)</Heading>
                 <Text mb={2} style={{ fontStyle: "italic" }}>
                     Richtek Technology Corp. - Zhubei, Taiwan
                 </Text>
