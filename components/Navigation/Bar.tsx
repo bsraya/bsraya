@@ -20,9 +20,11 @@ export default function Navigation(): JSX.Element {
                     fontFamily="Fira Code"
                     fontSize="2xl"
                     ml="1rem"
+                    transition="transform 0.2s ease-in-out"
                     _hover={{
-                        color: "links",
                         cursor: "pointer",
+                        transform: "scale(1.1)",
+                        transition: "transform 0.2s ease-in-out",
                     }}
                 >bsraya</Text>
             </Nextlink>

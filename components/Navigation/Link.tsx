@@ -17,12 +17,12 @@ export default function Navlink ({ href, children }: { href: string, children: R
     return (
         <NextLink href={href}>
             <Link
-                m={5}
+                m={4}
                 variant="ghost"
                 fontFamily="Fira Code"
-                color={isActive ? "links" : 'gray.300'}
-                _hover={{ color: "links" }}
-                _active={{ color: "links" }}
+                color={isActive ? "gray.800" : 'gray.300'}
+                _hover={{ color: "gray.800" }}
+                _active={{ color: "gray.800" }}
                 letterSpacing="1px"
             >{children}</Link>
         </NextLink>
