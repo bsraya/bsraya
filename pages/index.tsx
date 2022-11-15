@@ -31,13 +31,12 @@ export default function Home({ posts }: { posts: Post[] }): JSX.Element {
                     spacing="5rem"
                     align="left"
                 >
-                    <Box my="auto" height="90vh" display="flex" flexDirection="column" justifyContent="center">
+                    <Box mt="5rem" display="flex" flexDirection="column" justifyContent="center">
                         <Heading
                             as="h1"
                             fontSize="4rem"
                             fontFamily="Fira Code"
                             fontWeight="700"
-                            mt="-5rem"
                         >
                             Bijon Setyawan Raya
                         </Heading>
