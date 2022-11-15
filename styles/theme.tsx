@@ -9,15 +9,15 @@ const config: ThemeConfig = {
 const theme = extendTheme(config, {
     ...extendTheme,
     fonts: {
-        body: `Inter, sans-serif`,
-        heading: `Montserrat, serif`,
-        mono: "Fira Code",
+        body: `PT Serif, serif`,
+        heading: `Fira Code, sans-serif`,
+        mono: "Fira Code, , sans-serif",
     },
     colors: {
-        lighter: "#9DECF9",
-        light: "#76E4F7",
-        dark: "#00A3C4",
-        darker: "#086F83",
+        // links: "#6a94ac",
+        // links: "#4e23d8",
+        // links: "#9b89b4",
+        links: "#a46aff",
     },
     styles: {
         global: () => ({
@@ -25,12 +25,11 @@ const theme = extendTheme(config, {
                 borderStyle: "none",
             },
             body: {
-                fontSize: "18px",
-                lineHeight: "2",
+                fontSize: "20px",
+                lineHeight: "1.75",
             },
             a: {
-                textUnderlinePosition: "under",
-                fontStyle: "italic",
+                textUnderlinePosition: "under"
             }
         })
     }

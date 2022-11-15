@@ -4,59 +4,45 @@ import {
     Text,
     useBreakpointValue,
 } from '@chakra-ui/react'
+import Navlink from './Link'
 import Nextlink from 'next/link'
 import Dropdown from './Dropdown'
-import Navlink from './Link'
-import Switch from './Switch'
 
 export default function Navigation(): JSX.Element {
     const isDesktop = useBreakpointValue({ base: false, md: true }) 
-
     return (
-        <Box
-            flexDirection="row"
-            height="100%"
-            width="100%"
+        <Flex
+            mt="1.5rem"
             as="nav"
         >
-            <Flex
-                mb="5rem"
-                mx="auto"
-                align="center"
-                fontFamily="Montserrat, sans-serif"
-            >
+            <Nextlink href="/" passHref>
+                <Text
+                    fontFamily="Fira Code"
+                    fontSize="2xl"
+                    ml="1rem"
+                    transition="transform 0.2s ease-in-out"
+                    _hover={{
+                        cursor: "pointer",
+                        transform: "scale(1.1)",
+                        transition: "transform 0.2s ease-in-out",
+                    }}
+                >bsraya</Text>
+            </Nextlink>
+            
+            <Box ml="auto">
                 {
                     isDesktop ? (
                         <>
-                            <Flex mr="auto">
-                                <Navlink href="/">Home</Navlink>
-                                <Navlink href="/about">About</Navlink>
-                                <Navlink href="/blog">Blog</Navlink>
-                                <Navlink href="/portfolio">Portfolio</Navlink>
-                            </Flex>
-                            <Switch />
+                            <Navlink href="/">Home</Navlink>
+                            <Navlink href="/about">About</Navlink>
+                            <Navlink href="/blog">Blog</Navlink>
+                            <Navlink href="/portfolio">Portfolio</Navlink>
                         </>
                     ) : (
-                        <>  
-                            <Nextlink href="/" passHref>
-                                <Text
-                                    fontFamily="Fira Code, monospace"
-                                    fontWeight="bold"
-                                    _hover={{
-                                        transform: "translateY(-2px)",
-                                        transition: "all 0.2s ease-in-out",
-                                        cursor: "pointer",
-                                    }}
-                                >@bsraya</Text>
-                            </Nextlink>
-                            <Flex ml="auto">
-                                <Switch />
-                                <Dropdown />
-                            </Flex>
-                        </>
+                        <Dropdown />
                     )
                 }
-            </Flex>
-        </Box>
+            </Box>
+        </Flex>
     )
 }

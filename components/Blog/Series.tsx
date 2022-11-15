@@ -22,15 +22,11 @@ const CurrentPost = ({ index, title }: { index: number, title: string }) => {
                 aria-label="post index"
                 icon={<Text mx="auto">{index}</Text>}
                 isRound
-                background="dark"
+                background="gray.800"
                 color="purple.50"
                 mr={3}
                 _hover={{
-                    background: "dark"
-                }}
-                _dark={{
-                    background: "light",
-                    color: "darker"
+                    background: "gray.800"
                 }}
             />
             <Text
@@ -92,7 +88,6 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
 export default function Series({ series, posts, currentPost }: { series: string, posts: IPost[], currentPost: string }) {
     return (
         <Box
-            mx="auto"
             my={10}
             borderRadius="lg"
             display="block"
@@ -102,7 +97,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
                 bgColor: 'gray.800',
             }}
             borderColor="gray.300"
-            width="90%"
+            maxW="768px"
         >   
             <Heading
                 p={3}
@@ -123,9 +118,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
                                     key={post.slug}
                                     _hover={{
                                         cursor: "pointer",
-                                        // bgColor: "rgba(128, 90, 213, 0.3)"
-                                        // bgColor set to 'dark' with 0.3 opacity
-                                        bgColor: "rgba(0, 163, 196, 0.3)"
+                                        bgColor: "gray.100",
                                     }}
                                     borderBottomRadius={index === posts.length ? "md" : "none"}
                                 >

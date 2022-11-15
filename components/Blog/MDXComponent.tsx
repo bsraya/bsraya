@@ -106,16 +106,19 @@ const CustomImages = (props: any) => {
                 style={{
                     display: 'block',
                     backgroundColor: 'white',
+
                 }}
             >
                 <figure>
-                    <Image
+                    <img 
                         src={props.src}
                         alt={props.alt}
-                        width="1024"
-                        height="512"
-                        layout="responsive"
+                        width="80%"
+                        height="auto"
                         loading='lazy'
+                        style={{
+                            margin: 'auto',
+                        }}
                     />
                     <figcaption
                         style={{
@@ -140,12 +143,11 @@ const CustomImages = (props: any) => {
                     opacity: 0.9
                 }}
             >
-                <Image
+                <img 
                     src={props.src}
                     alt={props.alt}
-                    width="1024"
-                    height="512"
-                    layout="intrinsic"
+                    width="60%"
+                    height="auto"
                     loading='lazy'
                 />
             </Box>
@@ -226,11 +228,11 @@ const MDXComponent = {
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
-    p: (props: any) => <Text as="p" mt={5} mb={10} maxWidth="85ch" wordBreak={'break-word'} {...props} />,
+    p: (props: any) => <Text as="p" mt={5} mb={10} wordBreak={'break-word'} {...props} />,
     
     li: (props: any) => <ListItem ml={6} {...props} />,
-    ul: (props: any) => <List as="ul" styleType="circle" my={10} spacing={2} {...props} />,
-    ol: (props: any) => <List as="ol" styleType="decimal" my={10} spacing={2} {...props} />,
+    ul: (props: any) => <List as="ul" styleType="circle" my="1.5rem" {...props} />,
+    ol: (props: any) => <List as="ol" styleType="decimal" my="1.5rem" {...props} />,
     
     h2: (props: any) => <DocsHeading as="h2" size="xl" fontWeight="bold" {...props} />,
     h3: (props: any) => <DocsHeading as="h3" size="lg" fontWeight="bold" {...props} />,

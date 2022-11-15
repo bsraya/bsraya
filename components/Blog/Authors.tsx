@@ -66,11 +66,10 @@ export default function Authors(props: any): JSX.Element {
                                 />
                             </NextLink>
                             <Text
-                                    fontSize="md"
-                                    fontWeight="bold"
+                                fontSize="md"
                                 ml={3}
                                 my="auto"
-                                fontFamily="Montserrat, sans-serif"    
+                                fontFamily="Fira Code"  
                             >{authors[0].name}</Text>
                         </WrapItem>
                     ) : (

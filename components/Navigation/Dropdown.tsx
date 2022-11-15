@@ -20,7 +20,7 @@ import { FiGithub, FiHome, FiUser, FiFolder } from "react-icons/fi";
 export default function Dropdown(): JSX.Element {
   const isMobile = useBreakpointValue({ base: true, md: false })
   return (
-    <Box>
+    <Box mr="0.5rem">
       {
         isMobile && (
           <Menu isLazy>
@@ -29,17 +29,16 @@ export default function Dropdown(): JSX.Element {
               icon={
                 <HamburgerIcon
                   color='gray.800'
-                  _dark={{
-                    color: 'whiteAlpha.900'
-                  }}
                 />
               }
-              isRound
+              bg="white"
+              border="1px solid"
+              borderColor="gray.200"
               variant="ghost"
             />
             <MenuList
               zIndex={5}
-              border="2px solid"
+              border="1px solid"
               borderColor="gray.800"
               alignItems={["center", "flex-start"]}
               boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
@@ -47,6 +46,7 @@ export default function Dropdown(): JSX.Element {
                 borderColor: 'whiteAlpha.900',
                 boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
               }}
+              borderRadius="0"
             >
               <Link href="https://github.com/bsraya" _hover={{ textDecoration: 'none' }} isExternal>
                 <MenuItem>

@@ -8,9 +8,10 @@ export default function Seo({ title, publish, description, type }: { title: stri
         description: 'A junior fullstack developer.',
         avatar: 'https://www.bsraya.com/images/avatar.png',
     }
+    const titleWithAuthor = title + " - " + meta.author;
     return (
         <Head>
-            <title>{ title } - { meta.author }</title>
+            <title>{titleWithAuthor}</title>
             <meta name="title" content={ title } />
             <meta name="robots" content="follow, index" />
             <meta name="viewport" content="width=device-width" />

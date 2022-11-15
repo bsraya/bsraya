@@ -19,21 +19,12 @@ export default class MyDocument extends NextDocument {
                         crossOrigin="true"
                     />
                     <link
-                        as="font"
+                        href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
                         rel="stylesheet"
-                        crossOrigin="anonymous"
-                        href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
                     />
                     <link
-                        as="font"
+                        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
                         rel="stylesheet"
-                        crossOrigin="anonymous"
-                        href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
-                    />
-                    <link
-                        as="font"
-                        rel="stylesheet"
-                        href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
                     />
                     <link
                         rel="stylesheet"

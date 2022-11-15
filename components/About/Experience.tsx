@@ -1,180 +1,88 @@
-import NextLink from 'next/link'
-import { FaChalkboardTeacher } from 'react-icons/fa'
-import { FiAward, FiFolder } from 'react-icons/fi'
-import { GiArchiveResearch } from 'react-icons/gi'
-import { MdOutlineSchool, MdOutlineWorkOutline } from 'react-icons/md'
-import { HStack, Heading, Divider, Text, Box } from "@chakra-ui/react";
+import { Flex, Heading, Stack, Box, Text } from "@chakra-ui/react";
+import Skill from './Skill';
+import Ruby from "../../icons/ruby";
+import Rails from "../../icons/rails";
+import Typescript from "../../icons/typescript";
+import Python from "../../icons/python";
+import Keras from "../../icons/keras";
+import Horovod from "../../icons/horovod";
+import Next from "../../icons/next";
+import ChakraUI from "../../icons/chakraui";
+import Docker from "../../icons/docker";
+import React from "../../icons/react";
+import SQLite from "../../icons/sqlite";
+import Vue from "../../icons/vue";
+import FastAPI from "../../icons/fastapi";
 
 export default function Experience(): JSX.Element {
-    const color = "gray.300"
-
     return (
         <>
             <Box my={10}>
-                <HStack>
-                    <Heading as="h1">
-                        2022
+                <Text ml="auto" style={{ fontStyle: "italic" }}> October 2022 - present</Text>
+                <Heading as="h2" size="lg">Fullstack Developer</Heading>
+                <Text mb={2} style={{ fontStyle: "italic" }}>
+                    Faria Education Group - Taipei, Taiwan
+                </Text>
+                <Stack>
+                    <Heading as="h2" size="md">
+                        Technologies
                     </Heading>
-                    <Divider
-                        orientation="horizontal"
-                        borderColor={color}
-                        borderStyle="solid"
-                        borderWidth="1px"
-                    />
-                </HStack>
-
-                <HStack my={5}>
-                    <MdOutlineSchool size="2rem" />
-                    <Text>Master&apos;s degree in CS</Text>
-                </HStack>
-                
-                <HStack my={5}>
-                    <FaChalkboardTeacher size="2rem" />
-                    <Text>TA in a Linear Algebra class</Text>
-                </HStack>
-
-                <HStack my={5}>
-                    <GiArchiveResearch size="2rem" />
-                    <Text>Graduate research assistant</Text>
-                </HStack>
-
-                <HStack my={5}>
-                    <FiFolder size="2rem" />
-                    <NextLink
-                        passHref
-                        href="/portfolio/personal-website-v2"
-                    >
-                        <Text
-                            as="a"
-                            color="dark"
-                            cursor="pointer"
-                            _dark={{
-                                color: "light"
-                            }}
-                            textDecoration="underline"
-                            _hover={{
-                                textDecoration: "none"
-                            }}
-                        >Personal website v2.0</Text>
-                    </NextLink>
-                </HStack>
+                    <Flex mt={3} mb={5} wrap="wrap">
+                        <Skill name="Ruby" icon={Ruby} />
+                        <Skill name="Ruby on Rails" icon={Rails} />
+                        <Skill name="Typescript" icon={Typescript} />
+                        <Skill name="Vue.js" icon={Vue} />
+                    </Flex>
+                </Stack>
             </Box>
 
             <Box my={10}>
-                <HStack my={5}>
-                    <Heading as="h1">
-                        2021
+                <Text ml="auto" style={{ fontStyle: "italic" }}> February 2021 - Present</Text>
+                <Heading as="h2" size="lg">Graduate Research Assistant</Heading>
+                <Text mb={2} style={{ fontStyle: "italic" }}>
+                    National Tsing Hua University - Hsinchu, Taiwan
+                </Text>
+                <Stack>
+                    <Heading as="h2" size="md">
+                        Technologies
                     </Heading>
-                    <Divider
-                        orientation="horizontal"
-                        borderColor={color}
-                        borderStyle="solid"
-                        borderWidth="1px"
-                    />
-                </HStack>
-
-                <HStack my={5}>
-                    <MdOutlineSchool size="2rem" />
-                    <Text>Bachelor&apos;s degree in CS</Text>
-                </HStack>
-
-                <HStack my={5}>
-                    <FaChalkboardTeacher size="2rem" />
-                    <Text>TA in an Intro. to C/C++ class</Text>
-                </HStack>
-
-                <HStack my={5}>
-                    <MdOutlineWorkOutline size="2rem" />
-                    <Text>Software engineering intern</Text>
-                </HStack>
-
-                <HStack my={5}>
-                    <GiArchiveResearch size="2rem" />
-                    <Text>Graduate research assistant</Text>
-                </HStack>
-
-                <HStack my={5}>
-                    <FiFolder size="2rem" />
-                    <NextLink
-                        passHref
-                        href="/portfolio/personal-website"
-                    >
-                        <Text
-                            as="a"
-                            color="dark"
-                            cursor="pointer"
-                            _dark={{
-                                color: "light"
-                            }}
-                            textDecoration="underline"
-                            _hover={{
-                                textDecoration: "none"
-                            }}
-                        >Personal website</Text>
-                    </NextLink>
-                </HStack>
+                    <Flex mt={3} mb={5} wrap="wrap">
+                        <Skill name="FastAPI" icon={FastAPI} />
+                        <Skill name="Python" icon={Python} />
+                        <Skill name="Docker" icon={Docker} />
+                        <Skill name="Horovod" icon={Horovod} />
+                        <Skill name="SQLite" icon={SQLite} />
+                        <Skill name="React" icon={React} />
+                        <Skill name="Next.js" icon={Next} />
+                        <Skill name="ChakraUI" icon={ChakraUI} />
+                    </Flex>
+                </Stack>
             </Box>
 
             <Box my={10}>
-                <HStack my={5}>
-                    <Heading as="h1">
-                        2020
+                <Text ml="auto" style={{ fontStyle: "italic" }}> July 2021 - August 2021</Text>
+                <Heading as="h2" size="lg">Software Engineer (Intern)</Heading>
+                <Text mb={2} style={{ fontStyle: "italic" }}>
+                    Richtek Technology Corp. - Zhubei, Taiwan
+                </Text>
+                <Stack>
+                    <Heading as="h2" size="md">
+                        Technologies
                     </Heading>
-                    <Divider
-                        orientation="horizontal"
-                        borderColor={color}
-                        borderStyle="solid"
-                        borderWidth="1px"
-                    />
-                </HStack>
-
-                <HStack my={5}>
-                    <FaChalkboardTeacher size="2rem" />
-                    <Text>TA in an Intro. to C/C++ class</Text>
-                </HStack>
-
-                <HStack my={5}>
-                    <MdOutlineWorkOutline size="2rem" />
-                    <Text>Front-end development intern</Text>
-                </HStack>
+                    <Flex mt={3} mb={5} wrap="wrap">
+                        <Skill name="Python" icon={Python} />
+                        <Skill name="Keras" icon={Keras} />
+                    </Flex>
+                </Stack>
             </Box>
 
             <Box my={10}>
-                <HStack my={5}>
-                    <Heading as="h1">
-                        2018
-                    </Heading>
-                    <Divider
-                        orientation="horizontal"
-                        borderColor={color}
-                        borderStyle="solid"
-                        borderWidth="1px"
-                    />
-                </HStack>
+            </Box>
 
-                <HStack my={5}>
-                    <MdOutlineWorkOutline size="2rem" />
-                    <Text>Front-end development intern</Text>
-                </HStack>
+            <Box my={10}>
             </Box>
             
             <Box my={10}>
-                <HStack my={5}>
-                    <Heading as="h1">
-                        2017
-                    </Heading>
-                    <Divider
-                        orientation="horizontal"
-                        borderColor={color}
-                        borderStyle="solid"
-                        borderWidth="1px"
-                    />
-                </HStack>
-
-                <HStack mt={5} mb={10}>
-                    <FiAward size="2rem" />
-                    <Text>Civil IoT Taiwan 2017</Text>
-                </HStack>
             </Box>
         </>       
     )
