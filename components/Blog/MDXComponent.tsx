@@ -228,17 +228,17 @@ const MDXComponent = {
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
-    p: (props: any) => <Text as="p" mt={5} mb={10} mx="5rem"  wordBreak={'break-word'} {...props} />,
+    p: (props: any) => <Text as="p" mt={5} mb={10} wordBreak={'break-word'} {...props} />,
     
     li: (props: any) => <ListItem ml={6} {...props} />,
-    ul: (props: any) => <List as="ul" styleType="circle" mx="5rem" my="1.5rem" {...props} />,
-    ol: (props: any) => <List as="ol" styleType="decimal" mx="5rem" my="1.5rem" {...props} />,
+    ul: (props: any) => <List as="ul" styleType="circle" my="1.5rem" {...props} />,
+    ol: (props: any) => <List as="ol" styleType="decimal" my="1.5rem" {...props} />,
     
-    h2: (props: any) => <DocsHeading as="h2" size="xl" mx="5rem" fontWeight="bold" {...props} />,
-    h3: (props: any) => <DocsHeading as="h3" size="lg" mx="5rem" fontWeight="bold" {...props} />,
-    h4: (props: any) => <DocsHeading as="h4" size="md" mx="5rem" fontWeight="bold" {...props} />,
-    h5: (props: any) => <DocsHeading as="h5" size="sm" mx="5rem" fontWeight="bold" {...props} />,
-    h6: (props: any) => <DocsHeading as="h6" size="xs" mx="5rem" fontWeight="bold" {...props} />,
+    h2: (props: any) => <DocsHeading as="h2" size="xl" fontWeight="bold" {...props} />,
+    h3: (props: any) => <DocsHeading as="h3" size="lg" fontWeight="bold" {...props} />,
+    h4: (props: any) => <DocsHeading as="h4" size="md" fontWeight="bold" {...props} />,
+    h5: (props: any) => <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />,
+    h6: (props: any) => <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />,
     
     // for table
     tr: (props: any) => <Tr {...props} />,
