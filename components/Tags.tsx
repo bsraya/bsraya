@@ -7,11 +7,7 @@ export default function Tags({ tags }: { tags: string[] }) {
             {
                 tags.map((tag: string, index: any) => {
                     return (
-                        <NextLink
-                            passHref
-                            key={index}
-                            href={'/tag/' + tag}
-                        >
+                        
                             <Button
                                 mr={2}
                                 variant="ghost"
@@ -29,12 +25,17 @@ export default function Tags({ tags }: { tags: string[] }) {
                                     bgColor: 'gray.50'
                                 }}
                                 color="gray.500"
-                                fontFamily="Montserrat, sans-serif"
+                                fontFamily="Fira Code"
                                 boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
+                        >
+                            <NextLink
+                                passHref
+                                key={index}
+                                href={'/tag/' + tag}
                             >
                                 {tag}
-                            </Button>
-                        </NextLink>
+                            </NextLink>
+                        </Button>
                     )
                 })
             }
