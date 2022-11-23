@@ -1,4 +1,10 @@
-import { Box, Flex, Text, Divider, Link } from '@chakra-ui/react'
+import {
+    Box,
+    Flex,
+    Text,
+    Link,
+    Divider,
+} from '@chakra-ui/react'
 
 export default function Footer(): JSX.Element {
     const links = [
@@ -17,9 +23,18 @@ export default function Footer(): JSX.Element {
     ]
 
     return (
-        <Box w="95%" mx="auto" fontSize="1rem" fontFamily="Fira Code">
+        <Box
+            w="95%"
+            mx="auto"
+            fontSize="1rem"
+            fontFamily="Fira Code"
+        >
             <Divider/>
-            <Flex as="footer" mt="0.5rem" mb="2rem">
+            <Flex
+                as="footer"
+                mt="0.5rem"
+                mb="2rem"
+            >
                 <Text mr="auto">
                     © Bijon Setyawan Raya {new Date().getFullYear()}
                 </Text>
@@ -28,10 +43,10 @@ export default function Footer(): JSX.Element {
                         <Link
                             key={item.name}
                             as="a"
-                            fontStyle="normal"
                             px={2}
-                            href={item.url}
                             isExternal
+                            href={item.url}
+                            fontStyle="normal"
                         >
                             <Text>{item.name}</Text>
                         </Link>

@@ -1,4 +1,10 @@
-import { Flex, Heading, Stack, Box, Text } from "@chakra-ui/react";
+import {
+    Box,
+    Flex,
+    Text,
+    Stack,
+    Heading,
+} from "@chakra-ui/react";
 import Skill from './Skill';
 import Ruby from "../../icons/ruby";
 import Rails from "../../icons/rails";
@@ -29,9 +35,9 @@ export default function Experience(): JSX.Element {
                     </Heading>
                     <Flex mt={3} mb={5} wrap="wrap">
                         <Skill name="Ruby" icon={Ruby} />
-                        <Skill name="Ruby on Rails" icon={Rails} />
-                        <Skill name="Typescript" icon={Typescript} />
                         <Skill name="Vue.js" icon={Vue} />
+                        <Skill name="Typescript" icon={Typescript} />
+                        <Skill name="Ruby on Rails" icon={Rails} />
                     </Flex>
                 </Stack>
             </Box>
@@ -74,15 +80,6 @@ export default function Experience(): JSX.Element {
                         <Skill name="Keras" icon={Keras} />
                     </Flex>
                 </Stack>
-            </Box>
-
-            <Box my={10}>
-            </Box>
-
-            <Box my={10}>
-            </Box>
-            
-            <Box my={10}>
             </Box>
         </>       
     )

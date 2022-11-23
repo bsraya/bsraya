@@ -1,5 +1,9 @@
+import {
+    Box,
+    IconButton,
+    useColorModeValue
+} from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
-import { Box, IconButton, useColorModeValue } from '@chakra-ui/react'
 import { TriangleUpIcon } from '@chakra-ui/icons'
 
 export default function BackToTop() {

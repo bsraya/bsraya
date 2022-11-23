@@ -1,4 +1,8 @@
-import { Box, Icon, Tooltip } from "@chakra-ui/react";
+import {
+    Box,
+    Icon,
+    Tooltip
+} from "@chakra-ui/react";
 
 // pass string and <svg>
 export default function Skill({ name, icon }: { name: string, icon: JSX.Element }) {

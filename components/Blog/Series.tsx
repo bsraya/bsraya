@@ -93,9 +93,6 @@ export default function Series({ series, posts, currentPost }: { series: string,
             display="block"
             border="1px solid"
             background="white"
-            _dark={{
-                bgColor: 'gray.800',
-            }}
             borderColor="gray.300"
             maxW="768px"
         >   
@@ -104,10 +101,9 @@ export default function Series({ series, posts, currentPost }: { series: string,
                 mx={2}
                 fontSize="lg"
                 color="dark"
-                _dark={{
-                    color: "light"   
-                }}
-            >{series} ({posts.length} Parts)</Heading>
+            >
+                {series} ({posts.length} Parts)
+            </Heading>
             <Divider borderColor="gray.300" w="100%" />
             {
                 posts.map((post: IPost) => {

@@ -1,5 +1,3 @@
-import NextLink from 'next/link'
-import type { Post } from '../../lib/types'
 import {
     Box,
     Text,
@@ -11,8 +9,10 @@ import {
     useColorModeValue,
     useBreakpointValue,
 } from '@chakra-ui/react'
+import NextLink from 'next/link'
+import type { IPost } from '../../lib/types'
 
-function Cards({ posts, type }: { posts: Post[], type: string }) {
+function Cards({ posts, type }: { posts: IPost[], type: string }) {
     const isDesktop = useBreakpointValue({ base: false, md: true })
     const fontSize = isDesktop ? 'md' : 'sm'
     const padding = isDesktop ? '3' : '2'
@@ -104,7 +104,7 @@ function Cards({ posts, type }: { posts: Post[], type: string }) {
     )
 }
 
-export default function RelatedPosts({ posts, type }: { posts: Post[]; type: string }) {
+export default function RelatedPosts({ posts, type }: { posts: IPost[]; type: string }) {
     return (
         <>
             {

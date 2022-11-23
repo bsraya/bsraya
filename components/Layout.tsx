@@ -1,6 +1,6 @@
 import Navbar from './Navigation/Bar'
 import Footer from './Footer'
-import { Box, Container, useMediaQuery } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
 import prismStyles from '../styles/prism'
 import katexStyles from '../styles/katex'
 import { Global } from '@emotion/react';
