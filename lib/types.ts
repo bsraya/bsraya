@@ -1,16 +1,12 @@
-export type MdxPage = {
+export type IMdxPage = {
     frontMatter: { [key: string]: any; };
     mdxSource: any;
     headings: any;
     slug: string;
-    relatedPosts: Post[] | null;
+    relatedPosts: IPost[] | null;
 };
 
-export type Post =  {
+export type IPost =  {
     frontMatter: { [key: string]: any; };
     slug: string;
 }
-
-export type Views = {
-    total: number;
-};
