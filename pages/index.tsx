@@ -13,14 +13,14 @@ import {
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import type { Post } from '../lib/types'
+import type { IPost } from '../lib/types'
 import { sortPosts } from '../lib/posts'
 import Seo from '../components/Seo'
 import Image from 'next/image'
 import Navbar from "../components/Navigation/Bar"
 import Footer from '../components/Footer'
 
-export default function Home({ posts }: { posts: Post[] }): JSX.Element {
+export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
     const isDesktop = useBreakpointValue({ base: false, md: true }) 
     return (
         <>
@@ -162,7 +162,7 @@ export const getStaticProps = async () => {
     const folders = fs.readdirSync(path.join(process.cwd(), 'content', 'posts'))
 
     // iterate through all the files in /content/posts
-    var posts: Post[] = folders.map(slug => {
+    var posts: IPost[] = folders.map(slug => {
         const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf-8')
         const { data: frontMatter } = matter(content)
 
@@ -172,7 +172,7 @@ export const getStaticProps = async () => {
         }
     })
 
-    posts = posts.filter((post: Post) => post.frontMatter.publish)
+    posts = posts.filter((post: IPost) => post.frontMatter.publish)
 
     // sort the posts by date
     posts = sortPosts(posts)
