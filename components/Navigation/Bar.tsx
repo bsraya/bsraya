@@ -19,12 +19,11 @@ export default function Navigation(): JSX.Element {
                 <Text
                     fontFamily="Fira Code"
                     fontSize="2xl"
-                    ml="1rem"
-                    transition="transform 0.2s ease-in-out"
+                    fontWeight="700"
+                    transform='translateY(0px)'
+                    transition="box-shadow .15s ease-in-out, transform .15s ease-in-out"
                     _hover={{
-                        cursor: "pointer",
-                        transform: "scale(1.1)",
-                        transition: "transform 0.2s ease-in-out",
+                        transform: 'translateY(-5px)'
                     }}
                 >bsraya</Text>
             </Nextlink>

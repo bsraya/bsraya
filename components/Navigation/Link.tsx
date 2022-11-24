@@ -17,7 +17,7 @@ export default function Navlink ({ href, children }: { href: string, children: R
     return (
         <NextLink href={href}>
             <Link
-                m={4}
+                mr={5}
                 variant="ghost"
                 fontFamily="Fira Code"
                 color={isActive ? "gray.800" : 'gray.300'}
