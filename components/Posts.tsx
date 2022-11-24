@@ -14,9 +14,9 @@ export default function Posts({ posts, type }: { posts: IPost[]; type: string })
             mt="5"
         >
             {
-                posts.map((post: IPost) => {
+                posts.map((post: IPost, index: number) => {
                     return(
-                        <Post post={post} type={type} />
+                        <Post key={index} post={post} type={type} />
                     )
                 })
             }
