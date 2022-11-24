@@ -19,8 +19,8 @@ export default function Post({ post, type }: { post: IPost; type: string }) {
             border="1px"
             borderRadius="md"
             borderColor="gray.100"
-            transform='translateY(-5px)'
             boxShadow="0 1rem 1rem rgba(0,0,0,.2)"
+            transform='translateY(-5px)'
             transition="box-shadow .15s ease-in-out, transform .15s ease-in-out"
             _hover={{
                 transform: 'translateY(0)'

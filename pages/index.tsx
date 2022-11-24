@@ -81,7 +81,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                             <LinkBox
                                 as='article'
                             >
-                                <Box p="2rem">
+                                <Box p="1.5rem">
                                     <Heading as="h3" fontSize="2rem" mb={3}>
                                         <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "gray.800" }}>
                                             Schedulearn

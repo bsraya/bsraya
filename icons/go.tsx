@@ -7,4 +7,4 @@ const Go = (
     </svg>
 )
 
-export default Go;
+export default Go

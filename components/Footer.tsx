@@ -4,21 +4,28 @@ import {
     Text,
     Link,
     Divider,
+    Icon,
 } from '@chakra-ui/react'
+import Github from "../icons/github"
+import LinkedIn from "../icons/linkedin"
+import Mail from "../icons/mail"
 
 export default function Footer(): JSX.Element {
     const links = [
         {
             name: 'GitHub',
             url: 'https://github.com/bsraya',
+            icon: <Github />
         },
         {
             name: 'LinkedIn',
-            url: 'https://www.linkedin.com/in/bijonsetyawan/'
+            url: 'https://www.linkedin.com/in/bijonsetyawan/',
+            icon: <LinkedIn />
         },
         {
             name: 'Email',
             url: 'mailto:nathan.setyawan96@gmail.com',
+            icon: <Mail />
         },
     ]
 
@@ -36,7 +43,7 @@ export default function Footer(): JSX.Element {
                 mb="2rem"
             >
                 <Text mr="auto">
-                    © Bijon Setyawan Raya {new Date().getFullYear()}
+                    © Bijon S. Raya {new Date().getFullYear()}
                 </Text>
                 <Flex>
                     {links.map((item) => (
@@ -47,8 +54,11 @@ export default function Footer(): JSX.Element {
                             isExternal
                             href={item.url}
                             fontStyle="normal"
+                            target="_blank"
                         >
-                            <Text>{item.name}</Text>
+                            <Icon w={6} h={6}>
+                                {item.icon}
+                            </Icon>
                         </Link>
                     ))}
                 </Flex>
