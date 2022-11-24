@@ -22,7 +22,6 @@ import Tags from './../../components/Tags'
 import Layout from '../../components/Layout'
 import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
-import FixedToC from '../../components/TableOfContent/Fixed'
 import MobileToC from '../../components/TableOfContent/Mobile'
 
 // interface 

@@ -5,11 +5,11 @@ import Seo from '../../components/Seo'
 import Posts from '../../components/Posts'
 import Layout from '../../components/Layout'
 import { sortPosts } from '../../lib/posts'
-import type { Post } from '../../lib/types'
+import type { IPost } from '../../lib/types'
 import { Heading } from '@chakra-ui/react'
 import { getPostsByTag } from '../../lib/posts'
 
-function Tag({ posts, tag }: { posts: Post[], tag: string }) {
+function Tag({ posts, tag }: { posts: IPost[], tag: string }) {
     return (
         <Layout>
             <Seo title="Blog" type="website" />
