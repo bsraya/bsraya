@@ -1,8 +1,7 @@
 import { extendTheme, type ThemeConfig, theme as base, textDecoration } from "@chakra-ui/react"
 
 const config: ThemeConfig = {
-    initialColorMode: "light",
-    useSystemColorMode: true,
+    initialColorMode: "light"
 }
 
 // customize fonts add "config" to the theme as well

@@ -37,41 +37,26 @@ const CustomLink = (props: any) => {
 
     if (isInternalLinkHeader) {
         return (
-            <NextLink {...props} href={href} passHref>
-                <Link
-                    {...props}
-                    color="dark"
-                    _dark={{
-                        color: "light"
-                    }}
-                    // text set to not italic
-                    fontStyle="normal"
-                />
+            <NextLink href={href} passHref>
+                {props.children}
             </NextLink>
         );
     }
 
     if (isInternalLink) {
         return (
-            <NextLink
-                {...props}
-                href={href}
-                passHref
-            >
-                <Link
-                    {...props}
-                    color="dark"
-                    _dark={{
-                        color: "light"
-                    }}
-                    textDecoration="underline"
-                    _hover={{
-                        textDecoration: "none"
-                    }}
-                >
-                    {props.children}<LinkIcon mx='5px' mb="8px" />
-                </Link>
-            </NextLink>
+            <Link>
+                <NextLink
+                    href={href}
+                    passHref
+                    legacyBehavior
+                >   
+                    <>
+                    {props.children}
+                    <LinkIcon mx='5px' mb="8px" />
+                    </>
+                </NextLink>
+            </Link>
         )
     }
 

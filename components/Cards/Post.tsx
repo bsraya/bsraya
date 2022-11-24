@@ -1,12 +1,10 @@
 import {
-  Box,
-  Text,
-  HStack,
-  Heading,
-  LinkBox,
-  LinkOverlay,
+    Box,
+    Text,
+    HStack,
+    Heading,
+    LinkBox,
 } from '@chakra-ui/react'
-import Tags from '../Tags'
 import Type from './Type'
 import NextLink from 'next/link'
 import { DateTime } from 'luxon'
@@ -50,19 +48,21 @@ export default function Post({ post, type }: { post: IPost; type: string }) {
                     </Heading>
                 </Box>
                 <Box p={5}>
-                    <LinkOverlay fontStyle="normal">
-                        <HStack>
-                            <Text color="gray.500" fontSize="md" fontFamily="heading">
-                                {DateTime.fromISO(post.frontMatter.date).toFormat("LLLL dd, yyyy")}
-                            </Text>
-                            {
-                                post.frontMatter.series && (
-                                  <Type />
-                                )
-                            }
-                        </HStack>
-                        <Text as="p" color="gray.500" mt={3}>{post.frontMatter.description}</Text>
-                    </LinkOverlay>  
+                    <HStack>
+                        <Text
+                            fontSize="md"
+                            color="gray.500"
+                            fontFamily="heading"
+                        >
+                            {DateTime.fromISO(post.frontMatter.date).toFormat("LLLL dd, yyyy")}
+                        </Text>
+                        {
+                            post.frontMatter.series && (
+                                <Type />
+                            )
+                        }
+                    </HStack>
+                    <Text as="p" color="gray.500" mt={3}>{post.frontMatter.description}</Text>
                 </Box>
             </NextLink>
         </LinkBox>

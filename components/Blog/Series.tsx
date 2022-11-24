@@ -118,16 +118,14 @@ export default function Series({ series, posts, currentPost }: { series: string,
                                     }}
                                     borderBottomRadius={index === posts.length ? "md" : "none"}
                                 >
-                                    <LinkOverlay>
-                                        <Flex mx={3} py={3}>
-                                            {
-                                                post.title === currentPost ?
-                                                    <CurrentPost index={index} title={post.title} />
-                                                    :
-                                                    <NotCurrentPost index={index} title={post.title} />
-                                            }
-                                        </Flex>
-                                    </LinkOverlay>
+                                    <Flex mx={3} py={3}>
+                                        {
+                                            post.title === currentPost ?
+                                                <CurrentPost index={index} title={post.title} />
+                                                :
+                                                <NotCurrentPost index={index} title={post.title} />
+                                        }
+                                    </Flex>
                                 </LinkBox>
                             </NextLink>
                         )

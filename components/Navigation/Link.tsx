@@ -24,7 +24,9 @@ export default function Navlink ({ href, children }: { href: string, children: R
                 _hover={{ color: "gray.800" }}
                 _active={{ color: "gray.800" }}
                 letterSpacing="1px"
-            >{children}</Link>
+            >
+                {children}
+            </Link>
         </NextLink>
     )
 }

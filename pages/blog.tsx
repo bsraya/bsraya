@@ -12,14 +12,14 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '../components/Layout'
-import type { Post } from '../lib/types'
+import type { IPost } from '../lib/types'
 import Posts from '../components/Posts'
 import { useMemo, useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
 import { sortPosts } from '../lib/posts'
 import Seo from '../components/Seo'
 
-export default function Blog({ posts }: { posts: Post[] }): JSX.Element {
+export default function Blog({ posts }: { posts: IPost[] }): JSX.Element {
     const [search, setSearch] = useState('')
     const filteredPosts = useMemo(() => {
         return posts.filter(
@@ -77,7 +77,7 @@ export const getStaticProps = async () => {
     const folders = fs.readdirSync(path.join(process.cwd(), 'content', 'posts'))
 
     // iterate through all the files in /content/posts
-    var posts: Post[] = folders.map(slug => {
+    var posts: IPost[] = folders.map(slug => {
         const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf-8')
         const { data: frontMatter } = matter(content)
         return {
@@ -86,7 +86,7 @@ export const getStaticProps = async () => {
         }
     })
 
-    posts = posts.filter((post: Post) => post.frontMatter.publish)
+    posts = posts.filter((post: IPost) => post.frontMatter.publish)
 
     // sort the posts by date
     posts = sortPosts(posts)
