@@ -61,10 +61,6 @@ export default function BackToTop() {
                 opacity: 0.5,
                 cursor: 'not-allowed',
             }}
-            // set box shadow for dark mode
-            _dark={{
-                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
-            }}
         >
             <IconButton
                 aria-label='Back to top button'
