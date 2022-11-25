@@ -12,7 +12,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <Container
             as="main"
             my={10}
-            maxWidth="container.lg"
+            maxWidth="container.md"
         >
             <Navbar />
             <Global
