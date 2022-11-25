@@ -1,14 +1,14 @@
 import {
     Box,
     Heading,
-    SimpleGrid,
     Text,
-    Container,
     VStack,
     useBreakpointValue,
     LinkBox,
     LinkOverlay,
+    Link,
 } from '@chakra-ui/react'
+import { ArrowForwardIcon } from '@chakra-ui/icons'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -17,6 +17,8 @@ import type { IPost } from '../lib/types'
 import { sortPosts } from '../lib/posts'
 import Seo from '../components/Seo'
 import Layout from '../components/Layout'
+import Posts from '../components/Posts'
+import NextLink from 'next/link'
 
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
     const isDesktop = useBreakpointValue({ base: false, md: true }) 
@@ -31,7 +33,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                 <Box display="flex" flexDirection="column" justifyContent="center">
                     <Heading
                         as="h1"
-                        fontSize="4rem"
+                        fontSize="3rem"
                         fontFamily="Fira Code"
                         fontWeight="700"
                     >
@@ -60,11 +62,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                     >
                         Latest Project
                     </Heading>
-                    <SimpleGrid
-                        columns={ isDesktop ? 2 : 1 }
-                        spacing="5"
-                        mt="5"
-                    >
+                    <LinkBox as='article'>
                         <Image
                             src="/images/portfolios/personal-website/dark-mode.png"
                             alt="Next.js"
@@ -75,21 +73,17 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                             blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
                             style={{ marginLeft: "auto", marginRight: "auto" }}
                         />
-                        <LinkBox
-                            as='article'
-                        >
-                            <Box p="1.5rem">
-                                <Heading as="h3" fontSize="2rem" mb={3}>
-                                    <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "gray.800" }}>
-                                        Schedulearn
-                                    </LinkOverlay>
-                                </Heading>
-                                <Text>
-                                    Schedulearn is a smart deep learning scheduling system, and it is easy to setup. No Kubernetes needed. Sending a training request is as easy as sending a JSON file, and this is to ensure users can focus more on developing their models.
-                                </Text>
-                            </Box>
-                        </LinkBox>
-                    </SimpleGrid>
+                        <Box p="1.5rem">
+                            <Heading as="h3" fontSize="2rem" mb={3}>
+                                <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "gray.800" }}>
+                                    Schedulearn
+                                </LinkOverlay>
+                            </Heading>
+                            <Text>
+                                Schedulearn is a smart deep learning scheduling system, and it is easy to setup. No Kubernetes needed. Sending a training request is as easy as sending a JSON file, and this is to ensure users can focus more on developing their models.
+                            </Text>
+                        </Box>
+                    </LinkBox>
                 </Box>
                 
                 <Box>
@@ -100,52 +94,20 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                     >
                         Latest Posts
                     </Heading>
-                    <SimpleGrid
-                        columns={ isDesktop ? 3 : 1 }
-                        spacing="10"
-                        mt="5"
+                    <Posts posts={posts} type="home" />
+                    <LinkBox 
+                        mt="1rem"
+                        _hover={{
+                            '& > *': {
+                                transform: 'translateX(10px)'
+                            }
+                        }}
                     >
-                        {posts.map((post) => (
-                            <LinkBox
-                                as='article'
-                                key={post.slug}
-                            >
-                                <Box
-                                    key={post.slug}
-                                    p="5"
-                                >
-                                    <Heading as="h3" fontSize="2rem" my={1}>
-                                        <LinkOverlay href={`/blog/${post.slug}`} _hover={{ color: "gray.800" }}>
-                                            {post.frontMatter.title}
-                                        </LinkOverlay>
-                                    </Heading>
-                                    <Text>
-                                        {post.frontMatter.description}
-                                    </Text>
-                                    <Box>
-                                        {
-                                            post.frontMatter.tags.map((tag: string) => (
-                                                <Text
-                                                    key={tag}
-                                                    as="a"
-                                                    fontSize="sm"
-                                                    color="gray.500"
-                                                    mr={2}
-                                                    href={`/tags/${tag}`}
-                                                    fontFamily="Fira Code"
-                                                    _hover={{
-                                                        textDecoration: "underline",
-                                                    }}
-                                                >
-                                                    #{tag}
-                                                </Text>
-                                            ))
-                                        }
-                                    </Box>
-                                </Box>
-                            </LinkBox>
-                        ))}
-                    </SimpleGrid>
+                        <NextLink href="/blog">
+                            More posts 
+                        </NextLink>
+                        <ArrowForwardIcon ml="0.25rem" translateX="0" transition="transform .15s ease-in-out" />
+                    </LinkBox>
                 </Box>
             </VStack>
         </Layout>
@@ -172,7 +134,7 @@ export const getStaticProps = async () => {
     // sort the posts by date
     posts = sortPosts(posts)
 
-    posts = posts.slice(0, 6)
+    posts = posts.slice(0, 4)
 
     return {
         props: {
