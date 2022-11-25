@@ -28,7 +28,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                 spacing="5rem"
                 align="left"
             >
-                <Box mt="5rem" display="flex" flexDirection="column" justifyContent="center">
+                <Box display="flex" flexDirection="column" justifyContent="center">
                     <Heading
                         as="h1"
                         fontSize="4rem"

@@ -32,7 +32,7 @@ export default function Blog({ posts }: { posts: IPost[] }): JSX.Element {
     return (
         <Layout>
             <Seo title="Blog" type="website" />
-            <Heading>Blog</Heading>
+            <Heading mt="5rem">Blog</Heading>
             <FormControl mt={5}>
                 <InputGroup>
                     <InputLeftElement
