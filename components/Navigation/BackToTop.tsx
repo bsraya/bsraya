@@ -64,14 +64,11 @@ export default function BackToTop() {
         >
             <IconButton
                 aria-label='Back to top button'
-                icon={<TriangleUpIcon color={color} />}
+                icon={<TriangleUpIcon color="gray.600" />}
                 colorScheme="transparent"
-                border="2px solid"
-                borderColor={color}
+                border="1px solid"
+                borderColor="gray.200"
                 bgColor="white"
-                _dark={{
-                    bgColor: "gray.800",
-                }}
             />
         </Box>
     )
