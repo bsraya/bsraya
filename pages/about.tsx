@@ -14,13 +14,13 @@ export default function About(): JSX.Element {
             <Seo title="About" type="website" />
             <Stack mt="5rem">
                 <Heading as="h1">
-                    About me
+                    Hey!
                 </Heading>
                 <Text color="gray.500">
-                    Hey, I am Bijon Setyawan Raya. I am a fullstack developer, and also a Computer Science graduate student at National Tsing Hua University in Hsinchu, Taiwan.
+                    I am Bijon Setyawan Raya. I am a fullstack developer, currently a Computer Science graduate student at National Tsing Hua University in Hsinchu, Taiwan.
                 </Text>
                 <Text color="gray.500">
-                    In my graduate program, I am focusing on Deep Learning. Due to the necessity of my lab, I created a distributed deep learning system that can be used to train deep learning models efficiently on a cluster of machines.
+                    In my graduate degree, I focus on Deep Learning. Due to the necessity of my lab, I created a distributed deep learning system that can be used to train deep learning models efficiently on a cluster of machines.
                     I also created a web application that can be used to monitor the status of the trainig jobs, as well as the machines in the cluster.
                 </Text>
                 <Text color="gray.500">
