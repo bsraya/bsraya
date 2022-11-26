@@ -2,6 +2,7 @@ import {
     Flex,
     Icon,
     Text,
+    Stack,
     HStack,
     Heading,
     useBreakpointValue,
@@ -52,19 +53,21 @@ export default function Portfolio({ mdxSource }: IMdxPage) {
                 title={ mdxSource.frontmatter.title } 
                 description={ mdxSource.frontmatter.description }
             />
-            <Text color="gray.500" fontSize="md" fontFamily="heading">
-                {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
-            </Text>
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-            <HStack my={2} spacing={5} fontFamily="heading">
-                <Flex>
-                    <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
-                    <Text fontSize={fontSize}>
-                        {mdxSource.frontmatter.readingTime}
-                    </Text>
-                </Flex>
-            </HStack>
-            <Authors authors={mdxSource.frontmatter.authors} />
+            <Stack mt="5rem">
+                <Text color="gray.500" fontSize="md" fontFamily="heading">
+                    {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
+                </Text>
+                <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
+                <HStack my={2} spacing={5} fontFamily="heading">
+                    <Flex>
+                        <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
+                        <Text fontSize={fontSize}>
+                            {mdxSource.frontmatter.readingTime}
+                        </Text>
+                    </Flex>
+                </HStack>
+                <Authors authors={mdxSource.frontmatter.authors} />
+            </Stack>
             <FixedToC headings={mdxSource.headings} />
             { isMobile && <MobileToC headings={mdxSource.headings} /> }
             <MDXRemote { ...mdxSource } components={ MDXComponents } />

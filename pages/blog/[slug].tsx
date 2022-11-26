@@ -3,6 +3,7 @@ import {
     Icon,
     Flex,
     Text,
+    Stack,
     HStack,
     Heading,
     useBreakpointValue
@@ -56,43 +57,44 @@ export default function Blog({ mdxSource }: IMdxPage) {
                 title={ mdxSource.frontmatter.title }
                 description={ mdxSource.frontmatter.description }
             />
-            <HStack>
-                <Text color="gray.500" fontSize="md" fontFamily="heading">
-                    {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
-                </Text>
-                {
-                    mdxSource.frontmatter.series && (
-                        <Box
-                            h={7}
-                            pl={2}
-                            pr={2}
-                            borderRadius="md"
-                            bg="gray.100"
-                            boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
-                        >
-                            <Text
-                                m="auto"
-                                fontSize="sm"
-                                fontFamily="heading"
-                                color="gray.500"
-                            >
-                                Series
-                            </Text>
-                        </Box>
-                    )
-                }
-            </HStack>
-            <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-            <HStack my={2} spacing={5} fontFamily="heading">
-                <Flex>
-                    <Icon as={BiTime} h={5} w={5} mr={2} my="auto" />
-                    <Text fontSize={fontSize}>
-                        {mdxSource.frontmatter.readingTime}
+            <Stack mt="5rem">
+                <HStack>
+                    <Text color="gray.500" fontSize="md" fontFamily="heading">
+                        {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
                     </Text>
-                </Flex>
-            </HStack>
-            <Authors authors={ mdxSource.frontmatter.authors } />
-            
+                    {
+                        mdxSource.frontmatter.series && (
+                            <Box
+                                h={7}
+                                pl={2}
+                                pr={2}
+                                borderRadius="md"
+                                bg="gray.100"
+                                boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
+                            >
+                                <Text
+                                    m="auto"
+                                    fontSize="sm"
+                                    fontFamily="heading"
+                                    color="gray.500"
+                                >
+                                    Series
+                                </Text>
+                            </Box>
+                        )
+                    }
+                </HStack>
+                <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
+                <HStack my={2} spacing={5} fontFamily="heading">
+                    <Flex>
+                        <Icon as={BiTime} h={5} w={5} mr={2} my="auto" />
+                        <Text fontSize={fontSize}>
+                            {mdxSource.frontmatter.readingTime}
+                        </Text>
+                    </Flex>
+                </HStack>
+                <Authors authors={ mdxSource.frontmatter.authors } />
+            </Stack>
             {/* <FixedToC headings={mdxSource.headings} /> */}
             {isMobile && <MobileToC headings={mdxSource.headings} />}
             <MDXRemote {...mdxSource} components={MDXComponents} />

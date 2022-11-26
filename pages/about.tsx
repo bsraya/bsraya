@@ -1,6 +1,6 @@
 import { Heading, Link, Stack, Text } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-
+import NextLink from 'next/link'
 import Seo from '../components/Seo'
 import Layout from '../components/Layout'
 import Experience from '../components/About/Experience'
@@ -21,11 +21,10 @@ export default function About(): JSX.Element {
                 </Text>
                 <Text color="gray.500">
                     In my graduate degree, I focus on Deep Learning. Due to the necessity of my lab, I created a distributed deep learning system that can be used to train deep learning models efficiently on a cluster of machines.
-                    I also created a web application that can be used to monitor the status of the trainig jobs, as well as the machines in the cluster.
+                    For more details, read <><NextLink href="/portfolio/schedulearn">here</NextLink></>.
                 </Text>
                 <Text color="gray.500">
-                    Down there, you will be able to see my experience as a developer, as well as the technologies that I am and have used in the past. Those technologies are shown as icons, and please hover over the icons to see its description.
-                    For more details, my resume can be seen or downloaded <><Link href={resumeLink} color="dark" _dark={{ color: "light" }} isExternal textDecoration="underline" _hover={{ textDecoration: "none" }}>here</Link><ExternalLinkIcon mx="5px" mb="4px" /></>.
+                    For more details, my resume can be seen or downloaded <><Link href={resumeLink} isExternal textDecoration="underline" _hover={{ textDecoration: "none" }}>here</Link><ExternalLinkIcon mx="5px" mb="4px" /></>.
                 </Text>
             </Stack>
             <Experience />

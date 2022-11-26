@@ -6,7 +6,7 @@ import {
     useBreakpointValue,
     LinkBox,
     LinkOverlay,
-    Link,
+    SimpleGrid,
 } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import fs from 'fs'
@@ -60,30 +60,52 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         fontSize="2rem"
                         fontWeight="400"
                     >
-                        Latest Project
+                        Recent Projects
                     </Heading>
-                    <LinkBox as='article'>
-                        <Image
-                            src="/images/portfolios/personal-website/dark-mode.png"
-                            alt="Next.js"
-                            loading='lazy'
-                            width={1200}
-                            height={700}
-                            placeholder="blur"
-                            blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
-                            style={{ marginLeft: "auto", marginRight: "auto" }}
-                        />
-                        <Box p="1.5rem">
-                            <Heading as="h3" fontSize="2rem" mb={3}>
-                                <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "gray.800" }}>
-                                    Schedulearn
-                                </LinkOverlay>
-                            </Heading>
-                            <Text>
-                                Schedulearn is a smart deep learning scheduling system, and it is easy to setup. No Kubernetes needed. Sending a training request is as easy as sending a JSON file, and this is to ensure users can focus more on developing their models.
-                            </Text>
-                        </Box>
-                    </LinkBox>
+                    <SimpleGrid
+                        columns={ isDesktop ? 2 : 1 }
+                        spacing="5"
+                        mt="5"
+                    >
+                        <LinkBox as='article'>
+                            <Image
+                                src="/images/portfolios/personal-website/dark-mode.png"
+                                alt="Next.js"
+                                loading='lazy'
+                                width={1200}
+                                height={700}
+                                placeholder="blur"
+                                blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
+                                style={{ marginLeft: "auto", marginRight: "auto" }}
+                            />
+                            <Box p="1.5rem">
+                                <Heading as="h3" fontSize="2rem" mb={3}>
+                                    <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "gray.800" }}>
+                                        Schedulearn
+                                    </LinkOverlay>
+                                </Heading>
+                            </Box>
+                        </LinkBox>
+                        <LinkBox as='article'>
+                            <Image
+                                src="/images/portfolios/personal-website/dark-mode.png"
+                                alt="Next.js"
+                                loading='lazy'
+                                width={1200}
+                                height={700}
+                                placeholder="blur"
+                                blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
+                                style={{ marginLeft: "auto", marginRight: "auto" }}
+                            />
+                            <Box p="1.5rem">
+                                <Heading as="h3" fontSize="2rem" mb={3}>
+                                    <LinkOverlay href="/portfolio/paper-explaner" _hover={{ color: "gray.800" }}>
+                                        Paper Explainer
+                                    </LinkOverlay>
+                                </Heading>
+                            </Box>
+                        </LinkBox>
+                    </SimpleGrid>
                 </Box>
                 
                 <Box>
@@ -102,6 +124,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                                 transform: 'translateX(10px)'
                             }
                         }}
+                        width="130px"
                     >
                         <NextLink href="/blog">
                             More posts 
