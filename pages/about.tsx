@@ -20,7 +20,7 @@ export default function About(): JSX.Element {
                     I am Bijon Setyawan Raya. I am a fullstack developer, currently a Computer Science graduate student at National Tsing Hua University in Hsinchu, Taiwan.
                 </Text>
                 <Text color="gray.500">
-                    In my graduate degree, I focus on Deep Learning. Due to the necessity of my lab, I created a distributed deep learning system that can be used to train deep learning models efficiently on a cluster of machines.
+                    In my graduate degree, I focus on Numerical Optimization and Cloud Computing. Due to the necessity of my lab, I created a distributed deep learning system that can be used to train deep learning models efficiently on a cluster of machines.
                     For more details, read <><NextLink href="/portfolio/schedulearn">here</NextLink></>.
                 </Text>
                 <Text color="gray.500">
