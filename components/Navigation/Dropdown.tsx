@@ -20,7 +20,7 @@ import { FiGithub, FiHome, FiUser, FiFolder } from "react-icons/fi";
 export default function Dropdown(): JSX.Element {
   const isMobile = useBreakpointValue({ base: true, md: false })
   return (
-    <Box mr="0.5rem">
+    <Box>
       {
         isMobile && (
           <Menu isLazy>
@@ -42,10 +42,6 @@ export default function Dropdown(): JSX.Element {
               borderColor="gray.200"
               alignItems={["center", "flex-start"]}
               boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
-              _dark={{
-                borderColor: 'whiteAlpha.900',
-                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
-              }}
               borderRadius="0.5rem"
             >
               <Link href="https://github.com/bsraya" _hover={{ textDecoration: 'none' }} isExternal>

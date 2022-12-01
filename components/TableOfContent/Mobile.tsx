@@ -63,14 +63,10 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                                 <Icon as={AiOutlineMenuUnfold} color={color} />
                             }
                             variant="ghost"
-                            border="2px solid"
-                            borderColor={color}
+                            border="1px solid"
+                            borderColor="gray.200"
                             borderRadius="md"
                             boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
-                            _dark={{
-                                bgColor: "gray.800",
-                                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
-                            }}
                             colorScheme="transparent"
                             bgColor="white"
                         />
@@ -80,9 +76,6 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                             borderColor={color}
                             alignItems={["center", "flex-start"]}
                             boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
-                            _dark={{
-                                boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
-                            }}
                             fontFamily="heading"
                         >
                             <Text

@@ -56,10 +56,6 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
                 isRound
                 background='gray.200'
                 color="gray.700"
-                _dark={{
-                    color: 'gray.300',
-                    bgColor: 'gray.700'
-                }}
                 _hover={{
                     bgColor: 'none'
                 }}
@@ -69,9 +65,6 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
                 color="gray.700"
                 fontStyle="normal"
                 fontFamily="heading"
-                _dark={{
-                    color: 'gray.300'
-                }}
                 css={{
                     overflow: "hidden",
                     textOverflow: "ellipsis",

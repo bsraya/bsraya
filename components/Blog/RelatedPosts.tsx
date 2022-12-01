@@ -32,12 +32,6 @@ function Cards({ posts, type }: { posts: IPost[], type: string }) {
                         width="100%"
                         bg={bgColor}
                         boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
-                        _dark={{
-                            boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)',
-                            '&:hover': {
-                                bg: 'gray.500'
-                            },
-                        }}
                         _hover={{
                             bg: 'gray.50'
                         }}
@@ -60,9 +54,6 @@ function Cards({ posts, type }: { posts: IPost[], type: string }) {
                                     <Text
                                         fontSize={fontSize}
                                         color="gray.500"
-                                        _dark={{
-                                            color: "gray.300"
-                                        }}
                                     >
                                         {post.frontMatter.description}
                                     </Text>
@@ -72,9 +63,6 @@ function Cards({ posts, type }: { posts: IPost[], type: string }) {
                                                 px={padding}
                                                 borderRadius="md"
                                                 bg="inherit"
-                                                _dark={{
-                                                    borderColor: 'gray.400'
-                                                }}
                                                 border="1px solid"
                                                 borderColor="gray.500"
                                                 width="fit-content"
@@ -83,9 +71,6 @@ function Cards({ posts, type }: { posts: IPost[], type: string }) {
                                                 <Text
                                                     fontSize={fontSize}
                                                     color="gray.500"
-                                                    _dark={{
-                                                        color: "gray.100"
-                                                    }}
                                                     fontFamily="Montserrat, sans-serif"
                                                     fontWeight={600}
                                                 >

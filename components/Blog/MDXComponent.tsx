@@ -63,10 +63,6 @@ const CustomLink = (props: any) => {
     return (
         <Link
             {...props}
-            color="dark"
-            _dark={{
-                color: "light"
-            }}
             display="inline"
             textDecoration="underline"
             _hover={{
@@ -85,13 +81,9 @@ const CustomImages = (props: any) => {
                 my={10}
                 p={5}
                 borderRadius="md"
-                _dark={{
-                    opacity: 0.9
-                }}
                 style={{
                     display: 'block',
                     backgroundColor: 'white',
-
                 }}
             >
                 <figure>
@@ -124,9 +116,6 @@ const CustomImages = (props: any) => {
                 p={5}
                 my={5}
                 borderRadius="0.5rem"
-                _dark={{
-                    opacity: 0.9
-                }}
             >
                 <img 
                     src={props.src}
@@ -182,10 +171,6 @@ const DocsHeading = (props: any) => {
                     <Box
                         aria-label="anchor"
                         as="a"
-                        color="dark"
-                        _dark={{
-                            color: "light"
-                        }}
                         fontWeight="normal"
                         outline="none"
                         _focus={{
@@ -205,7 +190,7 @@ const DocsHeading = (props: any) => {
 }
 
 const Hr = () => {
-    return <Divider borderColor="gray.300" _dark={{ borderColor: 'gray.600' }} my={4} w="100%" />;
+    return <Divider borderColor="gray.300" my={4} w="100%" />;
 };
 
 const MDXComponent = {

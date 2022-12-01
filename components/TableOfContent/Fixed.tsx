@@ -90,11 +90,6 @@ export default function FixedToC({ headings }: { headings: string[] }) {
                         bg="white"
                         borderRadius="xl"
                         width="inherit"
-                        _dark={{
-                            bg: "blue.800",
-                            borderColor: "gray.600",
-                            boxShadow: '5px 5px 0px rgba(255, 255, 255, 0.1)'
-                        }}
                         boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
                     >
                         <AccordionItem>

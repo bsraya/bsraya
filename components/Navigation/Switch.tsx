@@ -9,9 +9,6 @@ export default function ColorModeSwitch({...props}): JSX.Element {
             {...props}
             bg="transparent"
             color='gray.800'
-            _dark={{
-                color: 'whiteAlpha.900',
-            }}
             onMouseDown={toggleColorMode}
             icon={colorMode === 'dark' ? <MoonIcon /> : <SunIcon />}
             aria-label={colorMode === 'dark' ? 'Dark Mode' : 'Light Mode'}

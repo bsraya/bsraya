@@ -18,9 +18,6 @@ export default function Type() {
           fontSize="sm"
           color="gray.500"
           fontFamily="heading"
-          _dark={{
-              color: "gray.200"
-          }}
         >
           Series
         </Text>
