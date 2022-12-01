@@ -109,7 +109,6 @@ export default function Blog({ mdxSource }: IMdxPage) {
                 <Divider />
                 <Tags tags={mdxSource.frontmatter.tags} />
             </Stack>
-            {/* <FixedToC headings={mdxSource.headings} /> */}
             {isMobile && <MobileToC headings={mdxSource.headings} />}
             <MDXRemote {...mdxSource} components={MDXComponents} />
             <RelatedPosts posts={mdxSource.relatedPosts} type="blog" />

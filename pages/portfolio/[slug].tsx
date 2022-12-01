@@ -68,7 +68,6 @@ export default function Portfolio({ mdxSource }: IMdxPage) {
                 </HStack>
                 <Authors authors={mdxSource.frontmatter.authors} />
             </Stack>
-            <FixedToC headings={mdxSource.headings} />
             { isMobile && <MobileToC headings={mdxSource.headings} /> }
             <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>
