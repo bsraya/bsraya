@@ -116,7 +116,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                     >
                         Latest Posts
                     </Heading>
-                    <Posts posts={posts} type="home" />
+                    <Posts posts={posts} type="blog" />
                     <LinkBox 
                         mt="1rem"
                         _hover={{
