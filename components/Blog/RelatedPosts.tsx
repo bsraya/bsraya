@@ -31,56 +31,56 @@ function Cards({ posts, type }: { posts: IPost[], type: string }) {
                         p={5}
                         width="100%"
                         bg={bgColor}
+                        border="1px solid"
+                        borderColor="gray.200"
                         boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
                         _hover={{
                             bg: 'gray.50'
                         }}
                     >
                         <NextLink href={'/' + type + '/' + post.slug} passHref>
-                            <LinkOverlay fontStyle="normal">
-                                <Heading 
-                                    as="h2" 
-                                    fontSize="1.5rem"
-                                    fontWeight="bold"
-                                    fontFamily="heading" 
+                            <Heading 
+                                as="h2" 
+                                fontSize="1.5rem"
+                                fontWeight="bold"
+                                fontFamily="heading" 
+                            >
+                                {post.frontMatter.title}
+                            </Heading>
+                            <HStack
+                                spacing={isDesktop ? 0 : 3}
+                                mt={3}
+                                display={isDesktop ? 'block' : 'flex'}
+                            >
+                                <Text
+                                    fontSize={fontSize}
+                                    color="gray.500"
                                 >
-                                    {post.frontMatter.title}
-                                </Heading>
-                                <HStack
-                                    spacing={isDesktop ? 0 : 3}
-                                    mt={3}
-                                    display={isDesktop ? 'block' : 'flex'}
-                                >
-                                    <Text
-                                        fontSize={fontSize}
-                                        color="gray.500"
-                                    >
-                                        {post.frontMatter.description}
-                                    </Text>
-                                    {
-                                        post.frontMatter.series && (
-                                            <Box
-                                                px={padding}
-                                                borderRadius="md"
-                                                bg="inherit"
-                                                border="1px solid"
-                                                borderColor="gray.500"
-                                                width="fit-content"
-                                                ml={0}
+                                    {post.frontMatter.description}
+                                </Text>
+                                {
+                                    post.frontMatter.series && (
+                                        <Box
+                                            px={padding}
+                                            borderRadius="md"
+                                            bg="inherit"
+                                            border="1px solid"
+                                            borderColor="gray.200"
+                                            width="fit-content"
+                                            ml={0}
+                                        >
+                                            <Text
+                                                fontSize={fontSize}
+                                                color="gray.500"
+                                                fontFamily="Montserrat, sans-serif"
+                                                fontWeight={600}
                                             >
-                                                <Text
-                                                    fontSize={fontSize}
-                                                    color="gray.500"
-                                                    fontFamily="Montserrat, sans-serif"
-                                                    fontWeight={600}
-                                                >
-                                                    Series
-                                                </Text>
-                                            </Box>
-                                        )
-                                    }
-                                </HStack>
-                            </LinkOverlay>
+                                                Series
+                                            </Text>
+                                        </Box>
+                                    )
+                                }
+                            </HStack>
                         </NextLink>
                     </LinkBox>
                 ))

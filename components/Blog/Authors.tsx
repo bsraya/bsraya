@@ -41,13 +41,6 @@ export default function Authors(props: any): JSX.Element {
 
     return (
         <Box mb={5}>
-            <Text
-                mb={2}
-                fontSize="sm"
-                color="gray.500"
-            >
-                Author(s):
-            </Text>
             <Wrap>
                 {
                     (citedAuthors.length === 1 && citedAuthors[0].name === authors[0].name) ?

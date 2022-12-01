@@ -6,14 +6,15 @@ import {
     Stack,
     HStack,
     Heading,
-    useBreakpointValue
+    useBreakpointValue,
+    Divider
 } from '@chakra-ui/react'
 import fs from 'fs'
 import path from 'path'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
-import { BiTime } from 'react-icons/bi'
+import { BiTime, BiCalendar } from 'react-icons/bi'
 import getHeadings from '../../lib/headings'
 import { getPostsByTags } from '../../lib/posts'
 
@@ -57,11 +58,8 @@ export default function Blog({ mdxSource }: IMdxPage) {
                 title={ mdxSource.frontmatter.title }
                 description={ mdxSource.frontmatter.description }
             />
-            <Stack mt="5rem">
-                <HStack>
-                    <Text color="gray.500" fontSize="md" fontFamily="heading">
-                        {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
-                    </Text>
+            <Stack spacing="1.5rem" mt="5rem" mb="3rem">
+                <Box>
                     {
                         mdxSource.frontmatter.series && (
                             <Box
@@ -71,6 +69,8 @@ export default function Blog({ mdxSource }: IMdxPage) {
                                 borderRadius="md"
                                 bg="gray.100"
                                 boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
+                                width="fit-content"
+                                mb="0.5rem"
                             >
                                 <Text
                                     m="auto"
@@ -83,17 +83,31 @@ export default function Blog({ mdxSource }: IMdxPage) {
                             </Box>
                         )
                     }
-                </HStack>
-                <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-                <HStack my={2} spacing={5} fontFamily="heading">
-                    <Flex>
-                        <Icon as={BiTime} h={5} w={5} mr={2} my="auto" />
-                        <Text fontSize={fontSize}>
-                            {mdxSource.frontmatter.readingTime}
-                        </Text>
-                    </Flex>
-                </HStack>
-                <Authors authors={ mdxSource.frontmatter.authors } />
+                    <Heading as="h1" size='2xl'>{mdxSource.frontmatter.title}</Heading>
+                    <Text mt="1rem" fontStyle="italic">
+                        {mdxSource.frontmatter.description}
+                    </Text>
+                </Box>
+                <Divider />
+                <Box>
+                    <Authors authors={mdxSource.frontmatter.authors} />
+                    <HStack spacing="2rem">
+                        <Flex>
+                            <Icon as={BiCalendar} h={5} w={5} mr={2} my="auto" />
+                            <Text fontSize={fontSize} fontFamily="heading">
+                                {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
+                            </Text>
+                        </Flex>
+                        <Flex mr="5rem">
+                            <Icon as={BiTime} h={5} w={5} mr={2} my="auto" />
+                            <Text fontSize={fontSize} fontFamily="heading">
+                                {mdxSource.frontmatter.readingTime}
+                            </Text>
+                        </Flex>
+                    </HStack>
+                </Box>
+                <Divider />
+                <Tags tags={mdxSource.frontmatter.tags} />
             </Stack>
             {/* <FixedToC headings={mdxSource.headings} /> */}
             {isMobile && <MobileToC headings={mdxSource.headings} />}
@@ -103,7 +117,7 @@ export default function Blog({ mdxSource }: IMdxPage) {
             <Heading as="h1" fontSize="4xl" mt={10} mb="1rem">
                 Tags
             </Heading>
-            <Tags tags={mdxSource.frontmatter.tags} />
+            
         </Layout>
     )
 }

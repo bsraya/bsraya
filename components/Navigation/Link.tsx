@@ -19,11 +19,11 @@ export default function Navlink ({ href, children }: { href: string, children: R
             <Link
                 mr={5}
                 variant="ghost"
+                letterSpacing="1px"
                 fontFamily="Fira Code"
-                color={isActive ? "gray.800" : 'gray.300'}
                 _hover={{ color: "gray.800" }}
                 _active={{ color: "gray.800" }}
-                letterSpacing="1px"
+                color={ isActive ? "gray.800" : 'gray.300' }
             >
                 {children}
             </Link>
