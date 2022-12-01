@@ -37,7 +37,7 @@ export default function Dropdown(): JSX.Element {
               variant="ghost"
             />
             <MenuList
-              zIndex={5}
+              zIndex={99}
               border="1px solid"
               borderColor="gray.200"
               alignItems={["center", "flex-start"]}

@@ -76,7 +76,7 @@ export default function FixedToC({ headings }: { headings: string[] }) {
     }, [])
 
     return (
-        <Box width={ isFixed ? "auto" : "100%" } height={ifHeadingsExist ? "96px" : "0px"} position="relative" zIndex={999}>
+        <Box width={ isFixed ? "auto" : "100%" } height={ifHeadingsExist ? "96px" : "0px"} position="relative" zIndex={100}>
             <Flex mx="auto" px="4" width="inherit" position={isFixed ? (isLargerThan768 ? 'fixed' : 'relative') : 'relative'} left="0" top="0">
             {
                 // if mdxSource.headings is not null, then render the headings
