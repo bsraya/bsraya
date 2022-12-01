@@ -31,7 +31,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                 <AlertIcon />
                 <Text fontStyle="italic">
                     This page is still under a lot of changes.
-                    You'll notice significant changes in the coming days.
+                    You will notice significant changes in the coming days.
                 </Text>
             </Alert>
             <VStack
