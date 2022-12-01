@@ -72,8 +72,8 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                         />
                         <MenuList
                             zIndex={5}
-                            border="2px solid"
-                            borderColor={color}
+                            border="1px solid"
+                            borderColor="gray.200"
                             alignItems={["center", "flex-start"]}
                             boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
                             fontFamily="heading"
