@@ -89,11 +89,12 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                             {
                                 headings.map((heading, index) => (
                                     <Link
-                                        href={`#${heading}`}
+                                        href={`#${heading.toLowerCase().replace(/\s+/g, '-')}`}
                                         key={index}
                                         _hover={{ textDecoration: 'none' }}
                                         onClick={() => {
                                             const id = heading.toLowerCase().replace(/\s+/g, '-')
+                                            console.log(id)
                                             const element = document.getElementById(id)
                                             if (element) {
                                                 element.scrollIntoView({
