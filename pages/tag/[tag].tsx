@@ -13,7 +13,7 @@ function Tag({ posts, tag }: { posts: IPost[], tag: string }) {
     return (
         <Layout>
             <Seo title="Blog" type="website" />
-            <Heading as="h1" size="xl">
+            <Heading as="h1" size="xl" mt="5rem">
                 {posts.length} post(s) tagged with #{tag}
             </Heading>
             <Posts posts={posts} type="blog" />
