@@ -37,7 +37,7 @@ const CustomLink = (props: any) => {
 
     if (isInternalLinkHeader) {
         return (
-            <NextLink href={href} passHref>
+            <NextLink href={href}>
                 {props.children}
             </NextLink>
         );
