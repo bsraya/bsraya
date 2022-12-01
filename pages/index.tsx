@@ -1,4 +1,6 @@
 import {
+    Alert,
+    AlertIcon,
     Box,
     Heading,
     Text,
@@ -25,11 +27,18 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
     return (
         <Layout>
             <Seo title="Home" type="website" />
+            <Alert status='info' mt="3rem">
+                <AlertIcon />
+                <Text fontStyle="italic">
+                    This page is still under a lot of changes.
+                    You'll notice significant changes in the coming days.
+                </Text>
+            </Alert>
             <VStack
                 mt="5rem"
                 spacing="5rem"
                 align="left"
-            >
+            >    
                 <Box display="flex" flexDirection="column" justifyContent="center">
                     <Heading
                         as="h1"
