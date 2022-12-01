@@ -28,7 +28,6 @@ import {
 } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import Series from './Series';
-import Image from 'next/image'
 
 const CustomLink = (props: any) => {
     const href = props.href;
