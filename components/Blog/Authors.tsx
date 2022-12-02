@@ -63,9 +63,11 @@ export default function Authors(props: any): JSX.Element {
                         >{authors[0].name}</Text>
                     </WrapItem>
                 ) : (
-                    citedAuthors.map((author: author) => {
+                    citedAuthors.map((author: author, index: number) => {
                         return (
-                            <WrapItem>
+                            <WrapItem
+                                key={index}
+                            >
                                 <Link
                                     href={author.url}
                                     target="_blank"
