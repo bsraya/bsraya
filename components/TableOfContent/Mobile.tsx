@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { AiOutlineMenuUnfold } from 'react-icons/ai'
 import React, { useState, useEffect } from 'react'
+import NextLink from 'next/link'
 
 export default function MobileToC({ headings }: { headings: string[] }) {
     const isMobile = useBreakpointValue({ base: true, md: false })
@@ -88,10 +89,9 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                             <MenuDivider />
                             {
                                 headings.map((heading, index) => (
-                                    <Link
+                                    <NextLink
                                         href={`#${heading.toLowerCase().replace(/\s+/g, '-')}`}
                                         key={index}
-                                        _hover={{ textDecoration: 'none' }}
                                         onClick={() => {
                                             const id = heading.toLowerCase().replace(/\s+/g, '-')
                                             console.log(id)
@@ -106,7 +106,7 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                                         <MenuItem fontSize="md" color={color}>
                                             {heading}
                                         </MenuItem>
-                                    </Link>
+                                    </NextLink>
                                 ))
                             }
                         </MenuList>
