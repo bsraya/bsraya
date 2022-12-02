@@ -12,12 +12,6 @@ const theme = extendTheme(config, {
         heading: `Fira Code, sans-serif`,
         mono: "Fira Code, , sans-serif",
     },
-    colors: {
-        // links: "#6a94ac",
-        // links: "#4e23d8",
-        // links: "#9b89b4",
-        links: "#a46aff",
-    },
     styles: {
         global: () => ({
             "*": {
