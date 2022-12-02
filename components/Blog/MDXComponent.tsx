@@ -35,27 +35,24 @@ const CustomLink = (props: any) => {
     const isInternalLinkHeader = href && href.startsWith('#');
 
     if (isInternalLinkHeader) {
-        return (
-            <NextLink href={href}>
-                {props.children}
-            </NextLink>
-        );
+        return (<>{ props.children }</>);
     }
 
     if (isInternalLink) {
         return (
-            <Link>
                 <NextLink
                     href={href}
                     passHref
                     legacyBehavior
                 >   
-                    <>
-                    {props.children}
-                    <LinkIcon mx='5px' mb="8px" />
-                    </>
+                    <Link
+                        textDecoration="underline"
+                        _hover={{ textDecoration: "none" }}
+                    >
+                        {props.children}
+                        <LinkIcon mx='5px' mb="8px" />
+                    </Link>
                 </NextLink>
-            </Link>
         )
     }
 
