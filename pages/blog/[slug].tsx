@@ -112,11 +112,6 @@ export default function Blog({ mdxSource }: IMdxPage) {
             {isMobile && <MobileToC headings={mdxSource.headings} />}
             <MDXRemote {...mdxSource} components={MDXComponents} />
             <RelatedPosts posts={mdxSource.relatedPosts} type="blog" />
-
-            <Heading as="h1" fontSize="4xl" mt={10} mb="1rem">
-                Tags
-            </Heading>
-            
         </Layout>
     )
 }

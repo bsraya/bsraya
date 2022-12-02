@@ -1,10 +1,8 @@
 import {
-    Box,
     Text,
     Link,
-    Wrap,
+    Stack,
     Avatar,
-    Tooltip,
     WrapItem,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
@@ -40,56 +38,58 @@ export default function Authors(props: any): JSX.Element {
     })
 
     return (
-        <Box mb={5}>
-            <Wrap>
-                {
-                    (citedAuthors.length === 1 && citedAuthors[0].name === authors[0].name) ?
-                    (
-                        <WrapItem>
-                            <NextLink
-                                passHref
-                                href={authors[0].url}
-                            >
-                                <Avatar
-                                    src={authors[0].image}
-                                    name={authors[0].name}
-                                    _hover={{
-                                        cursor: "pointer",
-                                    }}
-                                />
-                            </NextLink>
-                            <Text
-                                fontSize="md"
-                                ml={3}
-                                my="auto"
-                                fontFamily="Fira Code"  
-                            >{authors[0].name}</Text>
-                        </WrapItem>
-                    ) : (
-                        citedAuthors.map((author: author) => {
-                            return (
-                                <Tooltip
-                                    key={author.name}
-                                    label={author.name}
+        <Stack mb={5}>
+            {
+                (citedAuthors.length === 1 && citedAuthors[0].name === authors[0].name) ?
+                (
+                    <WrapItem>
+                        <NextLink
+                            passHref
+                            href={authors[0].url}
+                        >
+                            <Avatar
+                                src={authors[0].image}
+                                name={authors[0].name}
+                                _hover={{
+                                    cursor: "pointer",
+                                }}
+                            />
+                        </NextLink>
+                        <Text
+                            fontSize="md"
+                            ml={3}
+                            my="auto"
+                            fontFamily="Fira Code"  
+                        >{authors[0].name}</Text>
+                    </WrapItem>
+                ) : (
+                    citedAuthors.map((author: author) => {
+                        return (
+                            <WrapItem>
+                                <Link
+                                    href={author.url}
+                                    target="_blank"
+                                    isExternal
                                 >
-                                    <Link
-                                        href={author.url}
-                                        target="_blank"
-                                        isExternal
-                                    >
-                                        <WrapItem>
-                                            <Avatar
-                                                name={author.name}
-                                                src={author.image}
-                                            />
-                                        </WrapItem>
-                                    </Link>
-                                </Tooltip>
-                            )
-                        })
-                    )
-                }
-            </Wrap>
-        </Box>
+                                    <Avatar
+                                        src={author.image}
+                                        name={author.name}
+                                        _hover={{
+                                            cursor: "pointer",
+                                        }}
+                                    />
+                                </Link>
+                                <Text
+                                    fontSize="md"
+                                    ml={3}
+                                    my="auto"
+                                    fontFamily="Fira Code"  
+                                >{author.name}</Text>
+                            </WrapItem>
+                        )
+                    })
+                )
+            }
+        </Stack>
     )
 }

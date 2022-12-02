@@ -35,7 +35,13 @@ const CustomLink = (props: any) => {
     const isInternalLinkHeader = href && href.startsWith('#');
 
     if (isInternalLinkHeader) {
-        return (<>{ props.children }</>);
+        return (
+            <NextLink
+                href={href}
+            >
+                {props.children}
+            </NextLink>
+        );
     }
 
     if (isInternalLink) {

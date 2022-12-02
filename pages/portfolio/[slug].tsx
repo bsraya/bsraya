@@ -1,4 +1,5 @@
 import {
+    Box,
     Flex,
     Icon,
     Text,
@@ -6,17 +7,19 @@ import {
     HStack,
     Heading,
     useBreakpointValue,
+    Divider,
 } from '@chakra-ui/react'
 import fs from 'fs'
 import path from 'path'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { DateTime } from 'luxon'
-import { BiTime } from 'react-icons/bi'
+import { BiTime, BiCalendar } from 'react-icons/bi'
 import getHeadings from '../../lib/headings'
 
 // components
 import Seo from '../../components/Seo'
+import Tags from './../../components/Tags'
 import Layout from '../../components/Layout'
 import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
@@ -53,20 +56,33 @@ export default function Portfolio({ mdxSource }: IMdxPage) {
                 title={ mdxSource.frontmatter.title } 
                 description={ mdxSource.frontmatter.description }
             />
-            <Stack mt="5rem">
-                <Text color="gray.500" fontSize="md" fontFamily="heading">
-                    {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
-                </Text>
-                <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-                <HStack my={2} spacing={5} fontFamily="heading">
-                    <Flex>
-                        <Icon as={BiTime} h={5} w={5} mr={2} my="auto" color="dark" />
-                        <Text fontSize={fontSize}>
-                            {mdxSource.frontmatter.readingTime}
-                        </Text>
-                    </Flex>
-                </HStack>
-                <Authors authors={mdxSource.frontmatter.authors} />
+            <Stack spacing="1.5rem" mt="5rem" mb="3rem">
+                <Box>
+                    <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
+                    <Text mt="1rem" fontStyle="italic">
+                        {mdxSource.frontmatter.description}
+                    </Text>
+                </Box>
+                <Divider />
+                <Box>
+                    <Authors authors={mdxSource.frontmatter.authors} />
+                    <HStack spacing="2rem">
+                        <Flex>
+                            <Icon as={BiCalendar} h={5} w={5} mr={2} my="auto" />
+                            <Text fontSize={fontSize} fontFamily="heading">
+                                {DateTime.fromISO(mdxSource.frontmatter.date).toFormat("LLLL dd, yyyy")}
+                            </Text>
+                        </Flex>
+                        <Flex mr="5rem">
+                            <Icon as={BiTime} h={5} w={5} mr={2} my="auto" />
+                            <Text fontSize={fontSize} fontFamily="heading">
+                                {mdxSource.frontmatter.readingTime}
+                            </Text>
+                        </Flex>
+                    </HStack>
+                </Box>
+                <Divider />
+                <Tags tags={mdxSource.frontmatter.tags} />
             </Stack>
             { isMobile && <MobileToC headings={mdxSource.headings} /> }
             <MDXRemote { ...mdxSource } components={ MDXComponents } />
