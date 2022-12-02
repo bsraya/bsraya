@@ -99,6 +99,7 @@ export default function MobileToC({ headings }: { headings: string[] }) {
                                             if (element) {
                                                 element.scrollIntoView({
                                                     block: 'start',
+                                                    behavior: 'smooth',
                                                 })
                                             }
                                         }}
