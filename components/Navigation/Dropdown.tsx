@@ -20,7 +20,7 @@ import { FiGithub, FiHome, FiUser, FiFolder } from "react-icons/fi";
 export default function Dropdown(): JSX.Element {
   const isMobile = useBreakpointValue({ base: true, md: false })
   return (
-    <Box>
+    <Box fontFamily="Fira Code">
       {
         isMobile && (
           <Menu isLazy>
