@@ -6,9 +6,7 @@ import NextLink from 'next/link'
 export default function Tag({ tag }: { tag: string }) {
   return (
     <Button
-      mr={2}
       variant="ghost"
-      px={3}
       bg="white"
       color="gray.500"
       fontFamily="Fira Code"
