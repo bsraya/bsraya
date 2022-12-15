@@ -14,10 +14,10 @@ import Anaconda from "../../icons/anaconda";
 
 export default function Skillset(): JSX.Element {
     return (
-        <Stack mt="4rem">
+        <Stack my="4rem">
             <Heading
                 as="h2"
-                size="md"
+                size="xl"
             >
                 Other technologies
             </Heading>

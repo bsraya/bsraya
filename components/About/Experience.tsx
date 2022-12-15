@@ -22,7 +22,8 @@ import FastAPI from "../../icons/fastapi";
 
 export default function Experience(): JSX.Element {
     return (
-        <>
+        <Stack spacing="1rem">
+            <Heading as="h2" size="xl">Experience</Heading>
             <Box my={10}>
                 <Text ml="auto" style={{ fontStyle: "italic" }}> October 2022 - present</Text>
                 <Heading as="h2" size="lg">Fullstack Developer</Heading>
@@ -81,6 +82,6 @@ export default function Experience(): JSX.Element {
                     </Flex>
                 </Stack>
             </Box>
-        </>       
+        </Stack>       
     )
 }
