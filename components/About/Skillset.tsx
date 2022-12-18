@@ -14,11 +14,8 @@ import Anaconda from "../../icons/anaconda";
 
 export default function Skillset(): JSX.Element {
     return (
-        <Stack my="4rem">
-            <Heading
-                as="h2"
-                size="xl"
-            >
+        <Stack spacing="1rem" my="4rem">
+            <Heading as="h2" size="xl">
                 Other technologies
             </Heading>
             <Flex
