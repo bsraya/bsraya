@@ -1,13 +1,13 @@
 import {
     Box,
+    keyframes,
     IconButton,
-    useColorModeValue
+    usePrefersReducedMotion
 } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import { TriangleUpIcon } from '@chakra-ui/icons'
 
 export default function BackToTop() {
-    const color = useColorModeValue('gray.800', 'whiteAlpha.900')
     const [isVisible, setIsVisible] = useState(false)
     const [isScrolling, setIsScrolling] = useState(false)
     const [isAtTop, setIsAtTop] = useState(true)
@@ -28,7 +28,7 @@ export default function BackToTop() {
         }
     }, [isAtTop, isScrolling])
 
-    const handleClick = () => {
+    const scrollToTop = () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -43,6 +43,16 @@ export default function BackToTop() {
         }
     }, [isAtTop])
 
+    const upAndDown = keyframes`
+        from { transform: translateY(0); }
+        to { transform: translateY(-0.2rem); }
+    `
+    const prefersReducedMotion = usePrefersReducedMotion()
+
+    const animation = prefersReducedMotion
+        ? undefined
+        : `${upAndDown} 0.5s ease-in-out infinite alternate`
+
     return (
         <Box
             position="fixed"
@@ -51,7 +61,7 @@ export default function BackToTop() {
             zIndex={10}
             display={isVisible ? 'block' : 'none'}
             cursor="pointer"
-            onClick={handleClick}
+            onClick={scrollToTop}
             boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
             borderRadius="md"
             _focus={{
@@ -60,6 +70,12 @@ export default function BackToTop() {
             _disabled={{
                 opacity: 0.5,
                 cursor: 'not-allowed',
+            }}
+            _hover={{
+                // animate the icon
+                '&  > button > svg': {
+                    animation,
+                }
             }}
         >
             <IconButton
