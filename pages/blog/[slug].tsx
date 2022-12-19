@@ -4,10 +4,11 @@ import {
     Flex,
     Text,
     Stack,
+    Image,
     HStack,
     Heading,
+    Divider,
     useBreakpointValue,
-    Divider
 } from '@chakra-ui/react'
 import fs from 'fs'
 import path from 'path'
@@ -25,6 +26,8 @@ import Layout from '../../components/Layout'
 import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
 import MobileToC from '../../components/TableOfContent/Mobile'
+import FixedToC from '../../components/TableOfContent/Fixed'
+import SideToC from '../../components/TableOfContent/Side'
 
 // interface 
 import type { IMdxPage } from '../../lib/types'
@@ -35,7 +38,7 @@ import remarkMath from 'remark-math'
 import remarkEmoji from '@fec/remark-a11y-emoji'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
-// rehype pluings
+// rehype plugins
 import rehypeSlug from 'rehype-slug'
 import rehypeKatex from 'rehype-katex'
 import rehypePrismPlus from 'rehype-prism-plus'
@@ -49,6 +52,7 @@ export default function Blog({ mdxSource }: IMdxPage) {
     const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
     const isMobile = useBreakpointValue({ base: true, md: true, lg: false })
     const fontSize = isDesktop ? 'md' : 'sm'
+    const largerThan1080 = useBreakpointValue({ base: false, md: false, lg: false, xl: true })
 
     return (
         <Layout>
@@ -110,6 +114,13 @@ export default function Blog({ mdxSource }: IMdxPage) {
                 <Tags tags={mdxSource.frontmatter.tags} />
             </Stack>
             {isMobile && <MobileToC headings={mdxSource.headings} />}
+            {largerThan1080 && <SideToC headings={mdxSource.headings} />}
+            <Image
+                src={mdxSource.frontmatter.img}
+                alt={mdxSource.frontmatter.description}
+                borderRadius="2rem"
+                padding="1rem"
+            />
             <MDXRemote {...mdxSource} components={MDXComponents} />
             <RelatedPosts posts={mdxSource.relatedPosts} type="blog" />
         </Layout>

@@ -5,8 +5,7 @@ import {
     LinkBox,
     Divider,
     Heading,
-    IconButton,
-    LinkOverlay,
+    IconButton
 } from "@chakra-ui/react";
 import NextLink from 'next/link';
 
@@ -82,6 +81,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
     return (
         <Box
             my={10}
+            mx="1rem"
             borderRadius="lg"
             display="block"
             border="1px solid"
