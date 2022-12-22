@@ -26,7 +26,6 @@ import Layout from '../../components/Layout'
 import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
 import MobileToC from '../../components/TableOfContent/Mobile'
-import FixedToC from '../../components/TableOfContent/Fixed'
 import SideToC from '../../components/TableOfContent/Side'
 
 // interface 
@@ -48,11 +47,11 @@ import rehypePrismDiff from 'rehype-prism-diff'
 import RelatedPosts from '../../components/Blog/RelatedPosts'
 
 export default function Blog({ mdxSource }: IMdxPage) {
-    const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
-    const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
     const isMobile = useBreakpointValue({ base: true, md: true, lg: false })
-    const fontSize = isDesktop ? 'md' : 'sm'
+    const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
     const largerThan1080 = useBreakpointValue({ base: false, md: false, lg: false, xl: true })
+    const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
+    const fontSize = isDesktop ? 'md' : 'sm'
 
     return (
         <Layout>
@@ -113,8 +112,14 @@ export default function Blog({ mdxSource }: IMdxPage) {
                 <Divider />
                 <Tags tags={mdxSource.frontmatter.tags} />
             </Stack>
-            {isMobile && <MobileToC headings={mdxSource.headings} />}
-            {largerThan1080 && <SideToC headings={mdxSource.headings} />}
+            {
+                mdxSource.headings.length > 0 && (
+                    <>
+                        {isMobile && <MobileToC headings={mdxSource.headings} />}
+                        {largerThan1080 && <SideToC headings={mdxSource.headings} />}
+                    </>
+                )
+            }
             <Image
                 src={mdxSource.frontmatter.img}
                 alt={mdxSource.frontmatter.description}

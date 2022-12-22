@@ -23,7 +23,7 @@ import Tags from './../../components/Tags'
 import Layout from '../../components/Layout'
 import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
-import FixedToC from '../../components/TableOfContent/Fixed'
+import SideToC from '../../components/TableOfContent/Side'
 import MobileToC from '../../components/TableOfContent/Mobile'
 
 // interface 
@@ -44,10 +44,12 @@ import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 export default function Portfolio({ mdxSource }: IMdxPage) {
-    const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
-    const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
     const isMobile = useBreakpointValue({ base: true, md: true, lg: false })
+    const isDesktop = useBreakpointValue({ base: false, md: false, lg: true })
+    const largerThan1080 = useBreakpointValue({ base: false, md: false, lg: false, xl: true })
+    const publishDate = DateTime.fromISO(mdxSource.frontmatter.date).toFormat('LLLL dd, yyyy')
     const fontSize = isDesktop ? 'md' : 'sm'
+
     return (
         <Layout>
             <Seo
@@ -84,7 +86,14 @@ export default function Portfolio({ mdxSource }: IMdxPage) {
                 <Divider />
                 <Tags tags={mdxSource.frontmatter.tags} />
             </Stack>
-            { isMobile && <MobileToC headings={mdxSource.headings} /> }
+            {
+                mdxSource.headings.length > 0 && (
+                    <>
+                        {isMobile && <MobileToC headings={mdxSource.headings} />}
+                        {largerThan1080 && <SideToC headings={mdxSource.headings} />}
+                    </>
+                )
+            }
             <MDXRemote { ...mdxSource } components={ MDXComponents } />
         </Layout>
     )
