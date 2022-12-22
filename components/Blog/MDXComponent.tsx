@@ -92,11 +92,12 @@ const CustomImages = (props: any) => {
                     <img 
                         src={props.src}
                         alt={props.alt}
-                        width="80%"
+                        width="90%"
                         height="auto"
                         loading='lazy'
                         style={{
-                            margin: 'auto',
+                            marginLeft: 'auto',
+                            marginRight: 'auto'
                         }}
                     />
                     <figcaption
@@ -122,9 +123,13 @@ const CustomImages = (props: any) => {
                 <img 
                     src={props.src}
                     alt={props.alt}
-                    width="60%"
+                    width="90%"
                     height="auto"
                     loading='lazy'
+                    style={{
+                        marginLeft: 'auto',
+                        marginRight: 'auto'
+                    }}
                 />
             </Box>
         );
