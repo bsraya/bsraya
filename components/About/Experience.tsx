@@ -26,7 +26,7 @@ export default function Experience(): JSX.Element {
             <Heading as="h2" size="xl">Experience</Heading>
             <Box my={10}>
                 <Text ml="auto" style={{ fontStyle: "italic" }}> October 2022 - present</Text>
-                <Heading as="h2" size="lg">Fullstack Developer</Heading>
+                <Heading as="h2" size="lg">Intermediate Fullstack Developer</Heading>
                 <Text mb={2} style={{ fontStyle: "italic" }}>
                     Faria Education Group - Taipei, Taiwan
                 </Text>

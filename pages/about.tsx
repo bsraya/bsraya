@@ -6,6 +6,7 @@ import Experience from '../components/About/Experience'
 import Skillset from '../components/About/Skillset'
 import Education from '../components/About/Education'
 import Achievements from '../components/About/Achievements'
+import Conference from '../components/About/Conference'
 
 export default function About(): JSX.Element {
     const resumeLink = "https://drive.google.com/file/d/19T0UwJQ3l_v4mStC_3-2g5jRJxYTkZKK/view?usp=sharing"
@@ -48,6 +49,17 @@ export default function About(): JSX.Element {
                     >
                         Download resume
                     </Button>
+                    <NextLink
+                        href="/portfolio"
+                    >
+                        <Button
+                            width="fit-content"
+                            colorScheme="blue"
+                            fontFamily="Fira Code"
+                        >
+                            See projects
+                        </Button>
+                    </NextLink>
                 </HStack>
             </Stack>
 
@@ -55,6 +67,7 @@ export default function About(): JSX.Element {
             <Skillset />
             <Education />
             <Achievements />
+            <Conference />
         </Layout>
     )
 }
