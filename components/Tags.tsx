@@ -1,5 +1,5 @@
 import Tag from './Cards/Tag'
-import { Box, Flex, HStack } from '@chakra-ui/react'
+import { HStack } from '@chakra-ui/react'
 
 export default function Tags({ tags }: { tags: string[] }) {
     return (
