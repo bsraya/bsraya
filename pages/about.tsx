@@ -26,8 +26,8 @@ export default function About(): JSX.Element {
                 </Text>
                 <HStack
                     flexWrap="wrap"
-                    spacing={5}
-                    rowGap={5}
+                    spacing={3}
+                    rowGap={3}
                 >
                     <Button
                         width="fit-content"
