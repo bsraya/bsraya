@@ -9,7 +9,7 @@ import Achievements from '../components/About/Achievements'
 import Conference from '../components/About/Conference'
 
 export default function About(): JSX.Element {
-    const resumeLink = "https://drive.google.com/file/d/19T0UwJQ3l_v4mStC_3-2g5jRJxYTkZKK/view?usp=sharing"
+    const resumeLink = "https://drive.google.com/file/d/1d1zEAHY8f4UoPDdK-iaGi4FL1zskSiE7/view?usp=share_link"
 
     return (
         <Layout>
