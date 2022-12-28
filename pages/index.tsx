@@ -1,14 +1,16 @@
 import {
-    Alert,
-    AlertIcon,
     Box,
-    Heading,
     Text,
+    Alert,
     VStack,
-    useBreakpointValue,
+    Heading,
     LinkBox,
-    LinkOverlay,
+    AlertIcon,
+    keyframes,
     SimpleGrid,
+    LinkOverlay,
+    useBreakpointValue,
+    usePrefersReducedMotion,
 } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import fs from 'fs'
@@ -23,7 +25,17 @@ import Posts from '../components/Posts'
 import NextLink from 'next/link'
 
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
-    const isDesktop = useBreakpointValue({ base: false, md: true }) 
+    const isDesktop = useBreakpointValue({ base: false, md: true })
+    const upAndDown = keyframes`
+        from { transform: translateX(0); }
+        to { transform: translateX(10px); }
+    `
+    const prefersReducedMotion = usePrefersReducedMotion()
+
+    const animation = prefersReducedMotion
+        ? undefined
+        : `${upAndDown} 0.5s ease-in-out infinite alternate`
+    
     return (
         <Layout>
             <Seo title="Home" type="website" />
@@ -88,7 +100,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                                 style={{ marginLeft: "auto", marginRight: "auto" }}
                             />
                             <Box p="1.5rem">
-                                <Heading as="h3" fontSize="2rem" mb={3}>
+                                <Heading as="h3" fontSize="1.75rem" mb={3}>
                                     <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "gray.800" }}>
                                         Schedulearn
                                     </LinkOverlay>
@@ -107,7 +119,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                                 style={{ marginLeft: "auto", marginRight: "auto" }}
                             />
                             <Box p="1.5rem">
-                                <Heading as="h3" fontSize="2rem" mb={3}>
+                                <Heading as="h3" fontSize="1.75rem" mb={3}>
                                     <LinkOverlay href="/portfolio/paper-explaner" _hover={{ color: "gray.800" }}>
                                         Paper Explainer
                                     </LinkOverlay>
@@ -130,7 +142,8 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         mt="1rem"
                         _hover={{
                             '& > *': {
-                                transform: 'translateX(10px)'
+                                transform: 'translateX(10px)',
+                                animation: animation,
                             }
                         }}
                         width="130px"
