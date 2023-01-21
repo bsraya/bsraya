@@ -90,7 +90,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                     >
                         <LinkBox as='article'>
                             <Image
-                                src="/images/portfolios/personal-website/dark-mode.png"
+                                src="/images/portfolios/personal-website/pw.png"
                                 alt="Next.js"
                                 loading='lazy'
                                 width={1200}
