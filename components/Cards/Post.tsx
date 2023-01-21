@@ -31,8 +31,10 @@ export default function Post({ post, type }: { post: IPost; type: string }) {
                     height={200}
                     display="flex"
                     borderTopRadius="md"
-                    backgroundSize="cover"
-                    backgroundImage={`url(${post.frontMatter.img})`}
+                    style={{
+                        background: `linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 40%), url(${post.frontMatter.img})`,
+                        backgroundSize: 'cover',
+                    }}
                 >
                     <Heading
                         as="h2"
