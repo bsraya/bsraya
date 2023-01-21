@@ -13,7 +13,7 @@ publish: true
 
 This project is my graduate thesis project. I call it "schedulearn" because it is a system that helps you schedule deep learning models.
 The main objective of this project is to help you schedule deep learning models with the least amount of effort.
-Thus, users can focus more  less on the resources and, most importantly, more on develiring quality models and.
+Thus, users can focus more on develiring quality models, not on worrying about resource management.
 
 In this post I will be explaining how I came up with the implementation, and how I implemented it in Python.
 I am sure some of you might not have or have limited background in software engineering, but I will simplify things as much as I can.
@@ -33,7 +33,6 @@ I am sure some of you might not have or have limited background in software engi
 3. [Pydantic](https://pydantic-docs.helpmanual.io/)
 4. [SQLite](https://www.sqlite.org/)
 5. [Docker](https://docker-py.readthedocs.io/en/stable/index.html)
-6. [Celery](https://celery.readthedocs.io/en/stable/index.html)
 7. [Horovod](https://horovod.readthedocs.io/en/stable/)
 
 ## Implementation
@@ -55,7 +54,7 @@ Besides that, those two tools really sped up and simplified the development proc
 
 ### API
 
-The API consists of two parts: __*the endpoints*__ and __*the scheduler*__.
+Schedulearn's API consists of several end points such as the following.
 
 #### Endpoints
 
@@ -72,13 +71,7 @@ Meaning, the system will tell where each model should go and how much resources 
 
 This mechanism will tell which models should go. For example, there is a Tensorflow model that requires 2 GPUs.
 Meanwhile, there are only two servers, one with 1 GPU and another with 2 GPUs.
-It's obvious that the Tensorflow model should go to the latter, 
-given the model requires that much resources to run optimally.
-
-##### Placement Mechanism
-
-After a model is scheduled into a certain machine, the scheduler will tell on what GPUs the model should be placed.
-
+It's obvious that the Tensorflow model should go to the latter, given the model requires that much resources to run optimally.
 
 ## Observations
 
