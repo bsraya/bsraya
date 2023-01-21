@@ -8,6 +8,27 @@ import Education from '../components/About/Education'
 import Achievements from '../components/About/Achievements'
 import Conference from '../components/About/Conference'
 
+function Description(): JSX.Element {
+    return (
+        <>
+            <Text
+                style={{
+                    color: "gray.500" 
+                }}
+            >
+                I am Bijon Setyawan Raya. I am a fullstack developer, currently a Computer Science graduate student at National Tsing Hua University in Hsinchu, Taiwan.
+            </Text>
+            <Text
+                style={{
+                    color: "gray.500"
+                }}
+            >
+                In my graduate degree, I focus on Numerical Optimization and Cloud Computing. Due to the necessity of my lab, I created a distributed deep learning system that can be used to train deep learning models efficiently on a cluster of machines.
+            </Text>
+        </>
+    )
+}
+
 export default function About(): JSX.Element {
     const resumeLink = "https://drive.google.com/file/d/1d1zEAHY8f4UoPDdK-iaGi4FL1zskSiE7/view?usp=share_link"
 
@@ -18,12 +39,7 @@ export default function About(): JSX.Element {
                 <Heading as="h1">
                     Hey!
                 </Heading>
-                <Text color="gray.500">
-                    I am Bijon Setyawan Raya. I am a fullstack developer, currently a Computer Science graduate student at National Tsing Hua University in Hsinchu, Taiwan.
-                </Text>
-                <Text color="gray.500">
-                    In my graduate degree, I focus on Numerical Optimization and Cloud Computing. Due to the necessity of my lab, I created a distributed deep learning system that can be used to train deep learning models efficiently on a cluster of machines.
-                </Text>
+                <Description />
                 <HStack
                     flexWrap="wrap"
                     spacing={3}
