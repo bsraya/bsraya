@@ -10,7 +10,6 @@ export default function Tag({ tag }: { tag: string }) {
       bg="white"
       color="gray.500"
       fontFamily="Fira Code"
-      // set border color
       border="1px solid"
       borderColor="gray.200"
       boxShadow="5px 5px 0px rgba(0, 0, 0, 0.1)"
