@@ -208,8 +208,8 @@ const MDXComponent = {
     p: (props: any) => <Text as="p" mt={5} mb={10} wordBreak={'break-word'} {...props} />,
     
     li: (props: any) => <ListItem ml={6} {...props} />,
-    ul: (props: any) => <List as="ul" styleType="circle" {...props} />,
-    ol: (props: any) => <List as="ol" styleType="decimal" {...props} />,
+    ul: (props: any) => <List as="ul" styleType="circle" {...props} mt={5} />,
+    ol: (props: any) => <List as="ol" styleType="decimal" {...props} mt={5} />,
     
     h2: (props: any) => <DocsHeading as="h2" size="xl" fontWeight="bold" {...props} />,
     h3: (props: any) => <DocsHeading as="h3" size="lg" fontWeight="bold" {...props} />,
