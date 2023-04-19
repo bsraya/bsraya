@@ -4,6 +4,7 @@
 const nextConfig = {
     optimizeFonts: true,
     reactStrictMode: true,
+    swcMinify: true,
     images: {
         domains: ['images.unsplash.com', 'cdn.pixabay.com', 'images.pexel.com'],
         formats: ['image/webp'],

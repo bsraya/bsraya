@@ -28,6 +28,29 @@ import {
 } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import Series from './Series';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler,
+} from 'chart.js';
+import { Bar, Line, Scatter, Bubble } from 'react-chartjs-2';
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+);
 
 const CustomLink = (props: any) => {
     const href = props.href;
@@ -67,9 +90,7 @@ const CustomLink = (props: any) => {
             {...props}
             display="inline"
             textDecoration="underline"
-            _hover={{
-                textDecoration: "none"
-            }}
+            _hover={{ textDecoration: "none" }}
         >
             {props.children}<ExternalLinkIcon mx='5px' mb="4px" />
         </Link>
@@ -260,6 +281,7 @@ const MDXComponent = {
     blockquote: Quote,
     img: (props: any) => <CustomImages {...props} />,
     Alert: (props: any) => <Alert my={5} {...props} />,
+    Bar, Line, Scatter, Bubble
 };
 
 export default MDXComponent;
