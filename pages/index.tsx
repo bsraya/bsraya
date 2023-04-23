@@ -90,24 +90,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                             </LinkOverlay>
                         </Heading>
                         <Image
-                            src="/images/portfolios/schedulearn/design.png"
-                            alt="Next.js"
-                            loading='lazy'
-                            width={1200}
-                            height={700}
-                            placeholder="blur"
-                            blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
-                            style={{ marginLeft: "auto", marginRight: "auto" }}
-                        />
-                    </LinkBox>
-                    <LinkBox as='article'>
-                        <Heading as="h3" fontSize="1.75rem" mt="2rem" mb="1rem">
-                            <LinkOverlay href="/portfolio/paper-explainer" _hover={{ color: "gray.800" }}>
-                                Paper Explainer
-                            </LinkOverlay>
-                        </Heading>
-                        <Image
-                            src="/images/portfolios/schedulearn/design.png"
+                            src="/images/portfolios/schedulearn/schedulearn-architecture.png"
                             alt="Next.js"
                             loading='lazy'
                             width={1200}
