@@ -61,6 +61,7 @@ const CustomLink = (props: any) => {
         return (
             <NextLink
                 href={href}
+                rel="noopener noreferrer"
             >
                 {props.children}
             </NextLink>
