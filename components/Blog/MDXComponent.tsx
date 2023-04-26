@@ -40,6 +40,7 @@ import {
     Filler,
 } from 'chart.js';
 import { Bar, Line, Scatter, Bubble } from 'react-chartjs-2';
+import Slider from './Slider';
 
 ChartJS.register(
     CategoryScale,
@@ -222,7 +223,7 @@ const Hr = () => {
     return <Divider borderColor="gray.300" my={4} w="100%" />;
 };
 
-const MDXComponent = {
+const MDXComponent = {    
     i: (props: any) => <Text as="i" {...props} />,
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
@@ -281,7 +282,7 @@ const MDXComponent = {
     a: CustomLink,
     blockquote: Quote,
     img: (props: any) => <CustomImages {...props} />,
-    Alert: (props: any) => <Alert my={5} {...props} />,
+    Slider: (props: any) => <Slider {...props} />,
     Bar, Line, Scatter, Bubble
 };
 

@@ -1,6 +1,6 @@
 import Navbar from './Navigation/Bar'
 import Footer from './Footer'
-import { Box, Container } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 import prismStyles from '../styles/prism'
 import katexStyles from '../styles/katex'
 import { Global } from '@emotion/react';
@@ -22,7 +22,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 style={{
                     scaleX: scaleX,
                     height: "5px",
-                    background: "#2b6cb0",
+                    background: "#3182ce",
                     position: "fixed",
                     top: 0,
                     left: 0,
