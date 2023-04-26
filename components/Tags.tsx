@@ -1,12 +1,11 @@
 import Tag from './Cards/Tag'
-import { HStack } from '@chakra-ui/react'
+import { HStack, Flex } from '@chakra-ui/react'
 
 export default function Tags({ tags }: { tags: string[] }) {
     return (
-        <HStack
-            flexWrap="wrap"
-            spacing={3}
-            rowGap={5}
+        <Flex
+            gap='3'
+            wrap='wrap'
         >
             {
                 tags.map((tag: string, index: number) => {
@@ -18,6 +17,6 @@ export default function Tags({ tags }: { tags: string[] }) {
                     )
                 })
             }
-        </HStack>
+        </Flex>
     )
 }
