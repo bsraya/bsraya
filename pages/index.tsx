@@ -22,7 +22,6 @@ import Posts from '../components/Posts'
 import NextLink from 'next/link'
 
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
-    const isDesktop = useBreakpointValue({ base: false, md: true })
     const upAndDown = keyframes`
         from { transform: translateX(0); }
         to { transform: translateX(10px); }
