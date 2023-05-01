@@ -6,14 +6,14 @@ import {
   Button
 } from "@chakra-ui/react";
 
-function Slider({message}: {message: string}) {
+function Announcer({message}: {message: string}) {
   const { isOpen, onToggle } = useDisclosure();
   
   return (
     <Slide
       direction='bottom'
       in={!isOpen}
-      style={{ zIndex: 10 }}
+      style={{ zIndex: 1000 }}
       transition={{ enter: { duration: 0.4, delay: 0.4 }, exit: { duration: 0.4 } }}
     >
       <Box
@@ -26,7 +26,7 @@ function Slider({message}: {message: string}) {
         display='flex'
       > 
         <Text>{message}</Text>
-        <Button onClick={onToggle} ml='4' bg="black" size='sm' _hover={{ bg: 'red.500'}}>
+        <Button onClick={onToggle} pt="3" pb="3" pl="6" pr="6" ml='4' bg="gray.600" size='sm' _hover={{ bg: 'gray.800'}}>
           Close
         </Button>
       </Box>
@@ -34,4 +34,4 @@ function Slider({message}: {message: string}) {
   )
 }
 
-export default Slider;
+export default Announcer;
