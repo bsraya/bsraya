@@ -1,4 +1,10 @@
-import { Button, Heading, HStack, Stack, Text } from '@chakra-ui/react'
+import {
+    Flex,
+    Text,
+    Stack,
+    Button,
+    Heading,
+} from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Seo from '../components/Seo'
 import Layout from '../components/Layout'
@@ -34,10 +40,9 @@ export default function About(): JSX.Element {
                     Hey!
                 </Heading>
                 <Description />
-                <HStack
-                    flexWrap="wrap"
-                    spacing={3}
-                    rowGap={3}
+                <Flex
+                    gap='3'
+                    wrap='wrap'
                 >
                     <Button
                         width="fit-content"
@@ -64,18 +69,18 @@ export default function About(): JSX.Element {
                     >
                         View resume
                     </Button>
-                </HStack>
-                <NextLink
-                    href="/portfolio"
-                >
-                    <Button
-                        width="fit-content"
-                        colorScheme="blue"
-                        fontFamily="Fira Code"
+                    <NextLink
+                        href="/portfolio"
                     >
-                        See projects
-                    </Button>
-                </NextLink>
+                        <Button
+                            width="fit-content"
+                            colorScheme="blue"
+                            fontFamily="Fira Code"
+                        >
+                            See projects
+                        </Button>
+                    </NextLink>
+                </Flex>
             </Stack>
 
             <Experience />
