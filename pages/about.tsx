@@ -11,11 +11,7 @@ import Conference from '../components/About/Conference'
 function Description(): JSX.Element {
     return (
         <>
-            <Text
-                style={{
-                    color: "gray.500" 
-                }}
-            >
+            <Text style={{ color: "gray.500" }}>
                 I am Bijon Setyawan Raya. I am a fullstack developer, currently a Computer Science graduate student at National Tsing Hua University in Hsinchu, Taiwan.
             </Text>
             <Text
@@ -30,8 +26,6 @@ function Description(): JSX.Element {
 }
 
 export default function About(): JSX.Element {
-    const resumeLink = "https://drive.google.com/file/d/1d1zEAHY8f4UoPDdK-iaGi4FL1zskSiE7/view?usp=share_link"
-
     return (
         <Layout>
             <Seo title="About" type="website" />
@@ -60,9 +54,10 @@ export default function About(): JSX.Element {
                         width="fit-content"
                         colorScheme="blue"
                         onClick={() => {
-                        window.open(
-                            resumeLink,
-                                '_blank'
+                            window.open(
+                                process.env.NEXT_PUBLIC_RESUME_URL,
+                                '_blank',
+                                'noopener noreferrer'
                             );
                         }}
                         fontFamily="Fira Code"

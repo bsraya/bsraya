@@ -8,6 +8,7 @@ import {
 import Github from "../icons/github"
 import LinkedIn from "../icons/linkedin"
 import Mail from "../icons/mail"
+import Resume from '../icons/resume'
 
 export default function Footer(): JSX.Element {
     const links = [
@@ -26,6 +27,11 @@ export default function Footer(): JSX.Element {
             url: 'https://www.linkedin.com/in/bijonsetyawan/',
             icon: <LinkedIn />
         },
+        {
+            name: 'Resume',
+            url: process.env.NEXT_PUBLIC_RESUME_URL,
+            icon: <Resume />
+        }
     ]
 
     return (
