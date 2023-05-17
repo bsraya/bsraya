@@ -62,7 +62,7 @@ export default function About(): JSX.Element {
                         }}
                         fontFamily="Fira Code"
                     >
-                        Download resume
+                        View resume
                     </Button>
                 </HStack>
                 <NextLink
