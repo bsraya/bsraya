@@ -3,7 +3,6 @@ import { Box } from '@chakra-ui/react'
 export default function Tech({ tech }: { tech: string }) {
     return (
         <Box
-            variant="ghost"
             bg="white"
             color="gray.500"
             fontFamily="heading"
