@@ -7,7 +7,10 @@ import {
 // pass string and <svg>
 export default function Skill({ name, icon }: { name: string, icon: JSX.Element }) {
     return (
-        <Tooltip label={name} fontFamily="heading">
+        <Tooltip
+            label={name}
+            fontFamily="heading"
+        >
             <Box
                 p={2}
                 w="max-content"

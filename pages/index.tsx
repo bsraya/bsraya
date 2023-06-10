@@ -44,7 +44,6 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                     <Heading
                         as="h1"
                         fontSize="3rem"
-                        fontFamily="Fira Code"
                         fontWeight="700"
                     >
                         Bijon Setyawan Raya

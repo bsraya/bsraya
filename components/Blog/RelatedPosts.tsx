@@ -5,7 +5,6 @@ import {
     HStack,
     LinkBox,
     Heading,
-    LinkOverlay,
     useColorModeValue,
     useBreakpointValue,
 } from '@chakra-ui/react'

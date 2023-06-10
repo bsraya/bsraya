@@ -38,7 +38,7 @@ export default function Footer(): JSX.Element {
         <Box
             w="95%"
             fontSize="1rem"
-            fontFamily="Fira Code"
+            fontFamily="heading"
             as="footer"
             mt="5rem"
             mb="2rem"

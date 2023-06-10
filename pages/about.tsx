@@ -47,7 +47,7 @@ export default function About(): JSX.Element {
                     <Button
                         width="fit-content"
                         colorScheme="blue"
-                        fontFamily="Fira Code"
+                        fontFamily="heading"
                     >
                         <NextLink
                             href="/portfolio/schedulearn"
@@ -65,7 +65,7 @@ export default function About(): JSX.Element {
                                 'noopener noreferrer'
                             );
                         }}
-                        fontFamily="Fira Code"
+                        fontFamily="heading"
                     >
                         View resume
                     </Button>
@@ -75,7 +75,7 @@ export default function About(): JSX.Element {
                         <Button
                             width="fit-content"
                             colorScheme="blue"
-                            fontFamily="Fira Code"
+                            fontFamily="heading"
                         >
                             See projects
                         </Button>

@@ -17,7 +17,7 @@ export default function Navigation(): JSX.Element {
         >
             <Nextlink href="/" passHref>
                 <Text
-                    fontFamily="Fira Code"
+                    fontFamily="heading"
                     fontSize="2xl"
                     fontWeight="700"
                     transform='translateY(0px)'

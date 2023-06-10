@@ -20,7 +20,7 @@ export default function Navlink ({ href, children }: { href: string, children: R
                 mr={5}
                 variant="ghost"
                 letterSpacing="1px"
-                fontFamily="Fira Code"
+                fontFamily="heading"
                 _hover={{ color: "gray.800" }}
                 _active={{ color: "gray.800" }}
                 color={ isActive ? "gray.800" : 'gray.300' }

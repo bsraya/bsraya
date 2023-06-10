@@ -59,7 +59,7 @@ export default function Authors(props: any): JSX.Element {
                             fontSize="md"
                             ml={3}
                             my="auto"
-                            fontFamily="Fira Code"  
+                            fontFamily="heading"
                         >{authors[0].name}</Text>
                     </WrapItem>
                 ) : (
@@ -85,7 +85,7 @@ export default function Authors(props: any): JSX.Element {
                                     fontSize="md"
                                     ml={3}
                                     my="auto"
-                                    fontFamily="Fira Code"  
+                                    fontFamily="heading" 
                                 >{author.name}</Text>
                             </WrapItem>
                         )

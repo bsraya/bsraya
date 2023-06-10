@@ -48,7 +48,7 @@ export default function MobileToC({ headings }: { headings: string[] }) {
       top="27%"
       left="0"
       ml="1rem"
-      fontFamily="Fira Code"
+      fontFamily="heading"
     >
       <Heading fontSize="1rem" as="h4" mb="1rem">Table of Contents</Heading>
       <Stack spacing="0.25rem">

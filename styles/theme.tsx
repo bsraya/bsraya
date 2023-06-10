@@ -1,16 +1,13 @@
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react"
-
-const config: ThemeConfig = {
-    initialColorMode: "light"
-}
+import { extendTheme } from "@chakra-ui/react"
+import { ptSans, firaCode } from "./fonts"
 
 // customize fonts add "config" to the theme as well
-const theme = extendTheme(config, {
+const theme = extendTheme({
     ...extendTheme,
     fonts: {
-        body: `PT Sans, sans-serif`,
-        heading: `Fira Code, sans-serif`,
-        mono: "Fira Code, , sans-serif",
+        body: `${ptSans.style.fontFamily}, sans-serif`,
+        heading: `${firaCode.style.fontFamily}, sans-serif`,
+        mono: `${firaCode.style.fontFamily}, monospace`,
     },
     styles: {
         global: () => ({
