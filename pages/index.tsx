@@ -100,7 +100,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                                 blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
                                 style={{ marginLeft: "auto", marginRight: "auto" }}
                             />
-                            <Box p="1.5rem">
+                            <Box p="0.5rem">
                                 <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "gray.800" }}>
                                     <Heading as="h3" fontSize="1.75rem" mb={3} >
                                         Schedulearn
