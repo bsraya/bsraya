@@ -26,7 +26,7 @@ function Announcer({message}: {message: string}) {
         display='flex'
       > 
         <Text>{message}</Text>
-        <Button onClick={onToggle} pt="3" pb="3" pl="6" pr="6" ml='4' bg="gray.600" size='sm' _hover={{ bg: 'gray.800'}}>
+        <Button onClick={onToggle} pt="3" pb="3" pl="6" pr="6" ml='4' bg="gray.100" size='sm' _hover={{ bg: 'gray.300'}}>
           Close
         </Button>
       </Box>

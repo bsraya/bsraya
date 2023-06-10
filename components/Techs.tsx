@@ -1,18 +1,18 @@
-import Tag from './Cards/Tag'
+import Tech from './Cards/Tech'
 import { Flex } from '@chakra-ui/react'
 
-export default function Tags({ tags }: { tags: string[] }) {
+export default function Techs({ techs }: { techs: string[] }) {
     return (
         <Flex
             gap='3'
             wrap='wrap'
         >
             {
-                tags.map((tag: string, index: number) => {
+                techs.map((tech: string, index: number) => {
                     return (
-                        <Tag
+                        <Tech
                             key={index}
-                            tag={tag}
+                            tech={tech}
                         />
                     )
                 })
