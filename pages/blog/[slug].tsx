@@ -30,6 +30,7 @@ import SideToC from '../../components/TableOfContent/Side'
 
 // interface 
 import type { IMdxPage } from '../../lib/types'
+import type { IPost } from '../../lib/types'
 
 // remark plugins
 import remarkGfm from 'remark-gfm'
@@ -183,12 +184,10 @@ export const getStaticProps = async ( { params: { slug } }: { params: { slug: st
     )
 
     var headings: string[] = getHeadings(source)
-
     // @ts-ignore
-    var relatedPosts = getPostsByTags(mdxSource.frontmatter.tags)
-    relatedPosts = relatedPosts.filter(post => post.slug !== slug)
-    // get 3 random posts
-    relatedPosts = relatedPosts.sort(() => Math.random() - 0.5).slice(0, 3)
+    var relatedPosts: IPost[] = getPostsByTags(mdxSource.frontmatter.tags)
+        .filter(post => post.slug !== slug)
+        .sort(() => Math.random() - 0.5).slice(0, 3)
 
     return {
         props: {

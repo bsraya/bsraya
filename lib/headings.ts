@@ -1,12 +1,13 @@
 export default function getHeadings(content: string): string[] {
-    const regex = new RegExp(/^##\s+(.*)/gm)
-    const titleMatches = content.toString().match(regex)
+    const regex = /^##\s+(.*)/gm;
+    let match;
+    const headings = [];
 
-    // if there is one or more matches
-    if (titleMatches !== null) {
-        // remove "## " from the headings
-        var titleWithoutHastags: string[] = titleMatches?.map((match: string) => match.replace(/^##\s+/, ''))
-        return titleWithoutHastags?.map((heading: string) => heading.replace(/[^\w\s]/gi, ''))
+    while ((match = regex.exec(content)) !== null) {
+        // Remove non-alphanumeric characters from the heading
+        const heading = match[1].replace(/[^\w\s]/gi, '');
+        headings.push(heading);
     }
-    return []
+
+    return headings;
 }

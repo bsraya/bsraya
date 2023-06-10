@@ -22,7 +22,7 @@ export function getPostsByTag(tag: string, posts: IPost[]): IPost[] {
     return posts.filter((post: IPost) => post.frontMatter.tags.includes(tag))
 }
 
-export function getPostsByTags(tags: string[]): (IPost | undefined)[] {
+export function getPostsByTags(tags: string[]): IPost[] {
     const allPosts = getAllPosts()
     let posts: IPost[] = []
 
@@ -30,11 +30,20 @@ export function getPostsByTags(tags: string[]): (IPost | undefined)[] {
         posts = [...posts, ...getPostsByTag(tag, allPosts)]
     })
 
-    // remove duplicate posts
-    const uniquePosts = Array.from(new Set(posts.map(post => post.slug)))
-        .map(slug => posts.find(post => post.slug === slug))
+    if (posts.length === 0) {
+        return []
+    }
 
-    return uniquePosts
+    const seen: { [key: string]: boolean } = {};
+    const uniquePosts = posts.filter((post: IPost) => {
+        if (seen[post.slug]) {
+            return false;
+        }
+        seen[post.slug] = true;
+        return true;
+    });
+
+    return sortPosts(uniquePosts)
 }
 
 export function sortPosts(posts: IPost[]): IPost[] {
