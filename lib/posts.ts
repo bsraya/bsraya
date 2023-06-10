@@ -19,7 +19,11 @@ export function getAllPosts(): IPost[] {
 }
 
 export function getPostsByTag(tag: string, posts: IPost[]): IPost[] {
-    return posts.filter((post: IPost) => post.frontMatter.tags.includes(tag))
+    return sortPosts(
+        posts.filter(
+            (post: IPost) => post.frontMatter.tags.includes(tag)
+        )
+    )
 }
 
 export function getPostsByTags(tags: string[]): IPost[] {
