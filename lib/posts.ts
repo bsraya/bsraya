@@ -4,11 +4,10 @@ import matter from 'gray-matter'
 import type { IPost } from './types'
 import { DateTime } from 'luxon'
 
-export function getPostsByTag(tag: string): IPost[] {
+export function getAllPosts(): IPost[] {
     const folders = fs.readdirSync(path.join('content', 'posts'))
 
-    // get all posts' front matter with a specific tag
-    var posts: IPost[] = folders.map(slug => {
+    return folders.map(slug => {
         const content = fs.readFileSync(path.join('content', 'posts', slug, 'index.mdx'), 'utf8')
         const { data: frontMatter } = matter(content)
 
@@ -16,26 +15,24 @@ export function getPostsByTag(tag: string): IPost[] {
             frontMatter,
             slug
         }
-    })
+    }).filter((post: IPost) => post.frontMatter.publish)
+}
 
-    posts = posts.filter((post: IPost) => post.frontMatter.publish)
-
-    // if tags is a string, then return all posts with that tag
+export function getPostsByTag(tag: string, posts: IPost[]): IPost[] {
     return posts.filter((post: IPost) => post.frontMatter.tags.includes(tag))
 }
 
-export function getPostsByTags(tags: string[]):IPost[] {
-    const posts: IPost[] = []
+export function getPostsByTags(tags: string[]): (IPost | undefined)[] {
+    const allPosts = getAllPosts()
+    let posts: IPost[] = []
+
     tags.forEach(tag => {
-        posts.push(...getPostsByTag(tag))
+        posts = [...posts, ...getPostsByTag(tag, allPosts)]
     })
 
     // remove duplicate posts
-    const uniquePosts = posts.filter((post, index, self) =>
-        index === self.findIndex((p) => (
-            p.slug === post.slug
-        ))
-    )
+    const uniquePosts = Array.from(new Set(posts.map(post => post.slug)))
+        .map(slug => posts.find(post => post.slug === slug))
 
     return uniquePosts
 }
