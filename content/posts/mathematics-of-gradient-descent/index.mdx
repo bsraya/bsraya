@@ -49,7 +49,21 @@ Let's see how it works at a glance.
 
 Assume we have random data points like in the following graph.
 
-![A set of random data points](/images/posts/mathematics-of-gradient-descent/datapoints.png "A set of random data points")
+<Scatter 
+    data={{
+        labels: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
+        datasets: [
+            {
+                label: 'Random data points',
+                data: [0.5, 0.1, 0.6, 2.0, 2.5, 1.5],
+                backgroundColor: 'rgb(54, 162, 235)',
+                pointRadius: 5
+            }
+        ],
+        pointRadius: 10,
+    }} 
+    height={200} 
+/>
 
 We then make a regression line based on the following equation.
 
@@ -61,14 +75,80 @@ At this point, we want to find the best value for $\beta_0$ and $\beta_1$.
 Assuming that we can't come up with the best answer, we can just randomly assign some random numbers to them.
 Now, let's set $\beta_0 = 0$ and $\beta_1 = -5$, and we are going to get a regression line in the following graph.
 
-![Data points with a regression line](/images/posts/mathematics-of-gradient-descent/points_line.png "Data points with a regression line")
+<Scatter 
+    data={{
+        labels: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
+        datasets: [
+            {
+                label: 'Random data points',
+                data: [0.5, 0.1, 0.6, 2.0, 2.5, 1.5],
+                backgroundColor: 'rgb(54, 162, 235)',
+                pointRadius: 5
+            },
+            {
+                label: 'Regression line',
+                data: [2.5, 2.0, 1.5, 1.0, 0.5, 0.0],
+                backgroundColor: 'rgb(255, 99, 132)',
+                pointRadius: 0,
+                borderColor: 'rgb(255, 99, 132)',
+                borderWidth: 2,
+                fill: false,
+                showLine: true,
+            }
+        ],
+        pointRadius: 10,
+    }} 
+    height={200} 
+/>
 
 The problem is that we can't simply guess random numbers and plug them in to $\beta_0$ and $\beta_1$ over and over again.
 Clearly, we need a way to automate this.
 
 Let's make a 2D graph showing the MSE graph where $\beta_0 = 0$ and $-10 \leq \beta_1 \leq 13$.
 
-![Linear Regression's MSE](/images/posts/mathematics-of-gradient-descent/cost_function.png "Linear Regression's MSE")
+<Scatter 
+    data={{
+        labels: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
+        datasets: [
+            {
+                label: 'Data point',
+                data: [
+                    { x: -4, y: 16 }
+                ],
+                backgroundColor: 'rgb(54, 162, 235)',
+                pointRadius: 5
+            },
+            {
+                label: 'Mean Squared Error',
+                data: [
+                    { x: -7, y: 49 },
+                    { x: -6, y: 36 },
+                    { x: -5, y: 25 },
+                    { x: -4, y: 16 },
+                    { x: -3, y: 9 },
+                    { x: -2, y: 4 },
+                    { x: -1, y: 1 },
+                    { x: 0, y: 0 },
+                    { x: 1, y: 1 },
+                    { x: 2, y: 4 },
+                    { x: 3, y: 9 },
+                    { x: 4, y: 16 },
+                    { x: 5, y: 25 },
+                    { x: 6, y: 36 },
+                    { x: 7, y: 49 }
+                ],
+                backgroundColor: 'rgb(255, 99, 132)',
+                pointRadius: 0,
+                borderColor: 'rgb(255, 99, 132)',
+                borderWidth: 2,
+                fill: false,
+                showLine: true,
+            }
+        ],
+        pointRadius: 10,
+    }} 
+    height={200} 
+/>
 
 In the graph above, when $\beta_0 = 0$ and $\beta_1 = -5$, the MSE value is $217.42$ shown as a red dot.
 
@@ -78,7 +158,91 @@ Therefore, we are not going to guess the suitable value $\beta_1$ one by one.
 
 The ideal scenario is that we can have the red dot going down the valley slowly by itself.
 
-![Gradient Descent with low learning rate](/images/posts/mathematics-of-gradient-descent/low_lr.png "Gradient Descent with low learning rate")
+<Scatter
+    options={{
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Beta1',
+                    color: 'black',
+                    font: {
+                        size: 18,
+                    },
+                },
+                ticks: {
+                    color: 'black',
+                    font: {
+                        size: 14
+                    },
+                    padding: 10
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Mean Squared Error',
+                    color: 'black',
+                    font: {
+                        size: 18
+                    }
+                },
+                ticks: {
+                    color: 'black',
+                    font: {
+                        size: 14
+                    },
+                    padding: 10
+                }
+            }
+        }
+    }}
+    data={{
+        labels: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
+        datasets: [
+            {
+                label: 'Data points',
+                data: [
+                    { x: -4, y: 16 },
+                    { x: -3, y: 9 },
+                    { x: -2, y: 4 },
+                    { x: -1, y: 1 },
+                    { x: 0, y: 0 },
+                ],
+                backgroundColor: 'rgb(54, 162, 235)',
+                pointRadius: 5
+            },
+            {
+                label: 'Mean Squared Error',
+                data: [
+                    { x: -7, y: 49 },
+                    { x: -6, y: 36 },
+                    { x: -5, y: 25 },
+                    { x: -4, y: 16 },
+                    { x: -3, y: 9 },
+                    { x: -2, y: 4 },
+                    { x: -1, y: 1 },
+                    { x: 0, y: 0 },
+                    { x: 1, y: 1 },
+                    { x: 2, y: 4 },
+                    { x: 3, y: 9 },
+                    { x: 4, y: 16 },
+                    { x: 5, y: 25 },
+                    { x: 6, y: 36 },
+                    { x: 7, y: 49 }
+                ],
+                backgroundColor: 'rgb(255, 99, 132)',
+                pointRadius: 0,
+                borderColor: 'rgb(255, 99, 132)',
+                borderWidth: 2,
+                fill: false,
+                showLine: true,
+            }
+        ],
+        pointRadius: 10,
+    }} 
+    height={200} 
+/>
 
 However, we don't want the red dot to bounce here and there.
 If so, it means that the learning rate is too high.
