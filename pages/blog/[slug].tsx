@@ -121,12 +121,16 @@ export default function Blog({ mdxSource }: IMdxPage) {
                     </>
                 )
             }
-            <Image
-                src={mdxSource.frontmatter.img}
-                alt={mdxSource.frontmatter.description}
-                borderRadius="2rem"
-                padding="1rem"
-            />
+            {
+                mdxSource.frontmatter.img && (
+                    <Image
+                        src={mdxSource.frontmatter.img}
+                        alt={mdxSource.frontmatter.description}
+                        borderRadius="2rem"
+                        padding="1rem"
+                    />
+                )
+            }
             <MDXRemote {...mdxSource} components={MDXComponents} />
             <RelatedPosts posts={mdxSource.relatedPosts} type="blog" />
         </Layout>
