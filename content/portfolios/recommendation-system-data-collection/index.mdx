@@ -3,10 +3,11 @@ title: "Recommendation System: Data Collection"
 date: "2023-06-14"
 readingTime: 2 mins
 img: "/images/portfolios/recommendation-system/spotify.webp"
-description: "A collection of Monte Carlo experiments using Julia"
-tags: ['ml', 'spotify', 'python']
+description: "Collecting my favorite songs' metadata from Spotify"
+tags: [ml, python]
 authors: ["Bijon Setyawan Raya"]
 publish: true
+series: true
 ---
 
 <Series
@@ -14,13 +15,21 @@ publish: true
   series="Music Recommendation Sytem"
   posts={[
     {
-      title: "Recommendation System: Data Collection",
+      title: "Data Collection",
       slug: "recommendation-system-data-collection",
     },
     {
-      title: "Recommendation System: Data Preprocessing",
+      title: "Data Preprocessing",
       slug: "recommendation-system-data-preprocessing",
     }
   ]}
-  currentPost="Recommendation System: Data Collection"
+  currentPost="Data Collection"
 />
+
+In this post of this series, I will be collecting those songs that I liked and saved in my playlists.
+
+![My Spotify homepage](/images/portfolios/recommendation-system/spotify-ui.png "My Spotify homepage")
+
+Since I am already subscribed to Spotify, I can use their API to get songs' metadata.
+Unfortunately, I did not know there was a framework called [Spotipy](https://spotipy.readthedocs.io/en/2.18.0/) that can be used to interact with Spotify API.
+Since I have had my half of my foot in the door, I decided to use my own functions to interact with Spotify API and save the metadata in parquet files.
