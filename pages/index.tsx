@@ -22,7 +22,8 @@ import Layout from '../components/Layout'
 import Posts from '../components/Posts'
 import NextLink from 'next/link'
 import Techs from '../components/Techs'
-
+import MainProject from '../components/MainProjects/Card'
+    
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
     const isDesktop = useBreakpointValue({ base: false, md: true })
     const upAndDown = keyframes`
@@ -79,37 +80,13 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         spacing="5"
                         mt="5"
                     >
-                        <LinkBox
-                            as='article'
-                            flexDirection="column"
-                            justifyContent="center"
-                            alignItems="center"
-                            p="1.5rem"
-                            borderRadius="md"
-                            boxShadow="md"
-                            transition="all .15s ease-in-out"
-                            _hover={{ boxShadow: "lg" }}
-                        >
-                            <Image
-                                src="/images/portfolios/schedulearn/schedulearn-architecture.png"
-                                alt="Next.js"
-                                loading='lazy'
-                                width={1200}
-                                height={700}
-                                placeholder="blur"
-                                blurDataURL="data:image/png;base64,[IMAGE_CODE_FROM_PNG_PIXEL]"
-                                style={{ marginLeft: "auto", marginRight: "auto" }}
-                            />
-                            <Box p="0.5rem">
-                                <LinkOverlay href="/portfolio/schedulearn" _hover={{ color: "gray.800" }}>
-                                    <Heading as="h3" fontSize="1.75rem" mb={3} >
-                                        Schedulearn
-                                    </Heading>
-                                </LinkOverlay>
-                                <Text mb={3}>Deep Learning Scheduling System</Text>
-                                <Techs techs={["Python", "FastAPI", "Horovod"]} />
-                            </Box>
-                        </LinkBox>
+                        <MainProject
+                            img_location="/images/portfolios/schedulearn/schedulearn-architecture.png"
+                            link="/portfolio/schedulearn"
+                            title="Schedulearn"
+                            description="Deep Learning Scheduling System"
+                            techs={["Python", "FastAPI", "Horovod", "SQLite"]}
+                        />
                     </SimpleGrid>
                 </Box>
                 
