@@ -15,7 +15,7 @@ export default function Navlink ({ href, children }: { href: string, children: R
     }
 
     return (
-        <NextLink href={href}>
+        <NextLink href={href} passHref legacyBehavior>
             <Link
                 mr={5}
                 variant="ghost"
@@ -23,7 +23,8 @@ export default function Navlink ({ href, children }: { href: string, children: R
                 fontFamily="heading"
                 _hover={{ color: "gray.800" }}
                 _active={{ color: "gray.800" }}
-                color={ isActive ? "gray.800" : 'gray.300' }
+                color={isActive ? "gray.800" : 'gray.300'}
+                as="a"
             >
                 {children}
             </Link>

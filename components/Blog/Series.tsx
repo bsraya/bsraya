@@ -102,7 +102,7 @@ export default function Series({ type, series, posts, currentPost }: { type: str
                 posts.map((post: IPost) => {
                         var index = posts.indexOf(post) + 1;
                         return (
-                            <NextLink key={index} href={"/" + type + "/" + post.slug}>
+                            <NextLink passHref key={index} href={"/" + type + "/" + post.slug}>
                                 <LinkBox
                                     key={post.slug}
                                     _hover={{

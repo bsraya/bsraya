@@ -61,6 +61,7 @@ const CustomLink = (props: any) => {
     if (isInternalLinkHeader) {
         return (
             <NextLink
+                passHref
                 href={href}
                 rel="noopener noreferrer"
             >
@@ -77,6 +78,7 @@ const CustomLink = (props: any) => {
                     legacyBehavior
                 >   
                     <Link
+                        as="a"
                         textDecoration="underline"
                         _hover={{ textDecoration: "none" }}
                     >

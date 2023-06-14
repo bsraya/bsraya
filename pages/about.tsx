@@ -52,6 +52,7 @@ export default function About(): JSX.Element {
                         fontFamily="heading"
                     >
                         <NextLink
+                            passHref
                             href="/portfolio/schedulearn"
                         >
                             Read Schedulearn
@@ -72,17 +73,19 @@ export default function About(): JSX.Element {
                             View resume
                         </Link>
                     </Button>
-                    <NextLink
-                        href="/portfolio"
+                    
+                    <Button
+                        width="fit-content"
+                        colorScheme="blue"
+                        fontFamily="heading"
                     >
-                        <Button
-                            width="fit-content"
-                            colorScheme="blue"
-                            fontFamily="heading"
+                        <NextLink
+                            passHref
+                            href="/portfolio"
                         >
                             See projects
-                        </Button>
-                    </NextLink>
+                        </NextLink>
+                    </Button>
                 </Flex>
             </Stack>
 

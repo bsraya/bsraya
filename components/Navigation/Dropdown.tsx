@@ -58,22 +58,22 @@ export default function Dropdown(): JSX.Element {
                 </MenuItem>
               </Link>
               <MenuDivider />
-              <NextLink href="/">
+              <NextLink passHref href="/">
                 <MenuItem fontWeight="500">
                   <FiHome /><Text ml={2}>Home</Text>
                 </MenuItem>
               </NextLink>
-              <NextLink href="/about">
+              <NextLink passHref href="/about">
                 <MenuItem fontWeight="500">
                   <FiUser /><Text ml={2}>About</Text>
                 </MenuItem>
               </NextLink>
-              <NextLink href="/blog" passHref>
+              <NextLink passHref href="/blog">
                 <MenuItem fontWeight="500">
                   <BiPencil /><Text ml={2}>Blog</Text>
                 </MenuItem>
               </NextLink>
-              <NextLink href="/portfolio" passHref>
+              <NextLink passHref href="/portfolio">
                 <MenuItem fontWeight="500">
                   <FiFolder /><Text ml={2}>Portfolio</Text>
                 </MenuItem>

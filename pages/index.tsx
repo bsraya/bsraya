@@ -109,7 +109,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         }}
                         width="130px"
                     >
-                        <NextLink href="/blog">
+                        <NextLink passHref href="/blog">
                             More posts 
                         </NextLink>
                         <ArrowForwardIcon ml="0.25rem" translateX="0" transition="transform .15s ease-in-out" />

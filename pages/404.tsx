@@ -9,7 +9,11 @@ function _404(): JSX.Element {
             <Seo title="404" type="website" />
             <Heading as="h1">404 Not Found</Heading>
             <Text my={5}>You seem abit lost, but chill ...</Text>
-            <Button colorScheme="blue" fontFamily="Fira Code"><NextLink href="/">Home</NextLink></Button>
+            <Button colorScheme="blue" fontFamily="Fira Code">
+                <NextLink passHref href="/">
+                    Home
+                </NextLink>
+            </Button>
         </Layout>
     )
 }

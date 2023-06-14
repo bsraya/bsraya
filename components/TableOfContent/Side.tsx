@@ -56,6 +56,7 @@ export default function MobileToC({ headings }: { headings: string[] }) {
         headings.map((heading: string, index: number) => {
           return (
             <NextLink
+              passHref
               key={index}
               href={`#${heading.toLowerCase().replace(/\s+/g, '-')}`}
               onClick={() => {
