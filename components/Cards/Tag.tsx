@@ -3,7 +3,7 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
-export default function Tag({ tag }: { tag: string }) {
+export default function Tag({ tag, type }: { tag: string, type: string }) {
   return (
     <Button
       variant="ghost"
@@ -17,15 +17,26 @@ export default function Tag({ tag }: { tag: string }) {
       transition="box-shadow .15s ease-in-out, transform .15s ease-in-out"
       _hover={{
         bgColor: 'gray.50',
-        transform: 'translateY(0)'
+        transform: type === 'portfolio' ? 'translateY(5px)' : 'translateY(0)',
+        cursor: type === 'blog' ? 'pointer' : 'default'
       }}
     >
-      <NextLink
-          passHref
-          href={'/tag/' + tag}
-      >
-        {tag}
-      </NextLink>
+      {
+        type === 'portfolio' && (
+          <>
+            {tag}
+          </>
+        )
+      }
+      {
+        type === 'blog' && (
+          <NextLink
+            href={'/tag/' + tag}
+          >
+            {tag}
+          </NextLink>
+        )
+      }
     </Button>
   )
 }

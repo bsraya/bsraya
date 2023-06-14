@@ -1,7 +1,7 @@
 import Tag from './Cards/Tag'
 import { Flex } from '@chakra-ui/react'
 
-export default function Tags({ tags }: { tags: string[] }) {
+export default function Tags({ tags, type }: { tags: string[], type: string }) {
     return (
         <Flex
             gap='3'
@@ -13,6 +13,7 @@ export default function Tags({ tags }: { tags: string[] }) {
                         <Tag
                             key={index}
                             tag={tag}
+                            type={type}
                         />
                     )
                 })

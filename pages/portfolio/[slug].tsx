@@ -84,7 +84,7 @@ export default function Portfolio({ mdxSource }: IMdxPage) {
                     </HStack>
                 </Box>
                 <Divider />
-                <Tags tags={mdxSource.frontmatter.tags} />
+                <Tags tags={mdxSource.frontmatter.tags} type="portfolio" />
             </Stack>
             {
                 mdxSource.headings.length > 0 && (

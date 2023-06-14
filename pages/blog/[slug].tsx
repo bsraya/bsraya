@@ -111,7 +111,7 @@ export default function Blog({ mdxSource }: IMdxPage) {
                     </HStack>
                 </Box>
                 <Divider />
-                <Tags tags={mdxSource.frontmatter.tags} />
+                <Tags tags={mdxSource.frontmatter.tags} type="blog" />
             </Stack>
             {
                 mdxSource.headings.length > 0 && (
