@@ -77,7 +77,7 @@ const NotCurrentPost = ({ index, title }: { index: number, title: string }) => {
 }
 
 // "Series" is a component that displays a list of related posts, just like the one from the "dev.to" website
-export default function Series({ series, posts, currentPost }: { series: string, posts: IPost[], currentPost: string }) {
+export default function Series({ type, series, posts, currentPost }: { type: string, series: string, posts: IPost[], currentPost: string }) {
     return (
         <Box
             my={10}
@@ -102,7 +102,7 @@ export default function Series({ series, posts, currentPost }: { series: string,
                 posts.map((post: IPost) => {
                         var index = posts.indexOf(post) + 1;
                         return (
-                            <NextLink key={index} href={"/blog/" + post.slug} >
+                            <NextLink key={index} href={"/" + type + "/" + post.slug}>
                                 <LinkBox
                                     key={post.slug}
                                     _hover={{
