@@ -19,6 +19,9 @@ import React from "../../icons/react";
 import SQLite from "../../icons/sqlite";
 import Vue from "../../icons/vue";
 import FastAPI from "../../icons/fastapi";
+import MySQL from "../../icons/mysql";
+import ElasticSearch from "../../icons/elasticsearch";
+import JavaScript from "../../icons/javascript";
 
 export default function Experience(): JSX.Element {
     return (
@@ -37,8 +40,11 @@ export default function Experience(): JSX.Element {
                     <Flex mt={3} mb={5} wrap="wrap">
                         <Skill name="Ruby" icon={Ruby} />
                         <Skill name="Vue.js" icon={Vue} />
+                        <Skill name="JavaScript" icon={JavaScript} />
                         <Skill name="Typescript" icon={Typescript} />
                         <Skill name="Ruby on Rails" icon={Rails} />
+                        <Skill name="MySQL" icon={MySQL} />
+                        <Skill name="ElasticSearch" icon={ElasticSearch} />
                     </Flex>
                 </Stack>
             </Box>

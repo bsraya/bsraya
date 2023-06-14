@@ -29,7 +29,7 @@ export default function Footer(): JSX.Element {
         },
         {
             name: 'Resume',
-            url: process.env.NEXT_PUBLIC_RESUME_URL,
+            url: process.env.NEXT_PUBLIC_RESUME_URL || process.env.RESUME_URL,
             icon: <Resume />
         }
     ]

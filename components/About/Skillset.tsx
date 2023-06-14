@@ -11,6 +11,8 @@ import Kubernetes from "../../icons/kubernetes";
 import Git from "../../icons/git";
 import Firebase from "../../icons/firebase";
 import Anaconda from "../../icons/anaconda";
+import PostgreSQL from "../../icons/postgresql";
+import Julia from "../../icons/julia";
 
 export default function Skillset(): JSX.Element {
     return (
@@ -23,12 +25,13 @@ export default function Skillset(): JSX.Element {
                 mb={5}
                 wrap="wrap"
             >
-                <Skill name="Anaconda" icon={Anaconda} />
+                <Skill name="Git" icon={Git} />
+                <Skill name="Linux" icon={Linux} />
                 <Skill name="Go" icon={Go} />
                 <Skill name="Kubernetes" icon={Kubernetes} />
                 <Skill name="Firebase" icon={Firebase} />
-                <Skill name="Git" icon={Git} />
-                <Skill name="Linux" icon={Linux} />
+                <Skill name="PostgreSQL" icon={PostgreSQL} />
+                <Skill name="Julia" icon={Julia} />
             </Flex>
         </Stack>
     )

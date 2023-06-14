@@ -4,6 +4,7 @@ import {
     Stack,
     Button,
     Heading,
+    Link
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Seo from '../components/Seo'
@@ -30,6 +31,7 @@ function Description(): JSX.Element {
         </>
     )
 }
+
 
 export default function About(): JSX.Element {
     return (
@@ -58,16 +60,17 @@ export default function About(): JSX.Element {
                     <Button
                         width="fit-content"
                         colorScheme="blue"
-                        onClick={() => {
-                            window.open(
-                                process.env.NEXT_PUBLIC_RESUME_URL,
-                                '_blank',
-                                'noopener noreferrer'
-                            );
-                        }}
                         fontFamily="heading"
                     >
-                        View resume
+                        <Link
+                            href={process.env.NEXT_PUBLIC_RESUME_URL || process.env.RESUME_URL}
+                            isExternal
+                            _hover={{
+                                textDecoration: "none"
+                            }}
+                        >
+                            View resume
+                        </Link>
                     </Button>
                     <NextLink
                         href="/portfolio"
