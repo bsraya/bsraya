@@ -33,9 +33,9 @@ export default function Post({ post, type }: { post: IPost; type: string }) {
                     borderTopRadius="md"
                     style={{
                         background: `linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 40%), url(${post.frontMatter.img})`,
-                        backgroundSize: 'contain',
+                        backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
+                        backgroundPosition: 'center'
                     }}
                 >
                     <Heading
