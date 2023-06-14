@@ -16,7 +16,7 @@ export default function Tag({ tag, type }: { tag: string, type: string }) {
       transform='translateY(5px)'
       transition="box-shadow .15s ease-in-out, transform .15s ease-in-out"
       _hover={{
-        bgColor: 'gray.50',
+        bgColor: type === 'blog' ? 'gray.50' : 'white',
         transform: type === 'portfolio' ? 'translateY(5px)' : 'translateY(0)',
         cursor: type === 'blog' ? 'pointer' : 'default'
       }}
