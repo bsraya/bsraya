@@ -66,28 +66,30 @@ What metadata that I collected from the API are:
 To get more details on what each attribute means, you can visit [this link](https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features)
 
 Here is one of the examples of the metadata that I collected:
-```txt
-id                                             2i2gDpKKWjvnRTOZRhaPh2
-title                                                       Moonlight
-artist(s)                                                  Kali Uchis
-popularity                                                         88
-danceability                                                    0.639
-energy                                                          0.723
-key                                                                 7
-loudness                                                       -6.462
-mode                                                                0
-speechiness                                                    0.0532
-acousticness                                                    0.511
-instrumentalness                                                  0.0
-liveness                                                        0.167
-valence                                                         0.878
-tempo                                                         136.872
-type                                                   audio_features
-uri                              spotify:track:2i2gDpKKWjvnRTOZRhaPh2
-track_href          https://api.spotify.com/v1/tracks/2i2gDpKKWjvn...
-analysis_url        https://api.spotify.com/v1/audio-analysis/2i2g...
-duration_ms                                                    187558
-time_signature                                                      4
+```json
+{
+  "id": "2i2gDpKKWjvnRTOZRhaPh2",
+  "title": "Moonlight",
+  "artist(s)": "Kali Uchis",
+  "popularity": 88,
+  "danceability": 0.639,
+  "energy": 0.723,
+  "key": 7,
+  "loudness": -6.462,
+  "mode": 0,
+  "speechiness": 0.0532,
+  "acousticness": 0.511,
+  "instrumentalness": 0.0,
+  "liveness": 0.167,
+  "valence": 0.878,
+  "tempo": 136.872,
+  "type": "audio_features",
+  "uri": "spotify:track:2i2gDpKKWjvnRTOZRhaPh2",
+  "track_href": "https://api.spotify.com/v1/tracks/2i2gDpKKWjvnRTOZRhaPh2",
+  "analysis_url": "https://api.spotify.com/v1/audio-analysis/2i2gDpKKWjvnRTOZRhaPh2",
+  "duration_ms": 187558,
+  "time_signature": 4
+}
 ```
 
 So far, I collected almost 2000 songs' metadata. I will be using these data to build a recommendation system in the next post.
