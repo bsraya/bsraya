@@ -6,7 +6,6 @@ import {
     LinkBox,
     keyframes,
     SimpleGrid,
-    LinkOverlay,
     useBreakpointValue,
     usePrefersReducedMotion,
 } from '@chakra-ui/react'
@@ -14,17 +13,30 @@ import { ArrowForwardIcon } from '@chakra-ui/icons'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import Image from 'next/image'
 import type { IPost } from '../lib/types'
 import { sortPosts } from '../lib/posts'
 import Seo from '../components/Seo'
 import Layout from '../components/Layout'
 import Posts from '../components/Posts'
 import NextLink from 'next/link'
-import Techs from '../components/Techs'
 import MainProject from '../components/MainProjects/Card'
-    
+
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
+    const mainProjects = [
+        {
+            img_location: "/images/portfolios/schedulearn/schedulearn-architecture.png",
+            link: "/portfolio/schedulearn",
+            title: "Schedulearn",
+            techs: ["Python", "FastAPI", "Horovod", "SQLite"]
+        },
+        {
+            img_location: "/images/portfolios/recommendation-system/spotify.webp",
+            link: "/portfolio/recommendation-system-data-collection",
+            title: "Music Recommendation System",
+            techs: ["Python", "Scikit Learn"]
+        }
+    ]
+
     const isDesktop = useBreakpointValue({ base: false, md: true })
     const upAndDown = keyframes`
         from { transform: translateX(0); }
@@ -80,13 +92,19 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         spacing="5"
                         mt="5"
                     >
-                        <MainProject
-                            img_location="/images/portfolios/schedulearn/schedulearn-architecture.png"
-                            link="/portfolio/schedulearn"
-                            title="Schedulearn"
-                            description="Deep Learning Scheduling System"
-                            techs={["Python", "FastAPI", "Horovod", "SQLite"]}
-                        />
+                        {
+                            mainProjects.map((project, index) => {
+                                return (
+                                    <MainProject
+                                        key={index}
+                                        img_location={project.img_location}
+                                        link={project.link}
+                                        title={project.title}
+                                        techs={project.techs}
+                                    />
+                                )
+                            }
+                        )}
                     </SimpleGrid>
                 </Box>
                 

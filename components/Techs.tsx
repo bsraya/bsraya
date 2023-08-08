@@ -1,5 +1,4 @@
-import Tech from './Cards/Tech'
-import { Flex } from '@chakra-ui/react'
+import { Text, Flex } from '@chakra-ui/react'
 
 export default function Techs({ techs }: { techs: string[] }) {
     return (
@@ -10,11 +9,15 @@ export default function Techs({ techs }: { techs: string[] }) {
             {
                 techs.map((tech: string, index: number) => {
                     return (
-                        <Tech
+                        <Text
                             key={index}
-                            tech={tech}
-                        />
+                            color="gray.500"
+                            fontWeight={700}
+                        >
+                            {tech}
+                        </Text>
                     )
+                    
                 })
             }
         </Flex>
