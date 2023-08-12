@@ -10,14 +10,13 @@ import Linux from "../../icons/linux";
 import Kubernetes from "../../icons/kubernetes";
 import Git from "../../icons/git";
 import Firebase from "../../icons/firebase";
-import Anaconda from "../../icons/anaconda";
 import PostgreSQL from "../../icons/postgresql";
 import Julia from "../../icons/julia";
 
 export default function Skillset(): JSX.Element {
     return (
         <Stack spacing="1rem" my="4rem">
-            <Heading as="h2" size="xl">
+            <Heading as="h2" fontSize="2rem">
                 Other technologies
             </Heading>
             <Flex

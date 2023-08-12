@@ -26,8 +26,8 @@ import JavaScript from "../../icons/javascript";
 export default function Experience(): JSX.Element {
     return (
         <Stack spacing="1rem" my="4rem">
-            <Heading as="h2" size="xl">Experience</Heading>
-            <Box my={10}>
+            <Heading as="h2" fontSize="2rem">Experience</Heading>
+            <Box>
                 <Text ml="auto" style={{ fontStyle: "italic" }}> October 2022 - present</Text>
                 <Heading as="h2" size="lg">Intermediate Fullstack Developer</Heading>
                 <Text mb={2} style={{ fontStyle: "italic" }}>
@@ -49,7 +49,7 @@ export default function Experience(): JSX.Element {
                 </Stack>
             </Box>
 
-            <Box my={10}>
+            <Box>
                 <Text ml="auto" style={{ fontStyle: "italic" }}> February 2021 - Present</Text>
                 <Heading as="h2" size="lg">Graduate Research Assistant</Heading>
                 <Text mb={2} style={{ fontStyle: "italic" }}>
@@ -72,7 +72,7 @@ export default function Experience(): JSX.Element {
                 </Stack>
             </Box>
 
-            <Box my={10}>
+            <Box>
                 <Text ml="auto" style={{ fontStyle: "italic" }}> July 2021 - August 2021</Text>
                 <Heading as="h2" size="lg">Software Engineer (Intern)</Heading>
                 <Text mb={2} style={{ fontStyle: "italic" }}>

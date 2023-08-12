@@ -18,8 +18,10 @@ import { useMemo, useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
 import { sortPosts } from '../lib/posts'
 import Seo from '../components/Seo'
+import getUniqueTags from '../lib/tags'
+import Tags from '../components/Tags'
 
-export default function Blog({ posts }: { posts: IPost[] }): JSX.Element {
+export default function Blog({ posts, uniqueTags }: { posts: IPost[], uniqueTags: string[] }) {
     const [search, setSearch] = useState('')
     const filteredPosts = useMemo(() => {
         return posts.filter(
@@ -32,7 +34,8 @@ export default function Blog({ posts }: { posts: IPost[] }): JSX.Element {
     return (
         <Layout>
             <Seo title="Blog" type="website" />
-            <Heading mt="5rem">Blog</Heading>
+            <Heading mt="5rem" fontSize="2rem">Blog</Heading>
+            <Tags tags={uniqueTags} type="blog" />
             <FormControl mt={5}>
                 <InputGroup>
                     <InputLeftElement
@@ -93,7 +96,8 @@ export const getStaticProps = async () => {
 
     return {
         props: {
-            posts
+            posts: posts,
+            uniqueTags: getUniqueTags()
         }
     }
 }

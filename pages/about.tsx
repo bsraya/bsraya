@@ -38,7 +38,7 @@ export default function About(): JSX.Element {
         <Layout>
             <Seo title="About" type="website" />
             <Stack my="5rem" spacing="1rem">
-                <Heading as="h1">
+                <Heading fontSize="2rem">
                     Hey!
                 </Heading>
                 <Description />

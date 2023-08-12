@@ -19,7 +19,7 @@ import Seo from '../components/Seo'
 import Layout from '../components/Layout'
 import Posts from '../components/Posts'
 import NextLink from 'next/link'
-import MainProject from '../components/MainProjects/Card'
+import MainProject from '../components/Cards/Project'
 
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
     const mainProjects = [
@@ -52,21 +52,21 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
         <Layout>
             <Seo title="Home" type="website" />
             <VStack
-                mt="5rem"
+                mt="3rem"
                 spacing="5rem"
                 align="left"
             >    
                 <Box display="flex" flexDirection="column" justifyContent="center">
                     <Heading
                         as="h1"
-                        fontSize="3rem"
+                        fontSize="2rem"
                         fontWeight="700"
                     >
                         Bijon Setyawan Raya
                     </Heading>
                     <VStack
-                        mt={3}
-                        spacing={2}
+                        mt={2}
+                        spacing={0}
                         align="left"
                         justify="left"
                     >
@@ -82,7 +82,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                 <Box>
                     <Heading
                         as="h2"
-                        fontSize="2rem"
+                        fontSize="1.5rem"
                         fontWeight="400"
                     >
                         Recent Projects
@@ -111,7 +111,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                 <Box>
                     <Heading
                         as="h2"
-                        fontSize="2rem"
+                        fontSize="1.5rem"
                         fontWeight="400"
                     >
                         Latest Posts
