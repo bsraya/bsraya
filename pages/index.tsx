@@ -28,7 +28,7 @@ function textAnimation({event, interval, letters}: {event: any, interval: NodeJS
     interval = setInterval(() => {
         event.target.innerHTML = event.target.innerHTML
             .split('')
-            .map((letter, index) => {
+            .map((letter: string, index: number) => {
                 if (index < iteration) {
                     return event.target.dataset.value[index]
                 }
@@ -45,7 +45,6 @@ function textAnimation({event, interval, letters}: {event: any, interval: NodeJS
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
     // get the <Heading> tag with the class name "name"
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let interval: NodeJS.Timeout = null;
 
     const mainProjects = [
         {
@@ -90,7 +89,10 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         width="fit-content"
                         bgGradient="linear-gradient(315deg, #0cbaba 0%, #380036 74%)"
                         bgClip="text"
-                        onMouseEnter={(event) => textAnimation({event, interval, letters})}
+                        onMouseEnter={(event) => {
+                            let interval: any = null;
+                            textAnimation({ event, interval, letters })
+                        }}
                     >
                         Bijon Setyawan Raya
                     </Text>
