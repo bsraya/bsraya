@@ -21,30 +21,7 @@ import Posts from '../components/Posts'
 import NextLink from 'next/link'
 import MainProject from '../components/Cards/Project'
 
-function textAnimation({event, interval, letters}: {event: any, interval: NodeJS.Timeout, letters: string}) {
-    let iteration = 0;
-    clearInterval(interval);
-
-    interval = setInterval(() => {
-        event.target.innerHTML = event.target.innerHTML
-            .split('')
-            .map((letter: string, index: number) => {
-                if (index < iteration) {
-                    return event.target.dataset.value[index]
-                }
-                return letters[Math.floor(Math.random() * 26)];
-            })
-            .join('');
-        if (iteration >= event.target.dataset.value.length) {
-            clearInterval(interval);
-        }
-        iteration += 1/3
-    }, 30);
-}
-
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
     const mainProjects = [
         {
             img_location: "/images/portfolios/schedulearn/schedulearn-architecture.png",
@@ -84,44 +61,29 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         as="h1"
                         fontSize="2rem"
                         fontWeight="700"
-                        data-value="BIJON SETYAWAN RAYA"
                         width="fit-content"
                         bgGradient="linear-gradient(315deg, #0cbaba 0%, #380036 74%)"
                         bgClip="text"
-                        onMouseEnter={(event) => {
-                            let interval: any = null;
-                            textAnimation({ event, interval, letters })
-                        }}
                     >
                         BIJON SETYAWAN RAYA
                     </Text>
-                    <VStack
-                        mt={2}
-                        spacing={0}
-                        align="left"
-                        justify="left"
-                    >
-                        <Text>
-                            I develop both frontend and backend applications.
-                        </Text>
-                        <Text>
-                            Based in Taipei, Taiwan.
-                        </Text>
-                    </VStack>
+                    <Text>
+                        I am a fullstack developer. Based in Taipei, Taiwan.
+                    </Text>
                 </Box>
                 
                 <Box>
-                    <Heading
+                    <Text
                         as="h2"
                         fontSize="1.5rem"
                         fontWeight="400"
+                        mb="1"
                     >
                         Recent Projects
-                    </Heading>
+                    </Text>
                     <SimpleGrid
                         columns={ isDesktop ? 2 : 1 }
                         spacing="5"
-                        mt="5"
                     >
                         {
                             mainProjects.map((project, index) => {
@@ -140,16 +102,17 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                 </Box>
                 
                 <Box>
-                    <Heading
+                    <Text
                         as="h2"
                         fontSize="1.5rem"
                         fontWeight="400"
+                        mb="1"
                     >
                         Latest Posts
-                    </Heading>
+                    </Text>
                     <Posts posts={posts} type="blog" />
                     <LinkBox 
-                        mt="1rem"
+                        mt="2rem"
                         _hover={{
                             '& > *': {
                                 transform: 'translateX(10px)',

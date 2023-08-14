@@ -16,7 +16,6 @@ export default function Post({ post, type }: { post: IPost; type: string }) {
         <LinkBox
             key={post.slug}
             as="article"
-            my={5}
             border="1px"
             borderRadius="md"
             borderColor="gray.100"
