@@ -62,7 +62,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         fontSize="2rem"
                         fontWeight="700"
                         width="fit-content"
-                        bgGradient="linear-gradient(315deg, #0cbaba 0%, #380036 74%)"
+                        bgGradient="linear-gradient(to right, #7474bf, #348ac7)"
                         bgClip="text"
                     >
                         BIJON SETYAWAN RAYA

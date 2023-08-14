@@ -12,7 +12,7 @@ export default function Portfolio({ portfolios }: { portfolios: IPost[] }): JSX.
     return (
         <Layout>
             <Seo title="Portfolio" type="website" />
-            <Heading mt="5rem" fontSize="2rem">Portfolio</Heading>
+            <Heading mt="5rem" mb="1" fontSize="2rem">Portfolio</Heading>
             <Posts posts={portfolios} type="portfolio" />
         </Layout>
     )

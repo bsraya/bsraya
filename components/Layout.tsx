@@ -22,7 +22,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 style={{
                     scaleX: scaleX,
                     height: "5px",
-                    background: "#3182ce",
+                    background: "linear-gradient(to right, #7474bf, #348ac7)",
                     position: "fixed",
                     top: 0,
                     left: 0,

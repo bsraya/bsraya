@@ -36,7 +36,7 @@ export default function Blog({ posts, uniqueTags }: { posts: IPost[], uniqueTags
             <Seo title="Blog" type="website" />
             <Heading mt="5rem" fontSize="2rem">Blog</Heading>
             <Tags tags={uniqueTags} type="blog" />
-            <FormControl mt={5}>
+            <FormControl my={5}>
                 <InputGroup>
                     <InputLeftElement
                         pointerEvents="none"
@@ -66,11 +66,13 @@ export default function Blog({ posts, uniqueTags }: { posts: IPost[], uniqueTags
                 </InputGroup>
             </FormControl>
             {
-                filteredPosts.length > 0 && (
+                filteredPosts.length > 0 && 
                     <Posts posts={filteredPosts} type="blog" />
-                )
             }
-            {filteredPosts.length === 0 && <Text my={12} fontSize="md">No posts found</Text>}
+            {
+                filteredPosts.length === 0 &&
+                    <Text my={12} fontSize="md">No posts found</Text>
+            }
         </Layout>
     )
 }
