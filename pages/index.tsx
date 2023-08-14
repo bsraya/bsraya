@@ -43,7 +43,6 @@ function textAnimation({event, interval, letters}: {event: any, interval: NodeJS
 }
 
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
-    // get the <Heading> tag with the class name "name"
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     const mainProjects = [
