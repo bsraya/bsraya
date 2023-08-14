@@ -21,7 +21,32 @@ import Posts from '../components/Posts'
 import NextLink from 'next/link'
 import MainProject from '../components/Cards/Project'
 
+function textAnimation({event, interval, letters}: {event: any, interval: NodeJS.Timeout, letters: string}) {
+    let iteration = 0;
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerHTML = event.target.innerHTML
+            .split('')
+            .map((letter, index) => {
+                if (index < iteration) {
+                    return event.target.dataset.value[index]
+                }
+                return letters[Math.floor(Math.random() * 26)];
+            })
+            .join('');
+        if (iteration >= event.target.dataset.value.length) {
+            clearInterval(interval);
+        }
+        iteration += 1/3
+    }, 30);
+}
+
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
+    // get the <Heading> tag with the class name "name"
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let interval: NodeJS.Timeout = null;
+
     const mainProjects = [
         {
             img_location: "/images/portfolios/schedulearn/schedulearn-architecture.png",
@@ -57,13 +82,18 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                 align="left"
             >    
                 <Box display="flex" flexDirection="column" justifyContent="center">
-                    <Heading
+                    <Text
                         as="h1"
                         fontSize="2rem"
                         fontWeight="700"
+                        data-value="Bijon Setyawan Raya"
+                        width="fit-content"
+                        bgGradient="linear-gradient(315deg, #0cbaba 0%, #380036 74%)"
+                        bgClip="text"
+                        onMouseEnter={(event) => textAnimation({event, interval, letters})}
                     >
                         Bijon Setyawan Raya
-                    </Heading>
+                    </Text>
                     <VStack
                         mt={2}
                         spacing={0}
