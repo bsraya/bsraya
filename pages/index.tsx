@@ -85,7 +85,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         as="h1"
                         fontSize="2rem"
                         fontWeight="700"
-                        data-value="Bijon Setyawan Raya"
+                        data-value="BIJON SETYAWAN RAYA"
                         width="fit-content"
                         bgGradient="linear-gradient(315deg, #0cbaba 0%, #380036 74%)"
                         bgClip="text"
@@ -94,7 +94,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                             textAnimation({ event, interval, letters })
                         }}
                     >
-                        Bijon Setyawan Raya
+                        BIJON SETYAWAN RAYA
                     </Text>
                     <VStack
                         mt={2}
