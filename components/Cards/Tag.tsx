@@ -7,7 +7,7 @@ export default function Tag({ tag, type }: { tag: string, type: string }) {
   return (
     <Button
       variant="ghost"
-      bg="white"
+      bg={type === 'blog' ? 'white' : 'gray.50'}
       color="gray.500"
       fontFamily="heading"
       border="1px solid"
@@ -16,7 +16,7 @@ export default function Tag({ tag, type }: { tag: string, type: string }) {
       transform='translateY(5px)'
       transition="box-shadow .15s ease-in-out, transform .15s ease-in-out"
       _hover={{
-        bgColor: type === 'blog' ? 'gray.50' : 'white',
+        bgColor: 'gray.50',
         transform: type === 'portfolio' ? 'translateY(5px)' : 'translateY(0)',
         cursor: type === 'blog' ? 'pointer' : 'default'
       }}
