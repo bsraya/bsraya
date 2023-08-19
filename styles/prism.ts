@@ -84,10 +84,9 @@ const prismStyles = css`
     }
 
     :not(pre) > code {
-        font-size: ${theme.fontSizes["sm"]};
+        font-size: ${theme.fontSizes["md"]};
         color: #FF79C6;
-        background: #282A36;
-        padding: ${theme.space[1]} ${theme.space[2]};
+        padding: 0;
         border-radius: ${theme.radii.md};
     }
 
