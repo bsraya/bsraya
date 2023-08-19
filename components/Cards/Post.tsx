@@ -1,5 +1,6 @@
 import {
     Box,
+    Flex,
     Text,
     HStack,
     Heading,
@@ -15,15 +16,13 @@ export default function Post({ post, type }: { post: IPost; type: string }) {
         <LinkBox
             key={post.slug}
             as="article"
-            my={5}
             border="1px"
             borderRadius="md"
             borderColor="gray.100"
             boxShadow="0 1rem 1rem rgba(0,0,0,.2)"
-            transform='translateY(-5px)'
-            transition="box-shadow .15s ease-in-out, transform .15s ease-in-out"
+            transition="all .15s ease-in-out"
             _hover={{
-                transform: 'translateY(0)'
+                boxShadow: "lg"
             }}
         >
             <NextLink href={'/' + type + '/' + post.slug} passHref>
@@ -44,7 +43,7 @@ export default function Post({ post, type }: { post: IPost; type: string }) {
                         mb="0.5rem"
                         ml="1.25rem"
                         color="white"
-                        fontSize="1.5rem"
+                        fontSize="1.25rem"
                         fontWeight="bold"
                         fontFamily="heading"
                     >
@@ -66,7 +65,26 @@ export default function Post({ post, type }: { post: IPost; type: string }) {
                             )
                         }
                     </HStack>
-                    <Text as="p" color="gray.500" mt={3}>{post.frontMatter.description}</Text>
+                    <Flex
+                        mt={2}
+                        gap={3}
+                        wrap='wrap'
+                    >
+                        {
+                            post.frontMatter.tags.map((tags: string, index: number) => {
+                                return (
+                                    <Text
+                                        key={index}
+                                        color="gray.500"
+                                        fontWeight={700}
+                                    >
+                                        #{tags}
+                                    </Text>
+                                )
+                                
+                            })
+                        }
+                    </Flex>
                 </Box>
             </NextLink>
         </LinkBox>

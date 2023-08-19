@@ -21,7 +21,7 @@ import { getPostsByTags } from '../../lib/posts'
 
 // components
 import Seo from '../../components/Seo'
-import Tags from './../../components/Tags'
+import Tags from '../../components/Tags'
 import Layout from '../../components/Layout'
 import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
@@ -87,8 +87,8 @@ export default function Blog({ mdxSource }: IMdxPage) {
                             </Box>
                         )
                     }
-                    <Heading as="h1" size='2xl'>{mdxSource.frontmatter.title}</Heading>
-                    <Text mt="1rem" fontStyle="italic">
+                    <Heading as="h1" fontSize="2.25rem">{mdxSource.frontmatter.title}</Heading>
+                    <Text mt="0.5rem" fontStyle="italic">
                         {mdxSource.frontmatter.description}
                     </Text>
                 </Box>

@@ -19,7 +19,7 @@ import getHeadings from '../../lib/headings'
 
 // components
 import Seo from '../../components/Seo'
-import Tags from './../../components/Tags'
+import Tags from '../../components/Tags'
 import Layout from '../../components/Layout'
 import Authors from '../../components/Blog/Authors'
 import MDXComponents from '../../components/Blog/MDXComponent'
@@ -61,7 +61,7 @@ export default function Portfolio({ mdxSource }: IMdxPage) {
             <Stack spacing="1.5rem" mt="5rem" mb="3rem">
                 <Box>
                     <Heading as="h1" size='2xl' lineHeight="1.2" mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
-                    <Text mt="1rem" fontStyle="italic">
+                    <Text mt="0.5rem" fontStyle="italic">
                         {mdxSource.frontmatter.description}
                     </Text>
                 </Box>

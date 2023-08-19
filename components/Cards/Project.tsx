@@ -1,4 +1,4 @@
-import { Box, Heading, LinkBox, LinkOverlay, Text } from "@chakra-ui/react";
+import { Box, Heading, LinkBox, LinkOverlay } from "@chakra-ui/react";
 import Image from "next/image";
 import Techs from "../Techs";
 
@@ -8,13 +8,13 @@ export default function Card(
 ) {
   return (
     <LinkBox
+      p="1.5rem"
       as='article'
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      p="1.5rem"
       borderRadius="md"
-      boxShadow="md"
+      boxShadow="0 1rem 1rem rgba(0,0,0,.2)"
       transition="all .15s ease-in-out"
       _hover={{ boxShadow: "lg" }}
     >
@@ -32,7 +32,7 @@ export default function Card(
       </Box>
       <Box p="0.5rem">
         <LinkOverlay href={link} _hover={{ color: "gray.800" }}>
-          <Heading as="h3" fontSize="1.75rem" mb={3} >
+          <Heading as="h3" fontSize="1.25rem" mb={3} >
               {title}
           </Heading>
         </LinkOverlay>

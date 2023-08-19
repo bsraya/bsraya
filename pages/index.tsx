@@ -19,7 +19,7 @@ import Seo from '../components/Seo'
 import Layout from '../components/Layout'
 import Posts from '../components/Posts'
 import NextLink from 'next/link'
-import MainProject from '../components/MainProjects/Card'
+import MainProject from '../components/Cards/Project'
 
 export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
     const mainProjects = [
@@ -52,45 +52,38 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
         <Layout>
             <Seo title="Home" type="website" />
             <VStack
-                mt="5rem"
+                mt="3rem"
                 spacing="5rem"
                 align="left"
             >    
                 <Box display="flex" flexDirection="column" justifyContent="center">
-                    <Heading
+                    <Text
                         as="h1"
-                        fontSize="3rem"
+                        fontSize="2rem"
                         fontWeight="700"
+                        width="fit-content"
+                        bgGradient="linear-gradient(to right, #7474bf, #348ac7)"
+                        bgClip="text"
                     >
-                        Bijon Setyawan Raya
-                    </Heading>
-                    <VStack
-                        mt={3}
-                        spacing={2}
-                        align="left"
-                        justify="left"
-                    >
-                        <Text>
-                            I develop both frontend and backend applications.
-                        </Text>
-                        <Text>
-                            Based in Taipei, Taiwan.
-                        </Text>
-                    </VStack>
+                        BIJON SETYAWAN RAYA
+                    </Text>
+                    <Text>
+                        I am a fullstack developer. Based in Taipei, Taiwan.
+                    </Text>
                 </Box>
                 
                 <Box>
-                    <Heading
+                    <Text
                         as="h2"
-                        fontSize="2rem"
+                        fontSize="1.5rem"
                         fontWeight="400"
+                        mb="1"
                     >
                         Recent Projects
-                    </Heading>
+                    </Text>
                     <SimpleGrid
                         columns={ isDesktop ? 2 : 1 }
                         spacing="5"
-                        mt="5"
                     >
                         {
                             mainProjects.map((project, index) => {
@@ -109,16 +102,17 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                 </Box>
                 
                 <Box>
-                    <Heading
+                    <Text
                         as="h2"
-                        fontSize="2rem"
+                        fontSize="1.5rem"
                         fontWeight="400"
+                        mb="1"
                     >
                         Latest Posts
-                    </Heading>
+                    </Text>
                     <Posts posts={posts} type="blog" />
                     <LinkBox 
-                        mt="1rem"
+                        mt="2rem"
                         _hover={{
                             '& > *': {
                                 transform: 'translateX(10px)',

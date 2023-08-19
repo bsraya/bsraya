@@ -38,7 +38,7 @@ export default function About(): JSX.Element {
         <Layout>
             <Seo title="About" type="website" />
             <Stack my="5rem" spacing="1rem">
-                <Heading as="h1">
+                <Heading fontSize="2rem">
                     Hey!
                 </Heading>
                 <Description />
@@ -48,8 +48,12 @@ export default function About(): JSX.Element {
                 >
                     <Button
                         width="fit-content"
-                        colorScheme="blue"
                         fontFamily="heading"
+                        color="white"
+                        bgGradient="linear-gradient(to right, #7474bf, #348ac7)"
+                        _hover={{
+                            filter: "brightness(1.2)"
+                        }}
                     >
                         <NextLink
                             passHref
@@ -60,8 +64,12 @@ export default function About(): JSX.Element {
                     </Button>
                     <Button
                         width="fit-content"
-                        colorScheme="blue"
                         fontFamily="heading"
+                        color="white"
+                        bgGradient="linear-gradient(to right, #7474bf, #348ac7)"
+                        _hover={{
+                            filter: "brightness(1.2)"
+                        }}
                     >
                         <Link
                             href={process.env.NEXT_PUBLIC_RESUME_URL || process.env.RESUME_URL}
@@ -76,8 +84,12 @@ export default function About(): JSX.Element {
                     
                     <Button
                         width="fit-content"
-                        colorScheme="blue"
                         fontFamily="heading"
+                        color="white"
+                        bgGradient="linear-gradient(to right, #7474bf, #348ac7)"
+                        _hover={{
+                            filter: "brightness(1.2)"
+                        }}
                     >
                         <NextLink
                             passHref
