@@ -192,7 +192,8 @@ const DocsHeading = (props: any) => {
                     visibility: 'hidden',
                     content: `""`
                 },
-                '&[id]:hover a': { opacity: 1 }
+                '&[id]:hover a': { opacity: 1 },
+                lineHeight: 1.2,
             }}
             {...props}
             mt="2.5em"
@@ -230,11 +231,11 @@ const MDXComponent = {
     br: (props: any) => <Box height="24px" {...props} />,
     small: (props: any) => <Text as="small" {...props} />,
     strong: (props: any) => <Text as="strong" fontWeight="semibold" {...props} />,
-    p: (props: any) => <Text as="p" mt={5} mb={10} wordBreak={'break-word'} {...props} />,
+    p: (props: any) => <Text as="p" my={5} wordBreak={'break-word'} {...props} />,
     
-    li: (props: any) => <ListItem ml={6} {...props} />,
-    ul: (props: any) => <List as="ul" styleType="circle" {...props} mt={5} />,
-    ol: (props: any) => <List as="ol" styleType="decimal" {...props} mt={5} />,
+    li: (props: any) => <ListItem ml={6} fontSize="20" {...props} />,
+    ul: (props: any) => <List as="ul" mt={5} styleType="circle" {...props} />,
+    ol: (props: any) => <List as="ol" mt={5} styleType="decimal" {...props} />,
     
     h2: (props: any) => <DocsHeading as="h2" size="xl" fontWeight="bold" {...props} />,
     h3: (props: any) => <DocsHeading as="h3" size="lg" fontWeight="bold" {...props} />,

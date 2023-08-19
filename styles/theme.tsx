@@ -14,9 +14,27 @@ const theme = extendTheme({
             "*": {
                 borderStyle: "none",
             },
-            body: {
-                fontSize: "18px",
-                lineHeight: "1.75",
+            p: {
+                fontSize: "20px",
+                lineHeight: "1.5",
+            },
+            h1: {
+                lineHeight: "1.2",
+            },
+            h2: {
+                lineHeight: "1.2",
+            },
+            h3: {
+                lineHeight: "1.2",
+            },
+            h4: {
+                lineHeight: "1.2",
+            },
+            h5: {
+                lineHeight: "1.2",
+            },
+            h6: {
+                lineHeight: "1.2",
             },
             a: {
                 textUnderlinePosition: "under"

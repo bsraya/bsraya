@@ -60,7 +60,7 @@ export default function Portfolio({ mdxSource }: IMdxPage) {
             />
             <Stack spacing="1.5rem" mt="5rem" mb="3rem">
                 <Box>
-                    <Heading as="h1" size='2xl' mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
+                    <Heading as="h1" size='2xl' lineHeight="1.2" mt={1} mb={3}>{mdxSource.frontmatter.title}</Heading>
                     <Text mt="1rem" fontStyle="italic">
                         {mdxSource.frontmatter.description}
                     </Text>
