@@ -53,6 +53,7 @@ export default function Footer(): JSX.Element {
                         href={item.url}
                         fontStyle="normal"
                         target="_blank"
+                        aria-label={item.name}
                     >
                         <Icon
                             w={10}

@@ -35,6 +35,7 @@ export default function Dropdown(): JSX.Element {
               border="1px solid"
               borderColor="gray.200"
               variant="ghost"
+              aria-label="Navigation Menu"
             />
             <MenuList
               zIndex={99}
