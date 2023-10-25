@@ -68,7 +68,7 @@ export default function Home({ posts }: { posts: IPost[] }): JSX.Element {
                         BIJON SETYAWAN RAYA
                     </Text>
                     <Text>
-                        I am a fullstack developer. Based in Taipei, Taiwan.
+                        I am a fullstack developer. An aspiring machine learning engineer.
                     </Text>
                 </Box>
                 
