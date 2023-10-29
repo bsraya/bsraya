@@ -1,0 +1,209 @@
+---
+title: Mini Batch Gradient Descent
+date: "2022-03-03"
+readingTime: 10 mins
+description: Linear Regression + Mini-Batch Gradient Descent in Python
+tags: [ml, optimization, python]
+img: "https://images.unsplash.com/photo-1525540122998-1bcbd8090980?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+authors: ["Bijon Setyawan Raya"]
+publish: false
+series: true
+---
+
+<Series
+  type="blog"
+  series="Gradient Descent Algorithm"
+  posts={[
+    {
+      title: "Introduction",
+      slug: "gradient-descent",
+    },
+    {
+      title: "Linear Regression",
+      slug: "linear-regression",
+    },
+    {
+      title: "Mathematics of Gradient Descent",
+      slug: "mathematics-of-gradient-descent",
+    },
+    {
+      title: "Batch Gradient Descent",
+      slug: "batch-gradient-descent",
+    },
+    {
+      title: "Mini Batch Gradient Descent",
+      slug: "mini-batch-gradient-descent",
+    },
+    {
+      title: "Stochastic Gradient Descent",
+      slug: "stochastic-gradient-descent",
+    },
+  ]}
+  currentPost="Mini Batch Gradient Descent"
+/>
+
+Previously, we have learned that Batch Gradient Descent only updates the parameters only after it has seen the entire dataset.
+However, in this post, we are going to implement Mini-Batch Gradient Descent which updates the parameters after it has seen a fraction of a dataset.
+Not only that, but we are also going to find out the best batch size to make the algorithm converge faster.
+
+From now on, I will use two abbreviations, namely BGD for Batch Gradient Descent and Mini-Batch Gradient Descent, throughout this post.
+
+## Implementation
+
+In this implementation, we are going to use some of the codes from the previous posts.
+However, we are going to customize BGD function
+so the parameters are updated after it has seen a fraction of the dataset.
+
+First, we need a function that splits the dataset into mini-batches.
+
+```python
+def create_batches(x, y, batch_size):
+  x_batches = np.array_split(x, len(x) // batch_size)
+  y_batches = np.array_split(y, len(y) // batch_size)
+  return x_batches, y_batches
+```
+
+Second, we need a customized version of BGD function that updates the required parameters after seeing a small number of data points.
+Since there are 150 data points in the Iris dataset, we will use a batch size of 64 and there will be two batches in total.
+
+The following code is the customized `bgd()` function that updates the parameters after it has seen a fraction of the dataset.
+
+```python {12-21}
+def mbgd(x, y, epochs, df, batch_size = 64, alpha = 0.01):
+  intercept, coefficient = 2.0, -7.5
+
+  # first sum_error
+  predictions = predict(intercept, coefficient, x)
+  sum_error = np.sum((predictions - y) ** 2) / (2 * batch_size)
+  df.loc[0] = [-1, intercept, coefficient, sum_error]
+  index = 1
+
+  x_batches, y_batches = create_batches(x, y, batch_size)
+  for epoch in range(epochs):
+    for x, y in zip(x_batches, y_batches):
+      sum_error = 0.0
+      predictions = predict(intercept, coefficient, x)
+      b0_error = (1/batch_size) * np.sum(predictions - y)
+      b1_error = (1/batch_size) * np.sum((predictions - y) * x)
+      intercept = intercept - alpha * b0_error
+      coefficient = coefficient - alpha * b1_error
+      sum_error = sum_error + np.sum((predictions - y) ** 2) / (2 * batch_size)
+      df.loc[index] = [int(epoch), intercept, coefficient, sum_error]
+      index += 1
+  return df
+```
+
+First, the initial point is set to be (2.0, -7.5) because I want the initial guess to be far from the convergence point.
+
+Once we have the initial guess, the batches will be created just before the for-loop, and the parameter updates will occur inside the for-loop.
+
+## Mean Squared Error
+
+In the previous section, I just explained on how to implement MBGD in Python.
+Now, let's find out what we can get from this experimentation.
+
+```python
+epochs = 5000
+mbgd_loss = pd.DataFrame(
+  columns=['epoch', 'intercept', 'coefficient', 'sum_error']
+)
+mbgd_loss = mbgd(
+  sepal_length,
+  petal_width,
+  epochs = epochs,
+  batch_size=64,
+  df = mbgd_loss
+)
+mbgd_loss['epoch'] = mbgd_loss['epoch'].astype(int)
+```
+
+Althought the size of the batches matters in MBGD, I will explain it later in the next part and we will stick to size 64 this time.
+
+![MSE values produced by MBGD with different batch sizes](/images/posts/mini-batch-gradient-descent/mse.png "MSE values produced by MBGD with different batch sizes")
+
+From the picture, we can see that the MSE graphs are thick because the graph goes up and down, following a zig-zag pattern,
+unlike the one produced by BGD which goes down in a straight line.
+
+In addition to the zig-zag pattern, the time complexity increases by half as the number of batch sizes decreases, but
+the MSE graphs gets closer and closer to zero. The difference is more obvious shown in the first graph and the fifth graph.
+
+Note that the number of updates increases when the number of batch size decreases. Take example of batch size of $8$.
+Since the number of data points is 150, the number of updates is $\lfloor 150 / 8 \rfloor = 18$ per epoch.
+In total, there will be $18$ batches $\times$ $500$ epochs $= 9000$ updates.
+
+## Best Batch Size
+
+In the previous part, showing the MSE values from different batch sizes doesn't tell us much if our model is getting better.
+So, we are going to use the Total of Sum Squares to find the best batch size.
+
+$$
+  \text{TSS} = \sum_{i=1}^{N} (\hat{y}_i - y_i)^2
+$$
+
+where $y_i$ represents the predicted value and $\hat{y}_i$ represents the actual value.
+
+There are 4 batch sizes that I want to observe, namely 8, 16, 32, and 64.
+
+![TSS values produced by MBGD with different batch sizes](/images/posts/mini-batch-gradient-descent/rss.png "TSS values produced by MBGD with different batch sizes")
+
+The TSS graphs provide us a clearer picture on how the regression model react to the batch size.
+Similar to the MSE graphs with different batch sizes, the TSS graphs get closer and closer to zero as the number of batch sizes decreases
+
+On the contrary, the larger batch sizes will produce more accurate model without noise. Yet it comes with the expense of reaching the convergence point slower.
+
+To answer what is the best batch size, it depends a lot on the hardware you have.
+Let's say you have multiple latest and advanced GPUs, then you can try to use 32 or 64.
+These two sizes are recommended since those are how much the memory in CPUs and GPUs can store at a time.
+
+Not only it depends only the hardware you have, you should consider how your model reacts to the number of batch sizes.
+So, there is no clear answer to this question. I personally think it's all down to trial and error.
+
+## Regression Lines
+
+There will be two graphs, one contains how the regression line movement pattern over $n$ number of updates, and the other is the animation of the regression line movements.
+
+![Regression Lines](/images/posts/mini-batch-gradient-descent/regression-lines.png "Regression Lines")
+
+I am sure since the cost function follows a zig-zag pattern, the regression line moves in a zig-zag pattern as well like a graph shown above.
+
+![Regression Line Movements](/images/posts/mini-batch-gradient-descent/mbgd.gif "Regression Line Movements")
+
+However, it's not noticeable the pattern movement in the animation. If somebody can explain me in details on why this is happening, do not hesitate to send me an email.
+
+Now, let's see how the movement of the intercept and the coefficient variabels on a contour map.
+
+![The movement of the intercept and the coefficient variabels on a contour map](/images/posts/mini-batch-gradient-descent/contour.png "The movement of the intercept and the coefficient variabels on a contour map")
+
+If you compare the contour map in the BGD page, you will notice that the contour map made by BGD is much more smooth.
+Unlike the one in BGD, the size of the line above is thicker, and it looks like is walking up the stairs.
+
+## Conclusion
+
+There are several key points to be noted in this post.
+
+1. MBGD requires less iterations to reach the convergence point compared to BGD.
+2. The number of parameter updates in MBGD is the same with BGD, except the size of mini batches.
+3. The size of mini batches might affect MBGD's efficiency.
+4. The closer the batch size is to the number of data points, the thinner the cost function line gets.
+5. The MSE line produced by MBGD follows a zig-zag pattern, and that's why it looks thicker.
+6. The ideal batch size is around 32 or 64.
+
+If you want to know how to implement MBGD in more details, please [click here](https://www.kaggle.com/bijonsetyawan/mini-batch-gradient-descent) to check the Python notebook on Kaggle.
+I also include some code on how to generate those graphs.
+
+The code might look unorganized since I have been busy with my thesis, so the code might change from time to time.
+See ya at the next post!
+
+## References
+
+1. O. Artem. _Stochastic, Batch, and Mini-Batch Gradient Descent_. Source [https://towardsdatascience.com/stochastic-batch-and-mini-batch-gradient-descent-demystified-8b28978f7f5](https://towardsdatascience.com/stochastic-batch-and-mini-batch-gradient-descent-demystified-8b28978f7f5)
+2. P. Sushant. _Batch, Mini Batch, and Stochastic Gradient Descent_. Source [https://towardsdatascience.com/batch-mini-batch-stochastic-gradient-descent-7a62ecba642a](https://towardsdatascience.com/batch-mini-batch-stochastic-gradient-descent-7a62ecba642a)
+3. Geeksforgeeks. _Difference between Batch Gradient Descent and Stochastic Gradient Descent_. Source [https://www.geeksforgeeks.org/difference-between-batch-gradient-descent-and-stochastic-gradient-descent/](https://www.geeksforgeeks.org/difference-between-batch-gradient-descent-and-stochastic-gradient-descent/)
+4. Sweta. _Batch, Mini Batch, and Stochastic Gradient Descent_. Source [https://sweta-nit.medium.com/batch-mini-batch-and-stochastic-gradient-descent-e9bc4cacd461](https://sweta-nit.medium.com/batch-mini-batch-and-stochastic-gradient-descent-e9bc4cacd461)
+5. B. Jason. _A Gentle Introduction to Mini-Batch Gradient Descent and How to Configure Batch Size_. Source [https://machinelearningmastery.com/gentle-introduction-mini-batch-gradient-descent-configure-batch-size/](https://machinelearningmastery.com/gentle-introduction-mini-batch-gradient-descent-configure-batch-size/)
+6. Geeksforgeeks. _ML | Mini-Batch Gradient Descent with Python_. Source [https://www.geeksforgeeks.org/ml-mini-batch-gradient-descent-with-python/](https://www.geeksforgeeks.org/ml-mini-batch-gradient-descent-with-python/)
+
+## Other Resources
+
+1. [https://stackoverflow.com/questions/46654424/how-to-calculate-optimal-batch-size](https://stackoverflow.com/questions/46654424/how-to-calculate-optimal-batch-size)
+2. [https://ai.stackexchange.com/questions/8560/how-do-i-choose-the-optimal-batch-size](https://ai.stackexchange.com/questions/8560/how-do-i-choose-the-optimal-batch-size)

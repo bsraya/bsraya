@@ -1,0 +1,99 @@
+---
+title: "Schedulearn"
+date: "2022-07-01"
+readingTime: 3 mins
+description: Scheduling Deep Learning models made easy
+authors: ["Bijon Setyawan Raya", "Annabella Putri Dirgo", "Marcelino Gilbert Tagore"]
+tags: [microservices, dl, scheduling]
+img: "/images/portfolios/schedulearn/schedulearn-architecture.png"
+publish: true
+---
+
+<Announcer message="The project is still under development. You will notice significant changes in the coming days." />
+
+## Introduction
+
+This project is my graduate thesis project. I call it "schedulearn" because it is a system that helps you schedule deep learning models.
+The main objective of this project is to help you schedule deep learning models with the least amount of effort.
+Thus, users can focus more on develiring quality models, not on worrying about resource management.
+
+In this post I will be explaining how this system works in the simplest way possible.
+
+## Tech Stacks
+
+### Frontend
+
+1. [Jinja2](https://jinja.palletsprojects.com/en/3.0.x/)
+2. [Alpine.js](https://alpinejs.dev/)
+3. [Htmx](https://htmx.org/)
+4. [Bulma](https://bulma.io/)
+
+### Backend
+
+1. [FastAPI](https://fastapi.tiangolo.com/)
+2. [SQLModel](https://sqlmodel.tiangolo.com/)
+3. [Pydantic](https://pydantic-docs.helpmanual.io/)
+4. [SQLite](https://www.sqlite.org/)
+5. [Docker](https://docker-py.readthedocs.io/en/stable/index.html)
+6. [Horovod](https://horovod.readthedocs.io/en/stable/)
+
+## Overview
+
+![Schedulearn Architecture](/images/portfolios/schedulearn/schedulearn-architecture.png "Schedulearn Architecture")
+
+### Overall Architecture
+
+In the figure above, you can see that there are three main components in the system: the **API**, the **servers**, the **user interface**. 
+Those API endpoints are responsible for handling users requests from the user interface, such as creating, updating, and deleting models.
+The database is responsible for storing the models' metadata.
+The scheduler, which is built in the same place as the API, is the core of the system and is responsible for scheduling the models depending on the resources available in the cluster.
+Meaning, the system will tell where each model should be trained at and how much resources each model should use.
+
+There are three scheduling algorithms exist within the system:
+
+1. First-In-First-Out (FIFO)
+2. Round-Robin (RR)
+3. Elastic First-In-First-Out (EFIFO)
+
+![Job Submission Procedures](/images/portfolios/schedulearn/submission-procedure.png "Job Submission Procedures")
+
+When a job is submitted, that particular job will undergo several steps before its results are being sent back to the user.
+
+1. The job is sent to the API
+2. The API will save the job's metadata in the database, schedule the job, and send the job to its corresponding server. 
+3. The server will then pull the job from the API and start training the model.
+4. The server sends the result back to the API and save the result in the database
+5. The API sends back the result to the user
+
+## Experiment Setup
+
+The system consists of three servers. The following of the specifications of the entire system:
+
+1. 3 x 4 Nvidia GTX 1080 Ti graphical processing units, each equipped with 11GB Video Random Access Memory (VRAM)
+2. Intel Xeon E5-2678 v3 with 48 cores running at 2.50GHz
+3. 128 GB Random Access Memory (RAM)
+4. 10G PCIe NIC network card
+
+## Challenges
+
+Due security measures imposed by the lab that I worked for, I am unable to train models with multiple GPUs from different servers. 
+However, assigning more GPUs does not translate to 1 to 1 performance increase. Meaning that training a model with 4 GPUs does not mean that the model will be trained 4 times faster, assuming that 1 GPU is 1x speed. 
+
+![Scability across different Deep Learning libraries](/images/portfolios/schedulearn/scalability.png "Scability across different Deep Learning libraries")
+
+To overcome this issue, each job will only be assigned to GPUs from the same server. 
+Not only that is the only work around, but it is one of the ways to reduce communication costs.
+Having multiple GPUs requires the data will have to travel more, which already imposes a significant overhead.
+The further the data travels, the more overhead it will impose. Therefore, it's better to asssign multiple GPUs from the same server to a certrain job.
+
+## Observations
+
+![TensorFlow Makespan and Turnaround Time](/images/portfolios/schedulearn/tf.png "TensorFlow Makespan and Turnaround Time")
+
+![PyTorch Makespan and Turnaround Time](/images/portfolios/schedulearn/py.png "PyTorch Makespan and Turnaround Time")
+
+![Makespan and Turnaround Time of multiple scheduling algorithms](/images/portfolios/schedulearn/algo-comparison.png "Makespan and Turnaround Time of multiple scheduling algorithms")
+
+## Conclusion
+
+## Future Works

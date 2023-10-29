@@ -1,0 +1,165 @@
+---
+title: "Optimized Gradient Descent"
+date: "2022-07-18"
+readingTime: 7 mins
+description: Putting some turbo boost into our gradient descent code
+tags: [python, optimization]
+img: "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+authors: ["Bijon Setyawan Raya"]
+publish: true
+series: true
+---
+
+<Series
+    type="blog"
+    series="Optimized Gradient Descent"
+    posts={[
+        {
+            title: "Appending Elements",
+            slug: "optimized-gd",
+        },
+        {
+            title: "Storing Data",
+            slug: "storing-data",
+        }
+    ]}
+    currentPost="Appending Elements"
+/>
+
+In this series, we will be discussing what's wrong with my gradient descent code and how to optimize it.
+I wanted to make this post because whenever I did experiments with it, I should wait at least 3-5 mins to finish.
+
+Note that most of the code in this post is from my previous post, [Gradient Descent series](/blog/gradient-descent).
+
+## How to Optimize?
+
+Reading many blogs about Python optimization, most of the writers suggested that it was adviseable to use built-in functions and frameworks.
+Let's see if it's true.
+
+Before starting, create a new Python notebook since `%%timeit` only works in Python notebooks.
+
+If you just started learning Python, it's recommended to type the code in this post manually instead of copy and paste.
+Make sure that you type the code in each code block in this post into seperate code cells in your Python notebook.
+
+First, let's import the dataset from Scikit-learn
+
+```python
+from sklearn import datasets
+from timeit import timeit
+
+iris = datasets.load_iris()
+target = iris.target
+```
+
+Once the dataset is imported, create a function so that we can test it using a Python built-in function called `timeit`. 
+
+```python
+def list_append(target):
+    species_names = list()
+    for i in range(len(target)):
+        if target[i] == 0:
+            species_names.append('setosa')
+        elif target[i] == 1:
+            species_names.append('versicolor')
+        else:
+            species_names.append('virginica')
+    return species_names
+
+%%timeit
+list_append(target)
+
+# Returns:
+# 61.8 µs ± 1.12 µs per loop 
+# (mean ± std. dev. of 7 runs, 10000 loops each)
+```
+
+There you go! the speed turns out to be 61.8 microseconds, and that is the baseline in this entire post.
+
+## List Comprehension
+
+I personally prefer typical if-else paradigm of coding since it makes the code more readable and easy to understand.
+Even though it makes the code look shorter, but it's rather hard for little or no relevant background programmers to understand.
+
+Regardless of my opinion, we are going to prove if it's faster than the baseline.
+
+```python
+def list_comprehension(target):
+    return [
+        'setosa' if i == 0 else
+        'versicolor' if i == 1 else
+        'virginica' for i in target
+    ]
+
+%%timeit
+list_comprehension(target)
+
+# Returns:
+# 40.2 µs ± 274 ns per loop 
+# (mean ± std. dev. of 7 runs, 10000 loops each)
+```
+
+## Numpy
+
+Since using Numpy is quite common in Deep and Machine Learning projects, let's see Numpy is any better.
+
+```python
+def numpy_array(target):
+    species_names = np.array([])
+    for i in target:
+        if i == 0:
+            species_names = np.append(species_names, "setosa")
+        elif i == 1:
+            species_names = np.append(species_names, "versicolor")
+        else:
+            species_names = np.append(species_names, "virginica")
+    return species_names
+
+%%timeit
+numpy_array(target)
+
+# Returns:
+# 843 µs ± 15.2 µs per loop 
+# (mean ± std. dev. of 7 runs, 10000 loops each)
+```
+
+Turned out that Numpy is way slower compared to the two previous methods. Why is it slower at appending compared to list? If you print out `np.append.__doc__`, you will see the following docstring.
+
+```text
+...
+
+Returns
+-------
+append : ndarray
+    A copy of `arr` with `values` appended to `axis`.  Note that
+    `append` does not occur in-place: a new array is allocated and
+    filled.  If `axis` is None, `out` is a flattened array.
+
+...
+```
+
+The reason why appending elements into Numpy array is slow because it always make a copy of a thing and store it at a new array. That particular process is resource expensive.
+
+However, there is a work around. We can do list comprehension first and save the result in Numpy array to make it faster.
+
+```python
+def numpy_list_comprehension(target):
+    return np.array([
+        'setosa' if i == 0 else
+        'versicolor' if i == 1 else
+        'virginica' for i in target
+    ])
+
+%%timeit
+numpy_list_comprehension(target)
+
+# Returns:
+# 59.6 µs ± 3.02 µs per loop 
+# (mean ± std. dev. of 7 runs, 10000 loops each)
+```
+
+## Keypoints
+
+1. We have tested how long it takes to append elements to a list and a Numpy array
+2. There are two ways of appending elements to a list: with if-else and list comprehension
+3. Appending elements to a Numpy array is the slowest since it always make a copy of an element and store it in a new array
+4. List comprehension is the fastest method
