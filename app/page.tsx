@@ -1,11 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { IPost } from '../lib/types'
-import SideMenu from '../components/sidemenu'
-import { getAllPostsFrontmatter } from '../lib/posts'
+import SideMenu from '../components/side-menu'
 
 export default function Home() {
-  const posts = getAllPostsFrontmatter().slice(0, 4)
   return (
     <div className="flex h-full">
       <SideMenu />
@@ -43,20 +40,14 @@ export default function Home() {
           <h1 className="underline">Latest Posts</h1>
           <div className="flex flex-col gap-5">
             {
-              posts.map((post: IPost) => {
+              [...Array(3)].map((_, i) => {
                 return (
-                  <Link key={post.slug} href={`/posts/${post.slug}`} className="h-30 flex gap-5">
-                    <Image
-                      src="https://dummyimage.com/200x125.png/a9a9a9/fff"
-                      alt="dummy"
-                      className="rounded-lg"
-                      width={200}
-                      height={125}
-                    />
+                  <Link key={i} href="#" className="h-30 flex gap-5">
+                    <img src="https://dummyimage.com/200x125.png/a9a9a9/fff" alt="dummy" className="rounded-lg" />
                     <div>
-                      <h1 className="text-2xl font-bold">{post.frontMatter.title}</h1>
-                      <p className="text-lg my-2">{post.frontMatter.excerpt}</p>
-                      <p className="text-gray-500">{post.frontMatter.date}</p>
+                      <h1 className="text-2xl font-bold">Lorem Ipsum Dolorem Sit Amet</h1>
+                      <p className="text-lg my-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                      <p className="text-gray-500">January 1, 2024</p>
                     </div>
                   </Link>
                 )
