@@ -4,7 +4,12 @@ const nextConfig = {
     swcMinify: true,
     pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
     images: {
-        domains: ['dummyimage.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'dummyimage.com',
+            }
+        ]
     },
 }
 
