@@ -1,10 +1,11 @@
-import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
-import rehypeCodeTitles from 'rehype-code-titles'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypeKatex from 'rehype-katex'
+import remarkMath from 'remark-math'
 
 /** @type {import('contentlayer/types').ContentLayerConfig}*/
 const computedFields = {
@@ -30,6 +31,15 @@ export const Post = defineDocumentType(() => ({
         description: {
             type: 'string',
         },
+        date:{
+            type: 'date',
+        },
+        tags: {
+            type: 'list',
+            of: {
+                type: 'string',
+            },
+        },
         published: {
             type: 'boolean',
             default: true,
@@ -51,11 +61,13 @@ export const Portfolio = defineDocumentType(() => ({
             type: 'string',
         },
         date:{
-            type: 'string',
+            type: 'date',
         },
         tags: {
-            type: 'string',
-            list: true,
+            type: 'list',
+            of: {
+                type: 'string',
+            },
         },
         published: {
             type: 'boolean',
@@ -69,15 +81,14 @@ export default makeSource ({
     contentDirPath: './content',
     documentTypes: [Post, Portfolio],
     mdx: {
-        remarkPlugins: [remarkGfm],
+        remarkPlugins: [remarkMath],
         rehypePlugins: [
             rehypeSlug,
             rehypeCodeTitles,
-            rehypeAccessibleEmojis,
             [
                 rehypePrettyCode,
                 {
-                    theme: 'github-dark',
+                    theme: 'github-light',
                     onVisitLine(node) {
                         if (node.children.length == 0) {
                             node.children = [{ type: 'text', value: ' ' }]
@@ -99,7 +110,9 @@ export default makeSource ({
                         ariaLabel: 'Link to section'
                     }
                 }
-            ]
+            ],
+            rehypeKatex,
+            rehypeAccessibleEmojis
         ],
     },
     watch: process.env.NODE_ENV === 'development',
