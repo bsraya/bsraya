@@ -12,9 +12,16 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+      }
     },
+    // import the merriweather font family
+    fontFamily: {
+      'serif': ['Playfair Display', 'serif'],
+    }
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+  ],
 }
 export default config
