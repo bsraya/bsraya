@@ -1,9 +1,10 @@
 import * as React from "react";
-import Image from "next/image";
-import { useMDXComponent } from "next-contentlayer/hooks";
 import { cn } from "../lib/utils";
 import { Callout } from "./callout";
 import { MdxCard } from "./mdx-card";
+import LineGraph from "./line-graph";
+import ScatterGraph from "./scatter-graph";
+import { useMDXComponent } from "next-contentlayer/hooks";
 
 const components: any = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -71,7 +72,7 @@ const components: any = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <p
-      className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
+      className={cn("leading-8 [&:not(:first-child)]:my-10 max-w-prose", className)}
       {...props}
     />
   ),
@@ -98,8 +99,19 @@ const components: any = {
     alt,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img className={cn("rounded-md border", className)} alt={alt} {...props} />
+    <figure className="w-full">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className={
+          cn("rounded-md border w-full", className)
+        }
+        alt={alt}
+        {...props}
+      />
+      <figcaption className="text-sm text-center text-muted-foreground">
+        Figure:{alt}
+      </figcaption>
+    </figure>
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
@@ -134,7 +146,7 @@ const components: any = {
   pre: ({ className, ...props }: any) => (
     <pre
       className={cn(
-        "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4",
+        "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4 max-w-prose",
         className
       )}
       {...props}
@@ -149,9 +161,10 @@ const components: any = {
       {...props}
     />
   ),
-  Image,
   Callout,
-  Card: MdxCard
+  Card: MdxCard,
+  ScatterGraph,
+  LineGraph
 }
 
 export default function Mdx({ code }: { code: string }) {
