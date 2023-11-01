@@ -109,7 +109,7 @@ const components: any = {
         {...props}
       />
       <figcaption className="text-sm text-center text-muted-foreground">
-        Figure:{alt}
+        Figure: {alt}
       </figcaption>
     </figure>
   ),
@@ -155,7 +155,7 @@ const components: any = {
   code: ({ className, ...props }: any) => (
     <code
       className={cn(
-        "relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm",
+        "relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm [&>*]:my-[0.2rem]",
         className
       )}
       {...props}
