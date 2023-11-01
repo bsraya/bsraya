@@ -1,11 +1,12 @@
+import remarkMath from 'remark-math'
 import rehypeSlug from 'rehype-slug'
+import rehypeKatex from 'rehype-katex'
+import rehypeCodeTitles from 'rehype-code-titles'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
-import rehypeCodeTitles from 'rehype-code-titles'
-import rehypeKatex from 'rehype-katex'
-import remarkMath from 'remark-math'
+import remarkGfm from 'remark-gfm'
 
 /** @type {import('contentlayer/types').ContentLayerConfig}*/
 const computedFields = {
@@ -16,6 +17,10 @@ const computedFields = {
     slugAsParams: {
         type: 'string',
         resolve: (doc) => doc._raw.flattenedPath.split('/').slice(1).join('/'),
+    },
+    tagAsParams: {
+        type: 'string',
+        resolve: (doc) => doc.tag.split(' ').join('-').toLowerCase(),
     },
 }
 
@@ -33,12 +38,10 @@ export const Post = defineDocumentType(() => ({
         },
         date:{
             type: 'date',
+            required: true,
         },
-        tags: {
-            type: 'list',
-            of: {
-                type: 'string',
-            },
+        tag: {
+            type: 'string',
         },
         published: {
             type: 'boolean',
@@ -62,12 +65,10 @@ export const Portfolio = defineDocumentType(() => ({
         },
         date:{
             type: 'date',
+            required: true,
         },
-        tags: {
-            type: 'list',
-            of: {
-                type: 'string',
-            },
+        tag: {
+            type: 'string',
         },
         published: {
             type: 'boolean',
@@ -81,7 +82,7 @@ export default makeSource ({
     contentDirPath: './content',
     documentTypes: [Post, Portfolio],
     mdx: {
-        remarkPlugins: [remarkMath],
+        remarkPlugins: [remarkGfm, remarkMath],
         rehypePlugins: [
             rehypeSlug,
             rehypeCodeTitles,
