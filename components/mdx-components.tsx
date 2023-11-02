@@ -3,6 +3,7 @@ import { cn } from "../lib/utils";
 import { Callout } from "./callout";
 import { MdxCard } from "./mdx-card";
 import LineGraph from "./line-graph";
+import SeriesTable from './series-table';
 import ScatterGraph from "./scatter-graph";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
@@ -164,7 +165,8 @@ const components: any = {
   Callout,
   Card: MdxCard,
   ScatterGraph,
-  LineGraph
+  LineGraph,
+  SeriesTable
 }
 
 export default function Mdx({ code }: { code: string }) {
