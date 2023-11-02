@@ -6,61 +6,91 @@ tag: Machine Learning
 type: Post
 ---
 
+<SeriesTable
+  title="Gradient Descent Algorithm"
+  series={[
+    {
+      title: "Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Linear Regression",
+      current: false,
+    },
+    {
+      title: "Mathematics of Gradient Descent",
+      current: true,
+    },
+    {
+      title: "Batch Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Mini Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Stochastic Gradient Descent",
+      current: false,
+    },
+  ]}
+/>
+
 ## Introduction
 
-Remember in [the Linear Regression post](/blog/linear-regression),
+Remember in [the Linear Regression post](/posts/linear-regression),
 I mentioned that we can use a Gradient Descent algorithm to minimize the loss function, in this case the Mean Squared Error valuem, of a Linear Regression model.
 Let's see how it works at a glance.
 
 Assume we have random data points like in the following graph.
 
 <ScatterGraph
-    options={{
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Beta1',
-                    color: 'black'
-                },
-                ticks: {
-                    color: 'black',
-                    padding: 10
-                }
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: 'MSE',
-                    color: 'black'
-                },
-                ticks: {
-                    color: 'black',
-                    padding: 10
-                }
-            }
-        }
-    }}
-    data={{
-        labels: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5', 'Data 6'],
-        datasets: [
-            {
-                label: 'Data',
-                data: [
-                    { x: 0, y: 0.5 },
-                    { x: 1, y: 0.1 },
-                    { x: 2, y: 0.6 },
-                    { x: 3, y: 2.0 },
-                    { x: 4, y: 2.5 },
-                    { x: 5, y: 1.5 }
-                ],
-                backgroundColor: 'rgb(54, 162, 235)',
-                pointRadius: 5,
-            }
+  options={{
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Beta1",
+          color: "black",
+        },
+        ticks: {
+          color: "black",
+          padding: 10,
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "MSE",
+          color: "black",
+        },
+        ticks: {
+          color: "black",
+          padding: 10,
+        },
+      },
+    },
+  }}
+  data={{
+    labels: ["Data 1", "Data 2", "Data 3", "Data 4", "Data 5", "Data 6"],
+    datasets: [
+      {
+        label: "Data",
+        data: [
+          { x: 0, y: 0.5 },
+          { x: 1, y: 0.1 },
+          { x: 2, y: 0.6 },
+          { x: 3, y: 2.0 },
+          { x: 4, y: 2.5 },
+          { x: 5, y: 1.5 },
         ],
-        pointRadius: 10,
-    }} 
-    height={200} 
+        backgroundColor: "rgb(54, 162, 235)",
+        pointRadius: 5,
+      },
+    ],
+    pointRadius: 10,
+  }}
+  height={200}
 />
 
 We then make a regression line based on the following equation.
@@ -74,69 +104,69 @@ Assuming that we can't come up with the best answer, we can just randomly assign
 Now, let's set $\beta_0 = 0$ and $\beta_1 = -5$, and we are going to get a regression line in the following graph.
 
 <ScatterGraph
-    options={{
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Beta1',
-                    color: 'black'
-                },
-                ticks: {
-                    color: 'black',
-                    padding: 10
-                }
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: 'MSE',
-                    color: 'black'
-                },
-                ticks: {
-                    color: 'black',
-                    padding: 10
-                }
-            }
-        }
-    }}
-    data={{
-        labels: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5', 'Data 6'],
-        datasets: [
-            {
-                label: 'Data',
-                data: [
-                    { x: 0, y: 0.5 },
-                    { x: 1, y: 0.1 },
-                    { x: 2, y: 0.6 },
-                    { x: 3, y: 2.0 },
-                    { x: 4, y: 2.5 },
-                    { x: 5, y: 1.5 }
-                ],
-                backgroundColor: 'rgb(54, 162, 235)',
-                pointRadius: 5
-            },
-            {
-                label: 'Regression line',
-                data: [
-                    { x: 0, y: 2.5 },
-                    { x: 1, y: 2.0 },
-                    { x: 2, y: 1.5 },
-                    { x: 3, y: 1.0 },
-                    { x: 4, y: 0.5 },
-                    { x: 5, y: 0.0 }
-                ],
-                backgroundColor: 'rgb(255, 99, 132)',
-                pointRadius: 0,
-                borderColor: 'rgb(255, 99, 132)',
-                borderWidth: 2,
-                fill: false,
-                showLine: true,
-            }
+  options={{
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Beta1",
+          color: "black",
+        },
+        ticks: {
+          color: "black",
+          padding: 10,
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "MSE",
+          color: "black",
+        },
+        ticks: {
+          color: "black",
+          padding: 10,
+        },
+      },
+    },
+  }}
+  data={{
+    labels: ["Data 1", "Data 2", "Data 3", "Data 4", "Data 5", "Data 6"],
+    datasets: [
+      {
+        label: "Data",
+        data: [
+          { x: 0, y: 0.5 },
+          { x: 1, y: 0.1 },
+          { x: 2, y: 0.6 },
+          { x: 3, y: 2.0 },
+          { x: 4, y: 2.5 },
+          { x: 5, y: 1.5 },
         ],
-        pointRadius: 10,
-    }} 
-    height={200} 
+        backgroundColor: "rgb(54, 162, 235)",
+        pointRadius: 5,
+      },
+      {
+        label: "Regression line",
+        data: [
+          { x: 0, y: 2.5 },
+          { x: 1, y: 2.0 },
+          { x: 2, y: 1.5 },
+          { x: 3, y: 1.0 },
+          { x: 4, y: 0.5 },
+          { x: 5, y: 0.0 },
+        ],
+        backgroundColor: "rgb(255, 99, 132)",
+        pointRadius: 0,
+        borderColor: "rgb(255, 99, 132)",
+        borderWidth: 2,
+        fill: false,
+        showLine: true,
+      },
+    ],
+    pointRadius: 10,
+  }}
+  height={200}
 />
 
 The problem is that we can't simply guess random numbers and plug them in to $\beta_0$ and $\beta_1$ over and over again.
@@ -144,138 +174,43 @@ Clearly, we need a way to automate this.
 
 Let's make a 2D graph showing the MSE graph where $\beta_0 = 0$ and $-10 \leq \beta_1 \leq 13$.
 
-
-<ScatterGraph 
-    options={{
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Beta1',
-                    color: 'black'
-                },
-                ticks: {
-                    color: 'black',
-                    padding: 10
-                }
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: 'MSE',
-                    color: 'black'
-                },
-                ticks: {
-                    color: 'black',
-                    padding: 10
-                }
-            }
-        }
-    }}
-    data={{
-        datasets: [
-            {
-                label: 'Data point',
-                data: [
-                    { x: -4, y: 16 }
-                ],
-                backgroundColor: 'rgb(54, 162, 235)',
-                pointRadius: 5
-            },
-            {
-                label: 'MSE',
-                data: [
-                    { x: -7, y: 49 },
-                    { x: -6, y: 36 },
-                    { x: -5, y: 25 },
-                    { x: -4, y: 16 },
-                    { x: -3, y: 9 },
-                    { x: -2, y: 4 },
-                    { x: -1, y: 1 },
-                    { x: 0, y: 0 },
-                    { x: 1, y: 1 },
-                    { x: 2, y: 4 },
-                    { x: 3, y: 9 },
-                    { x: 4, y: 16 },
-                    { x: 5, y: 25 },
-                    { x: 6, y: 36 },
-                    { x: 7, y: 49 }
-                ],
-                backgroundColor: 'rgb(255, 99, 132)',
-                pointRadius: 0,
-                borderColor: 'rgb(255, 99, 132)',
-                borderWidth: 2,
-                fill: false,
-                showLine: true,
-            }
-        ],
-        pointRadius: 10,
-    }} 
-    height={200} 
-/>
-
-In the graph above, when $\beta_0 = 0$ and $\beta_1 = -5$, the MSE value is $217.42$ shown as a red dot.
-
-I intentionally make the range wider to show everyone that the cost function (MSE) looks like an exponential function.
-It's not easy to tell where the minimum point is at this moment, but it could be around $-3 \leq \beta_1 \leq 3$.
-Therefore, we are not going to guess the suitable value $\beta_1$ one by one.
-
-The ideal scenario is that we can have the red dot going down the valley slowly by itself.
-
 <ScatterGraph
   options={{
-    plugins: {
-      title: {
-        display: true,
-        text: 'Gradient Descent with Low Learning Rate',
-        color: 'black',
-        font: {
-          size: 20
-        }
-      }
-    },
     scales: {
       x: {
         title: {
           display: true,
-          text: 'Beta1',
-          color: 'black'
+          text: "Beta1",
+          color: "black",
         },
         ticks: {
-          color: 'black',
-          padding: 10
-        }
+          color: "black",
+          padding: 10,
+        },
       },
       y: {
         title: {
           display: true,
-          text: 'MSE',
-          color: 'black'
+          text: "MSE",
+          color: "black",
         },
         ticks: {
-          color: 'black',
-          padding: 10
-        }
-      }
-    }
+          color: "black",
+          padding: 10,
+        },
+      },
+    },
   }}
   data={{
-    labels: ['Start', 'Iteration 1', 'Iteration 2', 'Iteration 3', 'Iteration 4', 'Iteration 5'],
     datasets: [
       {
-        label: 'Data points',
-        data: [
-          { x: -4, y: 16 },
-          { x: -3, y: 9 },
-          { x: -2, y: 4 },
-          { x: -1, y: 1 },
-          { x: 0, y: 0 },
-        ],
-        backgroundColor: 'rgb(54, 162, 235)',
-        pointRadius: 5
+        label: "Data point",
+        data: [{ x: -4, y: 16 }],
+        backgroundColor: "rgb(54, 162, 235)",
+        pointRadius: 5,
       },
       {
-        label: 'MSE',
+        label: "MSE",
         data: [
           { x: -7, y: 49 },
           { x: -6, y: 36 },
@@ -291,15 +226,114 @@ The ideal scenario is that we can have the red dot going down the valley slowly 
           { x: 4, y: 16 },
           { x: 5, y: 25 },
           { x: 6, y: 36 },
-          { x: 7, y: 49 }
+          { x: 7, y: 49 },
         ],
-        backgroundColor: 'rgb(255, 99, 132)',
+        backgroundColor: "rgb(255, 99, 132)",
         pointRadius: 0,
-        borderColor: 'rgb(255, 99, 132)',
+        borderColor: "rgb(255, 99, 132)",
         borderWidth: 2,
         fill: false,
         showLine: true,
-      }
+      },
+    ],
+    pointRadius: 10,
+  }}
+  height={200}
+/>
+
+In the graph above, when $\beta_0 = 0$ and $\beta_1 = -5$, the MSE value is $217.42$ shown as a red dot.
+
+I intentionally make the range wider to show everyone that the cost function (MSE) looks like an exponential function.
+It's not easy to tell where the minimum point is at this moment, but it could be around $-3 \leq \beta_1 \leq 3$.
+Therefore, we are not going to guess the suitable value $\beta_1$ one by one.
+
+The ideal scenario is that we can have the red dot going down the valley slowly by itself.
+
+<ScatterGraph
+  options={{
+    plugins: {
+      title: {
+        display: true,
+        text: "Gradient Descent with Low Learning Rate",
+        color: "black",
+        font: {
+          size: 20,
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Beta1",
+          color: "black",
+        },
+        ticks: {
+          color: "black",
+          padding: 10,
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "MSE",
+          color: "black",
+        },
+        ticks: {
+          color: "black",
+          padding: 10,
+        },
+      },
+    },
+  }}
+  data={{
+    labels: [
+      "Start",
+      "Iteration 1",
+      "Iteration 2",
+      "Iteration 3",
+      "Iteration 4",
+      "Iteration 5",
+    ],
+    datasets: [
+      {
+        label: "Data points",
+        data: [
+          { x: -4, y: 16 },
+          { x: -3, y: 9 },
+          { x: -2, y: 4 },
+          { x: -1, y: 1 },
+          { x: 0, y: 0 },
+        ],
+        backgroundColor: "rgb(54, 162, 235)",
+        pointRadius: 5,
+      },
+      {
+        label: "MSE",
+        data: [
+          { x: -7, y: 49 },
+          { x: -6, y: 36 },
+          { x: -5, y: 25 },
+          { x: -4, y: 16 },
+          { x: -3, y: 9 },
+          { x: -2, y: 4 },
+          { x: -1, y: 1 },
+          { x: 0, y: 0 },
+          { x: 1, y: 1 },
+          { x: 2, y: 4 },
+          { x: 3, y: 9 },
+          { x: 4, y: 16 },
+          { x: 5, y: 25 },
+          { x: 6, y: 36 },
+          { x: 7, y: 49 },
+        ],
+        backgroundColor: "rgb(255, 99, 132)",
+        pointRadius: 0,
+        borderColor: "rgb(255, 99, 132)",
+        borderWidth: 2,
+        fill: false,
+        showLine: true,
+      },
     ],
     pointRadius: 10,
   }}
@@ -307,92 +341,98 @@ The ideal scenario is that we can have the red dot going down the valley slowly 
 
 However, we don't want the red dot to bounce here and there.
 If so, it means that the learning rate is too high.
-Don't worry if you are not sure what learning rate is since I have [a seperate post](/blog/what-is-the-best-learning-rate) explaning what it is.
+Don't worry if you are not sure what learning rate is since I have [a seperate post](/posts/what-is-the-best-learning-rate) explaning what it is.
 
 <ScatterGraph
-    options={{
-        plugins: {
-            title: {
-                display: true,
-                text: 'Gradient Descent with High Learning Rate',
-                color: 'black',
-                font: {
-                    size: 20
-                }
-            }
+  options={{
+    plugins: {
+      title: {
+        display: true,
+        text: "Gradient Descent with High Learning Rate",
+        color: "black",
+        font: {
+          size: 20,
         },
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Beta1',
-                    color: 'black'
-                },
-                ticks: {
-                    color: 'black',
-                    padding: 10
-                }
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: 'MSE',
-                    color: 'black'
-                },
-                ticks: {
-                    color: 'black',
-                    padding: 10
-                }
-            }
-        }
-    }}
-    data={{
-        labels: ['Start', 'Iteration 1', 'Iteration 2', 'Iteration 3', 'Iteration 4'],
-        datasets: [
-            {
-                type: 'line',
-                label: 'Data points',
-                data: [
-                    { x: -4, y: 16 },
-                    { x: 6, y: 36 },
-                    { x: 4, y: 16 },
-                    { x: -7, y: 49 },
-                    { x: 2, y: 4 },
-                ],
-                backgroundColor: 'rgb(54, 162, 235)',
-                pointRadius: 5
-            },
-            {
-                type: 'line',
-                label: 'MSE',
-                data: [
-                    { x: -7, y: 49 },
-                    { x: -6, y: 36 },
-                    { x: -5, y: 25 },
-                    { x: -4, y: 16 },
-                    { x: -3, y: 9 },
-                    { x: -2, y: 4 },
-                    { x: -1, y: 1 },
-                    { x: 0, y: 0 },
-                    { x: 1, y: 1 },
-                    { x: 2, y: 4 },
-                    { x: 3, y: 9 },
-                    { x: 4, y: 16 },
-                    { x: 5, y: 25 },
-                    { x: 6, y: 36 },
-                    { x: 7, y: 49 }
-                ],
-                backgroundColor: 'rgb(255, 99, 132)',
-                pointRadius: 0,
-                borderColor: 'rgb(255, 99, 132)',
-                borderWidth: 2,
-                fill: false,
-                showLine: true,
-            }
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Beta1",
+          color: "black",
+        },
+        ticks: {
+          color: "black",
+          padding: 10,
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "MSE",
+          color: "black",
+        },
+        ticks: {
+          color: "black",
+          padding: 10,
+        },
+      },
+    },
+  }}
+  data={{
+    labels: [
+      "Start",
+      "Iteration 1",
+      "Iteration 2",
+      "Iteration 3",
+      "Iteration 4",
+    ],
+    datasets: [
+      {
+        type: "line",
+        label: "Data points",
+        data: [
+          { x: -4, y: 16 },
+          { x: 6, y: 36 },
+          { x: 4, y: 16 },
+          { x: -7, y: 49 },
+          { x: 2, y: 4 },
         ],
-        pointRadius: 10,
-    }} 
-    height={200} 
+        backgroundColor: "rgb(54, 162, 235)",
+        pointRadius: 5,
+      },
+      {
+        type: "line",
+        label: "MSE",
+        data: [
+          { x: -7, y: 49 },
+          { x: -6, y: 36 },
+          { x: -5, y: 25 },
+          { x: -4, y: 16 },
+          { x: -3, y: 9 },
+          { x: -2, y: 4 },
+          { x: -1, y: 1 },
+          { x: 0, y: 0 },
+          { x: 1, y: 1 },
+          { x: 2, y: 4 },
+          { x: 3, y: 9 },
+          { x: 4, y: 16 },
+          { x: 5, y: 25 },
+          { x: 6, y: 36 },
+          { x: 7, y: 49 },
+        ],
+        backgroundColor: "rgb(255, 99, 132)",
+        pointRadius: 0,
+        borderColor: "rgb(255, 99, 132)",
+        borderWidth: 2,
+        fill: false,
+        showLine: true,
+      },
+    ],
+    pointRadius: 10,
+  }}
+  height={200}
 />
 
 In the next section, we are going to discuss how we can help our little friend The Little Red Dot going down the valley.

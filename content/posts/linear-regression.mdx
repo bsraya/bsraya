@@ -6,23 +6,55 @@ tag: Machine Learning
 type: Post
 ---
 
+<SeriesTable
+  title="Gradient Descent"
+  series={[
+    {
+      title: "Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Linear Regression",
+      current: true,
+    },
+    {
+      title: "Mathematics of Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Batch Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Mini Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Stochastic Gradient Descent",
+      current: false,
+    },
+  ]}
+/>
+
 <LineGraph
   data={{
     labels: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
-    datasets: [{
-      label: "y = mx + b",
-      data: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
-      borderColor: "blue"
-    }]
+    datasets: [
+      {
+        label: "y = mx + b",
+        data: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
+        borderColor: "blue",
+      },
+    ],
   }}
-  options={{ 
+  options={{
     plugins: {
       legend: {
         display: true,
         position: "bottom",
-      }
-    }
-  }} 
+      },
+    },
+  }}
 />
 
 I am sure most of you reading this post right now are familiar with the following graph,
@@ -59,42 +91,46 @@ Now you will be wondering their correlations whether `sepal_length` and `petal_w
 <LineGraph
   data={{
     labels: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
-    datasets: [{
-      label: "Positively Correlated Regression Line",
-      data: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
-      borderColor: "green",
-    }]
+    datasets: [
+      {
+        label: "Positively Correlated Regression Line",
+        data: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
+        borderColor: "green",
+      },
+    ],
   }}
-  options={{ 
+  options={{
     plugins: {
       legend: {
         display: true,
         position: "bottom",
-      }
-    }
-  }} 
+      },
+    },
+  }}
 />
 
 `sepal_length` and `petal_width` are said to be correlated when `sepal_length` increases, the `petal_length` also increases.
 Conversely, `sepal_length` and `petal_width` are said to be inversely correlated when `sepal_length` increases, but the `petal_width` decreases.
 
-<LineGraph 
+<LineGraph
   data={{
     labels: [3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0.0],
-    datasets: [{
-      label: "Negatively Correlated Regression Line",
-      data: [3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0.0],
-      borderColor: "red",
-    }]
-  }} 
-  options={{ 
+    datasets: [
+      {
+        label: "Negatively Correlated Regression Line",
+        data: [3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0.0],
+        borderColor: "red",
+      },
+    ],
+  }}
+  options={{
     plugins: {
       legend: {
         display: true,
         position: "bottom",
-      }
-    }
-  }} 
+      },
+    },
+  }}
 />
 
 With a regression line, it can help us to predict the $y$ value given a single $x$ value.
