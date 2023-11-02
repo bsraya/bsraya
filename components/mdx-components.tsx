@@ -1,3 +1,4 @@
+import Link from "next/link";
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { Callout } from "./callout";
@@ -6,6 +7,26 @@ import LineGraph from "./line-graph";
 import SeriesTable from './series-table';
 import ScatterGraph from "./scatter-graph";
 import { useMDXComponent } from "next-contentlayer/hooks";
+
+const customLink = (classes: string, props: any) => {
+  const href = props.href
+  const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"))
+
+  if (isInternalLink) {
+    return (
+      <Link href={href} {...props} /> 
+    )
+  }
+
+  return (
+    <a className={`${classes}`} target="_blank" rel="noopener noreferrer" {...props}>
+      {props.children}
+      <svg viewBox="0 0 512 512" className="h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg">
+        <path d="m432 320h-32a16 16 0 0 0 -16 16v112h-320v-320h144a16 16 0 0 0 16-16v-32a16 16 0 0 0 -16-16h-160a48 48 0 0 0 -48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48v-128a16 16 0 0 0 -16-16zm56-320h-128c-21.37 0-32.05 25.91-17 41l35.73 35.73-243.73 243.64a24 24 0 0 0 0 34l22.67 22.63a24 24 0 0 0 34 0l243.61-243.68 35.72 35.68c15 15 41 4.5 41-17v-128a24 24 0 0 0 -24-24z" />
+      </svg>
+    </a>
+  )
+}
 
 const components: any = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -57,15 +78,6 @@ const components: any = {
     <h6
       className={cn(
         "mt-8 scroll-m-20 text-base font-semibold tracking-tight",
-        className
-      )}
-      {...props}
-    />
-  ),
-  a: ({ className, ...props }: any) => (
-    <a
-      className={cn(
-        "font-medium underline underline-offset-4",
         className
       )}
       {...props}
@@ -161,6 +173,12 @@ const components: any = {
       )}
       {...props}
     />
+  ),
+  a: ({ className, ...props }: any) => (
+    customLink(
+      cn("flex inline-flex items-center hover:no-underline", className),
+      props
+    )
   ),
   Callout,
   Card: MdxCard,
