@@ -8,7 +8,7 @@ export default function SideMenu() {
                 <li className="text-xl hover:line-through w-fit"><Link href="/about">About Me</Link></li>
                 <li className="text-xl hover:line-through w-fit"><Link href="/experience">Experience</Link></li>
                 <li className="text-xl hover:line-through w-fit"><Link href="/posts">Posts</Link></li>
-                <li className="text-xl hover:line-through w-fit"><Link href="/contactme">Contact Me</Link></li>
+                <li className="text-xl hover:line-through w-fit"><Link href="/contact">Contact Me</Link></li>
             </ul>
             <div className="py-2 px-5 my-5 text-xl w-fit rounded-full border border-2 hover:border-gray-500"><Link href="/works">See My Work</Link></div>
             <div className="flex gap-2">
