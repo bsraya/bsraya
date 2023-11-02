@@ -1,8 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { format } from 'date-fns';
 import SideMenu from '../components/side-menu'
+import { allPosts } from '../.contentlayer/generated'
 
 export default function Home() {
+  const posts = allPosts.filter((post) => post.published === true).splice(0, 3);
+
   return (
     <div className="flex h-full">
       <SideMenu />
@@ -13,7 +17,7 @@ export default function Home() {
         </div>
         <div className="my-10">
           <h1 className="mb-5 underline">Recent Works</h1>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
             <div>
               <Image
                 src="https://dummyimage.com/1200x450.png/a9a9a9/fff"
@@ -38,16 +42,24 @@ export default function Home() {
         </div>
         <div className="mt-32 mb-10 flex flex-col gap-5">
           <h1 className="underline">Latest Posts</h1>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-10">
             {
-              [...Array(3)].map((_, i) => {
+              posts.map(({ title, description, date, slugAsParams }: any) => {
                 return (
-                  <Link key={i} href="#" className="h-30 flex gap-5">
-                    <img src="https://dummyimage.com/200x125.png/a9a9a9/fff" alt="dummy" className="rounded-lg" />
-                    <div>
-                      <h1 className="text-2xl font-bold">Lorem Ipsum Dolorem Sit Amet</h1>
-                      <p className="text-lg my-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
-                      <p className="text-gray-500">January 1, 2024</p>
+                  <Link key={slugAsParams} href={`/posts/${slugAsParams}`} as={`/posts/${slugAsParams}`}>
+                    <div className="h-30 xl:flex block gap-5">
+                      <Image
+                        src="https://dummyimage.com/200x125.png/a9a9a9/fff"
+                        alt="dummy"
+                        className="rounded-lg col-span-1"
+                        width={200}
+                        height={125}
+                      />
+                      <div className="col-span-auto mt-3">
+                        <h1 className="text-2xl font-bold">{title}</h1>
+                        <p className="text-lg my-2">{description}</p>
+                        <div className="text-xl ml-auto">{format(new Date(date), 'dd MMMM yyyy')}</div>
+                      </div>
                     </div>
                   </Link>
                 )
