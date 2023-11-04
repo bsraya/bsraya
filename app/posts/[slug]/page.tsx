@@ -55,7 +55,7 @@ export default async function Post({ params }: PostProps) {
                     )
                 }
             </div>
-            <div className="prose lg:prose-xl max-w-[120ch] my-32 prose-a:underline-offset-4">
+            <div className="prose lg:prose-xl my-32 prose-a:underline-offset-4">
                 <Mdx code={post.body.code} />
             </div>
         </div>
