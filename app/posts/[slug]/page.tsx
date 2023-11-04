@@ -4,12 +4,6 @@ import { notFound } from 'next/navigation'
 import Mdx from "../../../components/mdx-components"
 import { allPosts } from '../../../.contentlayer/generated'
 
-interface PostProps {
-    params: {
-        slug: string
-    }
-}
-
 async function getPostsFromParams(slug: string) {
     const post = allPosts.find((post) => post.slugAsParams === slug)
 
@@ -18,7 +12,7 @@ async function getPostsFromParams(slug: string) {
     return post
 }
 
-export default async function Post({ params }: PostProps) {
+export default async function Post({ params }: { params: { slug: string } }) {
     const post = await getPostsFromParams(params.slug)
     return (
         <div className="lg:p-10 p-5">
