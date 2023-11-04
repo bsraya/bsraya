@@ -1,7 +1,6 @@
 import Link from "next/link";
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { Callout } from "./callout";
 import { MdxCard } from "./mdx-card";
 import LineGraph from "./line-graph";
 import SeriesTable from './series-table';
@@ -116,11 +115,11 @@ const components: any = {
     alt,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <figure className="w-full">
+    <figure>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className={
-          cn("rounded-md border w-full", className)
+          cn("rounded w-full", className)
         }
         alt={alt}
         {...props}
@@ -163,7 +162,7 @@ const components: any = {
   pre: ({ className, ...props }: any) => (
     <pre
       className={cn(
-        "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4 max-w-prose",
+        "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4",
         className
       )}
       {...props}
@@ -184,7 +183,6 @@ const components: any = {
       props
     )
   ),
-  Callout,
   Card: MdxCard,
   ScatterGraph,
   LineGraph,
