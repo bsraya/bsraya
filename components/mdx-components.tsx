@@ -20,9 +20,13 @@ const customLink = (classes: string, props: any) => {
 
   return (
     <a className={`${classes}`} target="_blank" rel="noopener noreferrer" {...props}>
-      {props.children}
-      <svg viewBox="0 0 512 512" className="h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg">
-        <path d="m432 320h-32a16 16 0 0 0 -16 16v112h-320v-320h144a16 16 0 0 0 16-16v-32a16 16 0 0 0 -16-16h-160a48 48 0 0 0 -48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48v-128a16 16 0 0 0 -16-16zm56-320h-128c-21.37 0-32.05 25.91-17 41l35.73 35.73-243.73 243.64a24 24 0 0 0 0 34l22.67 22.63a24 24 0 0 0 34 0l243.61-243.68 35.72 35.68c15 15 41 4.5 41-17v-128a24 24 0 0 0 -24-24z" />
+      <span className="mr-1 prose-a:">{props.children}</span>
+      <svg viewBox="0 0 24 24" className="h-5 w-5 inline-block mb-1">
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <path d="M15 3h6v6"></path>
+          <path d="M10 14L21 3"></path>
+        </g>
       </svg>
     </a>
   )
@@ -176,7 +180,7 @@ const components: any = {
   ),
   a: ({ className, ...props }: any) => (
     customLink(
-      cn("flex inline-flex items-center hover:no-underline", className),
+      cn("flex-inline", className),
       props
     )
   ),
