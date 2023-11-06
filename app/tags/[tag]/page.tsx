@@ -41,7 +41,7 @@ export default async function Tags({ params }: PostsProps) {
                     <p className="text-lg my-2">
                       {description}
                     </p>
-                    <div className="text-xl ml-auto text-gray-400">
+                    <div className="text-lg ml-auto text-gray-400">
                       {format(new Date(date), 'dd MMMM yyyy')}
                     </div>
                   </div>

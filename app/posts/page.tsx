@@ -25,9 +25,15 @@ export default function Posts() {
                                     height={125}
                                 />
                                 <div className="col-span-auto mt-3">
-                                    <h1 className="text-2xl font-bold">{title}</h1>
-                                    <p className="text-lg my-2">{description}</p>
-                                    <div className="text-xl ml-auto">{format(new Date(date), 'dd MMMM yyyy')}</div>
+                                    <h1 className="text-2xl font-bold">
+                                        {title}
+                                    </h1>
+                                    <p className="text-lg my-2">
+                                        {description}
+                                    </p>
+                                    <div className="text-lg ml-auto text-gray-400">
+                                        {format(new Date(date), 'dd MMMM yyyy')}
+                                    </div>
                                 </div>
                             </div>
                         </Link>
