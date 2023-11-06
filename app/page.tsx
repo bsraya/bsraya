@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { format } from 'date-fns';
+import Posts from '../components/post-frames'
 import SideMenu from '../components/side-menu'
 import { allPosts } from '../.contentlayer/generated'
 
@@ -43,29 +43,13 @@ export default function Home() {
         <div className="mt-32 mb-10 flex flex-col gap-5">
           <h1 className="underline">Latest Posts</h1>
           <div className="flex flex-col gap-10">
-            {
-              posts.map(({ title, description, date, slugAsParams }: any) => {
-                return (
-                  <Link key={slugAsParams} href={`/posts/${slugAsParams}`} as={`/posts/${slugAsParams}`}>
-                    <div className="h-30 xl:flex block gap-5">
-                      <Image
-                        src="https://dummyimage.com/200x125.png/a9a9a9/fff"
-                        alt="dummy"
-                        className="rounded-lg col-span-1"
-                        width={200}
-                        height={125}
-                      />
-                      <div className="col-span-auto mt-3">
-                        <h1 className="text-2xl font-bold">{title}</h1>
-                        <p className="text-lg my-2">{description}</p>
-                        <div className="text-xl ml-auto">{format(new Date(date), 'dd MMMM yyyy')}</div>
-                      </div>
-                    </div>
-                  </Link>
-                )
-              })
-            }
-            <Link href="/posts" className="py-2 px-5 text-xl w-fit rounded-full border border-2 hover:border-gray-500">See More</Link>
+            <Posts posts={posts} />
+            <Link
+              href="/posts"
+              className="py-2 px-5 text-xl w-fit rounded-full border border-2 hover:border-gray-500"
+            >
+              See More
+            </Link>
           </div>
         </div>
       </div>
