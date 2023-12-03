@@ -40,7 +40,7 @@ const HamburgerMenu = () => {
                             </div>
                             <div>
                                 <Link href="/posts" onClick={toggleMenu} className="block mb-2 text-6xl hover:text-slate-400 hover:underline">Posts</Link>
-                                <Link href="/portfolio" onClick={toggleMenu} className="block mb-2 text-6xl hover:text-slate-400 hover:underline">Portfolio</Link>
+                                <Link href="/works" onClick={toggleMenu} className="block mb-2 text-6xl hover:text-slate-400 hover:underline">Works</Link>
                             </div>
                         </div>    
                     </div>
