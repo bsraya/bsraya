@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import BurgerMenu from '@/components/burger-menu'
-import PostFrames from '../../components/post-frames'
+import PostList from '../../components/posts'
 import { allPosts } from '../../.contentlayer/generated';
 
 export default function Posts() {
@@ -17,7 +17,7 @@ export default function Posts() {
             
             <h1 className="underline mb-5">All Posts</h1>
             <div className="flex flex-col gap-10 mb-32 w-3/4 md:w-full">
-                <PostFrames posts={posts} />
+                <PostList posts={posts} />
             </div>
         </div>
     )

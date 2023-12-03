@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Posts from '../components/post-frames'
+import PostList from '../components/posts'
 import SideMenu from '../components/side-menu'
 import { allPosts } from '../.contentlayer/generated'
 import MobileMenu from '@/components/mobile-menu'
@@ -45,7 +45,7 @@ export default function Home() {
         <div className="mt-32 mb-10 flex flex-col gap-5">
           <h1 className="underline">Latest Posts</h1>
           <div className="flex flex-col gap-10">
-            <Posts posts={posts} />
+            <PostList posts={posts} />
             <Link
               href="/posts"
               className="py-2 px-5 text-xl w-fit rounded-full border border-2 hover:border-gray-500"
