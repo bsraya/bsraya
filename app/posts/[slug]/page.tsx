@@ -5,14 +5,14 @@ import BurgerMenu from '@/components/burger-menu'
 import Mdx from "../../../components/mdx-components"
 import { allPosts } from '../../../.contentlayer/generated'
 
-async function getPostsFromParams(slug: string) {
+async function getPostFromParams(slug: string) {
     const post = allPosts.find((post) => post.slugAsParams === slug)
     if (!post) notFound()
     return post
 }
 
 export default async function Post({ params }: { params: { slug: string } }) {
-    const post = await getPostsFromParams(params.slug)
+    const post = await getPostFromParams(params.slug)
     return (
         <div className="lg:p-10 p-5">
             <div className="flex mb-36">
