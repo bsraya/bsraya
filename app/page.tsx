@@ -20,7 +20,7 @@ export default function Home() {
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
             <div>
               <Image
-                src="https://dummyimage.com/1200x450.png/a9a9a9/fff"
+                src="/1200x450.png"
                 alt="schedulearn architecture"
                 className="rounded-lg"
                 width={1200}
@@ -30,7 +30,7 @@ export default function Home() {
             </div>
             <div>
               <Image
-                src="https://dummyimage.com/1200x450.png/a9a9a9/fff"
+                src="/1200x450.png"
                 alt="schedulearn architecture"
                 className="rounded-lg"
                 width={1200}
