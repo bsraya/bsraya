@@ -12,7 +12,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
                         <Link key={post.slugAsParams} href={`/posts/${post.slugAsParams}`} as={`/posts/${post.slugAsParams}`}>
                             <div className="h-30 xl:flex block gap-5">
                                 <Image
-                                    src="https://dummyimage.com/200x125.png/a9a9a9/fff"
+                                    src="/200x125.png"
                                     alt="dummy"
                                     className="rounded-lg col-span-1"
                                     width={200}
