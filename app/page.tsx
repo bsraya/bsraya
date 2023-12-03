@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Posts from '../components/post-frames'
 import SideMenu from '../components/side-menu'
 import { allPosts } from '../.contentlayer/generated'
+import MobileMenu from '@/components/mobile-menu'
 
 export default function Home() {
   const posts = allPosts.filter((post) => post.published === true).splice(0, 3);
@@ -10,7 +11,8 @@ export default function Home() {
   return (
     <div className="flex h-full">
       <SideMenu />
-      <div className="w-full lg:w-3/4 absolute lg:left-1/4 lg:py-60 px-20">
+      <div className="w-full lg:w-3/4 absolute lg:left-1/4 lg:py-60 lg:p-10 p-5">
+        <MobileMenu />
         <div className="flex flex-col gap-3 xl:text-6xl lg:text-5xl md:text-4xl sm:text-3xl text-2xl xl:mt-0 lg:mt-0 mt-10 font-pt-serif">
           <p>An Aspiring Data Scientist.</p>
           <p>A Fullstack Developer.</p>

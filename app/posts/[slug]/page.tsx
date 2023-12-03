@@ -1,14 +1,13 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { notFound } from 'next/navigation'
+import BurgerMenu from '@/components/burger-menu'
 import Mdx from "../../../components/mdx-components"
 import { allPosts } from '../../../.contentlayer/generated'
 
 async function getPostsFromParams(slug: string) {
     const post = allPosts.find((post) => post.slugAsParams === slug)
-
     if (!post) notFound()
-
     return post
 }
 
@@ -16,7 +15,12 @@ export default async function Post({ params }: { params: { slug: string } }) {
     const post = await getPostsFromParams(params.slug)
     return (
         <div className="lg:p-10 p-5">
-            <div className="text-xl mb-36"><Link href="/" className='no-underline'>Bijon Setyawan Raya</Link> / <Link href="/posts" className="font-bold no-underline">Posts</Link></div>
+            <div className="flex mb-36">
+                <div className="text-xl"><Link href="/" className='no-underline'>Bijon Setyawan Raya</Link> / <Link href="/posts" className="font-bold no-underline">Posts</Link></div>
+                <div className='flex ml-auto items-center'>
+                    <BurgerMenu />
+                </div>
+            </div>
             
             <div className='flex items-center text-xl gap-3'>
                 <Link href="/posts">

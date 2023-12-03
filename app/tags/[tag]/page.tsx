@@ -11,7 +11,7 @@ export default async function Tags({ params }: { params: { tag: string } }) {
       <div className='text-xl mb-36'>
         <Link href='/'>Bijon Setyawan Raya</Link> / <Link href='/tags' className='font-bold'>Tags</Link>
       </div>
-    
+
       <h1 className="underline mb-5">Posts Related to {category}</h1>
       <div className="flex flex-col gap-10 mb-32 w-3/4 md:w-full">
         <PostFrames posts={posts} />
