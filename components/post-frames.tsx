@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { format } from 'date-fns';
-import { Post } from '../.contentlayer/generated/types'
+import { Post, Work } from '../.contentlayer/generated/types'
 
-export default function Posts({ posts }: { posts: Post[] }) {
+export default function Posts({ posts }: { posts: Post[] | Work[] }) {
     return (
         <>
             {
-                posts.map((post: Post) => {
+                posts.map((post: Post | Work) => {
                     return(
                         <Link key={post.slugAsParams} href={`/posts/${post.slugAsParams}`} as={`/posts/${post.slugAsParams}`}>
                             <div className="h-30 xl:flex block gap-5">
