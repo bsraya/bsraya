@@ -31,7 +31,7 @@ export default function Home() {
                 width={1200}
                 height={450}
               />
-              <p className="mt-3 text-lg"><span className="font-inter font-bold">Schedulearn</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
+              <p className="mt-3 text-lg"><span className="font-inter font-bold">Recommendation System</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
             </div>
             <div>
               <Image
@@ -41,7 +41,7 @@ export default function Home() {
                 width={1200}
                 height={450}
               />
-              <p className="mt-3 text-lg"><span className="font-inter font-bold">Recommendation System</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
+              <p className="mt-3 text-lg"><span className="font-inter font-bold">Schedulearn</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
             </div>
             <Link
               href="/works"
