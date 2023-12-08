@@ -1,0 +1,64 @@
+---
+title: Image Compression with SVD
+description: Minimizing the number of singular values used to reconstruct an image
+date: 2023-12-10
+tag: Linear Algebra
+type: Post
+---
+
+## Objective
+
+We are going to learn on how to minimize the size of an image by using Singular Value Decomposition (SVD).
+With SVD, we are going to find the least number of singular values that can be used to reconstruct an image.
+
+In this post, we are not going to write SVD from scratch. Instead, we are going to use the SVD function from `numpy` library.
+
+Let's import the libraries that we are going to use.
+
+```python
+from scipy import datasets
+from numpy import linalg
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+Then we import the image of a raccoon from `scipy` library.
+
+```python
+raccoon = datasets.face()
+plt.imshow(raccoon)
+```
+
+## Gray Image
+
+Applying SVD to a gray image is pretty straightforward since we have only to deal with two colors, black and white.
+0 represents black and 255 represents white.
+
+First, we want to normalize the image so that the values are between 0 and 1 by dividing the image by 255.
+
+```python
+normalized_raccoon = raccoon / 255
+print(normalized_raccoon.min(), normalized_raccoon.max()) # 0.0 1.0
+```
+
+Once we have the image is normalized, we then multiple the image with `[0.2989, 0.5870, 0.1140]` to convert the image to grayscale.
+We are going to use `@` operator to do the multiplication.
+
+```python
+gray_raccoon = normalized_raccoon @ [0.2989, 0.5870, 0.1140]
+plt.imshow(gray_raccoon, cmap='gray')
+```
+
+Why `[0.2989, 0.5870, 0.1140]`?
+> These values are the weights used to combine the red, green, and blue channels, respectively. This specific set of weights is based on the luminance model, which takes into account the human eye's sensitivity to different colors. The human eye is most sensitive to green, followed by red, and then blue, which is why the green channel has the highest weight.
+
+Then, we apply SVD to the gray image. We should be getting 3 matrics, where the first matrix will be a $768 \times 768$ matrix, the second matrix will be a $768 \times 1$ matrix, and the third matrix will be a $1024 \times 1024$ matrix.
+
+```python
+
+```
+U, s, Vt = linalg.svd(img_gray)
+print(U.shape, s.shape, Vt.shape) # (768, 768) (768,) (1024, 1024)
+```
+
+## Colored Image
