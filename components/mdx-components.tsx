@@ -35,7 +35,7 @@ const components: any = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
+        "font-inter mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
         className
       )}
       {...props}
@@ -44,7 +44,7 @@ const components: any = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0",
+        "font-inter mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0",
         className
       )}
       {...props}
@@ -53,7 +53,7 @@ const components: any = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
+        "font-inter mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
         className
       )}
       {...props}
@@ -62,7 +62,7 @@ const components: any = {
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
       className={cn(
-        "mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
+        "font-inter mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
         className
       )}
       {...props}
@@ -71,7 +71,7 @@ const components: any = {
   h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h5
       className={cn(
-        "mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
+        "font-inter mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
         className
       )}
       {...props}
@@ -80,7 +80,7 @@ const components: any = {
   h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h6
       className={cn(
-        "mt-8 scroll-m-20 text-base font-semibold tracking-tight",
+        "font-inter mt-8 scroll-m-20 text-base font-semibold tracking-tight",
         className
       )}
       {...props}
@@ -88,15 +88,15 @@ const components: any = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <p
-      className={cn("leading-8 [&:not(:first-child)]:my-10 max-w-prose", className)}
+      className={cn("font-baskervville leading-8 [&:not(:first-child)]:my-10 max-w-prose", className)}
       {...props}
     />
   ),
   ul: ({ className, ...props }: any) => (
-    <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />
+    <ul className={cn("font-baskervville my-6 ml-6 list-disc", className)} {...props} />
   ),
   ol: ({ className, ...props }: any) => (
-    <ol className={cn("my-6 ml-6 list-decimal", className)} {...props} />
+    <ol className={cn("font-baskervville my-6 ml-6 list-decimal", className)} {...props} />
   ),
   li: ({ className, ...props }: any) => (
     <li className={cn("mt-2 max-w-prose", className)} {...props} />
@@ -104,7 +104,7 @@ const components: any = {
   blockquote: ({ className, ...props }: any) => (
     <blockquote
       className={cn(
-        "mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground",
+        "font-baskervville mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground",
         className
       )}
       {...props}

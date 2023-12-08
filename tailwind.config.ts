@@ -12,12 +12,14 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      fontFamily: {
+        inter: ["var(--font-inter)"],
+        ptserif: ["var(--font-pt-serif)"],
+        bebasneue: ["var(--font-bebas-neue)"],
+        baskervville: ["var(--font-baskervville)"],
       }
     },
-    // import the merriweather font family
-    fontFamily: {
-      'serif': ['Playfair Display', 'serif'],
-    }
   },
   plugins: [
     require('tailwindcss-animate'),

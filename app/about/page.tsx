@@ -1,20 +1,15 @@
-import Link from 'next/link';
-import Rectangle from '@/components/rectangle';
-import BurgerMenu from '@/components/burger-menu';
+"use client";
+import Header from '@/components/header';
+import { usePathname } from 'next/navigation';
 
 export default function About() {
+    const pathname = usePathname().slice(1);
+
     return (
         <div className="lg:p-10 p-5">
-            <div className="flex mb-36">
-                <div className="text-xl"><Link href="/">Bijon Setyawan Raya</Link> / <Link href="/posts" className="font-bold">About</Link></div>
-                <div className='flex ml-auto items-center'>
-                    <BurgerMenu />
-                </div>
-            </div>
+            <Header page={pathname} />
 
-            <div>
-                <Rectangle />
-            </div>
+            <h1 className="font-inter mb-10 text-3xl">About</h1>
         </div>
     )
 }

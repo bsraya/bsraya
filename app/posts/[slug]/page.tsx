@@ -42,14 +42,14 @@ export default async function Post({ params }: { params: { slug: string } }) {
                 }
             </div>
             
-            <h1 className="xl:text-5xl text-4xl font-thin font-serif my-5">{post.title}</h1>
-            <div className="text-lg sm:text-md w-full border-y-2 py-3 text-gray-500 flex flex-col lg:flex-row lg:justify-between gap-3">
-                <blockquote className="italic">
+            <h1 className="font-ptserif xl:text-5xl text-4xl font-thin my-5">{post.title}</h1>
+            <div className="text-xl sm:text-md w-full border-y-2 py-3 text-gray-500 flex flex-col lg:flex-row lg:justify-between gap-3">
+                <blockquote className="font-baskervville italic">
                     &quot;{post.description}&quot;
                 </blockquote>
                 {
                     post.date && (
-                        <div>{format(new Date(post.date), 'dd MMMM yyyy')}</div>
+                        <div className="font-bebasneue">{format(new Date(post.date), 'dd MMMM yyyy')}</div>
                     )
                 }
             </div>

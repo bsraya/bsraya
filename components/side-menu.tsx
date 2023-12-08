@@ -3,13 +3,17 @@ import Link from 'next/link'
 export default function SideMenu() {
     return (
         <div className="hidden lg:w-1/4 lg:fixed h-[100vh] lg:p-10 lg:flex lg:flex-col border-r border-gray-300">
-            <p className="text-2xl font-bold">Bijon<br />Setyawan<br />Raya</p>
-            <ul className="mt-auto">
-                <li className="text-lg hover:text-slate-400 hover:underline w-fit"><Link href="/posts">Posts</Link></li>
-                <li className="text-lg hover:text-slate-400 hover:underline w-fit"><Link href="/about">About</Link></li>
-                <li className="text-lg hover:text-slate-400 hover:underline w-fit"><Link href="/experience">Experience</Link></li>
+            <p className="font-bebasneue text-5xl">Bijon<br />Setyawan<br />Raya</p>
+            <ul className="font-inter mt-auto text-2xl">
+                <li className="hover:underline w-fit"><Link href="/about">About</Link></li>
+                <li className="hover:underline w-fit"><Link href="/experience">Experience</Link></li>
+                <li className="hover:underline w-fit"><Link href="/posts">Posts</Link></li>
             </ul>
-            <div className="py-2 px-5 my-5 text-lg w-fit rounded-full border border-2 hover:text-white hover:bg-black hover:border-black"><Link href="/works">See my works</Link></div>
+            <Link href="/works">
+                <div className="font-inter text-2xl py-2 px-5 my-5 w-fit rounded-full border border-2 hover:text-white hover:bg-black hover:border-black">
+                    See my works
+                </div>
+            </Link>
             <div className="flex gap-2">
                 <Link href="mailto:bijonsetyawan@gmail.com" className="hover:text-slate-400">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-8 h-8"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>

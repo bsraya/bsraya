@@ -13,22 +13,27 @@ export default function Posts({ posts }: { posts: Post[] }) {
             {
                 posts.map((post: Post) => {
                     return(
-                        <Link key={post.slugAsParams} href={`/posts/${post.slugAsParams}`} as={`/posts/${post.slugAsParams}`}>
-                            <div className="h-30 xl:flex block gap-5">
-                                <Image
-                                    src="/200x125.png"
-                                    alt="dummy"
-                                    className="rounded-lg col-span-1"
-                                    width={200}
-                                    height={125}
-                                />
-                                <div className="col-span-auto mt-3">
-                                    <h1 className="text-2xl font-bold">{post.title}</h1>
-                                    <p className="text-lg my-2">{post.description}</p>
-                                    <div className="text-lg ml-auto text-gray-400">{format(new Date(post.date), 'dd MMMM yyyy')}</div>
-                                </div>
+                        <div className="h-30 xl:flex block gap-5">
+                            <Image
+                                src="/200x125.png"
+                                alt="dummy"
+                                className="rounded-lg col-span-1"
+                                width={200}
+                                height={125}
+                            />
+                            <div className="flex flex-col col-span-auto my-2">
+                                <Link 
+                                    key={post.slugAsParams}
+                                    as={`/posts/${post.slugAsParams}`}
+                                    href={`/posts/${post.slugAsParams}`}
+                                    className="hover:underline"
+                                >
+                                    <h1 className="font-ptserif text-3xl">{post.title}</h1>
+                                </Link>
+                                <div className="font-bebasneue text-lg text-gray-400">{format(new Date(post.date), 'dd MMMM yyyy')}</div>
+                                <p className="font-baskervville text-lg mt-auto">{post.description}</p>
                             </div>
-                        </Link>
+                        </div>
                     )
                 })
             }
