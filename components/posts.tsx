@@ -4,6 +4,10 @@ import { format } from 'date-fns';
 import { Post } from '../.contentlayer/generated/types'
 
 export default function Posts({ posts }: { posts: Post[] }) {
+    posts.sort((a: Post, b: Post) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+    
     return (
         <>
             {

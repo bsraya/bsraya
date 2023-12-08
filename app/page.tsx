@@ -2,11 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import PostList from '../components/posts'
 import SideMenu from '../components/side-menu'
-import { allPosts } from '../.contentlayer/generated'
 import MobileMenu from '@/components/mobile-menu'
+import { allPosts } from '../.contentlayer/generated'
+import { Post } from '../.contentlayer/generated/types'
 
 export default function Home() {
-  const posts = allPosts.filter((post) => post.published === true).splice(0, 3);
+  const posts = allPosts.sort((a: Post, b: Post) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  }).filter((post) => post.published === true).splice(0, 3);
 
   return (
     <div className="flex h-full">
@@ -48,7 +51,7 @@ export default function Home() {
             <PostList posts={posts} />
             <Link
               href="/posts"
-              className="py-2 px-5 text-xl w-fit rounded-full border border-2 hover:border-gray-500"
+              className="py-2 px-5 text-lg w-fit rounded-full border border-2 hover:border-gray-500"
             >
               See More
             </Link>
