@@ -16,7 +16,7 @@ export default function Home() {
       <SideMenu />
       <div className="w-full lg:w-3/4 absolute lg:left-1/4 lg:py-60 lg:p-10 p-5">
         <MobileMenu />
-        <div className="font-ptserif flex flex-col gap-3 xl:text-6xl lg:text-5xl md:text-4xl sm:text-3xl text-2xl xl:mt-0 lg:mt-0 mt-10 font-pt-serif">
+        <div className="font-ptserif flex flex-col gap-3 xl:text-6xl lg:text-5xl text-4xl xl:mt-0 lg:mt-0 mt-10 font-pt-serif">
           <p>An Aspiring Data Scientist.</p>
           <p>A Fullstack Developer.</p>
         </div>
