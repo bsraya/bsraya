@@ -9,7 +9,7 @@ export default function Works({ works }: { works: Work[] }) {
             {
                 works.map((work: Work) => {
                     return(
-                        <div className="h-30 xl:flex block gap-5">
+                        <div key={work.slugAsParams} className="h-30 xl:flex block gap-5">
                             <Image
                                 src="/200x125.png"
                                 alt="dummy"
@@ -18,8 +18,7 @@ export default function Works({ works }: { works: Work[] }) {
                                 height={125}
                             />
                             <div className="flex flex-col col-span-auto my-2">
-                                <Link 
-                                    key={work.slugAsParams} 
+                                <Link
                                     as={`/works/${work.slugAsParams}`}
                                     href={`/works/${work.slugAsParams}`} 
                                     className="hover:underline"

@@ -13,7 +13,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
             {
                 posts.map((post: Post) => {
                     return(
-                        <div className="h-30 xl:flex block gap-5">
+                        <div key={post.slugAsParams} className="h-30 xl:flex block gap-5">
                             <Image
                                 src="/200x125.png"
                                 alt="dummy"
@@ -22,8 +22,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
                                 height={125}
                             />
                             <div className="flex flex-col col-span-auto my-2">
-                                <Link 
-                                    key={post.slugAsParams}
+                                <Link
                                     as={`/posts/${post.slugAsParams}`}
                                     href={`/posts/${post.slugAsParams}`}
                                     className="hover:underline"
