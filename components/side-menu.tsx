@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function SideMenu() {
     return (
         <div className="hidden lg:w-1/4 lg:fixed h-[100vh] lg:p-10 lg:flex lg:flex-col border-r border-gray-300">
-            <p className="font-novasquare text-5xl">Bijon<br />Setyawan<br />Raya</p>
+            <p className="font-novasquare text-4xl">Bijon<br />Setyawan<br />Raya</p>
             <ul className="font-baskervville mt-auto text-xl">
                 <li className="hover:underline w-fit"><Link href="/about">About</Link></li>
                 <li className="hover:underline w-fit"><Link href="/posts">Posts</Link></li>

@@ -23,7 +23,7 @@ const HamburgerMenu = () => {
                     <div className="absolute inset-0 bg-white shadow-md lg:p-10 p-5 flex flex-col">
                         <div className="flex">
                             <div className='font-ptserif text-2xl'>
-                                <Link href='/' className="font-bebasneue text-3xl">Bijon Setyawan Raya</Link>
+                                <Link href='/' className="font-novasquare text-3xl">Bijon S. Raya</Link>
                             </div>
                             <button
                                 className="ml-auto items-center"
