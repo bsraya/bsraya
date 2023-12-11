@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Oswald } from 'next/font/google'
+
 export default function SideMenu() {
     return (
         <div className="hidden lg:w-1/4 lg:fixed h-[100vh] lg:p-10 lg:flex lg:flex-col border-r border-gray-300">

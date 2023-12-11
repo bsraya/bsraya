@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { ptSerif, inter, baskervville, bebasNeue, oswald, novaSquare } from './fonts'
+import { ptSerif, inter, baskervville, bebasNeue, novaSquare } from './fonts'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
