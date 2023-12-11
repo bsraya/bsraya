@@ -1,7 +1,6 @@
 import Link from "next/link";
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { MdxCard } from "./mdx-card";
 import LineGraph from "./line-graph";
 import SeriesTable from './series-table';
 import ScatterGraph from "./scatter-graph";
@@ -125,7 +124,7 @@ const components: any = {
         {...props}
       />
       <figcaption className="text-sm text-center text-muted-foreground">
-        Figure: {alt}
+        {alt}
       </figcaption>
     </figure>
   ),
@@ -183,7 +182,6 @@ const components: any = {
       props
     )
   ),
-  Card: MdxCard,
   ScatterGraph,
   LineGraph,
   SeriesTable
