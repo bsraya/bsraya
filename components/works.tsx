@@ -11,11 +11,11 @@ export default function Works({ works }: { works: Work[] }) {
                     return(
                         <div key={work.slugAsParams} className="h-30 xl:flex block gap-5">
                             <Image
-                                src="/200x125.png"
-                                alt="dummy"
+                                src={work.image ? work.image : '/200x125.png'}
+                                alt={`${work.description}`}
                                 className="rounded-lg col-span-1"
-                                width={200}
-                                height={125}
+                                width={300}
+                                height={250}
                             />
                             <div className="flex flex-col col-span-auto my-2">
                                 <Link

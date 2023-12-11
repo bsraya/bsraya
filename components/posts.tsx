@@ -15,11 +15,11 @@ export default function Posts({ posts }: { posts: Post[] }) {
                     return(
                         <div key={post.slugAsParams} className="h-30 xl:flex block gap-5">
                             <Image
-                                src="/200x125.png"
-                                alt="dummy"
+                                src={post.image ? post.image : '/200x125.png'}
+                                alt={`${post.description}`}
                                 className="rounded-lg col-span-1"
-                                width={200}
-                                height={125}
+                                width={300}
+                                height={250}
                             />
                             <div className="flex flex-col col-span-auto my-2">
                                 <Link
