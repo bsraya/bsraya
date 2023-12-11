@@ -4,10 +4,12 @@ import { notFound } from 'next/navigation'
 import BurgerMenu from '@/components/burger-menu'
 import Mdx from "../../../components/mdx-components"
 import { allWorks } from '../../../.contentlayer/generated'
+import Header from '@/components/header';
 
 async function getWorkFromParams(slug: string) {
     const post = allWorks.find((work) => work.slugAsParams === slug)
     if (!post) notFound()
+    if (!post.published) notFound()
     return post
 }
 
@@ -15,14 +17,9 @@ export default async function Work({ params }: { params: { slug: string } }) {
     const work = await getWorkFromParams(params.slug)
     return (
         <div className="lg:p-10 p-5">
-            <div className="flex mb-36">
-                <div className="text-xl"><Link href="/" className='no-underline'>Bijon Setyawan Raya</Link> / <Link href="/works" className="font-bold no-underline">Works</Link></div>
-                <div className='flex ml-auto items-center'>
-                    <BurgerMenu />
-                </div>
-            </div>
+            <Header />
             
-            <div className='flex items-center text-xl gap-3'>
+            <div className='flex items-center text-xl gap-3 font-baskervville'>
                 <Link href="/works">
                     <div className="flex w-fit px-5 py-2 border rounded-full hover:border-gray-500 cursor-pointer  items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 mr-2">
@@ -49,7 +46,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
                 </blockquote>
                 {
                     work.date && (
-                        <div>{format(new Date(work.date), 'dd MMMM yyyy')}</div>
+                        <div className="font-bebasneue">{format(new Date(work.date), 'dd MMMM yyyy')}</div>
                     )
                 }
             </div>

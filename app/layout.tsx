@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { ptSerif, inter, baskervville, bebasNeue } from './fonts'
+import { ptSerif, inter, baskervville, bebasNeue, oswald, novaSquare } from './fonts'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${ptSerif.variable} ${inter.variable} ${baskervville.variable} ${bebasNeue.variable}`}>
+      <body className={`${ptSerif.variable} ${inter.variable} ${baskervville.variable} ${bebasNeue.variable} ${novaSquare.variable}`}>
         {children}
       </body>
     </html>

@@ -17,6 +17,7 @@ const config: Config = {
         inter: ["var(--font-inter)"],
         ptserif: ["var(--font-pt-serif)"],
         bebasneue: ["var(--font-bebas-neue)"],
+        novasquare: ["var(--font-nova-square)"],
         baskervville: ["var(--font-baskervville)"],
       }
     },

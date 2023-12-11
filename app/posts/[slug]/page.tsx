@@ -8,6 +8,7 @@ import { allPosts } from '../../../.contentlayer/generated'
 async function getPostFromParams(slug: string) {
     const post = allPosts.find((post) => post.slugAsParams === slug)
     if (!post) notFound()
+    if (!post.published) notFound()
     return post
 }
 
@@ -17,7 +18,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
         <div className="lg:p-10 p-5">
             <Header />
             
-            <div className='flex items-center text-xl gap-3'>
+            <div className='flex items-center text-xl gap-3 font-baskervville'>
                 <Link href="/posts">
                     <div className="flex w-fit px-5 py-2 border rounded-full hover:border-gray-500 cursor-pointer  items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 mr-2">

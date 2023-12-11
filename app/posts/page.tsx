@@ -9,7 +9,7 @@ export default function Posts() {
         <div className="lg:p-10 p-5">
             <Header />
             
-            <h1 className="font-inter mb-10 text-3xl">Posts</h1>
+            <h1 className="font-bebasneue mb-10 text-5xl">Posts</h1>
             <div className="flex flex-col gap-10 mb-32 w-3/4 md:w-full">
                 <PostList posts={posts} />
             </div>

@@ -35,7 +35,7 @@ const components: any = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "font-inter mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
+        "font-bebasneue mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
         className
       )}
       {...props}
@@ -44,7 +44,7 @@ const components: any = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "font-inter mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0",
+        "font-bebasneue mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0",
         className
       )}
       {...props}
@@ -53,7 +53,7 @@ const components: any = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "font-inter mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
+        "font-bebasneue mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
         className
       )}
       {...props}
@@ -62,7 +62,7 @@ const components: any = {
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
       className={cn(
-        "font-inter mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
+        "font-bebasneue mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
         className
       )}
       {...props}
@@ -71,7 +71,7 @@ const components: any = {
   h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h5
       className={cn(
-        "font-inter mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
+        "font-bebasneue mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
         className
       )}
       {...props}
@@ -80,7 +80,7 @@ const components: any = {
   h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h6
       className={cn(
-        "font-inter mt-8 scroll-m-20 text-base font-semibold tracking-tight",
+        "font-bebasneue mt-8 scroll-m-20 text-base font-semibold tracking-tight",
         className
       )}
       {...props}
