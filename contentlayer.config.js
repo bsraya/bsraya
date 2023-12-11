@@ -36,9 +36,12 @@ export const Post = defineDocumentType(() => ({
         description: {
             type: 'string',
         },
-        date:{
+        date: {
             type: 'date',
             required: true,
+        },
+        image: {
+            type: 'string',
         },
         tag: {
             type: 'string',
@@ -63,9 +66,12 @@ export const Work = defineDocumentType(() => ({
         description: {
             type: 'string',
         },
-        date:{
+        date: {
             type: 'date',
             required: true,
+        },
+        image: {
+            type: 'string',
         },
         tag: {
             type: 'string',
