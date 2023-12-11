@@ -1,14 +1,15 @@
-import { ImageResponse } from '@/lib/image-response';
+import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
 // How to call this?
-// http://localhost:8000/api/og?title=Bijon+Setyawan+Raya&endpoint=about
+// http://localhost:3000/api/og?title=Bijon+Setyawan+Raya&endpoint=about
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const title = searchParams.get('title');
     const endpoint = searchParams.get('endpoint');
+
     return new ImageResponse(
         (
             <div
