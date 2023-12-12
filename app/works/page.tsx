@@ -1,10 +1,14 @@
 import Header from '@/components/header';
-import { usePathname } from 'next/navigation';
 import WorkList from '../../components/works';
 import { allWorks } from '../../.contentlayer/generated';
 
 export default function Works() {
-    const works = allWorks.filter((work) => work.published === true);
+    const works = allWorks.filter(
+        (work) => work.published === true
+    ).sort((a, b) => {
+        return Number(new Date(b.date)) - Number(new Date(a.date))
+    });
+    
     return (
         <div className="lg:p-10 p-5">
             <Header />

@@ -3,7 +3,11 @@ import PostList from '../../components/posts';
 import { allPosts } from '../../.contentlayer/generated';
 
 export default function Posts() {
-    const posts = allPosts.filter((post) => post.published === true);
+    const posts = allPosts.filter(
+        (post) => post.published === true
+    ).sort((a, b) => {
+        return Number(new Date(b.date)) - Number(new Date(a.date))
+    });
 
     return (
         <div className="lg:p-10 p-5">
