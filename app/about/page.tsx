@@ -24,11 +24,23 @@ export default function About() {
                     <p>
                         Hello! I am Bijon, a passionate technologist based in Taipei City, Taiwan.
                         My journey in tech began at <ExternalLink text="National Tsing Hua University" url='https://www.nthu.edu.tw/' />, where I completed both my Bachelor&apos;s and Master&apos;s degrees in <ExternalLink text="Computer Science" url="https://dcs.site.nthu.edu.tw/" />.
-                        This academic path not only solidified my foundation in technology but also sparked my interest in innovative solutions and collaborative projects.
+                        But here&apos;s the thing — I believe in keeping tech simple. No fancy jargon, no complex explanations. Just straight-up, easy-to-grasp tech talk.
                     </p>
 
+                    <div>
+                        <p>Why am I writing posts?</p>
+                        <ol className="list-decimal list-inside">
+                            <li>
+                                I wanna make sure that I have written down all the things that I have learned, and I can always come back to them when I need to.
+                            </li>
+                            <li>
+                                To make technology understandable for everyone, even five-year-olds! Whether it is a complex algorithm or concepts, I am all about breaking it down into bite-sized, easy-to-digest pieces. Because let us face it, tech should be fun and accessible, not a headache.
+                            </li>
+                        </ol>
+                    </div>
+
                     <p>
-                        When I unplug, you might find me dabbling in creative projects, volunteering, or just enjoying a good chat over coffee. I believe life is about those little moments of connection, and I am all about sharing stories and laughs.
+                        When I unplug, you might find me dabbling in creative projects, freelancing, volunteering, or just enjoying a good chat over coffee. I believe life is about those little moments of connection, and I am all about sharing stories and laughs.
                     </p>
 
                     <p>
