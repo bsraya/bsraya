@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import PostList from '../components/posts'
+import Footer from '../components/footer'
 import SideMenu from '../components/side-menu'
 import MobileMenu from '@/components/mobile-menu'
 import { allPosts } from '../.contentlayer/generated'
@@ -14,7 +15,7 @@ export default function Home() {
   return (
     <div className="flex h-full">
       <SideMenu />
-      <div className="w-full lg:w-3/4 absolute lg:left-1/4 lg:py-60 lg:p-10 p-5">
+      <div className="w-full lg:w-3/4 absolute lg:left-1/4 lg:pt-60 lg:pb-10 lg:p-10 p-5">
         <MobileMenu />
         <div className="font-ptserif flex flex-col gap-3 xl:text-6xl lg:text-5xl text-4xl xl:mt-0 lg:mt-0 mt-10 font-pt-serif">
           <p>An Aspiring Data Scientist.</p>
@@ -51,7 +52,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="mt-32 mb-10">
+        <div className="my-32">
           <h1 className="font-ptserif underline mb-5">Latest Posts</h1>
           <div className="flex flex-col gap-10">
             <PostList posts={posts} />
@@ -63,6 +64,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   )
