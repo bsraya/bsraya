@@ -21,7 +21,7 @@ export default function Home() {
           <p>A Fullstack Developer.</p>
         </div>
         <div className="my-20">
-          <h1 className="font-inter mb-5 underline">Recent Works</h1>
+          <h1 className="font-ptserif mb-5 underline">Recent Works</h1>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
             <div>
               <Image
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-32 mb-10">
-          <h1 className="font-inter underline mb-5">Latest Posts</h1>
+          <h1 className="font-ptserif underline mb-5">Latest Posts</h1>
           <div className="flex flex-col gap-10">
             <PostList posts={posts} />
             <Link
