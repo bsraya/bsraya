@@ -70,7 +70,7 @@ plt.plot(
 )
 ```
 
-![The iris dataset regression line with Scikit](/images/posts/batch-gradient-descent/scikit-lr.png "The iris dataset regression line with Scikit")
+![The iris dataset regression line with Scikit](/assets/posts/batch-gradient-descent/scikit-lr.png "The iris dataset regression line with Scikit")
 
 Clearly, the line is indeed very close to the most data points and we want to see the MSE of this regression line.
 
@@ -140,21 +140,21 @@ bgd_loss = bgd(sepal_length, petal_width, epochs = 10_000, df = bgd_loss)
 
 Below is the figure of the regression lines tend to look like at the 1,000th, the 5,000th, and the 10,000th iterations.
 
-![BGD Loss Function Graph](/images/posts/batch-gradient-descent/iterations.png "BGD Loss Function Graph")
+![BGD Loss Function Graph](/assets/posts/batch-gradient-descent/iterations.png "BGD Loss Function Graph")
 
 After 10,000 iterations, the MSE value of our own Gradient Descent is $0.195$ which is quite close to our baseline, which is $0.191$.
 
 Combining everything, here is how the regression line changes over time.
 
-![Regression line changes over time](/images/posts/batch-gradient-descent/regression-lines.png "Regression line changes over time")
+![Regression line changes over time](/assets/posts/batch-gradient-descent/regression-lines.png "Regression line changes over time")
 
 Let's animate the movement of the regression lines.
 
-![Regression line animation](/images/posts/batch-gradient-descent/bgd.gif "Regression line animation")
+![Regression line animation](/assets/posts/batch-gradient-descent/bgd.gif "Regression line animation")
 
 Now, let's see how the movement of the intercept and the coefficient variabels on a contour map.
 
-![The movement of the intercept and the coefficient variabels on a contour map](/images/posts/batch-gradient-descent/contour.png "The movement of the intercept and the coefficient variabels on a contour map")
+![The movement of the intercept and the coefficient variabels on a contour map](/assets/posts/batch-gradient-descent/contour.png "The movement of the intercept and the coefficient variabels on a contour map")
 
 ## Conclusion
 

@@ -83,7 +83,7 @@ mbgd_loss['epoch'] = mbgd_loss['epoch'].astype(int)
 
 Althought the size of the batches matters in MBGD, I will explain it later in the next part and we will stick to size 64 this time.
 
-![MSE values produced by MBGD with different batch sizes](/images/posts/mini-batch-gradient-descent/mse.png "MSE values produced by MBGD with different batch sizes")
+![MSE values produced by MBGD with different batch sizes](/assets/posts/mini-batch-gradient-descent/mse.png "MSE values produced by MBGD with different batch sizes")
 
 From the picture, we can see that the MSE graphs are thick because the graph goes up and down, following a zig-zag pattern,
 unlike the one produced by BGD which goes down in a straight line.
@@ -108,7 +108,7 @@ where $y_i$ represents the predicted value and $\hat{y}_i$ represents the actual
 
 There are 4 batch sizes that I want to observe, namely 8, 16, 32, and 64.
 
-![TSS values produced by MBGD with different batch sizes](/images/posts/mini-batch-gradient-descent/rss.png "TSS values produced by MBGD with different batch sizes")
+![TSS values produced by MBGD with different batch sizes](/assets/posts/mini-batch-gradient-descent/rss.png "TSS values produced by MBGD with different batch sizes")
 
 The TSS graphs provide us a clearer picture on how the regression model react to the batch size.
 Similar to the MSE graphs with different batch sizes, the TSS graphs get closer and closer to zero as the number of batch sizes decreases
@@ -126,17 +126,17 @@ So, there is no clear answer to this question. I personally think it's all down 
 
 There will be two graphs, one contains how the regression line movement pattern over $n$ number of updates, and the other is the animation of the regression line movements.
 
-![Regression Lines](/images/posts/mini-batch-gradient-descent/regression-lines.png "Regression Lines")
+![Regression Lines](/assets/posts/mini-batch-gradient-descent/regression-lines.png "Regression Lines")
 
 I am sure since the cost function follows a zig-zag pattern, the regression line moves in a zig-zag pattern as well like a graph shown above.
 
-![Regression Line Movements](/images/posts/mini-batch-gradient-descent/mbgd.gif "Regression Line Movements")
+![Regression Line Movements](/assets/posts/mini-batch-gradient-descent/mbgd.gif "Regression Line Movements")
 
 However, it's not noticeable the pattern movement in the animation. If somebody can explain me in details on why this is happening, do not hesitate to send me an email.
 
 Now, let's see how the movement of the intercept and the coefficient variabels on a contour map.
 
-![The intercept and the coefficient variable on a contour map](/images/posts/mini-batch-gradient-descent/contour.png "The intercept and the coefficient variable on a contour map")
+![The intercept and the coefficient variable on a contour map](/assets/posts/mini-batch-gradient-descent/contour.png "The intercept and the coefficient variable on a contour map")
 
 If you compare the contour map in the BGD page, you will notice that the contour map made by BGD is much more smooth.
 Unlike the one in BGD, the size of the line above is thicker, and it looks like is walking up the stairs.
