@@ -20,12 +20,11 @@ export default function Experience() {
                     </Link>
                 </div>
 
-                <p className='font-baskervville mb-10 text-lg'>Need something on the go? Worry not, you can download my <ExternalLink text="resume" url="https://drive.google.com/file/d/1jC-51cyHc-xOxdgyzh787VEHsWKMdQM7/view?usp=sharing" /> here.</p>
-                
+                <p className='font-baskervville mb-10 text-lg'>Need something on the go? Worry not, you can download my resume <ExternalLink text="here" url="https://drive.google.com/file/d/1jC-51cyHc-xOxdgyzh787VEHsWKMdQM7/view?usp=sharing" />.</p>
+
                 <div className="flex flex-col gap-20 mb-10">
                     <div>
                         <h1 className="font-bebasneue mb-10 text-5xl">Experience</h1>
-
                         <div className="flex flex-col gap-10">
                             <div>
                                 <p className="font-bebasneue text-lg">October 2022 - Present</p>
@@ -43,7 +42,6 @@ export default function Experience() {
 
                     <div>
                         <h1 className="font-bebasneue mb-10 text-5xl">Education</h1>
-
                         <div className="flex flex-col gap-10">
                             <div>
                                 <p className="font-bebasneue text-lg">February 2021 - January 2023</p>
@@ -60,7 +58,6 @@ export default function Experience() {
 
                     <div>
                         <h1 className="font-bebasneue mb-10 text-5xl">Achievements</h1>
-
                         <div className="font-baskervville flex flex-col gap-10">
                             <div>
                                 <p className="font-bebasneue text-lg">December 2018</p>
