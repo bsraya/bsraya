@@ -26,13 +26,15 @@ export default function Home() {
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
             <div>
               <Image
-                src="/assets/works/recommendation-system/thumbnail.png"
+                src="/assets/works/music-recommendation-system/thumbnail.png"
                 alt="The user interface of Spotify"
                 className="rounded-lg"
                 width={1200}
                 height={450}
               />
-              <p className="mt-3 text-lg"><span className="font-inter font-bold">Recommendation System</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
+              <Link href="/works/music-recommendation-system" className="hover:underline">
+                <p className="mt-3 text-lg"><span className="font-inter font-bold">Recommendation System</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
+              </Link>
             </div>
             <div>
               <Image
@@ -42,7 +44,9 @@ export default function Home() {
                 width={1200}
                 height={450}
               />
-              <p className="mt-3 text-lg"><span className="font-inter font-bold">Schedulearn</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
+              <Link href="/works/schedulearn" className="hover:underline">
+                <p className="mt-3 text-lg"><span className="font-inter font-bold">Schedulearn</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
+              </Link>
             </div>
             <Link
               href="/works"

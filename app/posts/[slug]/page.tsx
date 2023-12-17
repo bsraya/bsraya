@@ -5,6 +5,40 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import Mdx from "../../../components/mdx-components"
 import { allPosts } from '../../../.contentlayer/generated'
+import { Metadata } from 'next';
+
+export async function generateMetadata(
+    { params }: { params: { slug: string } }
+): Promise<Metadata> {
+    const post = await getPostFromParams(params.slug)
+    return {
+        title: post.title,
+        description: post.description,
+        keywords: [
+            `${post.title}`,
+            `${post.description}`,
+            `Bsraya ${post.title}`,
+            `Bsraya ${post.description}`,
+            `Bijon Setyawan Raya ${post.title}`,
+            `Bijon Setyawan Raya ${post.description}`,
+        ],
+        openGraph: {
+            url: `/posts/${post.slugAsParams}`,
+            title: `Bijon Setyawan Raya - ${post.title}`,
+            description: post.description,
+            siteName: 'Bijon Setyawan Raya',
+            creators: ['Bijon Setyawan Raya'],
+            images: [
+                {
+                    url: `/api/og?title=${post.title.replace(/\s/g, '+')}&date=${format(new Date(post.date), 'MMMM+dd,+yyyy')}`,
+                    width: 1200,
+                    height: 630,
+                    alt: `Bijon Setyawan Raya - ${post.title}`,
+                }
+            ]
+        }
+    }
+}
 
 async function getPostFromParams(slug: string) {
     const post = allPosts.find((post) => post.slugAsParams === slug)

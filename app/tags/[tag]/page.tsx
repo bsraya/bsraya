@@ -1,8 +1,30 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import PostList from '@/components/posts';
 import { allPosts } from '../../../.contentlayer/generated';
+
+export async function generateMetadata(
+  { params }: { params: { tag: string } }
+): Promise<Metadata> {
+  return {
+      title: `${params.tag.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} - Bijon Setyawan Raya`,
+      description: 'About Bijon Setyawan Raya',
+      metadataBase: new URL('https://bsraya.com'),
+      keywords: [
+          `About bsraya`,
+          `About Bijon Setyawan Raya`,
+      ],
+      openGraph: {
+          url: `/about`,
+          title: `Bijon Setyawan Raya - About`,
+          description: 'About Bijon Setyawan Raya',
+          siteName: 'Bijon Setyawan Raya',
+          creators: ['Bijon Setyawan Raya'],
+      }
+  }
+}
 
 export default async function Tags({ params }: { params: { tag: string } }) {
   const posts = allPosts.filter((post) => post.published && post.tagAsParams === params.tag)

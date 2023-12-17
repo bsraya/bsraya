@@ -1,10 +1,44 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { format } from 'date-fns';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { notFound } from 'next/navigation';
 import Mdx from "../../../components/mdx-components";
 import { allWorks } from '../../../.contentlayer/generated';
+
+export async function generateMetadata(
+    { params }: { params: { slug: string } }
+): Promise<Metadata> {
+    const work = await getWorkFromParams(params.slug)
+    return {
+        title: work.title,
+        description: work.description,
+        keywords: [
+            `${work.title}`,
+            `${work.description}`,
+            `Bsraya ${work.title}`,
+            `Bsraya ${work.description}`,
+            `Bijon Setyawan Raya ${work.title}`,
+            `Bijon Setyawan Raya ${work.description}`,
+        ],
+        openGraph: {
+            url: `/works/${work.slugAsParams}`,
+            title: `Bijon Setyawan Raya - ${work.title}`,
+            description: work.description,
+            siteName: 'Bijon Setyawan Raya',
+            creators: ['Bijon Setyawan Raya'],
+            images: [
+                {
+                    url: `/api/og?title=${work.title.replace(/\s/g, '+')}&date=${format(new Date(work.date), 'MMMM+dd,+yyyy')}`,
+                    width: 1200,
+                    height: 630,
+                    alt: `Bijon Setyawan Raya - ${work.title}`,
+                }
+            ]
+        }
+    }
+}
 
 async function getWorkFromParams(slug: string) {
     const post = allWorks.find((work) => work.slugAsParams === slug)

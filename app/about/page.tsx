@@ -2,6 +2,11 @@ import Link from 'next/link';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import ExternalLink from '@/components/external-link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'About'
+}
 
 export default function About() {
     return (

@@ -1,7 +1,12 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import ExternalLink from '@/components/external-link';
+
+export const metadata: Metadata = {
+    title: 'Experience'
+}
 
 export default function Experience() {
     return (

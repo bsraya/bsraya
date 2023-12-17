@@ -1,8 +1,13 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import WorkList from '../../components/works';
 import { allWorks } from '../../.contentlayer/generated';
+
+export const metadata: Metadata = {
+    title: 'Works'
+}
 
 export default function Works() {
     const works = allWorks.filter(

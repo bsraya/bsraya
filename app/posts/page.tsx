@@ -1,8 +1,13 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import PostList from '../../components/posts';
 import { allPosts } from '../../.contentlayer/generated';
+
+export const metadata: Metadata = {
+    title: 'Posts'
+}
 
 export default function Posts() {
     const posts = allPosts.filter(
