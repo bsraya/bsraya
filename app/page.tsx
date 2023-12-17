@@ -26,8 +26,8 @@ export default function Home() {
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
             <div>
               <Image
-                src="/1200x450.png"
-                alt="schedulearn architecture"
+                src="/assets/works/recommendation-system/thumbnail.png"
+                alt="The user interface of Spotify"
                 className="rounded-lg"
                 width={1200}
                 height={450}
@@ -36,8 +36,8 @@ export default function Home() {
             </div>
             <div>
               <Image
-                src="/1200x450.png"
-                alt="schedulearn architecture"
+                src="/assets/works/schedulearn/thumbnail.png"
+                alt="The schema of Schedulearn architecture"
                 className="rounded-lg"
                 width={1200}
                 height={450}
