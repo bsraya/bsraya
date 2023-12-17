@@ -26,7 +26,7 @@ export default function About() {
                         <p>
                             Hello! I am Bijon, a passionate technologist based in Taipei City, Taiwan.
                             My journey in tech began at <ExternalLink text="National Tsing Hua University" url='https://www.nthu.edu.tw/' />, where I completed both my Bachelor&apos;s and Master&apos;s degrees in <ExternalLink text="Computer Science" url="https://dcs.site.nthu.edu.tw/" />.
-                            But here&apos;s the thing — I believe in keeping tech simple. No fancy jargon, no complex explanations. Just straight-up, easy-to-grasp tech talk.
+                            If you are interested to see what I have done? You could see my resume <Link href="/experience" className="underline">here</Link> or the projects that I have done <Link href="/works" className="underline">here</Link>.
                         </p>
 
                         <div>
