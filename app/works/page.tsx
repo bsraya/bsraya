@@ -6,7 +6,30 @@ import WorkList from '../../components/works';
 import { allWorks } from '../../.contentlayer/generated';
 
 export const metadata: Metadata = {
-    title: 'Works'
+    title: 'Works',
+    openGraph: {
+        url: '/works',
+        title: 'Works',
+        description: 'List of all Bijon\'s works',
+        siteName: 'Bijon Setyawan Raya',
+        creators: ['Bijon Setyawan Raya'],
+        images: [
+            {
+                url: `/api/og?title=Works`,
+                width: 1200,
+                height: 630,
+                alt: `Bijon Setyawan Raya - Works`,
+            }
+        ]
+    },
+    keywords: [
+        'Bsraya works',
+        'Bsraya projects',
+        'Bsraya portfolio',
+        'Bijon Setyawan Raya works',
+        'Bijon Setyawan Raya projects',
+        'Bijon Setyawan Raya portfolio'
+    ]
 }
 
 export default function Works() {

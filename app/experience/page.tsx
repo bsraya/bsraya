@@ -5,7 +5,33 @@ import Footer from '@/components/footer';
 import ExternalLink from '@/components/external-link';
 
 export const metadata: Metadata = {
-    title: 'Experience'
+    title: 'Experience',
+    description: 'Bijon\'s resume',
+    openGraph: {
+        url: '/experience',
+        title: 'Experience',
+        description: 'Bijon\'s resume',
+        siteName: 'Bijon Setyawan Raya',
+        creators: ['Bijon Setyawan Raya'],
+        images: [
+            {
+                url: `/api/og?title=Experience`,
+                width: 1200,
+                height: 630,
+                alt: `Bijon Setyawan Raya - Experience`,
+            }
+        ]
+    },
+    keywords: [
+        'Bsraya resume',
+        'Bsraya curriculum vitae',
+        'Bsraya cv',
+        'Bsraya experience',
+        'Bijon Setyawan Raya resume',
+        'Bijon Setyawan Raya curriculum vitae',
+        'Bijon Setyawan Raya cv',
+        'Bijon Setyawan Raya experience',
+    ]
 }
 
 export default function Experience() {

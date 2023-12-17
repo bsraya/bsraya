@@ -1,11 +1,30 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import PostList from '../components/posts'
-import Footer from '../components/footer'
-import SideMenu from '../components/side-menu'
-import MobileMenu from '@/components/mobile-menu'
-import { allPosts } from '../.contentlayer/generated'
-import { Post } from '../.contentlayer/generated/types'
+import Link from 'next/link';
+import Image from 'next/image';
+import { Metadata } from 'next';
+import PostList from '../components/posts';
+import Footer from '../components/footer';
+import SideMenu from '../components/side-menu';
+import MobileMenu from '@/components/mobile-menu';
+import { allPosts } from '../.contentlayer/generated';
+import { Post } from '../.contentlayer/generated/types';
+
+export const metadata: Metadata = {
+    openGraph: {
+        url: '/',
+        title: 'Home',
+        description: 'Blog and portfolio',
+        siteName: 'Bijon Setyawan Raya',
+        creators: ['Bijon Setyawan Raya'],
+        images: [
+            {
+                url: `/api/og?title=Home`,
+                width: 1200,
+                height: 630,
+                alt: `Bijon Setyawan Raya - Home`,
+            }
+        ]
+    }
+}
 
 export default function Home() {
   const posts = allPosts.sort((a: Post, b: Post) => {
@@ -31,6 +50,7 @@ export default function Home() {
                 className="rounded-lg"
                 width={1200}
                 height={450}
+                priority
               />
               <Link href="/works/music-recommendation-system" className="hover:underline">
                 <p className="mt-3 text-lg"><span className="font-inter font-bold">Recommendation System</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>

@@ -5,7 +5,29 @@ import ExternalLink from '@/components/external-link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'About'
+    title: 'About',
+    description: 'About Bijon Setyawan Raya',
+    openGraph: {
+        url: '/about',
+        title: 'About',
+        description: 'About Bijon Setyawan Raya',
+        siteName: 'Bijon Setyawan Raya',
+        creators: ['Bijon Setyawan Raya'],
+        images: [
+            {
+                url: `/api/og?title=About`,
+                width: 1200,
+                height: 630,
+                alt: `Bijon Setyawan Raya - About`,
+            }
+        ]
+    },
+    keywords: [
+        'Bsraya about',
+        'Bsraya about me',
+        'Bijon Setyawan Raya about',
+        'Bijon Setyawan Raya about me',
+    ]
 }
 
 export default function About() {

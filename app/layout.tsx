@@ -28,8 +28,18 @@ export const metadata: Metadata = {
     index: true,
   },
   manifest: '/manifest.json',
-  themeColor: '#FFFFFF',
-  assets: ['/assets']
+  assets: ['/assets'],
+  keywords: [
+    'Bijon Setyawan Raya',
+    'Bijon',
+    'Setyawan',
+    'Raya',
+    'Bijon Setyawan',
+    'bsraya',
+    'bsraya.com',
+    'Bijon Setyawan Personal Website',
+    'Bijon Setyawan Raya Personal Website',
+  ]
 }
 
 export default function RootLayout({

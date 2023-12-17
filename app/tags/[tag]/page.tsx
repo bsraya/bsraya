@@ -8,21 +8,22 @@ import { allPosts } from '../../../.contentlayer/generated';
 export async function generateMetadata(
   { params }: { params: { tag: string } }
 ): Promise<Metadata> {
+  const tag = params.tag.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   return {
-      title: `${params.tag.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} - Bijon Setyawan Raya`,
-      description: 'About Bijon Setyawan Raya',
-      metadataBase: new URL('https://bsraya.com'),
-      keywords: [
-          `About bsraya`,
-          `About Bijon Setyawan Raya`,
-      ],
-      openGraph: {
-          url: `/about`,
-          title: `Bijon Setyawan Raya - About`,
-          description: 'About Bijon Setyawan Raya',
-          siteName: 'Bijon Setyawan Raya',
-          creators: ['Bijon Setyawan Raya'],
-      }
+    title: `${tag}`,
+    description: `All posts related to ${tag}`,
+    keywords: [
+      `${tag}`,
+      `Bsraya ${tag}`,
+      `Bijon Setyawan Raya ${tag}`,
+    ],
+    openGraph: {
+        url: `/tags/${params.tag}`,
+        title: `${tag}`,
+        description: `All posts related to ${tag}`,
+        siteName: 'Bijon Setyawan Raya',
+        creators: ['Bijon Setyawan Raya'],
+    }
   }
 }
 

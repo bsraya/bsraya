@@ -15,8 +15,7 @@ export async function generateMetadata(
         title: post.title,
         description: post.description,
         keywords: [
-            `${post.title}`,
-            `${post.description}`,
+            `${post.title} ${post.description}`,
             `Bsraya ${post.title}`,
             `Bsraya ${post.description}`,
             `Bijon Setyawan Raya ${post.title}`,
@@ -24,7 +23,7 @@ export async function generateMetadata(
         ],
         openGraph: {
             url: `/posts/${post.slugAsParams}`,
-            title: `Bijon Setyawan Raya - ${post.title}`,
+            title: `${post.title}`,
             description: post.description,
             siteName: 'Bijon Setyawan Raya',
             creators: ['Bijon Setyawan Raya'],
