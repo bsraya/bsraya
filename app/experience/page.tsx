@@ -58,13 +58,13 @@ export default function Experience() {
                         <h1 className="font-bebasneue mb-10 text-5xl">Experience</h1>
                         <div className="flex flex-col gap-10">
                             <div>
-                                <p className="font-bebasneue text-lg">October 2022 - Present</p>
+                                <p className="font-bebasneue text-lg text-gray-400">October 2022 - Present</p>
                                 <p className="font-ptserif text-3xl">Fullstack Developer</p>
                                 <p className="font-baskervville text-lg mb-1">Faria Education Group - Taipei, Taiwan</p>
                                 <p className="font-baskervville text-sm">Technologies: Ruby on Rails, Vue, MySQL, and ElasticSearch</p>
                             </div>
                             <div>
-                                <p className="font-bebasneue text-lg">February 2021 - December 2022</p>
+                                <p className="font-bebasneue text-lg text-gray-400">February 2021 - December 2022</p>
                                 <p className="font-ptserif text-3xl">Graduate Research Assistant</p>
                                 <p className="font-baskervville text-lg">National Tsing Hua University - Hsinchu, Taiwan</p>
                             </div>
@@ -75,12 +75,12 @@ export default function Experience() {
                         <h1 className="font-bebasneue mb-10 text-5xl">Education</h1>
                         <div className="flex flex-col gap-10">
                             <div>
-                                <p className="font-bebasneue text-lg">February 2021 - January 2023</p>
+                                <p className="font-bebasneue text-lg text-gray-400">February 2021 - January 2023</p>
                                 <p className="font-ptserif text-3xl">M. Sc. in Computer Science</p>
                                 <p className="font-baskervville text-lg">National Tsing Hua University - Hsinchu, Taiwan</p>
                             </div>
                             <div>
-                                <p className="font-bebasneue text-lg">September 2015 - January 2021</p>
+                                <p className="font-bebasneue text-lg text-gray-400">September 2015 - January 2021</p>
                                 <p className="font-ptserif text-3xl">B. Sc. in Computer Science</p>
                                 <p className="font-baskervville text-lg">National Tsing Hua University - Hsinchu, Taiwan</p>
                             </div>
@@ -91,7 +91,7 @@ export default function Experience() {
                         <h1 className="font-bebasneue mb-10 text-5xl">Achievements</h1>
                         <div className="font-baskervville flex flex-col gap-10">
                             <div>
-                                <p className="font-bebasneue text-lg">December 2018</p>
+                                <p className="font-bebasneue text-lg text-gray-400">December 2018</p>
                                 <p className="font-ptserif text-3xl">Civil IoT Taiwan 2018</p>
                                 <p className="font-baskervville text-lg">Third place - Taipei, Taiwan</p>
                             </div>
