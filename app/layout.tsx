@@ -20,9 +20,6 @@ export const metadata: Metadata = {
   alternates:{
     canonical: '/',
   },
-  icons: {
-    icon: ['/static/beta.png'],
-  },
   robots: {
     follow: true,
     index: true,
