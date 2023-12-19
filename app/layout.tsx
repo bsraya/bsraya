@@ -1,5 +1,7 @@
-import './globals.css'
-import type { Metadata } from 'next'
+import './globals.css';
+import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ptSerif, inter, baskervville, bebasNeue, novaSquare } from './fonts'
 
 export const metadata: Metadata = {
@@ -48,6 +50,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${ptSerif.variable} ${inter.variable} ${baskervville.variable} ${bebasNeue.variable} ${novaSquare.variable}`}>
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
