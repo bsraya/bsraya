@@ -62,7 +62,7 @@ ax[2].set_title('Blue channel')
 
 ![Raccoon image in three differrent color channels](/assets/posts/image-compression-with-svd/rgb_raccoon.png)
 
-## Gray Image
+## Gray Images
 
 Applying SVD to a gray image is pretty straightforward since we have only to deal with one layer of $768 \times 1024$ matrix, where each value represents the dark intensity of the pixel.
 $0$ represents black and $255$ represents white.
@@ -107,4 +107,28 @@ approximation = U @ sigma[:, :100] @ Vt[:100, :]
 plt.imshow(approximation, cmap='gray')
 ```
 
-## Colored Image
+Let's compare the original image with the reconstructed image with 100 singular values.
+
+```python
+fig, ax = plt.subplots(1, 2, figsize=(15, 5))
+
+for i in range(2):
+    ax[i].set_axis_off()
+
+ax[0].imshow(img_gray, cmap='gray')
+ax[0].set_title('Original image')
+ax[1].imshow(approximation, cmap='gray')
+ax[1].set_title('Approximation with 100 singular values')
+```
+
+![Original image vs reconstructed image with 100 singular values](/assets/posts/image-compression-with-svd/original_and_svd_raccoon.png)
+
+I am sure you would be able to tell the difference between the original image and the reconstructed image. 
+However, the difference is negligible.
+The only significant difference is the size of those two images where the original image is 802kb and the reconstructed image is 505kb.
+
+## Colored Images
+
+To be continued ...
+
+{/* Colored images are a bit more complicated than gray images since we have to deal with 3 layers of $768 \times 1024$ matrices. */}
