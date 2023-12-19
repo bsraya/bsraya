@@ -18,7 +18,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
                                 <Link
                                     as={`/posts/${post.slugAsParams}`}
                                     href={`/posts/${post.slugAsParams}`}
-                                    className="hover:underline"
+                                    className="w-fit hover:underline"
                                 >
                                     <h1 className="font-ptserif text-3xl">{post.title}</h1>
                                 </Link>

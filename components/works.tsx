@@ -21,7 +21,7 @@ export default function Works({ works }: { works: Work[] }) {
                                 <Link
                                     as={`/works/${work.slugAsParams}`}
                                     href={`/works/${work.slugAsParams}`} 
-                                    className="hover:underline"
+                                    className="w-fit hover:underline"
                                 >
                                     <h1 className="font-ptserif text-3xl">{work.title}</h1>
                                 </Link>
