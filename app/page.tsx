@@ -53,7 +53,7 @@ export default function Home() {
                 priority
               />
               <Link href="/works/music-recommendation-system" className="hover:underline">
-                <p className="mt-3 text-lg"><span className="font-inter font-bold">Recommendation System</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
+                <p className="mt-3 text-lg"><span className="font-inter font-bold">Music Recommendation System</span>: <span className="font-baskervville">A recommendation system from scratch using my own music playlists</span></p>
               </Link>
             </div>
             <div>
@@ -65,7 +65,7 @@ export default function Home() {
                 height={450}
               />
               <Link href="/works/schedulearn" className="hover:underline">
-                <p className="mt-3 text-lg"><span className="font-inter font-bold">Schedulearn</span>: <span className="font-baskervville">Lightweight Deep Learning Scheduler</span></p>
+                <p className="mt-3 text-lg"><span className="font-inter font-bold">Schedulearn</span>: <span className="font-baskervville">A lightweight deep learning scheduling system</span></p>
               </Link>
             </div>
             <Link
