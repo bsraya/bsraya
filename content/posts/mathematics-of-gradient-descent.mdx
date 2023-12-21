@@ -10,11 +10,7 @@ type: Post
   title="Gradient Descent Algorithm"
   series={[
     {
-      title: "Gradient Descent",
-      current: false,
-    },
-    {
-      title: "Linear Regression",
+      title: "Introduction to Gradient Descent Algorithm",
       current: false,
     },
     {
@@ -26,7 +22,7 @@ type: Post
       current: false,
     },
     {
-      title: "Mini Gradient Descent",
+      title: "Mini Batch Gradient Descent",
       current: false,
     },
     {
@@ -496,7 +492,7 @@ $$
     \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1) = \frac{2}{N} \sum_{i=1}^N (f(x) - y_i) x
 $$
 
-We can remove the scalar $2$ from the two equations above by dividing the cost function, in this case the MSE equation, by $2$.
+We can remove the scalar $2$ from the two equations above by dividing the cost function, in this case the MSE equation, by $2$ [1].
 Multiplying the cost function with a scalar will not affect how it's going to reach the minimum MSE value.
 
 This new modified cost function is called **One Half Mean Squared Error**.

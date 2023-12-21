@@ -6,6 +6,32 @@ tag: Machine Learning
 type: Post
 ---
 
+<SeriesTable
+  title="Gradient Descent Algorithm"
+  series={[
+    {
+      title: "Introduction to Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Mathematics of Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Batch Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Mini Batch Gradient Descent",
+      current: true,
+    },
+    {
+      title: "Stochastic Gradient Descent",
+      current: false,
+    },
+  ]}
+/>
+
 Previously, we have learned that Batch Gradient Descent only updates the parameters only after it has seen the entire dataset.
 However, in this post, we are going to implement Mini-Batch Gradient Descent which updates the parameters after it has seen a fraction of a dataset.
 Not only that, but we are also going to find out the best batch size to make the algorithm converge faster.
