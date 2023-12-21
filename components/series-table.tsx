@@ -14,7 +14,7 @@ export default function SeriesTable({ title, series }: { title: string, series: 
           series.map(({ title, current }: SeriesPost) => {
             const slug = title.toLowerCase().replace(/ /g, '-');
             return (
-              <li key={slug} className={`hover:underline ${current ? 'font-bold' : ''}`}>
+              <li key={slug} className={`hover:underline text-lg ${current ? 'font-bold' : ''}`}>
                 <Link href={`/posts/${slug}`} as={`/posts/${slug}`}>
                   {title}
                 </Link>
