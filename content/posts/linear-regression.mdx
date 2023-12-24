@@ -32,7 +32,17 @@ type: Post
   ]}
 />
 
-## Introduction
+## What is Linear Regression?
+
+Linear Regression is one of many supervised machine learning algorithms, and it is mosly used to predict the value of a continuous variable, as well as to do forecasting.
+In other words, it can be used:
+1. to see if one variable can be used to predict another variable.
+2. to see if one variable is correlated or dependent with another variable.
+
+However, Linear Regression also comes with some limitations, such as:
+1. It assumes that the relationship between the independent variable and the dependent variable is linear. However, in reality, the relationship between the independent variable and the dependent variable is not always linear.
+2. It assumes that the independent variables are not correlated with each other. However, in reality, the independent variables are not always independent.
+3. It's sensitive to outliers. Meaning that the presence of outliers can affect the regression line.
 
 <LineGraph
   data={{
@@ -55,18 +65,23 @@ type: Post
   }}
 />
 
-I am sure most of you reading this post right now are familiar with the following graph,
-and we have been using $y = b + ax$ equation since high school or college to find the distance between two points in a 2D coordinate.
-
-In this post, we are going to use two features in the Iris dataset from `sklearn-learn`, petal width and sepal length. Plotting it will give us the following visualization.
-
-![Iris Dataset Scatter Plot](/assets/posts/linear-regression/iris_scatter.png "Iris Dataset Scatter Plot")
-
-The relationship between these two features can be written as follow.
+From the graph above, we can see that the relationship between $x$ and $y$ is linear since the blue line starts from the bottom left to the top right.
+That line is called a regression line, and it can be expressed using the following equation.
 
 $$
   y = \beta_0 + \beta_1 \times x
 $$
+
+where $\beta_0$ is the intercept and $\beta_1$ is the first coefficient. 
+In high school or college, we are used to seeing the equation above in the following form to calculate the distance between one point to another.
+
+$$
+  y = b + ax
+$$
+
+In this post, we are going to use two features in the Iris dataset from `sklearn-learn`, petal width and sepal length. Plotting it will give us the following visualization.
+
+![Iris Dataset Scatter Plot](/assets/posts/linear-regression/iris_scatter.png "Iris Dataset Scatter Plot")
 
 You should know that the intercept or $\beta_0$ is the starting point of the regression line.
 Whether the line is going up or down depends on the $\beta_1$ and the data.
@@ -81,58 +96,60 @@ $$
 
 From the translation above can tell us the relationship between those two variables.
 Now you will be wondering their correlations whether `sepal_length` and `petal_width` are correlated or inversely correlated.
+First, let's translate what the two graphs below are trying to tell us.
 
-<LineGraph
-  data={{
-    labels: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
-    datasets: [
-      {
-        label: "Positively Correlated Regression Line",
-        data: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
-        borderColor: "green",
+<div style={{ display: "flex", justifyContent: "space-between", width: "50%" }}>
+  <LineGraph
+    data={{
+      labels: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
+      datasets: [
+        {
+          label: "Positively Correlated Regression Line",
+          data: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
+          borderColor: "green",
+        },
+      ],
+    }}
+    options={{
+      plugins: {
+        legend: {
+          display: true,
+          position: "bottom",
+        },
       },
-    ],
-  }}
-  options={{
-    plugins: {
-      legend: {
-        display: true,
-        position: "bottom",
+    }}
+  />
+  <LineGraph
+    data={{
+      labels: [3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0.0],
+      datasets: [
+        {
+          label: "Negatively Correlated Regression Line",
+          data: [3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0.0],
+          borderColor: "red",
+        },
+      ],
+    }}
+    options={{
+      plugins: {
+        legend: {
+          display: true,
+          position: "bottom",
+        },
       },
-    },
-  }}
-/>
+    }}
+  />
+</div>
 
 `sepal_length` and `petal_width` are said to be correlated when `sepal_length` increases, the `petal_length` also increases.
 Conversely, `sepal_length` and `petal_width` are said to be inversely correlated when `sepal_length` increases, but the `petal_width` decreases.
-
-<LineGraph
-  data={{
-    labels: [3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0.0],
-    datasets: [
-      {
-        label: "Negatively Correlated Regression Line",
-        data: [3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0.0],
-        borderColor: "red",
-      },
-    ],
-  }}
-  options={{
-    plugins: {
-      legend: {
-        display: true,
-        position: "bottom",
-      },
-    },
-  }}
-/>
 
 With a regression line, it can help us to predict the $y$ value given a single $x$ value.
 However, most predictions made by the regression line are not always accurate
 since its ability to predict depends heavily on $\beta_0$ and $\beta_1$.
 If the values $\beta_0$ and $\beta_1$ are not tweaked correctly, the regression line will sit right far from most data points.
 
-## Example
+## Examples
 
 In this section, there will be two examples of regression lines. One with the regression line is far from most data points, and the other one is close to most data points.
 
@@ -179,6 +196,9 @@ $$
 
 From these two examples, we can see that when the regression line is close to most data points, the MSE is small.
 Conversonly, when the regression line is far from most data points, the MSE is large.
+
+Is having a small MSE enough to say that the regression line is good? Futher investigation is needed to answer this question.
+However, I am not gonna cover it in this post.
 
 ## Coding Implementation
 
@@ -242,12 +262,10 @@ def predict(b, x, data):
 def gradient_descent(x, y, epochs, alpha = 0.01):
   intercept, coefficient = 0, 0
 
-  for _ in range(0, epochs):
+  for _ in range(1, epochs):
     predictions = predict(intercept, coefficient, x)
-    b0_error = (1/len(x)) * np.sum(predictions - y)
-    b1_error = (1/len(x)) * np.sum((predictions - y) * x)
-    intercept = intercept - alpha * b0_error
-    coefficient = coefficient - alpha * b1_error
+    intercept = intercept - alpha * np.sum(predictions - y) / len(x)
+    coefficient = coefficient - alpha * np.sum((predictions - y) * x) / len(x)
 
   return intercept, coefficient
 
@@ -267,12 +285,10 @@ You can find the full code in [this repository](https://github.com/bsraya/machin
 2. The equation of the regression line is $y = \beta_0 + \beta_1 \times x$.
 3. The regression line is said to be good when it is close to most data points.
 4. The quality of the regression line can be measured using evaluation metrics, one of them is Mean Squared Error (MSE).
-5. The smaller the MSE, the better the regression line. The larger the MSE, the worse the regression line.
+5. The smaller the MSE, the closer the regression line is to most data points. Conversely, the larger the MSE, the farther the regression line is to most data points.
 6. `b` and `x` can be estimated using Gradient Descent algorithm.
 
 ## References
 
 1. Wikipedia. _Linear Regression_. [Linear Regression](https://en.wikipedia.org/wiki/Linear_regression)
 2. Wikipedia. _Gradient Descent_. [Gradient Descent](https://en.wikipedia.org/wiki/Gradient_descent)
-3. Chris McCormick. _Gradient Descent Derivation_. https://mccormickml.com/2014/03/04/gradient-descent-derivation/
-4. G. Sanchez & E. Marzban. _All Models are Wrong_. https://allmodelsarewrong.github.io/gradient.html
