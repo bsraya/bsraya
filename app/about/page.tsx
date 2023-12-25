@@ -53,7 +53,7 @@ export default function About() {
                         <p>
                             Hello! I am Bijon, a passionate technologist based in Taipei City, Taiwan.
                             My journey in tech began at <ExternalLink text="National Tsing Hua University" url='https://www.nthu.edu.tw/' />, where I completed both my Bachelor&apos;s and Master&apos;s degrees in <ExternalLink text="Computer Science" url="https://dcs.site.nthu.edu.tw/" />.
-                            If you are interested to see what I have done? You could see my resume <Link href="/experience" className="underline">here</Link> or the projects that I have done <Link href="/works" className="underline">here</Link>.
+                            If you are interested to see what I have done? You could see my resume <ExternalLink url="https://drive.google.com/file/d/1L26TlQRkuDLikxj8KJ9IYnjkYjHXsBIw/view?usp=sharing" text="here" /> or the projects that I have done <Link href="/works" className="underline">here</Link>.
                         </p>
 
                         <div>

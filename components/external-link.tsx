@@ -1,6 +1,6 @@
 
 
-export default function ExternalLink({ text, url}: { text: string, url: string }) {
+export default function ExternalLink({ text, url }: { text: string, url: string }) {
     return (
         <a className="font-baskervville underline" href={url} target="_blank" rel="noopener noreferrer">
             <span>{text}</span>
