@@ -21,6 +21,7 @@ Unfortunately, I had finished writing my own function after stumbling upon a fra
 [Click here](https://github.com/bsraya/data-science-portfolio/blob/main/fetch-random-songs.py) to see the script on GitHub.
 
 There are endpoints that I used to collect the metadata of songs in my own playlist and also songs in the playlists that I never listened to:
+
 1. `https://accounts.spotify.com/authorize` to get the access token
 2. `https://accounts.spotify.com/api/token` to get the refresh token
 3. `https://api.spotify.com/v1/me/playlists` to get all of my playlists
@@ -30,6 +31,7 @@ There are endpoints that I used to collect the metadata of songs in my own playl
 7. `https://api.spotify.com/v1/audio-features?ids={track_ids}` to get the tracks' audio features in a bulk
 
 Here is one of the songs's metadata that the API returns:
+
 ```json
 {
   "id": "2i2gDpKKWjvnRTOZRhaPh2",
@@ -62,13 +64,13 @@ To understand the meaning of each feature, you can read the documentation [here]
 
 Here is the first 5 rows of the dataset that I collected:
 
-|     | popularity | danceability | energy | key | loudness | mode | speechiness | acousticness | instrumentalness | liveness | valence | tempo  | duration_ms | time_signature |
-|-----|------------|--------------|--------|-----|----------|------|-------------|--------------|------------------|----------|---------|--------|-------------|----------------|
-|  0  |         88 |        0.639 |  0.723 |   7 |   -6.462 |    0 |      0.0532 |        0.511 |           0.0000 |    0.167 |   0.878 | 136.872|      187558 |              4 |
-|  1  |         83 |        0.472 |  0.518 |   8 |   -7.379 |    1 |      0.0510 |        0.383 |           0.1270 |    0.289 |   0.154 | 147.805|      211667 |              4 |
-|  2  |         68 |        0.848 |  0.364 |  11 |  -10.058 |    1 |      0.0637 |        0.697 |           0.0053 |    0.140 |   0.569 | 137.541|      214160 |              4 |
-|  3  |         61 |        0.361 |  0.020 |  11 |  -25.064 |    1 |      0.0555 |        0.925 |           0.0022 |    0.114 |   0.351 |  76.621|      123320 |              4 |
-|  4  |         82 |        0.440 |  0.317 |   8 |   -9.258 |    1 |      0.0531 |        0.891 |           0.0000 |    0.141 |   0.268 | 169.914|      233456 |              3 |
+|     | popularity | danceability | energy | key | loudness | mode | speechiness | acousticness | instrumentalness | liveness | valence | tempo   | duration_ms | time_signature |
+| --- | ---------- | ------------ | ------ | --- | -------- | ---- | ----------- | ------------ | ---------------- | -------- | ------- | ------- | ----------- | -------------- |
+| 0   | 88         | 0.639        | 0.723  | 7   | -6.462   | 0    | 0.0532      | 0.511        | 0.0000           | 0.167    | 0.878   | 136.872 | 187558      | 4              |
+| 1   | 83         | 0.472        | 0.518  | 8   | -7.379   | 1    | 0.0510      | 0.383        | 0.1270           | 0.289    | 0.154   | 147.805 | 211667      | 4              |
+| 2   | 68         | 0.848        | 0.364  | 11  | -10.058  | 1    | 0.0637      | 0.697        | 0.0053           | 0.140    | 0.569   | 137.541 | 214160      | 4              |
+| 3   | 61         | 0.361        | 0.020  | 11  | -25.064  | 1    | 0.0555      | 0.925        | 0.0022           | 0.114    | 0.351   | 76.621  | 123320      | 4              |
+| 4   | 82         | 0.440        | 0.317  | 8   | -9.258   | 1    | 0.0531      | 0.891        | 0.0000           | 0.141    | 0.268   | 169.914 | 233456      | 3              |
 
 Let's see how much each feature contributes to the cumulative variance of the dataset.
 First we create two lists, one to store the reconstructed errors and the other to store the number of dimensions, starting from 2 to the number of columns in the dataset.
@@ -99,6 +101,7 @@ for dimension in dimensions:
 ![Reconstruction error graph using the Elbow method](/assets/works/music-recommendation-system/elbow.png "Reconstruction error graph using the Elbow method")
 
 From the graph, two questions arised, such as:
+
 1. Should I use all of the features to create a better recommendation system?
 2. Should I just use half the number of the features to create a so-so recommendation system?
 
@@ -121,30 +124,32 @@ pipeline = make_pipeline(
   ),
   Normalizer()
 )
-pipeline.fit(df)
+transformed_songs = pipeline.fit(df)
 
 components = pipeline.named_steps['nmf'].components_
 
 categories = pd.DataFrame(components, columns=df.columns.values)
 ```
 
-Here how `categories` looks like:
+There are two variables that we need to pay attention to, which are `transformed_songs` and `categories`.
+First, let's look how `categories` looks like:
 
-|    | popularity | danceability |  energy  |    key    | loudness |   mode   | speechiness | acousticness | instrumentalness | liveness | valence |  tempo   | duration_ms  | time_signature  |
-|----|------------|--------------|----------|-----------|----------|----------|-------------|--------------|------------------|----------|---------|----------|--------------|-----------------|
-| 0  |   0.534903 |      0.298442| 0.270266 | 0.000000  | 0.408649 | 0.000000 |     0.000000|      0.000000|          0.000000|  0.018999| 0.000000| 0.229539 |     0.217800 |        0.248214 |
-| 1  |   0.000000 |      0.106725| 0.068626 | 0.000000  | 0.189821 | 1.637913 |     0.000000|      0.000000|          0.000000|  0.000000| 0.000000| 0.104684 |     0.097882 |        0.090924 |
-| 2  |   0.001453 |      0.000000| 0.093944 | 0.023366  | 0.000000 | 0.000000 |     0.000000|      0.043522|          1.249295|  0.000000| 0.000000| 0.246392 |     0.000000 |        0.000000 |
-| 3  |   0.000000 |      0.104355| 0.006865 | 1.335583  | 0.023123 | 0.000000 |     0.000000|      0.000000|          0.000000|  0.000000| 0.000000| 0.009809 |     0.000000 |        0.000000 |
-| 4  |   0.000000 |      0.509518| 0.388543 | 0.000000  | 0.358000 | 0.000000 |     1.472285|      0.000000|          0.000000|  0.187331| 0.000000| 0.656888 |     0.622994 |        0.116734 |
-| 5  |   0.337989 |      0.788880| 0.924321 | 0.000000  | 0.821795 | 0.000000 |     0.000000|      0.000000|          0.000000|  0.475844| 1.264722| 0.061846 |     0.000000 |        0.535879 |
-| 6  |   0.654970 |      0.116540| 0.000000 | 0.000000  | 0.274794 | 0.000000 |     0.000000|      1.401693|          0.000000|  0.136065| 0.232226| 0.342329 |     0.316328 |        0.246019 |
+|     | popularity | danceability | energy   | key      | loudness | mode     | speechiness | acousticness | instrumentalness | liveness | valence  | tempo    | duration_ms | time_signature |
+| --- | ---------- | ------------ | -------- | -------- | -------- | -------- | ----------- | ------------ | ---------------- | -------- | -------- | -------- | ----------- | -------------- |
+| 0   | 0.534903   | 0.298442     | 0.270266 | 0.000000 | 0.408649 | 0.000000 | 0.000000    | 0.000000     | 0.000000         | 0.018999 | 0.000000 | 0.229539 | 0.217800    | 0.248214       |
+| 1   | 0.000000   | 0.106725     | 0.068626 | 0.000000 | 0.189821 | 1.637913 | 0.000000    | 0.000000     | 0.000000         | 0.000000 | 0.000000 | 0.104684 | 0.097882    | 0.090924       |
+| 2   | 0.001453   | 0.000000     | 0.093944 | 0.023366 | 0.000000 | 0.000000 | 0.000000    | 0.043522     | 1.249295         | 0.000000 | 0.000000 | 0.246392 | 0.000000    | 0.000000       |
+| 3   | 0.000000   | 0.104355     | 0.006865 | 1.335583 | 0.023123 | 0.000000 | 0.000000    | 0.000000     | 0.000000         | 0.000000 | 0.000000 | 0.009809 | 0.000000    | 0.000000       |
+| 4   | 0.000000   | 0.509518     | 0.388543 | 0.000000 | 0.358000 | 0.000000 | 1.472285    | 0.000000     | 0.000000         | 0.187331 | 0.000000 | 0.656888 | 0.622994    | 0.116734       |
+| 5   | 0.337989   | 0.788880     | 0.924321 | 0.000000 | 0.821795 | 0.000000 | 0.000000    | 0.000000     | 0.000000         | 0.475844 | 1.264722 | 0.061846 | 0.000000    | 0.535879       |
+| 6   | 0.654970   | 0.116540     | 0.000000 | 0.000000 | 0.274794 | 0.000000 | 0.000000    | 1.401693     | 0.000000         | 0.136065 | 0.232226 | 0.342329 | 0.316328    | 0.246019       |
 
 What I am gonna do is, for each row, I am gonna get the name of the feature that has the highest value.
 For example, for the first row, the feature that has the highest value is `popularity`.
 Thus, the first category is `popularity`. The same applies to the other rows.
 
 The discovered categories are:
+
 1. Popularity
 2. Mode
 3. Instrumentalness
@@ -154,3 +159,126 @@ The discovered categories are:
 7. Acousticness
 
 ## Evaluation
+
+If we print out the first element of `transformed_songs`, we will get something like this:
+
+```python
+array([0.68781855, 0.        , 0.02267717, 0.42057155, 0.03739232,
+       0.46179948, 0.36722474])
+```
+
+Let's present those values in a dataframe:
+
+```python
+column_names = ["popularity", "mode", "instrumentalness", "key", "speechiness", "valence", "acousticness"]
+
+transformed_songs_df = pd.DataFrame(
+  transformed_songs,
+  index=no_dup_songs['title'],
+  columns=column_names
+)
+```
+
+`transformed_songs_df` would look nicer like this:
+
+| title         | popularity | mode     | instrumentalness | key      | speechiness | valence  | acousticness |
+| ------------- | ---------- | -------- | ---------------- | -------- | ----------- | -------- | ------------ |
+| Moonlight     | 0.687819   | 0.000000 | 0.022677         | 0.420572 | 0.037392    | 0.461799 | 0.367225     |
+| Die For You   | 0.795659   | 0.419812 | 0.084564         | 0.367031 | 0.034901    | 0.063033 | 0.208879     |
+| Traingazing   | 0.421927   | 0.482856 | 0.007271         | 0.598761 | 0.072504    | 0.241463 | 0.408288     |
+| See You Later | 0.000000   | 0.502542 | 0.000000         | 0.633809 | 0.000000    | 0.061599 | 0.584759     |
+| Glimpse of Us | 0.544596   | 0.482510 | 0.030081         | 0.428721 | 0.071149    | 0.001509 | 0.529932     |
+
+We can make it even nicer by categorizing each song based on the most dominant feature.
+First we gotta get the index of the dominant category.
+
+```python
+dominant_categories = [np.argmax(processed_songs.iloc[i]) for i in range(len(processed_songs))]
+```
+
+Then we create a new dataframe using the `dominant_categories` and get the name of the category using the index.
+
+```python
+categorized_songs = pd.DataFrame(
+  [categories.iloc[i].sort_values(ascending=False).index.values[0] for i in dominant_categories],
+  index=no_dup_songs.title,
+  columns=["categories"]
+)
+```
+
+Here is the first 20 rows of the categorized songs:
+
+| title                             | categories       |
+| --------------------------------- | ---------------- |
+| Moonlight                         | popularity       |
+| Die For You                       | popularity       |
+| Traingazing                       | key              |
+| See You Later                     | key              |
+| Glimpse of Us                     | popularity       |
+| La La Lost You - Acoustic Version | acousticness     |
+| blue                              | key              |
+| Surf                              | popularity       |
+| Good News                         | popularity       |
+| Jocelyn Flores                    | popularity       |
+| Come Back to Earth                | acousticness     |
+| Habits (Stay High)                | popularity       |
+| Best Part (feat. H.E.R.)          | popularity       |
+| Here With Me                      | popularity       |
+| Until I Found You - Piano Version | acousticness     |
+| i love you                        | acousticness     |
+| Idea 10                           | acousticness     |
+| Idea 1                            | instrumentalness |
+| Solas                             | instrumentalness |
+| Idea 22                           | instrumentalness |
+
+Just by looking at the first 20 rows, I can say that the model does a pretty good job at categorizing the songs.
+Counting the number of songs in each category, I noticed most songs I like and listen to are popular songs.
+
+```python
+categories
+popularity          113
+mode                 33
+instrumentalness     23
+key                  17
+acousticness         14
+valence               7
+speechiness           1
+```
+
+Take a music called "Idea 1" for example. It is an piano instrumental music that I often listen to.
+Let's see what the model would recommend me based on that song.
+
+```python
+wanted_song = processed_songs.loc['Idea 1']
+recommended_songs = processed_songs.dot(wanted_song)
+```
+
+Looking at the recommended songs below, I think the model did an impressive job
+since most of the songs are instrumental songs that in the same genre as "Idea 1".
+
+| title                                 | score    |
+| ------------------------------------- | -------- |
+| Idea 1                                | 1.000000 |
+| Cornfield Chase                       | 0.988377 |
+| Cornfield Chase - Piano-Cello Version | 0.985630 |
+| Cornfield Chase (Slowed + Reverb)     | 0.985341 |
+| Idea 22 (Slowed + Reverb)             | 0.982635 |
+| Interstellar- Main Theme              | 0.979361 |
+| Solas                                 | 0.966634 |
+| Day One (Interstellar Theme)          | 0.961549 |
+| dream river.                          | 0.960631 |
+| Idea 22 (Sped Up)                     | 0.956474 |
+| Cornfield Chase - Piano Version       | 0.945764 |
+| Day One - Original Demo               | 0.945345 |
+| Idea 10                               | 0.945085 |
+| Seaton Village                        | 0.942800 |
+| Starry Night                          | 0.941577 |
+| Idea 10 (Sped Up)                     | 0.939974 |
+| 3 nights                              | 0.935986 |
+| Solas (Sped Up)                       | 0.935365 |
+| Idea 10 (Slowed & Reverb)             | 0.918291 |
+| Idea 9                                | 0.912046 |
+
+## Conclusion
+
+To be continued ...
