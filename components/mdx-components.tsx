@@ -143,8 +143,8 @@ const components: any = {
   th: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <th
       className={cn(
-        "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
-        className
+        "border px-4 py-4 text-left font-bold md:px-4 [&[align=center]]:text-center [&[align=right]]:text-right",
+        className || ""
       )}
       {...props}
     />
@@ -152,8 +152,8 @@ const components: any = {
   td: ({ className, ...props }: any) => (
     <td
       className={cn(
-        "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
-        className
+        "border px-4 py-2 text-left md:px-4 [&[align=center]]:text-center [&[align=right]]:text-right",
+        className || ""
       )}
       {...props}
     />
