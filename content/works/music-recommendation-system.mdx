@@ -13,7 +13,7 @@ In the first part of this series, I will be collecting approximately 2000 random
 to find out which songs / music I would like based on my playlists. Once I have the data, I will be using
 those data to make a recommendation system using Non-negative Matrix Factorization (NMF).
 
-![My Spotify homepage](/images/portfolios/recommendation-system/spotify-ui.png "My Spotify homepage")
+![My Spotify homepage](/assets/works/music-recommendation-system/thumbnail.png "My Spotify homepage")
 
 Since I am a Spotify subscriber, I can use their API to get songs' metadata.
 Unfortunately, I had finished writing my own function after stumbling upon a framework called [Spotipy](https://spotipy.readthedocs.io/en/2.18.0/) that can be used to interact with Spotify API.
@@ -56,8 +56,101 @@ Here is one of the songs's metadata that the API returns:
 }
 ```
 
-## Data Preprocessing
+To understand the meaning of each feature, you can read the documentation [here](https://developer.spotify.com/documentation/web-api/reference/get-audio-features).
+
+## Data Exploration
+
+Here is the first 5 rows of the dataset that I collected:
+
+|     | popularity | danceability | energy | key | loudness | mode | speechiness | acousticness | instrumentalness | liveness | valence | tempo  | duration_ms | time_signature |
+|-----|------------|--------------|--------|-----|----------|------|-------------|--------------|------------------|----------|---------|--------|-------------|----------------|
+|  0  |         88 |        0.639 |  0.723 |   7 |   -6.462 |    0 |      0.0532 |        0.511 |           0.0000 |    0.167 |   0.878 | 136.872|      187558 |              4 |
+|  1  |         83 |        0.472 |  0.518 |   8 |   -7.379 |    1 |      0.0510 |        0.383 |           0.1270 |    0.289 |   0.154 | 147.805|      211667 |              4 |
+|  2  |         68 |        0.848 |  0.364 |  11 |  -10.058 |    1 |      0.0637 |        0.697 |           0.0053 |    0.140 |   0.569 | 137.541|      214160 |              4 |
+|  3  |         61 |        0.361 |  0.020 |  11 |  -25.064 |    1 |      0.0555 |        0.925 |           0.0022 |    0.114 |   0.351 |  76.621|      123320 |              4 |
+|  4  |         82 |        0.440 |  0.317 |   8 |   -9.258 |    1 |      0.0531 |        0.891 |           0.0000 |    0.141 |   0.268 | 169.914|      233456 |              3 |
+
+Let's see how much each feature contributes to the cumulative variance of the dataset.
+First we create two lists, one to store the reconstructed errors and the other to store the number of dimensions, starting from 2 to the number of columns in the dataset.
+
+```python
+reconstruction_errors = []
+dimensions = range(2, df.columns.size + 1)
+```
+
+After that, we create a pipeline that will scale the data, perform NMF, and normalize the data.
+Then we fit the pipeline to the dataset and append the reconstruction error to the list so that we can plot it.
+
+```python
+# create an elbow plot to determine the optimal number of dimensions
+for dimension in dimensions:
+  pipeline = make_pipeline(
+    MinMaxScaler(),
+    NMF(
+      n_components=dimension,
+      max_iter=10000,
+    ),
+    Normalizer()
+  )
+  pipeline.fit(df)
+  reconstruction_errors.append(pipeline.named_steps['nmf'].reconstruction_err_)
+```
+
+![Reconstruction error graph using the Elbow method](/assets/works/music-recommendation-system/elbow.png "Reconstruction error graph using the Elbow method")
+
+From the graph, two questions arised, such as:
+1. Should I use all of the features to create a better recommendation system?
+2. Should I just use half the number of the features to create a so-so recommendation system?
+
+Looking at the graph, I was tempted to use all of the features to create the "perfect" recommendation system.
+However, there is a catch. If I use all of the features, meaning that the recommendation system will be so good that it will recommend me songs that I have already listened to.
+
+Therefore, if I want to create a recommendation system that will recommend me songs that I have never listened to, I have to use half the number of the features to allow some mistakes to happen.
+Those mistakes will expose me to new songs or new genres that I have never listened to.
 
 ## Model Training
 
-## Model Evaluation
+This time, let's use 7 dimensions to create a recommendation system, and get the names of those 7 features.
+
+```python
+pipeline = make_pipeline(
+  MinMaxScaler(),
+  NMF(
+    n_components=dimension,
+    max_iter=10000,
+  ),
+  Normalizer()
+)
+pipeline.fit(df)
+
+components = pipeline.named_steps['nmf'].components_
+
+categories = pd.DataFrame(components, columns=df.columns.values)
+```
+
+Here how `categories` looks like:
+
+|    | popularity | danceability |  energy  |    key    | loudness |   mode   | speechiness | acousticness | instrumentalness | liveness | valence |  tempo   | duration_ms  | time_signature  |
+|----|------------|--------------|----------|-----------|----------|----------|-------------|--------------|------------------|----------|---------|----------|--------------|-----------------|
+| 0  |   0.534903 |      0.298442| 0.270266 | 0.000000  | 0.408649 | 0.000000 |     0.000000|      0.000000|          0.000000|  0.018999| 0.000000| 0.229539 |     0.217800 |        0.248214 |
+| 1  |   0.000000 |      0.106725| 0.068626 | 0.000000  | 0.189821 | 1.637913 |     0.000000|      0.000000|          0.000000|  0.000000| 0.000000| 0.104684 |     0.097882 |        0.090924 |
+| 2  |   0.001453 |      0.000000| 0.093944 | 0.023366  | 0.000000 | 0.000000 |     0.000000|      0.043522|          1.249295|  0.000000| 0.000000| 0.246392 |     0.000000 |        0.000000 |
+| 3  |   0.000000 |      0.104355| 0.006865 | 1.335583  | 0.023123 | 0.000000 |     0.000000|      0.000000|          0.000000|  0.000000| 0.000000| 0.009809 |     0.000000 |        0.000000 |
+| 4  |   0.000000 |      0.509518| 0.388543 | 0.000000  | 0.358000 | 0.000000 |     1.472285|      0.000000|          0.000000|  0.187331| 0.000000| 0.656888 |     0.622994 |        0.116734 |
+| 5  |   0.337989 |      0.788880| 0.924321 | 0.000000  | 0.821795 | 0.000000 |     0.000000|      0.000000|          0.000000|  0.475844| 1.264722| 0.061846 |     0.000000 |        0.535879 |
+| 6  |   0.654970 |      0.116540| 0.000000 | 0.000000  | 0.274794 | 0.000000 |     0.000000|      1.401693|          0.000000|  0.136065| 0.232226| 0.342329 |     0.316328 |        0.246019 |
+
+What I am gonna do is, for each row, I am gonna get the name of the feature that has the highest value.
+For example, for the first row, the feature that has the highest value is `popularity`.
+Thus, the first category is `popularity`. The same applies to the other rows.
+
+The discovered categories are:
+1. Popularity
+2. Mode
+3. Instrumentalness
+4. Key
+5. Speechiness
+6. Valence
+7. Acousticness
+
+## Evaluation
