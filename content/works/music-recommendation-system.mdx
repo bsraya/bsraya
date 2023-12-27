@@ -100,9 +100,11 @@ for dimension in dimensions:
 
 ![Reconstruction error graph using the Elbow method](/assets/works/music-recommendation-system/elbow.png "Reconstruction error graph using the Elbow method")
 
-From the graph, two questions arised, such as:
+The general rule of thumb is to choose the number of components where the elbow starts to flatten out.
+However, the reconstruction error above has a step decline and only flattens out at 14 dimensions.
+Now, two questions emerged:
 
-1. Should I use all of the features to create a better recommendation system?
+1. Should I use all of the features to create a better recommendation system? That's where the reconstruction error flattens out.
 2. Should I just use half the number of the features to create a so-so recommendation system?
 
 Looking at the graph, I was tempted to use all of the features to create the "perfect" recommendation system.
