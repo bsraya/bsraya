@@ -270,17 +270,49 @@ since most of the songs are instrumental songs that in the same genre as "Idea 1
 | Day One (Interstellar Theme)          | 0.961549 |
 | dream river.                          | 0.960631 |
 | Idea 22 (Sped Up)                     | 0.956474 |
-| Cornfield Chase - Piano Version       | 0.945764 |
-| Day One - Original Demo               | 0.945345 |
-| Idea 10                               | 0.945085 |
-| Seaton Village                        | 0.942800 |
-| Starry Night                          | 0.941577 |
-| Idea 10 (Sped Up)                     | 0.939974 |
-| 3 nights                              | 0.935986 |
-| Solas (Sped Up)                       | 0.935365 |
-| Idea 10 (Slowed & Reverb)             | 0.918291 |
-| Idea 9                                | 0.912046 |
+
+## Testing
+
+To test the model, I will be using a song that I have never listened to before.
+
+| title                                           | artist(s)             | category         |
+| ----------------------------------------------- | --------------------- | ---------------- |
+| As It Was                                       | Harry Styles          | pop              |
+| WHERE SHE GOES                                  | Bad Bunny             | pop              |
+| As It Was                                       | Harry Styles          | pop              |
+| See The Light (feat. Fridayy)                   | Swedish House Mafia   | pop              |
+| METAMORPHOSIS                                   | INTERWORLD            | dance/electronic |
+| Flare                                           | Hensonn               | dance/electronic |
+| Over You                                        | Dillistone            | dance/electronic |
+| Sonthee                                         | LAR                   | dance/electronic |
+| Hiraeth (feat. Kim Van Loo)                     | Fejká                 | dance/electronic |
+| Indulgence                                      | Nora En Pure          | dance/electronic |
+| All Night Long                                  | Marsh                 | dance/electronic |
+| Just Over                                       | Yotto                 | dance/electronic |
+| Voodoo                                          | Tinlicker             | dance/electronic |
+| Hopeful                                         | ODESZA                | dance/electronic |
+| Salta                                           | Sultan + Shepard      | dance/electronic |
+| Believer - Marsh's Guatape Remix                | Above & Beyond, Marsh | dance/electronic |
+| Breathing                                       | Ben Böhmer            | dance/electronic |
+| Tell Me Why - MEDUZA Remix                      | Supermode, MEDUZA     | dance/electronic |
+| Lost In The Rhythm                              | David Guetta, MORTEN  | dance            |
+| Exhale                                          | Patrick Bradley       | jazz             |
+| As It Was                                       | The Piano Guys        | classical        |
+| Adagio in G Minor (Arr. for Harp and Orchestra) | Xavier De Maistre     | classical        |
+
+Just by listening to these twenty songs, I notice that mose of them have a lot of instrumental elements, pretty much similar to "Idea 1".
 
 ## Conclusion
 
-To be continued ...
+In this project, I have successfully created a decent recommendation system that can recommend me songs using Non-negative Matrix Factorization (NMF).
+Other than this technique, there are other algorithms that can be used to create a recommendation system,
+such as Singular Value Decomposition (SVD), Alternating Least Squares (ALS), and Collaborative Filtering (CF).
+However, I chose NMF because it was the algorithm that I have never heard about until I was reading my old notes from my Linear Algebra class.
+
+Am I satisfied with the result? Yes, I am, and it really help me discovered new songs that I have no idea about,
+and a lot of them ended up in my own playlists.
+
+## References
+
+1. D. Lee, Daniel. Seung, H. Sebastian. (1999). Learning the parts of objects by non-negative matrix factorization. Nature. 401. 788-791. [https://www.nature.com/articles/44565](https://www.nature.com/articles/44565)
+2. Wikipedia. Non-negative matrix factorization. [https://en.wikipedia.org/wiki/Non-negative_matrix_factorization](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization)
