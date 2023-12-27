@@ -37,12 +37,14 @@ type: Post
 Logistic Regression is one of many supervised machine learning algorithms, just like Linear Regression.
 Instead of predicting a continuous value, it predicts the probability of an event happening, or something is true or false.
 So, this algorithms is mostly used for binary classification problems. Here are the use cases of Logistic Regression:
+
 1. Predict if an email is spam or not.
 2. Predict if a credit card transaction is fraudulent or not.
 3. Predict if a customer will churn or not.
 4. Predict if a patient has cancer or not.
 
 However, it also has the same limitations as Linear Regression, such as:
+
 1. It is a linear model, so it cannot capture complex non-linear relationships. In other words, it assumes that the data is linearly separable.
 2. It assumes that the data is independent of each other. In other words, it assumes that the data is not correlated with each other.
 3. It is sensitive to outliers.
@@ -50,11 +52,12 @@ However, it also has the same limitations as Linear Regression, such as:
 ## Mathematical Equations
 
 First, Logistic Regression still uses Linear Equation used in Linear Regression, and it's expressed as:
+
 $$
 \hat{y} = \beta_0 + \beta_1x
 $$
 
-Second, we are going to need Sigmoid function. 
+Second, we are going to need Sigmoid function.
 This funciton's sole job is to predict by converting the output of the linear equation into a probability value between $0$ and $1$.
 
 $$
@@ -82,6 +85,8 @@ $$
 $$
 \beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)x
 $$
+
+where $x$ is the feature value, in this case, the sepal length.
 
 ## Implementation
 
@@ -129,7 +134,7 @@ def accuracy(y_pred, y):
 
 def sigmoid(x):
   return 1 / (1 + np.exp(-x))
-    
+
 def linear_function(intercept, coefficient, x):
   return intercept + coefficient * x
 
@@ -175,8 +180,8 @@ You can find the full code in [this repository](https://github.com/bsraya/machin
 ## Conclusion
 
 1. Logistic Regression is a supervised machine learning algorithm that is used for binary classification problems.
-3. It uses the Sigmoid function to calculate the probability of an event occurring.
-4. It uses a threshold value to roundup the probability value to either $0$ or $1$. If $\delta(x) > 0.5$, then the data is classified as $1$, otherwise it is classified as $0$.
+2. It uses the Sigmoid function to calculate the probability of an event occurring.
+3. It uses a threshold value to roundup the probability value to either $0$ or $1$. If $\delta(x) > 0.5$, then the data is classified as $1$, otherwise it is classified as $0$.
 
 ## References
 
