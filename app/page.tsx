@@ -58,14 +58,14 @@ export default function Home() {
             </div>
             <div>
               <Image
-                src="/assets/works/schedulearn/thumbnail.png"
-                alt="The schema of Schedulearn architecture"
+                src="/assets/works/ai-coding-assistant/thumbnail.png"
+                alt="AI Coding Assistant demo"
                 className="rounded-lg"
                 width={1200}
                 height={450}
               />
-              <Link href="/works/schedulearn" className="hover:underline">
-                <p className="mt-3 text-lg"><span className="font-inter font-bold">Schedulearn</span>: <span className="font-baskervville">A lightweight deep learning scheduling system</span></p>
+              <Link href="/works/ai-coding-assistant" className="hover:underline">
+                <p className="mt-3 text-lg"><span className="font-inter font-bold">AI Coding Assistant</span>: <span className="font-baskervville">A basic coding helper made from scratch</span></p>
               </Link>
             </div>
             <Link
