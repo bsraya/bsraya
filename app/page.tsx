@@ -65,7 +65,7 @@ export default function Home() {
                 height={450}
               />
               <Link href="/works/ai-coding-assistant" className="hover:underline">
-                <p className="mt-3 text-lg"><span className="font-inter font-bold">AI Coding Assistant</span>: <span className="font-baskervville">A basic coding helper made from scratch</span></p>
+                <p className="mt-3 text-lg"><span className="font-inter font-bold">AI Coding Assistant</span>: <span className="font-baskervville">AI coding helper + Python on the browser</span></p>
               </Link>
             </div>
             <Link
