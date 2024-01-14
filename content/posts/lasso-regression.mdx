@@ -1,9 +1,8 @@
 ---
 title: Lasso Regression
 description: Redoing Lasso Regression from scratch in Python
-date: 2023-12-11
+date: 2023-12-27
 tag: Machine Learning
-published: false
 type: Post
 ---
 
@@ -33,4 +32,40 @@ type: Post
   ]}
 />
 
-# Lasso Regression
+## What is Lasso Regression?
+
+## Mathematical Formulation
+
+In Lasso Regression, we are going to use the same linear function that Linear Regression uses:
+
+$$
+\hat{y} = \beta_0 + \beta_1 x
+$$
+
+However, the only difference is that we are going to add a regularization term to the cost function. 
+This regularization term is the sum of the absolute values of the weights. This is also known as the L1 norm of the weights.
+The cost function for Lasso Regression that we have to minimize is given by:
+
+$$
+\text{Minimize} \left( \sum_{i=1}^{n} (\hat{y}_i - y_i)^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right)
+$$
+
+To update the parameters, we use the following update rules:
+
+$$
+\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1)
+$$
+
+$$
+\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)x
+$$
+
+## Implementation
+
+```python
+class LassoRegression:
+  def __init__(self, alpha=0.01, iterations=1000, lambda=0.01):
+    self.alpha = alpha
+    self.iterations = iterations
+    self.lambda = lambda
+```
