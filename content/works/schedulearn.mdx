@@ -14,7 +14,7 @@ It is designed to be a simple and easy-to-use system for scheduling deep learnin
 
 ## Tech Stacks
 
-### Backend
+The system is built using the following technologies:
 1. FastAPI
 2. SQLModel
 3. Pydantic
@@ -24,19 +24,22 @@ It is designed to be a simple and easy-to-use system for scheduling deep learnin
 
 ![Schedulearn consists of 3 components: UI, API, and the server](/assets/works/schedulearn/schedulearn-architecture.png)
 
-### Overall Architecture
+## Keywords
+
+1. **Makespan** is the time taken from the start of the first job until the end of the last job.
+2. **Turnaround Time** is the time taken from the start of a job until the end of the job.
+3. **First-In-First-Out (FIFO)** is a scheduling algorithm that schedules jobs based on the order of their arrival time.
+4. **Round-Robin (RR)** is a scheduling algorithm that schedules jobs based on the order of their arrival time and the number of GPUs available.
+5. **Elastic First-In-First-Out (EFIFO)** is a scheduling algorithm that schedules jobs based on the order of their arrival time and the number of GPUs available.
+6. **Horovod** is a distributed deep learning framework, meaning a deep learning model can be trained with multiple GPUs at the same time. It supports TensorFlow, Keras, PyTorch, and Apache MXNet.
+
+## Overall Architecture
 
 In the figure above, you can see that there are three main components in the system: the **API**, the **servers**, the **user interface**. 
 Those API endpoints are responsible for handling users requests from the user interface, such as creating, updating, and deleting models.
 The database is responsible for storing the models' metadata.
 The scheduler, which is built in the same place as the API, is the core of the system and is responsible for scheduling the models depending on the resources available in the cluster.
 Meaning, the system will tell where each model should be trained at and how much resources each model should use.
-
-There are three scheduling algorithms exist within the system:
-
-1. First-In-First-Out (FIFO)
-2. Round-Robin (RR)
-3. Elastic First-In-First-Out (EFIFO)
 
 ![Job Submission Procedures](/assets/works/schedulearn/submission-procedure.png "Job Submission Procedures")
 
@@ -50,24 +53,76 @@ When a job is submitted, that particular job will undergo several steps before i
 
 ## Experiment Setup
 
-The system consists of three servers. The following of the specifications of the entire system:
+The system consists of three servers, and each server consists of 4 GPUs. The following of the specifications of the entire system:
 
 1. 3 x 4 Nvidia GTX 1080 Ti graphical processing units, each equipped with 11GB Video Random Access Memory (VRAM)
 2. Intel Xeon E5-2678 v3 with 48 cores running at 2.50GHz
 3. 128 GB Random Access Memory (RAM)
 4. 10G PCIe NIC network card
 
+## Algorithms
+
+There are three scheduling algorithms exist within the system:
+
+1. First-In-First-Out (FIFO)
+2. Round-Robin (RR)
+3. Elastic First-In-First-Out (EFIFO)
+
+These algorithms are not available to use out of the box, so that I have to customize them to fit the system's requirements.
+
+### FIFO
+
+```python
+def fifo(required_gpus: int) -> dict | None:
+    for server in ['gpu3', 'gpu4', 'gpu5']:
+        gpus = get_gpus()
+        available = [gpu for gpu in gpus if gpu.server == server and gpu.utilization < 90]
+        if len(available) >= required_gpus:
+            result = {'server': server, 'gpus': []}
+            for gpu in available[:required_gpus]:
+                result['gpus'].append(gpu.id)
+            return result
+    return None
+```
+
+### Elastic FIFO
+
+### Round Robin
+
+```python
+def RoundRobin(required_gpus: int) -> dict | None:
+    result = {"server": "", "gpus": []}
+    current_server = ... # get the last server from the database
+
+    result['server'] = current_server
+    gpus = get_gpus()
+
+    available = [gpu for gpu in gpus if gpu.server == result['server']]
+
+    for gpu in available[:required_gpus]:
+        result['gpus'].append(gpu.id)
+
+    # update the last server and the next server
+    current_server = current_server.id + 1 # assign value and save it to the database
+    next_server = current_server.id + 2 # assign value and save it to the database
+
+    if len(available) >= required_gpus:
+        return result
+
+    return None
+```
+
 ## Challenges
 
-Due security measures imposed by the lab that I worked for, I am unable to train models with multiple GPUs from different servers. 
+Due security measures imposed by the lab that I worked for, I am unable to train models with multiple GPUs from different servers e.g. 4 GPUs in server A and 2 GPUs in server B. 
 However, assigning more GPUs does not translate to 1 to 1 performance increase. Meaning that training a model with 4 GPUs does not mean that the model will be trained 4 times faster, assuming that 1 GPU is 1x speed. 
 
 ![Scability across different Deep Learning libraries](/assets/works/schedulearn/scalability.png "Scability across different Deep Learning libraries")
 
 To overcome this issue, each job will only be assigned to GPUs from the same server. 
-Not only that is the only work around, but it is one of the ways to reduce communication costs.
-Having multiple GPUs requires the data will have to travel more, which already imposes a significant overhead.
-The further the data travels, the more overhead it will impose. Therefore, it's better to asssign multiple GPUs from the same server to a certrain job.
+At that moment, I saw that is the feasible way to reduce communication costs.
+Having multiple GPUs requires the data to travel more, which already imposes a significant overhead.
+The further the data travels, the more overhead it will impose. Therefore, it's better to asssign multiple GPUs from the same server for a certain job.
 
 ## Observations
 
