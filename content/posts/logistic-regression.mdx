@@ -49,7 +49,7 @@ However, it also has the same limitations as Linear Regression, such as:
 2. It assumes that the data is independent of each other. In other words, it assumes that the data is not correlated with each other.
 3. It is sensitive to outliers.
 
-## Mathematical Equations
+## Mathematics Behind Logistic Regression
 
 First, Logistic Regression still uses Linear Equation used in Linear Regression, and it's expressed as:
 
@@ -76,17 +76,30 @@ To generalize, we can use the following equation to predict the probability of a
 Once we have the probability of an event occuring, we then use a threshold value to round up the probability value to either $0$ or $1$.
 If $P(y | x) \geq 0.5$, then the data is classified as $1$, otherwise it is classified as $0$.
 
-Similar to what we did in [the Linear Regression post](/posts/linear-regression), we need to find the best $\beta_0$ and $\beta_1$ through a few iterations.
+Similar to what we did in [the Linear Regression post](/posts/linear-regression), we need to estimate the best $\beta_0$ and $\beta_1$ using the Gradient Descent algorithm.
+What the Gradient Descent algorithm does is to update the $\beta_0$ and $\beta_1$ values based on the cost function and the learning rate.
+
+This example is just a simple linear model, we are going to use the following equations to update `intercept` and `coefficient`:
 
 $$
-\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1)
+\begin{gather*}
+\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1, \dots, \beta_p) \\
+\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1, \dots, \beta_p)x_1 \\
+\cdots \\
+\beta_p = \beta_p - \alpha \frac{\partial}{\partial \beta_n} J(\beta_0, \beta_1, \dots, \beta_p)x_p \\
+\end{gather*}
 $$
 
-$$
-\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)x
-$$
+where $\alpha$ is the learning rate, $\beta_p$ is the $p$-th parameter, $J$ is the cost function, and $x_p$ is the $p$-th feature.
 
-where $x$ is the feature value, in this case, the sepal length.
+Since we only have $\beta_0$ and $\beta_1$, we can simplify the equation above to:
+
+$$
+\begin{gather*}
+\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) \\
+\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)x_1 \\
+\end{gather*}
+$$
 
 ## Implementation
 
