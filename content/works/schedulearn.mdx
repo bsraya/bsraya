@@ -7,6 +7,9 @@ tag: System Architecture
 type: Work
 ---
 
+This page is not finished yet. However, I just some of gists of the project.
+In the coming weeks, I will complete this page with more details.
+
 ## Introduction
 
 Schedulearn, stands for **Schedule** + **Learn**, is a lightweight scheduling system for deep learning models.
@@ -75,8 +78,8 @@ These algorithms are not available to use out of the box, so that I have to cust
 ```python
 def fifo(required_gpus: int) -> dict | None:
     for server in ['gpu3', 'gpu4', 'gpu5']:
-        gpus = get_gpus()
-        available = [gpu for gpu in gpus if gpu.server == server and gpu.utilization < 90]
+        gpus = get_gpus() # get all available GPUs in the cluster
+        available_gpus = ... # include only GPUs with 90% VRAM usage
         if len(available) >= required_gpus:
             result = {'server': server, 'gpus': []}
             for gpu in available[:required_gpus]:
@@ -86,6 +89,7 @@ def fifo(required_gpus: int) -> dict | None:
 ```
 
 ### Elastic FIFO
+
 
 ### Round Robin
 
