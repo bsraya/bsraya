@@ -69,17 +69,18 @@ From the graph above, we can see that the relationship between $x$ and $y$ is li
 That line is called a regression line, and it can be expressed using the following equation.
 
 $$
-  y = \beta_0 + \beta_1 \times x
+\hat{y} = \beta_0 + \beta_1x
 $$
 
 where $\beta_0$ is the intercept and $\beta_1$ is the first coefficient. 
 In high school or college, we are used to seeing the equation above in the following form to calculate the distance between one point to another.
 
 $$
-  y = b + ax
+\hat{y} = b + ax
 $$
 
-In this post, we are going to use two features in the Iris dataset from `sklearn-learn`, petal width and sepal length. Plotting it will give us the following visualization.
+In this post, we are going to use two features in the Iris dataset from `sklearn-learn`, petal width and sepal length. 
+Plotting it will give us the following visualization.
 
 ![Iris Dataset Scatter Plot](/assets/posts/linear-regression/iris_scatter.png "Iris Dataset Scatter Plot")
 
@@ -149,13 +150,46 @@ However, most predictions made by the regression line are not always accurate
 since its ability to predict depends heavily on $\beta_0$ and $\beta_1$.
 If the values $\beta_0$ and $\beta_1$ are not tweaked correctly, the regression line will sit right far from most data points.
 
-## Examples
+## Estimating the Intercept and Coefficient
+
+Previously, I mentioned that $\hat{y} = \beta_0 + \beta_1x$ is used to express the regression line.
+To be fair, we can't just look at the data and say, _"Ah ha! I can tell that $\beta_0$ is $0$ and $\beta_1$ is $0$."_
+For most of the time, it's not feasible to keep on guessing those values.
+Thus, it's better to use an iterative method such as Gradient Descent algorithm.
+What the Gradient Descent algorithm does is to update the $\beta_0$ and $\beta_1$ values based on the cost function and the learning rate.
+
+This example is just a simple linear model, we are going to use the following equations to update `intercept` and `coefficient`:
+
+$$
+\begin{gather*}
+\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1, \dots, \beta_p) \\
+\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1, \dots, \beta_p)x_1 \\
+\cdots \\
+\beta_p = \beta_p - \alpha \frac{\partial}{\partial \beta_n} J(\beta_0, \beta_1, \dots, \beta_p)x_p \\
+\end{gather*}
+$$
+
+where $\alpha$ is the learning rate, $\beta_p$ is the $p$-th parameter, $J$ is the cost function, and $x_p$ is the $p$-th feature.
+
+Since we only have $\beta_0$ and $\beta_1$, we can simplify the equation above to:
+
+$$
+\begin{gather*}
+\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) \\
+\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)x_1 \\
+\end{gather*}
+$$
+
+If you are want to know more about Gradient Descent algorithm, you can read the Gradient Descent series [here](/posts/introduction-to-gradient-descent-algorithm).
+The series covers the intuition behind Gradient Descent, the math behind it, and its implementation in Python from scratch.
+
+## Example
 
 In this section, there will be two examples of regression lines. One with the regression line is far from most data points, and the other one is close to most data points.
 
 ![Most data points are far from the regression line](/assets/posts/linear-regression/far.png "Most data points are far from the regression line")
 
-When the regression line, which is indicated by the green line, sees $x = 0$ then it predicts $y = -3$.
+When the regression line, which is indicated by the green line, sees $x = 0$ then it predicts $\hat{y} = -3$.
 In reality, $y$ should be $0.5$ when $x = 0$. Meaning that the predicted value is far from the actual value.
 
 There are many ways to measure the quality of regression lines, such as:
@@ -170,6 +204,8 @@ $$
   MSE = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2
 $$
 
+where $n$ is the number of data points, $\hat{y}_i$ is the predicted value, and $y_i$ is the actual value.
+
 Let's calculate the MSE for the graph above with the data points above.
 
 $$
@@ -179,7 +215,6 @@ $$
   \end{aligned}
 $$
 
-where $n$ is the number of data points, $\hat{y}_i$ is the predicted value, and $y_i$ is the actual value.
 
 Let's see another example where the data points are close to the regression line.
 
@@ -200,7 +235,7 @@ Conversonly, when the regression line is far from most data points, the MSE is l
 Is having a small MSE enough to say that the regression line is good? Futher investigation is needed to answer this question.
 However, I am not gonna cover it in this post.
 
-## Coding Implementation
+## Python Implementation
 
 First prepare the dataset. We are going to use the Iris dataset from `sklearn-learn` with two features, `petal_width` and `sepal_length`.
 
@@ -221,7 +256,7 @@ species_name = [species_dict[i] for i in target]
 Note that, the regression line is calculated using the following equation.
 
 $$
-  \hat{y} = \beta_0 + \beta_1 \times x
+  \hat{y} = \beta_0 + \beta_1x
 $$
 
 ```python
@@ -248,12 +283,9 @@ plt.show()
 
 ![Regression line with b=0 and x=0](/assets/posts/linear-regression/initial-guess.png "Regression line with b=0 and x=0")
 
-We could just keep on guessing the value of `b` and `x` until we get the best regression line.
-However, we aren't gonna keep on guessing, and it's better to use an iterative method such as Gradient Descent algorithm.
-Thus, we gotta customize the code a little so that we can automate the process of estimating `b` and `x`.
+Looking at the plot above, we can tell that the regression line is far from most data points.
+Thus, we need to automatically tweak `b` and `x` to get a better regression line using the Gradient Descent algorithm.
 
-If you are want to know more about Gradient Descent algorithm, you can read the Gradient Descent series [here](/posts/introduction-to-gradient-descent).
-The series covers the intuition behind Gradient Descent, the math behind it, and its implementation in Python.
 
 ```python
 mse_history = list()
@@ -273,10 +305,10 @@ def linear_regression(x, y, epochs, alpha = 0.01):
     for _ in range(1, epochs):
         predictions = predict(intercept, coefficient, x)
         errors = predictions - y
-        # gradient descent happens here
+        # gradient descent algorithm happens here
         intercept = intercept - alpha * np.sum(errors) / length
-        # and here
         coefficient = coefficient - alpha * np.sum(errors * x) / length
+        # ends here
         mse_history.append(mean_squared_error(errors))
         intercept_history.append(intercept)
         coefficient_history.append(coefficient)
