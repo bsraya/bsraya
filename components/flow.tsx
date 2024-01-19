@@ -10,7 +10,8 @@ import ReactFlow, {
   OnNodesChange,
   OnEdgesChange,
   OnConnect,
-  Background
+  Background,
+  Controls
 } from 'reactflow';
 
 import 'reactflow/dist/style.css';
@@ -55,6 +56,7 @@ export default function Flow({
         fitView
       >
         <Background color="#aaa" gap={16} />
+        <Controls />
       </ReactFlow>
     </div>
   );
