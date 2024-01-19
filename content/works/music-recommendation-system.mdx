@@ -1,7 +1,7 @@
 ---
 title: Music Recommendation System
 description: A recommendation system from scratch using my own music playlists
-date: 2022-02-01
+date: 2023-12-01
 image: /assets/works/music-recommendation-system/thumbnail.png
 tag: Machine Learning
 type: Work
@@ -9,6 +9,7 @@ type: Work
 
 In this post, I will be documenting my journey in creating a recommendation system from scratch using my music that I have collected from Spotify.
 This post will be divided into two parts:
+
 1. Data Collection
 2. Model Training
 3. Evaluation
@@ -26,8 +27,9 @@ $$
 $$
 
 where:
-1. $V$ is a matrix containing the atrributes of the songs we collected from Spotify API. 
-2. $W$ is a matrix containing the latent features of the songs. 
+
+1. $V$ is a matrix containing the atrributes of the songs we collected from Spotify API.
+2. $W$ is a matrix containing the latent features of the songs.
 3. $H$ is a matrix containing the coefficients of the latent features.
 4. $n$ is the number of songs.
 5. $m$ is the number of features.
@@ -36,9 +38,9 @@ where:
 The goal of NMF is to find the latent features and the coefficients of the latent features that can reconstruct the original matrix.
 Note that the latent topics in $p$ are not directly observable in the data but are inferred from the relationships between songs and their attributes.
 
-How do we determine if a song is similar to other songs? 
+How do we determine if a song is similar to other songs?
 First, we are going to feed matrix $V_{n \times m}$ into the NMF algorithm from _scikit-learn_ with $p$ latent features that produces $W_{n \times p}$.
-Assuming that we have a song with $p$ features, let's call it $S = [s_1, ..., s_p]$. 
+Assuming that we have a song with $p$ features, let's call it $S = [s_1, ..., s_p]$.
 Once we have matrix $W$, we can multiplicate it with $S^T$. Thus, $W \times S^T$ will give us a vector $R$ containing values representing how similar the song is to other songs, ranging from 0 to 1.
 $0$ represents that the song is not similar to a particular song.
 Conversely, $1$ represents that the song is very similar to a particular song.
@@ -55,9 +57,9 @@ Here are the reasons why I chose NMF as the algorithm behind my music recommenda
 
 1. NMF can be scaled to large datasets, which is essential for music services that have vast amounts of tracks and user data.
 2. NMF models can be updated incrementally with new data (new users or new songs), which is crucial for dynamic systems like music recommendation services where the database is constantly growing
-3. Just like other matrix factorization techniques, NMF reduces the dimensionality of the feature space. 
-This is beneficial because it helps in handling the curse of dimensionality and noise in the data. 
-In the reduced space, similar songs are closer to each other, making it easier to find and recommend similar items.
+3. Just like other matrix factorization techniques, NMF reduces the dimensionality of the feature space.
+   This is beneficial because it helps in handling the curse of dimensionality and noise in the data.
+   In the reduced space, similar songs are closer to each other, making it easier to find and recommend similar items.
 
 ## Data Collection
 
@@ -127,6 +129,7 @@ I assume that's the reason why the heatmap above shows that those three features
 ![Scatter plots of danceability against other features](/assets/works/music-recommendation-system/danceability.png "Scatter plots of danceability against other features")
 
 Things we can notice from the scatter plots above:
+
 1. Most danceable songs are popular.
 2. Danceability is positively correlated with energy and loudness.
 3. Danceable songs are low in speechiness.
@@ -136,13 +139,14 @@ Things we can notice from the scatter plots above:
 ![Scatter plots of popularity against other features](/assets/works/music-recommendation-system/popularity.png "Scatter plots of popularity against other features")
 
 The observations from the scatter plots above:
+
 1. Popular songs are danceable
 2. Popular songs are energetic and loud.
 3. Popular songs are low in acousticness, instrumentalness, and speechiness.
 4. Popular songs are high in valence, meaning that they are happy and cheerful.
 5. Popular songs have quite high tempo.
 
-Now let's see how the data values look like real close. 
+Now let's see how the data values look like real close.
 Here is the first 5 rows of the dataset that I converted to a Pandas dataframe:
 
 |     | popularity | danceability | energy | key | loudness | mode | speechiness | acousticness | instrumentalness | liveness | valence | tempo   | duration_ms | time_signature |
