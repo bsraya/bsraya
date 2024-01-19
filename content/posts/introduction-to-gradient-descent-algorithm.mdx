@@ -34,9 +34,109 @@ type: Post
 
 In this series, we are going to learn one of the well-known optimization algorithms, namely Gradient Descent algorithm.
 However, we will go through the series gradually, so that the readers will not get overwhelmed with lots of details, especially the mathematical notations and formulas.
+First, we are going to start from Batch Gradient Descent. Slowly, we are going to customize the algorithm bit by bit to get to the most advanced version of Gradient Descent, which is Adam.
 
-First things first, we will start implementing the simplest form of Gradient Descent, which is Batch Gradient Descent.
-By tweaking abit the formula and adding some complexities into the algorithm little by little, we can get all the way to developing Adam and many of its variations.
+<Flow
+  nodes={[
+    {
+      id: "1",
+      data: { label: "Gradient Descent" },
+      position: { x: 600, y: 0 },
+    },
+    {
+      id: "2",
+      data: { label: "Batch Gradient Descent" },
+      position: { x: 100, y: 100 },
+    },
+    {
+      id: "3",
+      data: { label: "Mini Batch Gradient Descent" },
+      position: { x: 200, y: 200 },
+    },
+    {
+      id: "4",
+      data: { label: "Stochastic Gradient Descent (SGD)" },
+      position: { x: 300, y: 100 },
+    },
+    {
+      id: "5",
+      data: { label: "SGD with Momentum" },
+      position: { x: 400, y: 200 },
+    },
+    {
+      id: "6",
+      data: { label: "SGD with Momentum & Nesterov" },
+      position: { x: 500, y: 100 },
+    },
+    {
+      id: "7",
+      data: { label: "AdaGrad" },
+      position: { x: 600, y: 200 },
+    },
+    {
+      id: "8",
+      data: { label: "RMSProp" },
+      position: { x: 700, y: 100 },
+    },
+    {
+      id: "9",
+      data: { label: "Adam" },
+      position: { x: 800, y: 200 },
+    },
+    {
+      id: "10",
+      data: { label: "AdaMax" },
+      position: { x: 900, y: 100 },
+    },
+    {
+      id: "11",
+      data: { label: "AdaGradDelta" },
+      position: { x: 1000, y: 200 },
+    },
+    {
+      id: "12",
+      data: { label: "Nadam" },
+      position: { x: 1100, y: 100 },
+    },
+    {
+      id: "13",
+      data: { label: "AdamW" },
+      position: { x: 1200, y: 200 },
+    },
+  ]}
+  edges={[
+    {
+      id: "e1-2",
+      source: "1",
+      target: "2",
+      animated: true,
+      style: { stroke: "green" },
+    },
+    {
+      id: "e1-3",
+      source: "1",
+      target: "3",
+      animated: true,
+      style: { stroke: "green" },
+    },
+    {
+      id: "e1-4",
+      source: "1",
+      target: "4",
+      animated: true,
+      style: { stroke: "green" },
+    },
+    { id: "e4-5", source: "1", target: "5" },
+    { id: "e5-6", source: "1", target: "6" },
+    { id: "e6-7", source: "1", target: "7" },
+    { id: "e7-8", source: "1", target: "8" },
+    { id: "e8-9", source: "1", target: "9" },
+    { id: "e9-10", source: "1", target: "10" },
+    { id: "e10-11", source: "1", target: "11" },
+    { id: "e11-12", source: "1", target: "12" },
+    { id: "e12-13", source: "1", target: "13" },
+  ]}
+/>
 
 Here is the list of algorithms that we are going to cover:
 
@@ -45,12 +145,12 @@ Here is the list of algorithms that we are going to cover:
 3. [Stochastic Gradient Descent](/posts/stochastic-gradient-descent) ✅
 4. SGD with Momentum (Coming Soon)
 5. SGD with Nesterov & Momentum (Coming Soon)
-7. AdaGrad (Coming Soon)
-8. RMSProp (Coming Soon)
-9. Adam (Coming Soon)
-10. AdaMax (Coming Soon)
-11. AdaGradDelta (Coming Soon)
-12. Nadam (Coming Soon)
-13. AdamW (Coming Soon)
+6. AdaGrad (Coming Soon)
+7. RMSProp (Coming Soon)
+8. Adam (Coming Soon)
+9. AdaMax (Coming Soon)
+10. AdaGradDelta (Coming Soon)
+11. Nadam (Coming Soon)
+12. AdamW (Coming Soon)
 
-By the end of this series, we will be able to write optimization algorithms from scratch in Python.
+By the end of this series, we will be able to write those optimization algorithms from scratch in Python.

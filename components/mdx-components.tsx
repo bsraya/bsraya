@@ -5,6 +5,7 @@ import LineGraph from "./line-graph";
 import SeriesTable from './series-table';
 import ScatterGraph from "./scatter-graph";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import Flow from "./flow";
 
 const customLink = (classes: string, props: any) => {
   const href = props.href
@@ -184,7 +185,8 @@ const components: any = {
   ),
   ScatterGraph,
   LineGraph,
-  SeriesTable
+  SeriesTable,
+  Flow
 }
 
 export default function Mdx({ code }: { code: string }) {

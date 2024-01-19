@@ -28,6 +28,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "react-plotly.js": "^2.6.0",
+    "reactflow": "^11.10.2",
     "rehype-accessible-emojis": "^0.3.2",
     "rehype-autolink-headings": "^7.0.0",
     "rehype-code-titles": "^1.2.0",
