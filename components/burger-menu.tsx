@@ -15,7 +15,15 @@ const HamburgerMenu = () => {
                 className="focus:outline-none mt-1"
                 onClick={toggleMenu}
             >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
+                <svg
+                    className="w-5 h-5"
+                    height="32"
+                    width="32"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path>
+                </svg>
             </button>
 
             {menuOpen && (
