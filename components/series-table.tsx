@@ -8,7 +8,7 @@ interface SeriesPost {
 export default function SeriesTable({ title, series }: { title: string, series: SeriesPost[] }) {
   return (
     <div className="mb-32 p-5 rounded-lg border not-prose w-full text-gray-800">
-      <p className="font-bebasneue text-2xl mb-5 underline">{title}: {series.length} Parts</p>
+      <p className="font-bebasneue text-2xl mb-5 underline">{title}: {series.length} Part&#40;s&#41;</p>
       <ol className="font-baskervville list-decimal list-inside flex flex-col gap-3 ml-3">
         {
           series.map(({ title, current }: SeriesPost) => {
