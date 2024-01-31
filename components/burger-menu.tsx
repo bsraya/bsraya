@@ -12,6 +12,7 @@ const HamburgerMenu = () => {
     return (
         <div className="relative">
             <button
+                aria-label="toggle menu"
                 className="focus:outline-none mt-1"
                 onClick={toggleMenu}
             >
