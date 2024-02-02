@@ -7,7 +7,6 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
-import rehypeVideo from 'rehype-video';
 
 /** @type {import('contentlayer/types').ContentLayerConfig}*/
 const computedFields = {
@@ -120,8 +119,7 @@ export default makeSource ({
                 }
             ],
             rehypeKatex,
-            rehypeAccessibleEmojis,
-            rehypeVideo,
+            rehypeAccessibleEmojis
         ],
     },
     watch: process.env.NODE_ENV === 'development',
