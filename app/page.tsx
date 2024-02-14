@@ -45,6 +45,18 @@ export default function Home() {
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
             <div className="h-full">
               <Image
+                src="/assets/works/image-search-engine/thumbnail.png"
+                alt="AI Coding Assistant demo"
+                className="rounded-lg"
+                width={500}
+                height={500}
+              />
+              <Link href="/works/image-search-engine" className="hover:underline">
+                <p className="mt-3 text-lg"><span className="font-inter font-bold">Image Search Engine</span>: <span className="font-baskervville">A search engine for fast meme retrieval using FastAPI and PyTorch</span></p>
+              </Link>
+            </div>
+            <div className="h-full">
+              <Image
                 src="/assets/works/music-recommendation-system/thumbnail.png"
                 alt="The user interface of Spotify"
                 className="rounded-lg"
@@ -52,19 +64,7 @@ export default function Home() {
                 height={500}
               />
               <Link href="/works/music-recommendation-system" className="hover:underline">
-                <p className="mt-3 text-lg"><span className="font-inter font-bold">Music Recommendation System</span>: <span className="font-baskervville">A recommendation system made from scratch</span></p>
-              </Link>
-            </div>
-            <div className="h-full">
-              <Image
-                src="/assets/works/ai-coding-assistant/thumbnail.png"
-                alt="AI Coding Assistant demo"
-                className="rounded-lg"
-                width={500}
-                height={500}
-              />
-              <Link href="/works/ai-coding-assistant" className="hover:underline">
-                <p className="mt-3 text-lg"><span className="font-inter font-bold">AI Coding Assistant</span>: <span className="font-baskervville">AI coding helper + Python on the browser</span></p>
+                <p className="mt-3 text-lg"><span className="font-inter font-bold">Music Recommendation System</span>: <span className="font-baskervville">A recommendation system using NMF</span></p>
               </Link>
             </div>
             <Link
