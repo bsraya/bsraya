@@ -241,8 +241,6 @@ First prepare the dataset. We are going to use the Iris dataset from `sklearn-le
 
 ```python
 from sklearn.datasets import load_iris
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 iris = load_iris()
 sepal_length = iris.data[:, 0]
@@ -286,6 +284,54 @@ plt.show()
 Looking at the plot above, we can tell that the regression line is far from most data points.
 Thus, we need to automatically tweak `b` and `x` to get a better regression line using the Gradient Descent algorithm.
 
+```python
+def linear_regression(x, y, epochs, alpha = 0.01):
+    intercept, coefficient = 0, 0
+    length = len(x)
+
+    for _ in range(1, epochs):
+        predictions = predict(intercept, coefficient, x)
+        errors = predictions - y
+        # gradient descent algorithm happens here
+        intercept = intercept - alpha * np.sum(errors) / length
+        coefficient = coefficient - alpha * np.sum(errors * x) / length
+        # ends here
+        mse_history.append(mean_squared_error(errors))
+        intercept_history.append(intercept)
+        coefficient_history.append(coefficient)
+
+    return intercept, coefficient
+```
+
+After running the Gradient Descent algorithm above for $10,000$ times, we get the following regression line where $b=-2.71$ and $x=0.67$.
+
+![Regression line with b=-2.71 and x=0.67](/assets/posts/linear-regression/corrected-regression-line.png "Regression line with b=-2.71 and x=0.67")
+
+You would notice there are three lists: `mse_history`, `intercept_history`, and `coefficient_history`.
+I made them just to see how the MSE, intercept, and coefficient change over time.
+
+![MSE, Intercept, and Coefficient over time](/assets/posts/linear-regression/history.png "MSE, Intercept, and Coefficient over time")
+
+I have also plot the MSE, intercept, and coefficient in the 3D space to see how they change over time.
+
+![MSE, Intercept, and Coefficient in 3D space](/assets/posts/linear-regression/3d.png "MSE, Intercept, and Coefficient in 3D space")
+
+Note that the blue _x_ marks the lowest MSE value calculated with the estimated intercept and coefficient we got from the Gradient Descent algorithm.
+
+To see how I made this graph, you could check out the source code [here](https://github.com/bsraya/machine-learning-algorithms/blob/main/linear-regression-mse-3d.ipynb).
+
+## Conclusion
+
+1. Linear Regression is a supervised learning algorithm that is used to predict the value of a continuous variable.
+2. The equation of the regression line is $y = \beta_0 + \beta_1 \times x$.
+3. The regression line is said to be good when it is close to most data points.
+4. The quality of the regression line can be measured using evaluation metrics, one of them is Mean Squared Error (MSE).
+5. The smaller the MSE, the closer the regression line is to most data points. Conversely, the larger the MSE, the farther the regression line is to most data points.
+6. $b$ and $x$ can be estimated using Gradient Descent algorithm.
+
+## Coding Implementations
+
+### Simple Implementation
 
 ```python
 mse_history = list()
@@ -316,35 +362,71 @@ def linear_regression(x, y, epochs, alpha = 0.01):
     return intercept, coefficient
 
 b, x = linar_regression(sepal_length, petal_width, 10000)
-print(b, x)
-# b = -2.717366489030271, x = 0.6718570469763597
 ```
 
-After running the Gradient Descent algorithm for $10,000$ times, we get the following regression line.
+Printing `b` and `x` will give us `-2.717366489030271` and `0.6718570469763597`.
 
-![Regression line with b=-2.71 and x=0.67](/assets/posts/linear-regression/corrected-regression-line.png "Regression line with b=-2.71 and x=0.67")
+You could find the source code [here](https://github.com/bsraya/machine-learning-algorithms/blob/main/linear-regression.ipynb).
 
-You would notice there are three lists: `mse_history`, `intercept_history`, and `coefficient_history`.
-I made them just to see how the MSE, intercept, and coefficient change over time.
+### Scikit-Learn Implementation
 
-![MSE, Intercept, and Coefficient over time](/assets/posts/linear-regression/history.png "MSE, Intercept, and Coefficient over time")
+```python
+import numpy as np
 
-I have also plot the MSE, intercept, and coefficient in the 3D space to see how they change over time.
+class LinearRegression:
+    def __init__(self):
+        self.iterations = 10_000
+        self.learning_rate = 0.01
+        self.intercept = 0
+        self.coefficients = None
+        self.X = None
+        self.y = None
+        self.length = 0
+        self.loss_history = list()
 
-![MSE, Intercept, and Coefficient in 3D space](/assets/posts/linear-regression/3d.png "MSE, Intercept, and Coefficient in 3D space")
+    def _intercept(self):
+        return self.intercept
 
-Note that the blue _x_ marks the lowest MSE value calculated with the estimated intercept and coefficient we got from the Gradient Descent algorithm.
+    def _coefficients(self):
+        return self.coefficients
 
-You can find the full code in [this repository](https://github.com/bsraya/machine-learning-algorithms/blob/main/linear-regression.ipynb)
+    def _loss_history(self):
+        return self.loss_history
 
-## Conclusion
+    def mean_squared_error(self, predictions):
+        return np.sum(np.square(predictions - self.y)) / self.length
 
-1. Linear Regression is a supervised learning algorithm that is used to predict the value of a continuous variable.
-2. The equation of the regression line is $y = \beta_0 + \beta_1 \times x$.
-3. The regression line is said to be good when it is close to most data points.
-4. The quality of the regression line can be measured using evaluation metrics, one of them is Mean Squared Error (MSE).
-5. The smaller the MSE, the closer the regression line is to most data points. Conversely, the larger the MSE, the farther the regression line is to most data points.
-6. `b` and `x` can be estimated using Gradient Descent algorithm.
+    def predict(self, X):
+        return self.intercept + np.dot(X, self.coefficients)
+
+    def update_params(self, predictions):
+        error = predictions - self.y
+        self.intercept -= self.learning_rate * np.sum(error) / self.length
+        self.coefficients -= self.learning_rate * (np.dot(self.X.T, error) / self.length)
+
+    def fit(self, X, y):
+        self.X = np.array(X)
+        if len(self.X.shape) == 1:
+            # To support 1D data, otherwise
+            # self.coefficients = np.zeros(self.X.shape[1]) will fail
+            self.X = self.X.reshape(-1, 1) 
+        self.y = np.array(y)
+        self.length = len(self.y)
+        self.coefficients = np.zeros(self.X.shape[1])
+
+        for _ in range(self.iterations):
+            predictions = self.predict(self.X)
+            self.update_params(predictions)
+            self.loss_history.append(self.mean_squared_error(predictions))
+
+lin_reg = LinearRegression()
+lin_reg.fit(sepal_length, petal_width)
+print(f"intercept: {lin_reg._intercept()}, coefficients: {lin_reg._coefficients()}")
+```
+
+Printing the intercept and the coefficient values will give us: `intercept: -2.7174583375849535` and `coefficients: [0.67187247]`.
+
+You could find the source code [here](https://github.com/bsraya/machine-learning-algorithms/blob/main/linear-regression-scikit.ipynb).
 
 ## References
 

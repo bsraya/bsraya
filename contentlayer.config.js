@@ -1,12 +1,12 @@
-import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math'
-import rehypeSlug from 'rehype-slug'
-import rehypeKatex from 'rehype-katex'
-import rehypeCodeTitles from 'rehype-code-titles'
-import rehypePrettyCode from 'rehype-pretty-code'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeSlug from 'rehype-slug';
+import rehypeKatex from 'rehype-katex';
+import rehypeCodeTitles from 'rehype-code-titles';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 
 /** @type {import('contentlayer/types').ContentLayerConfig}*/
 const computedFields = {

@@ -1,0 +1,39 @@
+---
+title: Image Search Engine
+description: A search engine for fast meme retrieval using FastAPI and PyTorch
+date: 2024-02-14
+image: /assets/works/image-search-engine/thumbnail.png
+tag: Search Engine 
+type: Work
+---
+
+**Tech Stack**: Python, FastAPI, PyTorch, Jinja2, TailwindCSS
+
+# Introduction
+
+![Image search engine homepage](/assets/works/image-search-engine/thumbnail.png "Image search engine homepage")
+
+In this project, I have built an image search engine using FastAPI and PyTorch.
+The search engine is capable of retrieving similar images from a dataset of memes.
+
+The search engine uses a pre-trained ResNet18 model to extract features from the images.
+The reason for using a pre-trained model is that it has already learned to extract useful features from images.
+Besides that, ResNet18 is a lightweight model and has a good balance between speed and accuracy.
+
+# How It Works?
+
+This image search engine relies heavily on the images that I collected over the internet.
+However, I did not collect the images that much at the beginning.
+Instead, the search engine relies on those images uploaded by the users to improve the search results.
+The server only receives image files with types of `image/jpg`, `image/jpeg`, and `image/png`.
+Unfortunately, the server does not support other types of image files, e.g. `image/gif` or `image/webp`.
+
+Say that a user is at the homepage and wants to search for an image, they can upload an image file via the input form.
+As soon as the uploaded image is received by the server, the server will extract features from the image using the pre-trained ResNet18 model.
+Once the features are extracted, the pre-trained model will turn the features into a vector of $512x1$ dimension.
+
+Once we have that vector, we can compare it with the vectors of the images in the dataset using cosine similarity.
+
+![Distracted boyfriend meme search result](/assets/works/image-search-engine/distracted-boyfriend.png "Distracted boyfriend meme search result")
+
+![Sheep image search result](/assets/works/image-search-engine/sheep.png "Sheep image search result")
