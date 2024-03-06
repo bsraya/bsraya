@@ -1,7 +1,7 @@
 ---
 title: Elastic Net Regression
 description: Redoing Elastic Net Rergession from scratch in Python
-date: 2023-12-11
+date: 2024-03-14
 tag: Machine Learning
 published: false
 type: Post
@@ -30,7 +30,28 @@ type: Post
       title: "Elastic Net Regression",
       current: true,
     },
+    {
+      title: "Polynomial Regression",
+      current: false,
+    }
   ]}
 />
 
-## Elastic Net Regression
+## What is Elastic Net Regression?
+
+Elastic Net Regression is a combination of Lasso Regression and Ridge Regression.
+It combines the penalties of both Lasso and Ridge Regression to create a model that is more robust to outliers and multicollinearity.
+
+## Mathematics Behind Elastic Net Regression
+
+$$
+\min _\beta\left( \frac{1}{N} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2 + \lambda_1 \sum_{j=1}^{p} |\beta_j| + \lambda_2 \sum_{j=1}^{p} |\beta_j^2| \right)
+$$
+
+where
+1. $\frac{1}{N} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2$ is Mean Squared Error.
+2. $\lambda_1 \sum_{j=1}^{p} |\beta_j|$ is Lasso Penalty, where $\beta_j$ is the coefficient of the $j^{th}$ feature.
+3. $\lambda_2 \sum_{j=1}^{p} |\beta_j^2|$ is Ridge Penalty, where $\beta_j^2$ is the square of the coefficient of the $j^{th}$ feature.
+4. $\lambda_1$ and $\lambda_2$ are regularization parameters.
+
+## Takeaways
