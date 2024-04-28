@@ -37,8 +37,8 @@ export default function Home() {
       <div className="w-full lg:w-3/4 absolute lg:left-1/4 lg:pt-60 lg:pb-10 lg:p-10 p-5">
         <MobileMenu />
         <div className="font-ptserif flex flex-col gap-3 xl:text-6xl lg:text-5xl text-4xl xl:mt-0 lg:mt-0 mt-10 font-pt-serif">
-          <p>An Aspiring Machine Learning Engineer.</p>
-          <p>A Fullstack Developer.</p>
+          <p>Machine Learning Engineer.</p>
+          <p>Taipei, Taiwan.</p>
         </div>
         <div className="my-20">
           <h1 className="font-ptserif mb-5 underline">Recent Works</h1>
