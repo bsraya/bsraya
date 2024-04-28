@@ -46,10 +46,10 @@ Note that the important keywords: **high variance**, **multicollinearity**, **ov
 2. **Multi-collinearity** is a situation where there are high correlations between two or more features.
 
 3. **Overfitting** is a situation where the model learns the training data too well that it fails to generalize to the test data.
-So, when the model sees unseen data, it will perform poorly.
+   So, when the model sees unseen data, it will perform poorly.
 
-4. **Regularization** is a technique that prevents the model from learning the training data too well or catching all the noises 
-in the data by adding a penalty term to the cost function.
+4. **Regularization** is a technique that prevents the model from learning the training data too well or catching all the noises
+   in the data by adding a penalty term to the cost function.
 
 5. **Unstable** is a situation where the model estimates can vary a lot even when the data is slightly changed.
 
@@ -63,7 +63,7 @@ $$
 \hat{y} = \beta_0 + \beta_1 x
 $$
 
-Similar to what we did in [the Linear Regression post](/posts/linear-regression) and [the Logistic Regression post](/posts/logistic-regression), 
+Similar to what we did in [the Linear Regression post](/posts/linear-regression) and [the Logistic Regression post](/posts/logistic-regression),
 we need to estimate the best $\beta_0$ and $\beta_1$ using the Gradient Descent algorithm.
 What the Gradient Descent algorithm does is to update the $\beta_0$ and $\beta_1$ values based on the cost function and the learning rate.
 
@@ -91,7 +91,7 @@ $$
 
 However, the only difference in Lasso Regression is that we are going to add a penalty term to the cost function.
 This penalty term is the sum of the absolute values of the weights multiplicated by the regularization term or weight.
-This is also known as the L1 norm of the weights. 
+This is also known as the L1 norm of the weights.
 
 The cost function for Lasso Regression that we have to minimize is given by:
 
@@ -100,9 +100,10 @@ $$
 $$
 
 where
+
 1. $\frac{1}{N} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2$ is Mean Squared Error.
 2. $\lambda$ is the regularization parameter.
-2. $\sum_{j=1}^{p} |\beta_j|$ is the L1 norm of the weights.
+3. $\sum_{j=1}^{p} |\beta_j|$ is the L1 norm of the weights.
 
 ## What's Wrong with the Data?
 
@@ -122,6 +123,7 @@ Let's plot the heatmap to see the correlation between the features.
 ![Californian Housing Dataset Heatmap](/assets/posts/lasso-regression/heatmap.png "Californian Housing Dataset Heatmap")
 
 From the heatmap itself, we can notice that there are some features that are highly correlated with each other.
+
 1. `AveRooms` and `AveBedrms`: Higher average rooms may be associated with more average bedrooms.
 2. `Latitude` and `Longitude`: The geographical location of the house.
 
@@ -133,7 +135,7 @@ df.corr()[df.corr() < 1].unstack().transpose().sort_values(ascending=False).drop
 ```
 
 | Variable 1 | Variable 2 | Correlation Coefficient |
-|------------|------------|-------------------------|
+| ---------- | ---------- | ----------------------- |
 | AveBedrms  | AveRooms   | 0.847621                |
 | MedInc     | AveRooms   | 0.326895                |
 | Latitude   | AveRooms   | 0.106389                |
@@ -150,6 +152,7 @@ df.corr()[df.corr() < 1].unstack().transpose().sort_values(ascending=False).drop
 | ...        | ...        | ...                     |
 
 Here is a guide on how to interpret the values in the table above:
+
 1. Two or more features said to have a **strong positive** correlation if the correlation coefficient is close to $1$.
 2. Two or more features said to have a **moderate positive** correlation if the correlation coefficient is close to $0.5$.
 3. Two or more features said to have a **weak positive** correlation if the correlation coefficient is close to $0$.
@@ -174,18 +177,19 @@ vif_data["VIF"] = [variance_inflation_factor(df.values, i) for i in range(len(da
 print(vif_data)
 ```
 
-|   feature   |      VIF    |
-|-------------|-------------|
-|   MedInc    |  19.624998  |
-|  HouseAge   |   7.592663  |
-|  AveRooms   |  47.956351  |
-| AveBedrms   |  45.358192  |
-| Population  |   2.936078  |
-|  AveOccup   |   1.099530  |
-|  Latitude   | 568.497332  |
-| Longitude   | 640.064211  |
+| feature    | VIF        |
+| ---------- | ---------- |
+| MedInc     | 19.624998  |
+| HouseAge   | 7.592663   |
+| AveRooms   | 47.956351  |
+| AveBedrms  | 45.358192  |
+| Population | 2.936078   |
+| AveOccup   | 1.099530   |
+| Latitude   | 568.497332 |
+| Longitude  | 640.064211 |
 
 Here is a guide on how to interpret VIF values:
+
 1. $\text{VIF} = 1$: The feature is said to have **no multicollinearity**.
 2. $1 < \text{VIF} < 5$: The feature is said to have a **moderate multicollinearity**.
 3. $\text{VIF} > 5$: The feature is said to have a **severe multicollinearity**.
@@ -235,6 +239,7 @@ def loss_function(coefficients, errors, regularization_term):
 ```
 
 We also need a function called `soft_threshold` to update the coefficients. There are three conditions:
+
 1. If the coefficient is less than the negative of the regularization term, then we subtract the regularization term from the coefficient.
 2. If the coefficient is greater than the regularization term, then we subtract the regularization term from the coefficient.
 3. If the coefficient is between the negative and positive regularization term, then we set the coefficient to zero.
@@ -253,7 +258,7 @@ def soft_threshold(coefficient, regularization_term):
 def lasso_regression(
     x, y,
     epochs,
-    learning_rate = 0.1, 
+    learning_rate = 0.1,
     regularization_term = 0.001
 ):
     intercept, coefficients = 0, np.zeros(x.shape[1])
@@ -268,17 +273,17 @@ def lasso_regression(
         errors = predictions - y
         intercept = intercept - learning_rate * np.sum(errors) / length
         intercept_history.append(intercept)
-      
+
         for j in range(len(coefficients)):
             gradient = np.dot(x[:, j], errors) / length
             temp_coef = coefficients[j] - learning_rate * gradient
             coefficients[j] = soft_threshold(temp_coef, regularization_term)
             coefficients_history[j, i] = coefficients[j]
-        
+
         loss_history.append(
             loss_function(
-                coefficients, 
-                errors, 
+                coefficients,
+                errors,
                 regularization_term
             )
         )
@@ -290,17 +295,17 @@ intercept, coefficients = lasso_regression(scaled_X, data.target, epochs)
 
 ## Model Comparison
 
-|           | Baseline | Ours    |
-| --------- | -------- | ------- |
-| MSE       | 0.5482   | 0.5325  |
-| MedInc    | 0.8009   | 0.7769  |
-| HouseAge  | 0.1270   | 0.1248  |
-| AveRooms  | -0.1627  | -0.1288 |
-| AveBedrms | 0.2062   | 0.1687  |
-| Population| 0.0000   | 0.000   |
-| AveOccup  | -0.0316  | -0.0294 |
-| Latitude  | -0.7901  | -0.7960 |
-| Longitude | -0.7556  | -0.7595 |
+|            | Baseline | Ours    |
+| ---------- | -------- | ------- |
+| MSE        | 0.5482   | 0.5325  |
+| MedInc     | 0.8009   | 0.7769  |
+| HouseAge   | 0.1270   | 0.1248  |
+| AveRooms   | -0.1627  | -0.1288 |
+| AveBedrms  | 0.2062   | 0.1687  |
+| Population | 0.0000   | 0.000   |
+| AveOccup   | -0.0316  | -0.0294 |
+| Latitude   | -0.7901  | -0.7960 |
+| Longitude  | -0.7556  | -0.7595 |
 
 From the table, we can see the differences in the coefficients between the baseline model and the Lasso Regression model we developed are very minimal.
 Not bad, right?
@@ -318,6 +323,7 @@ The coefficients of `AveRooms`, `AveBedrms`, `Latitude`, and `Longitude` are clo
 ## Conclusion
 
 Here are the key takeaways from this post:
+
 1. Lasso Regression is a type of linear regression that uses a regularization term to prevent multicollinearity.
 2. It uses the sum of the absolute values of the weights multiplicated by the regularization term to minimize coefficients.
 3. It will set coefficients to exactly zero.
