@@ -45,7 +45,7 @@ const components: any = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "font-bebasneue mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold first:mt-0",
+        `font-bebasneue scroll-m-20 border-b pb-1 text-3xl font-semibold mt-10 {&[class*="footnote-label"]}:mt-10`,
         className
       )}
       {...props}
