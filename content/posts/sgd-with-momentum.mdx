@@ -101,15 +101,6 @@ In most cases, it is set to $0.9$.
 
 ## Implementation of SGD with Momentum
 
-Now, we are going to translate the following equations into Python code.
-
-$$
-\begin{aligned}
-  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
-  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
-\end{aligned}
-$$
-
 First, we need to determine the gradient of the cost function $\nabla J(\beta_0, \beta_1)$ with respect to the parameters $\beta_0$ and $\beta_1$.
 
 $$
@@ -133,7 +124,10 @@ For simplicity, we are not storing $\beta_0$ and $\beta_1$ in a list.
 Instead, we are storing them into separate variables.
 
 $$
-v_{i, t} = \gamma v_{i, t-1} + \alpha \nabla J(\beta_0, \beta_1)
+\begin{aligned}
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
+\end{aligned}
 $$
 
 ```python
