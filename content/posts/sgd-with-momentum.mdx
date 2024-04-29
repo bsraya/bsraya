@@ -63,9 +63,8 @@ Let's see what it is and how it does.
 
 $$
 \begin{aligned}
-  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
-  \beta_0 &= \beta_0 - v_{0,t} \\
-  \beta_1 &= \beta_1 - v_{1,t}
+  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\beta_i) \\
+  \beta_i &= \beta_i - v_{i,t}
 \end{aligned}
 $$
 
@@ -73,7 +72,7 @@ Where:
 - $v_{i,t}$ is the $i$-th Momentum vector  at time $t$
 - $\gamma$ is the momentum coefficient
 - $\alpha$ is the learning rate
-- $\nabla J(\beta_0, \beta_1)$ is the gradient of the cost function $J(\beta_0, \beta_1)$
+- $\nabla J(\beta_i)$ is the gradient of the cost function $J(\beta_i)$
 - $\beta_i$ is the parameter vector
 
 Imagine rolling a ball down a hill. As it moves, it gains momentum, rolling faster until it reaches
@@ -90,10 +89,13 @@ In most cases, it is set to $0.9$.
 
 ## Implementation of SGD with Momentum
 
-Now, we are going to translate the following equations into Python code.
+Now, we are going to translate $\nabla J(\beta_0, \beta_1)$ in the following equations into Python code.
 
 $$
-v_{i, t} = \gamma v_{i, t-1} + \alpha \nabla J(\beta_0, \beta_1)
+\begin{aligned}
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
+\end{aligned}
 $$
 
 First, we need to determine the gradient of the cost function $J(\beta_0, \beta_1)$ with respect to the parameters $\beta_0$ and $\beta_1$.
