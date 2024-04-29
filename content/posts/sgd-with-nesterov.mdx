@@ -96,10 +96,17 @@ First, we need to determine the value of $\nabla J(\beta_i - \gamma v_{t-1})$, t
 Remember that the 
 
 $$
-  \begin{aligned}
-    \nabla_{\beta_0} J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) = f(x_i) - y_i \\
-    \nabla_{\beta_1} J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1) = (f(x_i) - y_i) x
-  \end{aligned}
+\begin{aligned}
+  \nabla_{\beta_0} J(\beta_0, \beta_1) &= \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) \\
+  &= f(x_i) - y_i
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  \nabla_{\beta_1} J(\beta_0, \beta_1) &= \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)  \\
+  &= (f(x_i) - y_i)x
+\end{aligned}
 $$
 
 Notice that the gradient of the cost function resembles the error of the prediction.
