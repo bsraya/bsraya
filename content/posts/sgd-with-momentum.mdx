@@ -104,10 +104,10 @@ In most cases, it is set to $0.9$.
 First, we need to determine the gradient of the cost function $\nabla J(\beta_0, \beta_1)$ with respect to the parameters $\beta_0$ and $\beta_1$.
 
 $$
-    \begin{aligned}
-        \nabla J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) = (f(x_i) - y_i) \\
-        \nabla J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1) = (f(x_i) - y_i) x
-    \end{aligned}
+  \begin{aligned}
+    \nabla_{\beta_0} J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) = (f(x_i) - y_i) \\
+    \nabla_{\beta_1} J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1) = (f(x_i) - y_i) x
+  \end{aligned}
 $$
 
 Notice that the gradient of $\beta_0$ is the same as the error term $f(x_i) - y_i$.
@@ -136,20 +136,13 @@ b0_vector, b1_vector = 0.0, 0.0
 
 for epoch in range(1, epochs + 1):
   ...
-  b0_vector = gamma * b0_vector + alpha * b0_error
-  b1_vector = gamma * b1_vector + alpha * b1_error
+  b0_vector = gamma * b0_vector + alpha * b0_gradient
+  b1_vector = gamma * b1_vector + alpha * b1_gradient
 ```
 
 Before updating them, we have to initialize them to zero before the loop starts since the next Momentum vector is dependent on the previous Momentum vector.
 
-Finally, let's update the parameters $\beta_0$ and $\beta_1$ using the __Momentum__ vector from 
-
-$$
-\begin{aligned}
-  \beta_0 &= \beta_0 - v_{0,t} \\
-  \beta_1 &= \beta_1 - v_{1,t}
-\end{aligned}
-$$
+Finally, update the parameters.
 
 ```python
 intercept = intercept - b0_vector
@@ -158,41 +151,44 @@ coefficient = coefficient - b1_vector
 
 ## Conclusion
 
-![The loss function pathway of SGD with and without Momentum](/assets/posts/sgd-with-momentum/sgd-momentum.png)
+![The loss function pathway of SGD with and without Momentum](/assets/posts/sgd-with-momentum/pathways.png)
 
 From the image above, we can see that the loss function pathway of SGD with Momentum is much more like a ball rolling down a hill.
-On the otherhand, the Vanilla Gradient Descent algorithm oscillates a lot and takes a longer time to converge compared to SGD with Momentum.
+On the otherhand, Vanilla SGD oscillates a lot and takes a longer time to converge compared to SGD with Momentum.
 
 ## Coding
 
 ```python
+def predict(intercept, coefficient, x):
+  return intercept + coefficient * x
+
 def sgd_momentum(x, y, df, epochs=100, alpha=0.01, gamma=0.9):
-    intercept, coefficient = 0.0, 0.0
-    b0_vector, b1_vector = 0.0, 0.0
+  intercept, coefficient = 0.0, 0.0
+  b0_vector, b1_vector = 0.0, 0.0
+  random_index = np.random.randint(len(features))
+  prediction = predict(intercept, coefficient, x[random_index])
+  error = ((prediction - y[random_index]) ** 2) / 2
+
+  df.loc[0] = [intercept, coefficient, b0_vector, b1_vector, error]
+
+  for epoch in range(1, epochs + 1):
     random_index = np.random.randint(len(features))
     prediction = predict(intercept, coefficient, x[random_index])
-    error = ((prediction - y[random_index]) ** 2) / 2
+    
+    error = prediction - y[random_index]
+    b0_gradient = error
+    b1_gradient = error * x[random_index]
 
-    df.loc[0] = [intercept, coefficient, b0_vector, b1_vector, error]
+    b0_vector = gamma * b0_vector + alpha * b0_gradient
+    b1_vector = gamma * b1_vector + alpha * b1_gradient
 
-    for epoch in range(1, epochs + 1):
-        random_index = np.random.randint(len(features))
-        prediction = predict(intercept, coefficient, x[random_index])
-        
-        error = prediction - y[random_index]
-        b0_gradient = error
-        b1_gradient = error * x[random_index]
+    intercept = intercept - b0_vector
+    coefficient = coefficient - b1_vector
 
-        b0_vector = gamma * b0_vector + alpha * b0_gradient
-        b1_vector = gamma * b1_vector + alpha * b1_gradient
+    mse = (error ** 2) / 2
+    df.loc[epoch] = [intercept, coefficient, b0_vector, b1_vector, mse]
 
-        intercept = intercept - b0_vector
-        coefficient = coefficient - b1_vector
-
-        mse = (error ** 2) / 2
-        df.loc[epoch] = [intercept, coefficient, b0_vector, b1_vector, mse]
-
-    return df
+  return df
 ```
 
 ## References
