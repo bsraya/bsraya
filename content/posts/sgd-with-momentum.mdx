@@ -82,6 +82,8 @@ In addition to that, if it's contour is smooth, the ball will roll faster and fa
 If it's contour is rough, the ball will oscillate a lot and reach the bottom of the hill slowly.
 The same concept applies to SGD with Momentum.
 
+![MSE Hill in 3D](/assets/posts/sgd-with-momentum/3d-mse.png)
+
 With __Momentum__, we smooth out the updates. If gradients point in the same direction, meaning having the same sign (positive or negative), the __Momentum__ vector will take larger steps.
 If gradients point in different directions, the __Momentum__ coefficient $\gamma$ will help reduce oscillations.
 In most cases, it is set to $0.9$. 
@@ -93,7 +95,6 @@ Now, we are going to translate the following equations into Python code.
 $$
 v_{i, t} = \gamma v_{i, t-1} + \alpha \nabla J(\beta_0, \beta_1)
 $$
-
 
 First, we need to determine the gradient of the cost function $J(\beta_0, \beta_1)$ with respect to the parameters $\beta_0$ and $\beta_1$.
 Remember that the gradients of the cost function of MSE with respect to the parameters $\beta_0$ and $\beta_1$ are
