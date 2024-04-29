@@ -1,8 +1,187 @@
 ---
 title: SGD with Nesterov
-description: Speed up the learning process of the model by using Nestrov Accelerated Gradient
-date: 2024-04-28
+description: A more conscience version of Stochastic Gradient Descent with Momentum
+date: 2024-04-30
 tag: Machine Learning
 published: True
 type: Post
 ---
+
+<SeriesTable
+  title="Gradient Descent Algorithm"
+  series={[
+    {
+      title: "Introduction to Gradient Descent Algorithm",
+      current: false,
+    },
+    {
+      title: "Mathematics of Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Batch Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Mini Batch Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Stochastic Gradient Descent",
+      current: false,
+    },
+    {
+      title: "SGD with Momentum",
+      current: false,
+    },
+    {
+      title: "SGD with Nesterov",
+      current: true,
+    },
+    {
+      title: "Adagrad",
+      current: false,
+    },
+    {
+      title: "Adadelta",
+      current: false,
+    },
+  ]}
+/>
+
+In the previous post about [SGD with Momentum](/posts/sgd-with-momentum),
+we discussed how Momentum mimics the behavior of a ball rolling down a hill.
+Thus, it helps in reducing the oscillations and accelerates the convergence of the model.
+In this post, we will discuss a more efficient version of Stochastic Gradient Descent with Momentum, called Nesterov Accelerated Gradient,
+which does not blindly following the gradient but instead anticipates the future gradient.
+
+From this now on, I am gonna call __Nesterov Accelerated Gradient__ as NAG.
+
+## Mathematics of NAG
+
+The mathematics of NAG is quite similar with SGD with Momentum but with a slight modification.
+
+$$
+\begin{aligned}
+  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\beta_i - \gamma v_{t-1}) \\
+  \beta_i &= \beta_i - v_{0,t} \\
+\end{aligned}
+$$
+
+Where:
+- $v_{i,t}$ is the $i$-th Momentum vector  at time $t$
+- $\gamma$ is the momentum coefficient
+- $\alpha$ is the learning rate
+- $\nabla J(\beta_i - \gamma v_{t-1})$ is the gradient of the cost function at the point $\beta_i - \gamma v_{t-1}$, or the lookahead point
+- $\beta_i$ is the parameter vector
+
+For simplicity, we are rewrite the generalized form of NAG as follows so that we 
+can convert it to Python code easily.
+
+$$
+\begin{aligned}
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\beta_0 - \gamma v_{t-1}) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\beta_1 - \gamma v_{t-1}) \\
+  \beta_0 &= \beta_0 - v_{0,t} \\
+  \beta_1 &= \beta_1 - v_{1,t}
+\end{aligned}
+$$
+
+Similar to Momentum, NAG also helps in reducing the oscillations and accelerates the convergence of the model.
+However, NAG is more "conscience" and efficient than Momentum because it anticipates the future gradient and thus converges faster.
+
+## Implementation of NAG
+
+First, we need to determine the value of $\nabla J(\beta_i - \gamma v_{t-1})$, the gradient of the cost function at the point $\beta_i - \gamma v_{t-1}$.
+Remember that the 
+
+$$
+  \begin{aligned}
+    \nabla_{\beta_0} J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) = f(x_i) - y_i \\
+    \nabla_{\beta_1} J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1) = (f(x_i) - y_i) x
+  \end{aligned}
+$$
+
+Notice that the gradient of the cost function resembles the error of the prediction.
+
+```python
+lookahead_intercept = intercept - gamma * v_intercept
+lookahead_coefficient = coefficient - gamma * v_coefficient
+
+lookahead_prediction = predict(lookahead_intercept, lookahead_coefficient, x)
+error = lookahead_prediction - y[random_index]
+b0_gradient = error
+b1_gradient = error * x[random_index]
+```
+
+Next, we are going to update the __Momentum__ vector.
+
+```python
+b0_vector, b1_vector = 0.0, 0.0
+...
+
+for epoch in range(1, epochs + 1):
+  ...
+  b0_vector = gamma * b0_vector + alpha * b0_gradient
+  b1_vector = gamma * b1_vector + alpha * b1_gradient
+```
+
+
+Finally, update the parameters.
+
+```python
+intercept = intercept - b0_vector
+coefficient = coefficient - b1_vector
+```
+
+## Conclusion
+
+![The loss function pathways of SGD, SGD with Momentum, and SGD with Nesterov](/assets/posts/sgd-with-nesterov/pathways.png)
+
+From the graph above, we can see that NAG oscillates less by anticipating the future gradient unlike Vanilla SGD and SGD with Momentum.
+The path of the loss function of NAG seems to be more direct and natural, just like a ball rolling down a hill.
+
+## Coding
+
+```python
+def predict(intercept, coefficient, x):
+  return intercept + coefficient * x
+
+def sgd_nesterov(x, y, df, epochs=100, alpha=0.01, gamma=0.9):
+  intercept, coefficient = 0.0, 0.0
+  b0_velocity, b1_velocity = 0.0, 0.0
+
+  random_index = np.random.randint(len(features))
+  prediction = predict(intercept, coefficient, x[random_index])
+  error = (prediction - y[random_index]) ** 2
+
+  df.loc[0] = [intercept, coefficient, b0_velocity, b1_velocity, error]
+
+  for epoch in range(1, epochs + 1):
+    random_index = np.random.randint(len(features))
+
+    lookahead_intercept = intercept - gamma * b0_velocity
+    lookahead_coefficient = coefficient - gamma * b1_velocity
+
+    lookahead_prediction = predict(lookahead_intercept, lookahead_coefficient, x[random_index])
+
+    b0_gradient = lookahead_prediction - y[random_index]
+    b1_gradient = (lookahead_prediction - y[random_index]) * x[random_index]
+
+    b0_velocity = gamma * b0_velocity + alpha * b0_gradient
+    b1_velocity = gamma * b1_velocity + alpha * b1_gradient
+
+    intercept = intercept - b0_velocity
+    coefficient = coefficient - b1_velocity
+
+    prediction = predict(intercept, coefficient, x[random_index])
+    mean_squared_error = ((prediction - y[random_index]) ** 2) / 2
+
+    df.loc[epoch] = [intercept, coefficient, b0_velocity, b1_velocity, mean_squared_error]
+
+  return df
+```
+
+## References
+
+1. Ruder, Sebastian. "An overview of gradient descent optimization algorithms." [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016).
