@@ -1,8 +1,192 @@
 ---
 title: SGD with Momentum
-description: How to escape local minima using momentum with Stochastic Gradient Descent
-date: 2024-04-30
+description: Fast convergence of Stochastic Gradient Descent with Momentum in Python
+date: 2024-04-27
 tag: Machine Learning
 published: true
 type: Post
 ---
+
+<SeriesTable
+  title="Gradient Descent Algorithm"
+  series={[
+    {
+      title: "Introduction to Gradient Descent Algorithm",
+      current: false,
+    },
+    {
+      title: "Mathematics of Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Batch Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Mini Batch Gradient Descent",
+      current: false,
+    },
+    {
+      title: "Stochastic Gradient Descent",
+      current: false,
+    },
+    {
+      title: "SGD with Momentum",
+      current: true,
+    },
+    {
+      title: "SGD with Nesterov",
+      current: false,
+    },
+    {
+      title: "Adagrad",
+      current: false,
+    },
+    {
+      title: "Adadelta",
+      current: false,
+    },
+  ]}
+/>
+
+In the previous post about, we discussed the [Stochastic Gradient Descent](/posts/stochastic-gradient-descent) algorithm. In this post, we will discuss the Stochastic Gradient Descent with Momentum algorithm.
+Remember that SGD helps us to minimize the cost function using one random data point at a time.
+In some cases, it would help us to converge relatively faster and reduces the RAM usage significantly compared to the Vanilla Gradient Descent algorithm.
+
+However, the SGD algorithm has some limitations.
+It oscillates a lot, still requires a longer time to converge, and sometimes it may not converge at all because not be able to escape the local minima.
+
+With the help of __Momentum__, we can overcome these limitations.
+Let's see what it is and how it does.
+
+## Mathematics of SGD with Momentum
+
+$$
+\begin{aligned}
+  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
+  \beta_0 &= \beta_0 - v_{0,t} \\
+  \beta_1 &= \beta_1 - v_{1,t}
+\end{aligned}
+$$
+
+Where:
+- $v_{i,t}$ is the $i$-th Momentum vector  at time $t$
+- $\gamma$ is the momentum coefficient
+- $\alpha$ is the learning rate
+- $\nabla J(\beta_0, \beta_1)$ is the gradient of the cost function $J(\beta_0, \beta_1)$
+- $\beta_i$ is the parameter vector
+
+Imagine rolling a ball down a hill. As it moves, it gains momentum, rolling faster until it reaches
+its maximum speed. Clearly, the ball's current speed is determined based on it's previous speed.
+In addition to that, if it's contour is smooth, the ball will roll faster and faster until it reaches the bottom of the hill.
+If it's contour is rough, the ball will oscillate a lot and reach the bottom of the hill slowly.
+The same concept applies to SGD with Momentum.
+
+With __Momentum__, we smooth out the updates. If gradients point in the same direction, meaning having the same sign (positive or negative), the __Momentum__ vector will take larger steps.
+If gradients point in different directions, the __Momentum__ coefficient $\gamma$ will help reduce oscillations.
+In most cases, it is set to $0.9$. 
+
+## Implementation of SGD with Momentum
+
+Now, we are going to translate the following equations into Python code.
+
+$$
+v_{i, t} = \gamma v_{i, t-1} + \alpha \nabla J(\beta_0, \beta_1)
+$$
+
+
+First, we need to determine the gradient of the cost function $J(\beta_0, \beta_1)$ with respect to the parameters $\beta_0$ and $\beta_1$.
+Remember that the gradients of the cost function of MSE with respect to the parameters $\beta_0$ and $\beta_1$ are
+
+$$
+    \begin{aligned}
+        \nabla J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) = (f(x) - y_i) \\
+        \nabla J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1) = (f(x) - y_i) x
+    \end{aligned}
+$$
+
+Notice that the gradient of $\beta_0$ is the same as the error term $f(x) - y_i$.
+Thus, they can be written as
+
+```python
+error = prediction - y[random_index]
+b0_gradient = prediction - y[random_index]
+b1_gradient = (prediction - y[random_index]) * x[random_index]
+```
+
+Next, let's convert the equation for updating the __Momentum__ vectors into Python code.
+For simplicity, we are not storing $\beta_0$ and $\beta_1$ in a list.
+Instead, we are storing them into separate variables.
+
+$$
+v_{i, t} = \gamma v_{i, t-1} + \alpha \nabla J(\beta_0, \beta_1)
+$$
+
+```python
+b0_vector, b1_vector = 0.0, 0.0
+...
+
+for epoch in range(1, epochs + 1):
+  ...
+  b0_vector = gamma * b0_vector + alpha * b0_error
+  b1_vector = gamma * b1_vector + alpha * b1_error
+```
+
+Before updating them, we have to initialize them to zero before the loop starts since the next Momentum vector is dependent on the previous Momentum vector.
+
+Finally, let's update the parameters $\beta_0$ and $\beta_1$ using the __Momentum__ vector from 
+
+$$
+\begin{aligned}
+  \beta_0 &= \beta_0 - v_{0,t} \\
+  \beta_1 &= \beta_1 - v_{1,t}
+\end{aligned}
+$$
+
+```python
+intercept = intercept - b0_vector
+coefficient = coefficient - b1_vector
+```
+
+## Conclusion
+
+![The loss function pathway of SGD with and without Momentum](/assets/posts/sgd-with-momentum/sgd-momentum.png)
+
+From the image above, we can see that the loss function pathway of SGD with Momentum is much more like a ball rolling down a hill.
+On the otherhand, the Vanilla Gradient Descent algorithm oscillates a lot and takes a longer time to converge compared to SGD with Momentum.
+
+## Coding
+
+```python
+def sgd_momentum(x, y, df, epochs=100, alpha=0.01, gamma=0.9):
+    intercept, coefficient = 0.0, 0.0
+    b0_vector, b1_vector = 0.0, 0.0
+    random_index = np.random.randint(len(features))
+    prediction = predict(intercept, coefficient, x[random_index])
+    error = ((prediction - y[random_index]) ** 2) / 2
+
+    df.loc[0] = [intercept, coefficient, b0_vector, b1_vector, error]
+
+    for epoch in range(1, epochs + 1):
+        random_index = np.random.randint(len(features))
+        prediction = predict(intercept, coefficient, x[random_index])
+        
+        error = prediction - y[random_index]
+        b0_gradient = error
+        b1_gradient = error * x[random_index]
+
+        b0_vector = gamma * b0_vector + alpha * b0_gradient
+        b1_vector = gamma * b1_vector + alpha * b1_gradient
+
+        intercept = intercept - b0_vector
+        coefficient = coefficient - b1_vector
+
+        mse = (error ** 2) / 2
+        df.loc[epoch] = [intercept, coefficient, b0_vector, b1_vector, mse]
+
+    return df
+```
+
+## References
+
+1. Ruder, Sebastian. "An overview of gradient descent optimization algorithms." [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016).
