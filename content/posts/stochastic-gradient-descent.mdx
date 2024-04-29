@@ -29,6 +29,22 @@ type: Post
       title: "Stochastic Gradient Descent",
       current: true,
     },
+    {
+      title: "SGD with Momentum",
+      current: false,
+    },
+    {
+      title: "SGD with Nesterov",
+      current: false,
+    },
+    {
+      title: "Adagrad",
+      current: false,
+    },
+    {
+      title: "Adadelta",
+      current: false,
+    },
   ]}
 />
 
@@ -74,7 +90,7 @@ $$
 The update rules stay the same
 
 $$
-  \Theta_{i} = \beta_i - \alpha \cdot \frac{\partial}{\partial \beta_i} J(\beta_0, \beta_1)
+  \beta_{i} = \beta_i - \alpha \cdot \frac{\partial}{\partial \beta_i} J(\beta_0, \beta_1)
 $$
 
 where $\beta_i$ is the $i$-th coefficient we want to update and $\alpha$ is the learning rate.
