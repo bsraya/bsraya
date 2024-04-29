@@ -75,6 +75,18 @@ Where:
 - $\nabla J(\beta_i)$ is the gradient of the cost function $J(\beta_i)$
 - $\beta_i$ is the parameter vector
 
+For simplicity, we are rewrite the generalized form of SGD with Momentum as follows so that we 
+can convert it to Python code easily.
+
+$$
+\begin{aligned}
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
+  \beta_0 &= \beta_0 - v_{0,t} \\
+  \beta_1 &= \beta_1 - v_{1,t}
+\end{aligned}
+$$
+
 Imagine rolling a ball down a hill. As it moves, it gains momentum, rolling faster until it reaches
 its maximum speed. Clearly, the ball's current speed is determined based on it's previous speed.
 In addition to that, if it's contour is smooth, the ball will roll faster and faster until it reaches the bottom of the hill.
@@ -89,7 +101,7 @@ In most cases, it is set to $0.9$.
 
 ## Implementation of SGD with Momentum
 
-Now, we are going to translate $\nabla J(\beta_0, \beta_1)$ in the following equations into Python code.
+Now, we are going to translate the following equations into Python code.
 
 $$
 \begin{aligned}
@@ -98,17 +110,16 @@ $$
 \end{aligned}
 $$
 
-First, we need to determine the gradient of the cost function $J(\beta_0, \beta_1)$ with respect to the parameters $\beta_0$ and $\beta_1$.
-Remember that the gradients of the cost function of MSE with respect to the parameters $\beta_0$ and $\beta_1$ are
+First, we need to determine the gradient of the cost function $\nabla J(\beta_0, \beta_1)$ with respect to the parameters $\beta_0$ and $\beta_1$.
 
 $$
     \begin{aligned}
-        \nabla J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) = (f(x) - y_i) \\
-        \nabla J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1) = (f(x) - y_i) x
+        \nabla J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) = (f(x_i) - y_i) \\
+        \nabla J(\beta_0, \beta_1) = \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1) = (f(x_i) - y_i) x
     \end{aligned}
 $$
 
-Notice that the gradient of $\beta_0$ is the same as the error term $f(x) - y_i$.
+Notice that the gradient of $\beta_0$ is the same as the error term $f(x_i) - y_i$.
 Thus, they can be written as
 
 ```python
