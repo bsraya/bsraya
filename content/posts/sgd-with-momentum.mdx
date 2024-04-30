@@ -49,15 +49,22 @@ type: Post
   ]}
 />
 
-In the previous post about, we discussed the [Stochastic Gradient Descent](/posts/stochastic-gradient-descent) algorithm. In this post, we will discuss the Stochastic Gradient Descent with Momentum algorithm.
+In the previous post about, we discussed the [Stochastic Gradient Descent](/posts/stochastic-gradient-descent) algorithm.
+In this post, we will discuss the Stochastic Gradient Descent with Momentum algorithm.
 Remember that SGD helps us to minimize the cost function using one random data point at a time.
 In some cases, it would help us to converge relatively faster and reduces the RAM usage significantly compared to the Vanilla Gradient Descent algorithm.
 
 However, the SGD algorithm has some limitations.
 It oscillates a lot, still requires a longer time to converge, and sometimes it may not converge at all because not be able to escape the local minima.
+With the help of **Momentum**, we can overcome these limitations.
 
-With the help of __Momentum__, we can overcome these limitations.
-Let's see what it is and how it does.
+![MSE Hill in 3D](/assets/posts/sgd-with-momentum/3d-mse.png)
+
+Imagine rolling a ball down a hill. As it moves, it gains momentum, rolling faster until it reaches
+its maximum speed. Clearly, the ball's current speed is determined based on it's previous speed.
+In addition to that, if it's contour is smooth, the ball will roll faster and faster until it reaches the bottom of the hill.
+If it's contour is rough, the ball will oscillate a lot and reach the bottom of the hill slowly.
+The same concept applies to SGD with Momentum.
 
 ## Mathematics of SGD with Momentum
 
@@ -69,13 +76,14 @@ $$
 $$
 
 Where:
-- $v_{i,t}$ is the $i$-th Momentum vector  at time $t$
+
+- $v_{i,t}$ is the $i$-th Momentum vector at time $t$
 - $\gamma$ is the momentum coefficient
 - $\alpha$ is the learning rate
 - $\nabla J(\beta_i)$ is the gradient of the cost function $J(\beta_i)$
 - $\beta_i$ is the parameter vector
 
-For simplicity, we are rewrite the generalized form of SGD with Momentum as follows so that we 
+For simplicity, we are rewrite the generalized form of SGD with Momentum as follows so that we
 can convert it to Python code easily.
 
 $$
@@ -87,17 +95,10 @@ $$
 \end{aligned}
 $$
 
-Imagine rolling a ball down a hill. As it moves, it gains momentum, rolling faster until it reaches
-its maximum speed. Clearly, the ball's current speed is determined based on it's previous speed.
-In addition to that, if it's contour is smooth, the ball will roll faster and faster until it reaches the bottom of the hill.
-If it's contour is rough, the ball will oscillate a lot and reach the bottom of the hill slowly.
-The same concept applies to SGD with Momentum.
-
-![MSE Hill in 3D](/assets/posts/sgd-with-momentum/3d-mse.png)
-
-With __Momentum__, we smooth out the updates. If gradients point in the same direction, meaning having the same sign (positive or negative), the __Momentum__ vector will take larger steps.
-If gradients point in different directions, the __Momentum__ coefficient $\gamma$ will help reduce oscillations.
-In most cases, it is set to $0.9$. 
+With the **Momentum** coefficient, we smooth out the updates.
+If gradients point in the same direction, meaning having the same sign (positive or negative), the **Momentum** vector will take larger steps.
+If gradients point in different directions, the **Momentum** coefficient $\gamma$ will help reduce oscillations.
+In most cases, it is set to $0.9$.
 
 ## Implementation of SGD with Momentum
 
@@ -126,7 +127,7 @@ b0_gradient = prediction - y[random_index]
 b1_gradient = (prediction - y[random_index]) * x[random_index]
 ```
 
-Next, let's convert the equation for updating the __Momentum__ vectors into Python code.
+Next, let's convert the equation for updating the **Momentum** vectors into Python code.
 For simplicity, we are not storing $\beta_0$ and $\beta_1$ in a list.
 Instead, we are storing them into separate variables.
 
@@ -181,7 +182,7 @@ def sgd_momentum(x, y, df, epochs=100, alpha=0.01, gamma=0.9):
   for epoch in range(1, epochs + 1):
     random_index = np.random.randint(len(features))
     prediction = predict(intercept, coefficient, x[random_index])
-    
+
     error = prediction - y[random_index]
     b0_gradient = error
     b1_gradient = error * x[random_index]
