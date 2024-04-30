@@ -49,9 +49,47 @@ type: Post
   ]}
 />
 
-Coming soon ...
-
 ## Mathematics of Adadelta
+
+$$
+\Delta \theta_t = - \frac{\text{RMS}[\Delta \theta]_{t-1}}{\text{RMS}[g]_t} \odot g_t
+$$
+
+$$
+\theta_{t+1} = \theta_t + \Delta \theta_t
+$$
+
+Where:
+
+- $\Delta \theta_t$ is the update at time $t$
+- $\theta_t$ is the parameter at time $t$
+- $\text{RMS}[\Delta \theta]_{t-1}$ is the root mean square of the updates up to time $t-1$
+- $\text{RMS}[g]_t$ is the root mean square of the gradients up to time $t$
+- $g_t$ is the gradient at time $t$
+
+Let's expand the root mean square of parameters up to time $t$, $\text{RMS}[\Delta \theta]_{t-1}$.
+
+$$
+\text{RMS}[{\Delta \theta}]_{t-1} = \sqrt{E[\Delta \theta^2]_{t-1} + \epsilon}
+$$
+
+Where
+
+$$
+E[\Delta \theta^2]_{t-1} = \gamma E[\Delta \theta^2]_{t-2} + (1 - \gamma) \Delta \theta_{t-1}^2
+$$
+
+Again, let's expand the root mean square of gradients up to time $t$, $\text{RMS}[g]_t$.
+
+$$
+\text{RMS}[g]_t = \sqrt{E[g^2]_t + \epsilon}
+$$
+
+Where
+
+$$
+E[g^2]_t = \gamma E[g^2]_{t-1} + (1 - \gamma) g_t^2
+$$
 
 ## Implementation of Adadelta
 
@@ -60,3 +98,6 @@ Coming soon ...
 ## Coding
 
 ## References
+
+1. Sebastian Ruder. "An overview of gradient descent optimization algorithms." [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016).
+2. Zeiler, Matthew D. "ADADELTA: An Adaptive Learning Rate Method." [arXiv:1212.5701](https://arxiv.org/abs/1212.5701) (2012).

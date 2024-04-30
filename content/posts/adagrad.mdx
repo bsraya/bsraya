@@ -49,17 +49,79 @@ type: Post
   ]}
 />
 
-Coming soon ...
+Remember from the [SGD with Nesterov](/posts/sgd-with-nesterov) post, we could
+minimize the cost function effeciently with less oscillations
+by taking consideration of the future gradient.
+The pathway to the local minima resembles a ball going down a hill in real life, much better than SGD with Momentum.
+However, the learning rate is still fixed for all parameters.
+
+In this post, we will discuss the Adagrad optimization algorithm,
+which could help us to adapt the learning rate for each parameter.
+Meaning, each parameter will have its own learning rate. In addition to that,
+parameters that are updated frequently will experience smaller updates.
+While the parameters that are updated infrequently will experience larger updates.
 
 ## Mathematics of Adagrad
 
+$$
+\theta_{t+i, i} = \theta_t - \frac{\alpha}{\sqrt{G_{t,ii} + \epsilon}} \odot g_t
+$$
+
+$$
+g_{t,i} = \nabla_{\theta_t} J(\theta_t, i)
+$$
+
+Where:
+
+- $\theta_{t+i, i}$ is the $i$-th parameter at time $t+i$
+- $\alpha$ is the learning rate
+- $G_{t,ii}$ is the sum of the squares of the gradients up to time $t$
+- $\epsilon$ is a smoothing term to avoid division by zero
+- $\odot$ is the element-wise product
+- $g_{t,i}$ is the gradient of the $i$-th parameter at time $t$
+
+By dividing the learning rate by the square root of the sum of the squares of the gradients up to time $t$,
+it eliminates the need to manually tune the learning rate for each parameter.
+Most implementations leave the learning rate value to $0.01$.
 
 ## Implementation of Adagrad
 
-
 ## Conclusion
-
 
 ## Coding
 
+```python
+def adagrad(x, y, df, epochs = 10000, learning_rate = 0.01, eps=1e-8):
+  intercept, coefficient = -0.5, -0.75
+  accumulated_squared_intercept = 0.0
+  accumulated_squared_coefficient = 0.0
+
+  random_index = np.random.randint(len(features))
+  prediction = predict(intercept, coefficient, x[random_index])
+  mse = ((prediction - y[random_index]) ** 2) / 2
+  df.loc[0] = [intercept, coefficient, mse]
+
+  for epoch in range(1, epochs + 1):
+    random_index = np.random.randint(len(features))
+    prediction = predict(intercept, coefficient, x[random_index])
+    error = prediction - y[random_index]
+
+    intercept_gradient = error
+    coefficient_gradient = error * x[random_index]
+
+    accumulated_squared_intercept += intercept_gradient ** 2
+    accumulated_squared_coefficient += coefficient_gradient ** 2
+
+    intercept -= (learning_rate / np.sqrt(accumulated_squared_intercept + eps)) * intercept_gradient
+    coefficient -= (learning_rate / np.sqrt(accumulated_squared_coefficient + eps)) * coefficient_gradient
+
+    mse = (error ** 2) / 2
+    df.loc[epoch] = [intercept, coefficient, mse]
+
+  return df
+```
+
 ## References
+
+1. Sebastian Ruder. "An overview of gradient descent optimization algorithms." [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016).
+2. Rachel Ward, Xiaoxia Wu, and Leon Bottou. "Adagrad with SGD: Efficient Learning of Descent Directions." [arXiv:1802.09568](https://arxiv.org/abs/1802.09568) (2018).
