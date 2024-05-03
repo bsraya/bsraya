@@ -48,30 +48,30 @@ type: Post
   ]}
 />
 
+## Introduction
+
+In the [Mathematics of Gradient Descent](post), we have discussed what Gradient Descent is, how it works, 
+and how to derive the equations needed to update the parameters of the model.
+
+In this post, we are going to write Batch Gradient Descent from scratch in Python.
+
 ## Setting Up The Dataset
 
-In this example, we are going to include the [Iris Dataset](https://archive.ics.uci.edu/ml/datasets/iris) from UCI Machine Learning Repository imported from `scikit-learn`.
+Throughout this series, we are going to use the [Iris Dataset](https://archive.ics.uci.edu/ml/datasets/iris) from UCI Machine Learning Repository imported from `scikit-learn`.
 There are two features in the dataset that we are going to analyse, namely `sepal_length` and `petal_width` shown in the highlighted lines.
 
 ```python
 from sklearn.datasets import load_iris
 
-iris = load_iris()
+iris = datasets.load_iris()
 features = iris.data
 target = iris.target
 
-sepal_length = np.array(features[:, 0])
-petal_width = np.array(features[:, 3])
+sepal_length = np.array(features[:,0])
+petal_width = np.array(features[:,3])
 
-species_names = list()
-
-for i in target:
-    if i == 0:
-    species_names.append('setosa')
-    elif i == 1:
-    species_names.append('versicolor')
-    else:
-    species_names.append('virginica')
+species_map = {0: 'setosa', 1: 'versicolor', 2: 'virginica'}
+species_names = [species_map[i] for i in target]
 ```
 
 ## Setting Up A Baseline
@@ -131,74 +131,69 @@ $$
 
 with MSE value around $0.191$. The equation above is going to be our base line for this experiment to determine how good our own Gradient Descent implementation.
 
-## Implemetation
+## Implemetation of Batch Gradient Descent
 
-Remember that in the first part of this series, we have customized the cost function, which is the MSE, simply by multiplying it by half and named it **One Half Mean Squared Error**.
-
-$$
-  J(\Theta_0, \Theta_1) = \frac{1}{2N} \sum_{i=1}^N (\hat{y}_i - y_i)^2
-$$
-
-We have also acquired two equations that are reponsible for updating $\theta_0$ and $\theta_1$. Namely,
-
-$$
-  \begin{aligned}
-    \theta_0 = \theta_0 - \frac{\alpha}{N} \sum_{i=1}^N (f(x) - y_i) \\
-    \theta_1 = \theta_1 - \frac{\alpha}{N} \sum_{i=1}^N (f(x) - y_i) x
-  \end{aligned}
-$$
-
-Now, let's translate these three equations into Python code.
+Before we implement Batch Gradient Descent, we need to define the prediction function.
 
 ```python
-def bgd(x, y, epochs, df, alpha = 0.01):
-    intercept, coefficient = 2.0, -7.5
-
-    # first sum_error
-    predictions = predict(intercept, coefficient, x)
-    sum_error = np.sum((predictions - y) ** 2) / (2 * len(x))
-    df.loc[0] = [intercept, coefficient, sum_error]
-
-    for epoch in range(1, epochs):
-        predictions = predict(intercept, coefficient, x)
-        t0_error = (1/len(x)) * np.sum(predictions - y)
-        t1_error = (1/len(x)) * np.sum((predictions - y) * x)
-        intercept = intercept - alpha * t0_error
-        coefficient = coefficient - alpha * t1_error
-        sum_error = sum_error + np.sum((predictions - y) ** 2) / (2 * len(x))
-        df.loc[epoch] = [intercept, coefficient, sum_error]
-        sum_error = 0
-    return df
+def predict(intercept, coefficient, dataset):
+  return intercept + coefficient * x
 ```
 
-The highlighted codes is where the parameters update happens.
+In order to update the intercept $\theta_0$ and the coefficient $\theta_1$ iteratively, we are going to use the following equations.
 
-Once the parameters were updated, we then calculate the cost function for each iteration and save it into the dataframe we created.
+$$
+\begin{aligned}
+  \theta_0 &= \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta) \\
+  \theta_1 &= \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta)
+\end{aligned}
+$$
+
+where
+
+$$
+\begin{aligned}
+\frac{\partial}{\partial \theta_0} J(\theta) &= \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i)^2 \\ 
+\frac{\partial}{\partial \theta_1} J(\theta) &= \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i)^2 x \\ 
+\end{aligned}
+$$
+
+First, let's determine the error term of the prediction.
 
 ```python
-bgd_loss = pd.DataFrame(columns=['intercept', 'coefficient', 'sum_error'])
-bgd_loss = bgd(sepal_length, petal_width, epochs = 10_000, df = bgd_loss)
+length = len(x)
+error = prediction - y
+
+t0_error = np.sum(error) / length
+t1_error = np.sum(error * x) / length
 ```
 
-Below is the figure of the regression lines tend to look like at the 1,000th, the 5,000th, and the 10,000th iterations.
+Second, we update the intercept $\theta_0$ and the coefficient $\theta_1$.
+
+```python
+intercept = intercept - alpha * t0_error
+coefficient = coefficient - alpha * t1_error
+```
+
+Finally, we can calculate the MSE of the regression line.
+
+```python
+mse = np.sum(error ** 2) / (2 * length)
+```
+
+## Conclusion
 
 ![BGD Loss Function Graph](/assets/posts/batch-gradient-descent/iterations.png "BGD Loss Function Graph")
 
-After 10,000 iterations, the MSE value of our own Gradient Descent is $0.195$ which is quite close to our baseline, which is $0.191$.
-
-Combining everything, here is how the regression line changes over time.
-
 ![Regression line changes over time](/assets/posts/batch-gradient-descent/regression-lines.png "Regression line changes over time")
-
-Let's animate the movement of the regression lines.
 
 ![Regression line animation](/assets/posts/batch-gradient-descent/bgd.gif "Regression line animation")
 
-Now, let's see how the movement of the intercept and the coefficient variabels on a contour map.
 
-![The movement of the intercept and the coefficient variabels on a contour map](/assets/posts/batch-gradient-descent/contour.png "The movement of the intercept and the coefficient variabels on a contour map")
+From the graph above, we can see that how the regression line changes from the time to time.
+After $10,000$ iterations, the MSE value of our own Gradient Descent is $0.195$ which is quite close to our baseline, $0.191$.
 
-## Conclusion
+![The pathway of the cost function over the 2D MSE contour](/assets/posts/batch-gradient-descent/contour.png "The movement of the intercept and the coefficient variabels on a contour map")
 
 Here are some keypoints for Batch Gradient Descent:
 
@@ -208,8 +203,29 @@ Here are some keypoints for Batch Gradient Descent:
 4. Batch Gradient Descent is not the best algorithm for large datasets.
 5. Since the gradients we get over time are pretty much the same, then it may stuck in a local minima. Noisy gradients would allow the algorithm to escape local minima.
 
-Since I wanted to present you an easy and succint explanation of Batch Gradient Descent, so I decided to not to include all the codes for the sake of simplicity.
-If you want to know how to implement it in more details, please [click here](https://www.kaggle.com/bijonsetyawan/batch-gradient-descent) to check the Python notebook on Kaggle.
+## Code
+
+```python
+def bgd(x, y, epochs, df, alpha = 0.01):
+  intercept, coefficient = 2.0, -7.5
+  length = len(x)
+
+  predictions = predict(intercept, coefficient, x)
+  error = predictions - y
+  mse = np.sum(error ** 2) / (2 * length)
+  df.loc[0] = [intercept, coefficient, mse]
+
+  for epoch in range(1, epochs):
+    predictions = predict(intercept, coefficient, x)
+    error = predictions - y
+    t0_error = np.sum(error) / length
+    t1_error = np.sum(error * x) / length
+    intercept = intercept - alpha * t0_error
+    coefficient = coefficient - alpha * t1_error
+    mse = np.sum(error ** 2) / (2 * length)
+    df.loc[epoch] = [intercept, coefficient, mse]
+  return df
+```
 
 ## References
 
