@@ -50,7 +50,6 @@ type: Post
 />
 
 In the previous post about, we discussed the [Stochastic Gradient Descent](/posts/stochastic-gradient-descent) algorithm.
-In this post, we will discuss the Stochastic Gradient Descent with Momentum algorithm.
 Remember that SGD helps us to minimize the cost function using one random data point at a time.
 In some cases, it would help us to converge relatively faster and reduces the RAM usage significantly compared to the Vanilla Gradient Descent algorithm.
 
@@ -81,7 +80,7 @@ Where:
 - $\gamma$ is the momentum coefficient
 - $\alpha$ is the learning rate
 - $\nabla J(\theta)$ is the gradient of the cost function $J(\theta)$
-- $\theta_i$ is the $i$-th parameter 
+- $\theta_i$ is the $i$-th parameter
 
 For simplicity, we are rewrite the generalized form of SGD with Momentum as follows so that we
 can convert it to Python code easily.
@@ -209,3 +208,4 @@ def sgd_momentum(x, y, df, epochs=100, alpha=0.01, gamma=0.9):
 ## References
 
 1. Sebastian Ruder. "An overview of gradient descent optimization algorithms." [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016).
+2. Ning Qian. "On the momentum term in gradient descent learning algorithms." [Neural Networks](https://www.sciencedirect.com/science/article/abs/pii/089360809190021Q) (1999).
