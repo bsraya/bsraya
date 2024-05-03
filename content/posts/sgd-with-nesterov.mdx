@@ -64,7 +64,7 @@ The mathematics of NAG is quite similar with SGD with Momentum but with a slight
 
 $$
 \begin{aligned}
-  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\theta_i - \gamma v_{t-1}) \\
+  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\theta_i - \gamma v_{i, t-1}) \\
   \theta_i &= \theta_i - v_{0,t} \\
 \end{aligned}
 $$
@@ -74,7 +74,7 @@ Where:
 - $v_{i,t}$ is the $i$-th Momentum vector at time $t$
 - $\gamma$ is the momentum coefficient
 - $\alpha$ is the learning rate
-- $\nabla J(\theta_i - \gamma v_{t-1})$ is the gradient of the cost function at the point $\theta_i - \gamma v_{t-1}$, or the lookahead point
+- $\nabla J(\theta_i - \gamma v_{t-1})$ is the gradient of the cost function at the point $\theta_i - \gamma v_{i, t-1}$, or the lookahead point
 - $\theta_i$ is the parameter vector
 
 For simplicity, we are rewrite the generalized form of NAG as follows so that we
@@ -82,9 +82,14 @@ can convert it to Python code easily.
 
 $$
 \begin{aligned}
-  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta_0 - \gamma v_{t-1}) \\
-  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta_1 - \gamma v_{t-1}) \\
-  \theta_0 &= \theta_0 - v_{0,t} \\
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta_0 - \gamma v_{0, t-1}) \\
+  \theta_0 &= \theta_0 - v_{0,t}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta_1 - \gamma v_{1, t-1}) \\
   \theta_1 &= \theta_1 - v_{1,t}
 \end{aligned}
 $$
@@ -94,52 +99,73 @@ However, NAG is more "conscience" and efficient than Momentum because it anticip
 
 ## Implementation of NAG
 
-First, we need to determine the value of $\nabla J(\theta_i - \gamma v_{t-1})$, the gradient of the cost function at the point $\theta_i - \gamma v_{t-1}$.
-Remember that the
-
-$$
-\begin{aligned}
-  \nabla_{\theta_0} J(\theta_0, \theta_1) &= \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1) \\
-  &= f(x_i) - y_i
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-  \nabla_{\theta_1} J(\theta_0, \theta_1) &= \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1)  \\
-  &= (f(x_i) - y_i)x
-\end{aligned}
-$$
-
-Notice that the gradient of the cost function resembles the error of the prediction.
+First, we need to calculate the lookahead intercept $\theta_0 - \gamma v_{i, t-1}$
+and the lookahead coefficient $\theta_1 - \gamma v_{i, t-1}$
+so that we can determine the lookahead prediction.
 
 ```python
 lookahead_intercept = intercept - gamma * v_intercept
 lookahead_coefficient = coefficient - gamma * v_coefficient
 
 lookahead_prediction = predict(lookahead_intercept, lookahead_coefficient, x)
-error = lookahead_prediction - y[random_index]
-b0_gradient = error
-b1_gradient = error * x[random_index]
 ```
 
-Next, we are going to update the **Momentum** vector.
+Second, we need to determine the value of the gradient of the cost function at the point
+$\theta_i - \gamma v_{i, t-1}$, $\nabla J(\theta_i - \gamma v_{i, t-1})$.
+Basically, it's the same as the gradient of the cost function w.r.t. to the parameters $\theta_0$ and $\theta_1$.
+
+$$
+\begin{aligned}
+  \nabla_{\theta_0} J(\theta) &= \frac{\partial}{\partial \theta_0} J(\theta) \\
+  &= \frac{\partial}{\partial \theta_0} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
+  &= f(x_i) - y_i
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
+  &= \frac{\partial}{\partial \theta_1} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
+  &= (f(x_i) - y_i)x
+\end{aligned}
+$$
+
+Notice that the gradient of the cost function w.r.t. to the intercept $\theta_0$ is the error of the prediction.
 
 ```python
-b0_vector, b1_vector = 0.0, 0.0
+error = lookahead_prediction - y[random_index]
+t0_gradient = error
+t1_gradient = error * x[random_index]
+```
+
+Next, we have to update the **Momentum** vectors.
+For simplicity, we are not going to store the vector of $\theta_0$ and $\theta_1$ into a list.
+Instead, we are storing them into separate variables, `t0_vector` and `t1_vector` respectively.
+
+$$
+\begin{aligned}
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta_0 - \gamma v_{0, t-1}) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta_0 - \gamma v_{1, t-1})
+\end{aligned}
+$$
+
+Since the updated `t0_vector` relies on the previous `t0_vector`, we need to initialize them to zero outside the loop.
+
+```python
+t0_vector, t1_vector = 0.0, 0.0
 ...
 
 for epoch in range(1, epochs + 1):
   ...
-  b0_vector = gamma * b0_vector + alpha * b0_gradient
-  b1_vector = gamma * b1_vector + alpha * b1_gradient
+  t0_vector = gamma * t0_vector + alpha * t0_gradient
+  t1_vector = gamma * t1_vector + alpha * t1_gradient
 ```
 
 Finally, update the parameters.
 
 ```python
-intercept = intercept - b0_vector
-coefficient = coefficient - b1_vector
+intercept = intercept - t0_vector
+coefficient = coefficient - t1_vector
 ```
 
 ## Conclusion
@@ -157,35 +183,35 @@ def predict(intercept, coefficient, x):
 
 def sgd_nesterov(x, y, df, epochs=100, alpha=0.01, gamma=0.9):
   intercept, coefficient = 0.0, 0.0
-  b0_velocity, b1_velocity = 0.0, 0.0
+  t0_velocity, t1_velocity = 0.0, 0.0
 
   random_index = np.random.randint(len(features))
   prediction = predict(intercept, coefficient, x[random_index])
   error = (prediction - y[random_index]) ** 2
 
-  df.loc[0] = [intercept, coefficient, b0_velocity, b1_velocity, error]
+  df.loc[0] = [intercept, coefficient, t0_velocity, t1_velocity, error]
 
   for epoch in range(1, epochs + 1):
     random_index = np.random.randint(len(features))
 
-    lookahead_intercept = intercept - gamma * b0_velocity
-    lookahead_coefficient = coefficient - gamma * b1_velocity
+    lookahead_intercept = intercept - gamma * t0_velocity
+    lookahead_coefficient = coefficient - gamma * t1_velocity
 
     lookahead_prediction = predict(lookahead_intercept, lookahead_coefficient, x[random_index])
 
-    b0_gradient = lookahead_prediction - y[random_index]
-    b1_gradient = (lookahead_prediction - y[random_index]) * x[random_index]
+    t0_gradient = lookahead_prediction - y[random_index]
+    t1_gradient = (lookahead_prediction - y[random_index]) * x[random_index]
 
-    b0_velocity = gamma * b0_velocity + alpha * b0_gradient
-    b1_velocity = gamma * b1_velocity + alpha * b1_gradient
+    t0_velocity = gamma * t0_velocity + alpha * t0_gradient
+    t1_velocity = gamma * t1_velocity + alpha * t1_gradient
 
-    intercept = intercept - b0_velocity
-    coefficient = coefficient - b1_velocity
+    intercept = intercept - t0_velocity
+    coefficient = coefficient - t1_velocity
 
     prediction = predict(intercept, coefficient, x[random_index])
     mean_squared_error = ((prediction - y[random_index]) ** 2) / 2
 
-    df.loc[epoch] = [intercept, coefficient, b0_velocity, b1_velocity, mean_squared_error]
+    df.loc[epoch] = [intercept, coefficient, t0_velocity, t1_velocity, mean_squared_error]
 
   return df
 ```

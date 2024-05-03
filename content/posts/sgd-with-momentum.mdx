@@ -58,7 +58,7 @@ However, the SGD algorithm has some limitations.
 It oscillates a lot, still requires a longer time to converge, and sometimes it may not converge at all because not be able to escape the local minima.
 With the help of **Momentum**, we can overcome these limitations.
 
-![MSE Hill in 3D](/assets/posts/sgd-with-momentum/3d-mse.png)
+![The 3D contour of the MSE of Iris Dataset](/assets/posts/sgd-with-momentum/3d-mse.png)
 
 Imagine rolling a ball down a hill. As it moves, it gains momentum, rolling faster until it reaches
 its maximum speed. Clearly, the ball's current speed is determined based on it's previous speed.
@@ -70,7 +70,7 @@ The same concept applies to SGD with Momentum.
 
 $$
 \begin{aligned}
-  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\theta_i) \\
+  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\theta) \\
   \theta_i &= \theta_i - v_{i,t}
 \end{aligned}
 $$
@@ -80,17 +80,22 @@ Where:
 - $v_{i,t}$ is the $i$-th Momentum vector at time $t$
 - $\gamma$ is the momentum coefficient
 - $\alpha$ is the learning rate
-- $\nabla J(\theta_i)$ is the gradient of the cost function $J(\theta_i)$
-- $\theta_i$ is the parameter vector
+- $\nabla J(\theta)$ is the gradient of the cost function $J(\theta)$
+- $\theta_i$ is the $i$-th parameter 
 
 For simplicity, we are rewrite the generalized form of SGD with Momentum as follows so that we
 can convert it to Python code easily.
 
 $$
 \begin{aligned}
-  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta_0, \theta_1) \\
-  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta_0, \theta_1) \\
-  \theta_0 &= \theta_0 - v_{0,t} \\
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta) \\
+  \theta_0 &= \theta_0 - v_{0,t}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta) \\
   \theta_1 &= \theta_1 - v_{1,t}
 \end{aligned}
 $$
@@ -106,55 +111,57 @@ First, we need to determine the gradient of the cost function $\nabla J(\theta_0
 
 $$
 \begin{aligned}
-  \nabla_{\theta_0} J(\theta_0, \theta_1) &= \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1) \\
+  \nabla_{\theta_0} J(\theta) &= \frac{\partial}{\partial \theta_0} J(\theta) \\
+  &= \frac{\partial}{\partial \theta_0} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
   &= f(x_i) - y_i
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-  \nabla_{\theta_1} J(\theta_0, \theta_1) &= \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1)  \\
+  \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
+  &= \frac{\partial}{\partial \theta_1} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
   &= (f(x_i) - y_i)x
 \end{aligned}
 $$
 
-Notice that the gradient of $\theta_0$ is the same as the error term $f(x_i) - y_i$.
+Notice that the gradient of the cost function w.r.t. the intercept $\theta_0$ is the error of the prediction.
 Thus, they can be written as
 
 ```python
 error = prediction - y[random_index]
-b0_gradient = prediction - y[random_index]
-b1_gradient = (prediction - y[random_index]) * x[random_index]
+t0_gradient = prediction - y[random_index]
+t1_gradient = (prediction - y[random_index]) * x[random_index]
 ```
 
-Next, let's convert the equation for updating the **Momentum** vectors into Python code.
-For simplicity, we are not storing $\theta_0$ and $\theta_1$ in a list.
-Instead, we are storing them into separate variables.
+Next, we have to update the **Momentum** vectors.
+For simplicity, we are not going to store the vector of $\theta_0$ and $\theta_1$ into a list.
+Instead, we are storing them into separate variables, `t0_vector` and `t1_vector` respectively.
 
 $$
 \begin{aligned}
-  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta_0, \theta_1) \\
-  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta_0, \theta_1) \\
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta) \\
 \end{aligned}
 $$
 
+Since the updated `t0_vector` relies on the previous `t0_vector`, we need to initialize them to zero outside the loop.
+
 ```python
-b0_vector, b1_vector = 0.0, 0.0
+t0_vector, t1_vector = 0.0, 0.0
 ...
 
 for epoch in range(1, epochs + 1):
   ...
-  b0_vector = gamma * b0_vector + alpha * b0_gradient
-  b1_vector = gamma * b1_vector + alpha * b1_gradient
+  t0_vector = gamma * t0_vector + alpha * t0_gradient
+  t1_vector = gamma * t1_vector + alpha * t1_gradient
 ```
-
-Before updating them, we have to initialize them to zero before the loop starts since the next Momentum vector is dependent on the previous Momentum vector.
 
 Finally, update the parameters.
 
 ```python
-intercept = intercept - b0_vector
-coefficient = coefficient - b1_vector
+intercept = intercept - t0_vector
+coefficient = coefficient - t1_vector
 ```
 
 ## Conclusion
@@ -162,7 +169,7 @@ coefficient = coefficient - b1_vector
 ![The loss function pathway of SGD with and without Momentum](/assets/posts/sgd-with-momentum/pathways.png)
 
 From the image above, we can see that the loss function pathway of SGD with Momentum is much more like a ball rolling down a hill.
-On the otherhand, Vanilla SGD oscillates a lot and takes a longer time to converge compared to SGD with Momentum.
+On the otherhand, Vanilla SGD oscillates a lot while traversing through the valley compared to SGD with Momentum.
 
 ## Coding
 
@@ -172,29 +179,29 @@ def predict(intercept, coefficient, x):
 
 def sgd_momentum(x, y, df, epochs=100, alpha=0.01, gamma=0.9):
   intercept, coefficient = 0.0, 0.0
-  b0_vector, b1_vector = 0.0, 0.0
+  t0_vector, t1_vector = 0.0, 0.0
   random_index = np.random.randint(len(features))
   prediction = predict(intercept, coefficient, x[random_index])
   error = ((prediction - y[random_index]) ** 2) / 2
 
-  df.loc[0] = [intercept, coefficient, b0_vector, b1_vector, error]
+  df.loc[0] = [intercept, coefficient, t0_vector, t1_vector, error]
 
   for epoch in range(1, epochs + 1):
     random_index = np.random.randint(len(features))
     prediction = predict(intercept, coefficient, x[random_index])
 
     error = prediction - y[random_index]
-    b0_gradient = error
-    b1_gradient = error * x[random_index]
+    t0_gradient = error
+    t1_gradient = error * x[random_index]
 
-    b0_vector = gamma * b0_vector + alpha * b0_gradient
-    b1_vector = gamma * b1_vector + alpha * b1_gradient
+    t0_vector = gamma * t0_vector + alpha * t0_gradient
+    t1_vector = gamma * t1_vector + alpha * t1_gradient
 
-    intercept = intercept - b0_vector
-    coefficient = coefficient - b1_vector
+    intercept = intercept - t0_vector
+    coefficient = coefficient - t1_vector
 
     mse = (error ** 2) / 2
-    df.loc[epoch] = [intercept, coefficient, b0_vector, b1_vector, mse]
+    df.loc[epoch] = [intercept, coefficient, t0_vector, t1_vector, mse]
 
   return df
 ```
