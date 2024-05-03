@@ -1,9 +1,9 @@
 ---
 title: Adadelta
 description: ...
-date: 2024-05-05
+date: 2024-05-10
 tag: Optimization
-published: false
+published: true
 type: Post
 ---
 
@@ -49,6 +49,15 @@ type: Post
   ]}
 />
 
+Remember that in [Adagrad](/posts/adagrad), we have see that each parameter has its own learning rate.
+However, the learning rate is rapidly decreasing as the number of iterations increases.
+This can be a problem because the learning rate can become too small and the model stops learning.
+
+In this post, we will see how Adadelta prevents learning rate decreasing rapidly over time.
+Instead of inefficiently storing, or summing, all the past squared gradients, 
+Adadelta calculates the average of the decayed past gradients and uses it to update parameters.
+Most importantly, Adadelta uses no learning rate.
+
 ## Mathematics of Adadelta
 
 $$
@@ -66,6 +75,9 @@ Where:
 - $\text{RMS}[\Delta \theta]_{t-1}$ is the root mean square of the updates up to time $t-1$
 - $\text{RMS}[g]_t$ is the root mean square of the gradients up to time $t$
 - $g_t$ is the gradient at time $t$
+
+Remember in the introduction part, I said Adadelta uses the average of the decayed past gradients to update the parameters.
+Adadelta uses RMS, or Root Mean Squared, to calculate the average of the decayed past gradients.
 
 Let's expand the root mean square of parameters up to time $t$, $\text{RMS}[\Delta \theta]_{t-1}$.
 
@@ -93,9 +105,109 @@ $$
 
 ## Implementation of Adadelta
 
+First, we need a custom function to calculate the Root Mean Squared.
+
+```python
+def rms(past_values, current_value, momentum=0.9, eps=1e-8):
+  average = momentum * np.mean(past_values**2) + (1 - momentum) * current_value**2
+  return np.sqrt(average + eps)
+```
+
+Second, we need to calculate $g_t$. Remember that the gradient of the cost function with respect to the intercept and coefficient are:
+
+$$
+\begin{aligned}
+  \nabla_{\theta_0} J(\theta) &= \frac{\partial}{\partial \theta_0} J(\theta) \\
+  &= \frac{\partial}{\partial \theta_0} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
+  &= f(x_i) - y_i
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
+  &= \frac{\partial}{\partial \theta_1} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
+  &= (f(x_i) - y_i)x
+\end{aligned}
+$$
+
+Then we can store the gradients $g_t$ w.r.t. to the intercept and the coefficient into two separate variables,
+`new_intercept_gradient` and `new_coefficient_gradient`.
+
+```python
+new_intercept_gradient = error
+new_coefficient_gradient = error * x[random_index]
+```
+
+Third, we need to determine $\text{RMS}[g]_t$. Since we have define the function `rms()` in the beginning,
+we can calculate the root mean square of the gradients.
+
+```python
+coefficient_gradient_rms = rms(df['coefficient_gradient'].values, new_coefficient_gradient)
+intercept_gradient_rms = rms(df['intercept_gradient'].values, new_intercept_gradient)
+```
+
+Fourth, we need to determine $\text{RMS}[{\Delta \theta}]_{t-1}$, and we are going to do the same
+but we are going to apply the function on the `intercept` and the `coefficients` columns.
+
+```python
+intercept_rms = rms(df['intercept'].values[:epoch], intercept)
+coefficient_rms = rms(df['coefficient'].values[:epoch], coefficient)
+```
+
+Finally, we can update the intercept and the coefficient.
+
+```python
+delta_intercept = -(intercept_rms / intercept_gradient_rms) * new_intercept_gradient
+delta_coefficient = -(coefficient_rms / coefficient_gradient_rms) * new_coefficient_gradient
+
+intercept += delta_intercept
+coefficient += delta_coefficient
+```
+
 ## Conclusion
 
+![Pathways of SGD, Adagrad, and Adadelta along the 2D MSE contour.](/assets/posts/adadelta/pathways.png)
+
+With Adadelta, we can reach the minimum point of the cost function faster than Vanilla SGD and Adagrad.
+Thus, it allows us to explore more in the parameter space and find the optimal parameters for the model.
+
 ## Coding
+
+```python
+def adadelta(x, y, df, epochs=100):
+  intercept, coefficient = -0.5, -0.75
+  random_index = np.random.randint(len(features))
+  prediction = predict(intercept, coefficient, x[random_index])
+  error = prediction - y[random_index]
+  df.loc[0] = [intercept, coefficient, error, error * x[random_index], (error ** 2) / 2]
+  
+  for epoch in range(1, epochs + 1):
+    random_index = np.random.randint(len(features))
+    prediction = predict(intercept, coefficient, x[random_index])
+    error = prediction - y[random_index]
+
+    new_intercept_gradient = error
+    new_coefficient_gradient = error * x[random_index]
+
+    intercept_rms = rms(df['intercept'].values[:epoch], intercept)
+    coefficient_rms = rms(df['coefficient'].values[:epoch], coefficient)
+
+    intercept_gradient_rms = rms(df['intercept_gradient'].values, new_intercept_gradient)
+    coefficient_gradient_rms = rms(df['coefficient_gradient'].values, new_coefficient_gradient)
+
+    delta_intercept = -(intercept_rms / intercept_gradient_rms) * new_intercept_gradient
+    delta_coefficient = -(coefficient_rms / coefficient_gradient_rms) * new_coefficient_gradient
+
+    intercept += delta_intercept
+    coefficient += delta_coefficient
+
+    mse = (error ** 2) / 2
+
+    df.loc[epoch] = [intercept, coefficient, new_intercept_gradient, new_coefficient_gradient, mse]
+
+  return df
+```
 
 ## References
 
