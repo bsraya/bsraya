@@ -49,31 +49,31 @@ Moreover, Ridge Regression is good at when we have data in which the multicollin
 In Ridge Regression, we are going to use the same linear function that Linear Regression uses:
 
 $$
-\hat{y} = \beta_0 + \beta_1 x
+\hat{y} = \theta_0 + \theta_1 x
 $$
 
-Similar to what we did in previous posts, we need to estimate the best $\beta_0$ and $\beta_1$ using the Gradient Descent algorithm.
-What the Gradient Descent algorithm does is to update the $\beta_0$ and $\beta_1$ values based on the cost function and the learning rate.
+Similar to what we did in previous posts, we need to estimate the best $\theta_0$ and $\theta_1$ using the Gradient Descent algorithm.
+What the Gradient Descent algorithm does is to update the $\theta_0$ and $\theta_1$ values based on the cost function and the learning rate.
 
 This example is just a simple linear model, we are going to use the following equations to update `intercept` and `coefficient`:
 
 $$
 \begin{gather*}
-\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1, \dots, \beta_p) \\
-\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1, \dots, \beta_p)x_1 \\
+\theta_0 = \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1, \dots, \theta_p) \\
+\theta_1 = \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1, \dots, \theta_p)x_1 \\
 \cdots \\
-\beta_p = \beta_n - \alpha \frac{\partial}{\partial \beta_n} J(\beta_0, \beta_1, \dots, \beta_p)x_p \\
+\theta_p = \theta_n - \alpha \frac{\partial}{\partial \theta_n} J(\theta_0, \theta_1, \dots, \theta_p)x_p \\
 \end{gather*}
 $$
 
-where $\alpha$ is the learning rate, $\beta_p$ is the $p$-th parameter, $J$ is the cost function, and $x_p$ is the $p$-th feature.
+where $\alpha$ is the learning rate, $\theta_p$ is the $p$-th parameter, $J$ is the cost function, and $x_p$ is the $p$-th feature.
 
-Since we only have $\beta_0$ and $\beta_1$, we can simplify the equation above to:
+Since we only have $\theta_0$ and $\theta_1$, we can simplify the equation above to:
 
 $$
 \begin{gather*}
-\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) \\
-\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)x_1 \\
+\theta_0 = \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1) \\
+\theta_1 = \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1)x_1 \\
 \end{gather*}
 $$
 
@@ -82,13 +82,13 @@ This penalty term is the sum of the absolute values of the weights. This is also
 The cost function for Ridge Regression that we have to minimize is given by:
 
 $$
-\min _\beta\left( \frac{1}{N} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2 + \lambda \sum_{j=1}^{p} |\beta_j^2| \right)
+\min _\beta\left( \frac{1}{N} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2 + \lambda \sum_{j=1}^{p} |\theta_j^2| \right)
 $$
 
 where
 1. $\frac{1}{N} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2$ is Mean Squared Error.
 2. $\lambda$ is the regularization parameter.
-2. $\sum_{j=1}^{p} |\beta_j^2|$ is the L2 norm of the weights.
+2. $\sum_{j=1}^{p} |\theta_j^2|$ is the L2 norm of the weights.
 
 ## What's Wrong with the Data?
 

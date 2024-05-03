@@ -69,10 +69,10 @@ From the graph above, we can see that the relationship between $x$ and $y$ is li
 That line is called a regression line, and it can be expressed using the following equation.
 
 $$
-\hat{y} = \beta_0 + \beta_1x
+\hat{y} = \theta_0 + \theta_1x
 $$
 
-where $\beta_0$ is the intercept and $\beta_1$ is the first coefficient. 
+where $\theta_0$ is the intercept and $\theta_1$ is the first coefficient. 
 In high school or college, we are used to seeing the equation above in the following form to calculate the distance between one point to another.
 
 $$
@@ -84,15 +84,15 @@ Plotting it will give us the following visualization.
 
 ![Iris Dataset Scatter Plot](/assets/posts/linear-regression/iris_scatter.png "Iris Dataset Scatter Plot")
 
-You should know that the intercept or $\beta_0$ is the starting point of the regression line.
-Whether the line is going up or down depends on the $\beta_1$ and the data.
-If $\beta_0 = 0$, it means that our regression line will start from $0$.
+You should know that the intercept or $\theta_0$ is the starting point of the regression line.
+Whether the line is going up or down depends on the $\theta_1$ and the data.
+If $\theta_0 = 0$, it means that our regression line will start from $0$.
 
 Expressing the equation like we did above is quite cryptic for people who don't have strong mathematical background.
 Since we are using the Iris Dataset, we can translate the equation into a more readable form.
 
 $$
-  \text{petal width} = \beta_0 + \beta_1 \times \text{sepal length}
+  \text{petal width} = \theta_0 + \theta_1 \times \text{sepal length}
 $$
 
 From the translation above can tell us the relationship between those two variables.
@@ -147,36 +147,36 @@ Conversely, `sepal_length` and `petal_width` are said to be inversely correlated
 
 With a regression line, it can help us to predict the $y$ value given a single $x$ value.
 However, most predictions made by the regression line are not always accurate
-since its ability to predict depends heavily on $\beta_0$ and $\beta_1$.
-If the values $\beta_0$ and $\beta_1$ are not tweaked correctly, the regression line will sit right far from most data points.
+since its ability to predict depends heavily on $\theta_0$ and $\theta_1$.
+If the values $\theta_0$ and $\theta_1$ are not tweaked correctly, the regression line will sit right far from most data points.
 
 ## Estimating the Intercept and Coefficient
 
-Previously, I mentioned that $\hat{y} = \beta_0 + \beta_1x$ is used to express the regression line.
-To be fair, we can't just look at the data and say, _"Ah ha! I can tell that $\beta_0$ is $0$ and $\beta_1$ is $0$."_
+Previously, I mentioned that $\hat{y} = \theta_0 + \theta_1x$ is used to express the regression line.
+To be fair, we can't just look at the data and say, _"Ah ha! I can tell that $\theta_0$ is $0$ and $\theta_1$ is $0$."_
 For most of the time, it's not feasible to keep on guessing those values.
 Thus, it's better to use an iterative method such as Gradient Descent algorithm.
-What the Gradient Descent algorithm does is to update the $\beta_0$ and $\beta_1$ values based on the cost function and the learning rate.
+What the Gradient Descent algorithm does is to update the $\theta_0$ and $\theta_1$ values based on the cost function and the learning rate.
 
 This example is just a simple linear model, we are going to use the following equations to update `intercept` and `coefficient`:
 
 $$
 \begin{gather*}
-\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1, \dots, \beta_p) \\
-\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1, \dots, \beta_p)x_1 \\
+\theta_0 = \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1, \dots, \theta_p) \\
+\theta_1 = \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1, \dots, \theta_p)x_1 \\
 \cdots \\
-\beta_p = \beta_p - \alpha \frac{\partial}{\partial \beta_n} J(\beta_0, \beta_1, \dots, \beta_p)x_p \\
+\theta_p = \theta_p - \alpha \frac{\partial}{\partial \theta_n} J(\theta_0, \theta_1, \dots, \theta_p)x_p \\
 \end{gather*}
 $$
 
-where $\alpha$ is the learning rate, $\beta_p$ is the $p$-th parameter, $J$ is the cost function, and $x_p$ is the $p$-th feature.
+where $\alpha$ is the learning rate, $\theta_p$ is the $p$-th parameter, $J$ is the cost function, and $x_p$ is the $p$-th feature.
 
-Since we only have $\beta_0$ and $\beta_1$, we can simplify the equation above to:
+Since we only have $\theta_0$ and $\theta_1$, we can simplify the equation above to:
 
 $$
 \begin{gather*}
-\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) \\
-\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)x_1 \\
+\theta_0 = \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1) \\
+\theta_1 = \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1)x_1 \\
 \end{gather*}
 $$
 
@@ -254,7 +254,7 @@ species_name = [species_dict[i] for i in target]
 Note that, the regression line is calculated using the following equation.
 
 $$
-  \hat{y} = \beta_0 + \beta_1x
+  \hat{y} = \theta_0 + \theta_1x
 $$
 
 ```python
@@ -265,8 +265,8 @@ regression_line = [
 ]
 ```
 
-where $\beta_0$ is the intercept and $\beta_1$ is the first coefficient.
-In this case, we are going to replace $\beta_0$ with `b` and $\beta_1$ with `x`.
+where $\theta_0$ is the intercept and $\theta_1$ is the first coefficient.
+In this case, we are going to replace $\theta_0$ with `b` and $\theta_1$ with `x`.
 Without any assumption, we are going to start with `b=0` and `x=0`.
 
 ```python
@@ -323,7 +323,7 @@ To see how I made this graph, you could check out the source code [here](https:/
 ## Conclusion
 
 1. Linear Regression is a supervised learning algorithm that is used to predict the value of a continuous variable.
-2. The equation of the regression line is $y = \beta_0 + \beta_1 \times x$.
+2. The equation of the regression line is $y = \theta_0 + \theta_1 \times x$.
 3. The regression line is said to be good when it is close to most data points.
 4. The quality of the regression line can be measured using evaluation metrics, one of them is Mean Squared Error (MSE).
 5. The smaller the MSE, the closer the regression line is to most data points. Conversely, the larger the MSE, the farther the regression line is to most data points.

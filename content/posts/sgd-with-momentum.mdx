@@ -70,8 +70,8 @@ The same concept applies to SGD with Momentum.
 
 $$
 \begin{aligned}
-  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\beta_i) \\
-  \beta_i &= \beta_i - v_{i,t}
+  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\theta_i) \\
+  \theta_i &= \theta_i - v_{i,t}
 \end{aligned}
 $$
 
@@ -80,18 +80,18 @@ Where:
 - $v_{i,t}$ is the $i$-th Momentum vector at time $t$
 - $\gamma$ is the momentum coefficient
 - $\alpha$ is the learning rate
-- $\nabla J(\beta_i)$ is the gradient of the cost function $J(\beta_i)$
-- $\beta_i$ is the parameter vector
+- $\nabla J(\theta_i)$ is the gradient of the cost function $J(\theta_i)$
+- $\theta_i$ is the parameter vector
 
 For simplicity, we are rewrite the generalized form of SGD with Momentum as follows so that we
 can convert it to Python code easily.
 
 $$
 \begin{aligned}
-  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
-  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
-  \beta_0 &= \beta_0 - v_{0,t} \\
-  \beta_1 &= \beta_1 - v_{1,t}
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta_0, \theta_1) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta_0, \theta_1) \\
+  \theta_0 &= \theta_0 - v_{0,t} \\
+  \theta_1 &= \theta_1 - v_{1,t}
 \end{aligned}
 $$
 
@@ -102,23 +102,23 @@ In most cases, it is set to $0.9$.
 
 ## Implementation of SGD with Momentum
 
-First, we need to determine the gradient of the cost function $\nabla J(\beta_0, \beta_1)$ with respect to the parameters $\beta_0$ and $\beta_1$.
+First, we need to determine the gradient of the cost function $\nabla J(\theta_0, \theta_1)$ with respect to the parameters $\theta_0$ and $\theta_1$.
 
 $$
 \begin{aligned}
-  \nabla_{\beta_0} J(\beta_0, \beta_1) &= \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) \\
+  \nabla_{\theta_0} J(\theta_0, \theta_1) &= \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1) \\
   &= f(x_i) - y_i
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-  \nabla_{\beta_1} J(\beta_0, \beta_1) &= \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)  \\
+  \nabla_{\theta_1} J(\theta_0, \theta_1) &= \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1)  \\
   &= (f(x_i) - y_i)x
 \end{aligned}
 $$
 
-Notice that the gradient of $\beta_0$ is the same as the error term $f(x_i) - y_i$.
+Notice that the gradient of $\theta_0$ is the same as the error term $f(x_i) - y_i$.
 Thus, they can be written as
 
 ```python
@@ -128,13 +128,13 @@ b1_gradient = (prediction - y[random_index]) * x[random_index]
 ```
 
 Next, let's convert the equation for updating the **Momentum** vectors into Python code.
-For simplicity, we are not storing $\beta_0$ and $\beta_1$ in a list.
+For simplicity, we are not storing $\theta_0$ and $\theta_1$ in a list.
 Instead, we are storing them into separate variables.
 
 $$
 \begin{aligned}
-  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
-  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\beta_0, \beta_1) \\
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta_0, \theta_1) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta_0, \theta_1) \\
 \end{aligned}
 $$
 

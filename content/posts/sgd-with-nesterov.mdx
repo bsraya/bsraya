@@ -64,8 +64,8 @@ The mathematics of NAG is quite similar with SGD with Momentum but with a slight
 
 $$
 \begin{aligned}
-  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\beta_i - \gamma v_{t-1}) \\
-  \beta_i &= \beta_i - v_{0,t} \\
+  v_{i, t} &= \gamma v_{i, t-1} + \alpha \nabla J(\theta_i - \gamma v_{t-1}) \\
+  \theta_i &= \theta_i - v_{0,t} \\
 \end{aligned}
 $$
 
@@ -74,18 +74,18 @@ Where:
 - $v_{i,t}$ is the $i$-th Momentum vector at time $t$
 - $\gamma$ is the momentum coefficient
 - $\alpha$ is the learning rate
-- $\nabla J(\beta_i - \gamma v_{t-1})$ is the gradient of the cost function at the point $\beta_i - \gamma v_{t-1}$, or the lookahead point
-- $\beta_i$ is the parameter vector
+- $\nabla J(\theta_i - \gamma v_{t-1})$ is the gradient of the cost function at the point $\theta_i - \gamma v_{t-1}$, or the lookahead point
+- $\theta_i$ is the parameter vector
 
 For simplicity, we are rewrite the generalized form of NAG as follows so that we
 can convert it to Python code easily.
 
 $$
 \begin{aligned}
-  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\beta_0 - \gamma v_{t-1}) \\
-  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\beta_1 - \gamma v_{t-1}) \\
-  \beta_0 &= \beta_0 - v_{0,t} \\
-  \beta_1 &= \beta_1 - v_{1,t}
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta_0 - \gamma v_{t-1}) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta_1 - \gamma v_{t-1}) \\
+  \theta_0 &= \theta_0 - v_{0,t} \\
+  \theta_1 &= \theta_1 - v_{1,t}
 \end{aligned}
 $$
 
@@ -94,19 +94,19 @@ However, NAG is more "conscience" and efficient than Momentum because it anticip
 
 ## Implementation of NAG
 
-First, we need to determine the value of $\nabla J(\beta_i - \gamma v_{t-1})$, the gradient of the cost function at the point $\beta_i - \gamma v_{t-1}$.
+First, we need to determine the value of $\nabla J(\theta_i - \gamma v_{t-1})$, the gradient of the cost function at the point $\theta_i - \gamma v_{t-1}$.
 Remember that the
 
 $$
 \begin{aligned}
-  \nabla_{\beta_0} J(\beta_0, \beta_1) &= \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) \\
+  \nabla_{\theta_0} J(\theta_0, \theta_1) &= \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1) \\
   &= f(x_i) - y_i
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-  \nabla_{\beta_1} J(\beta_0, \beta_1) &= \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)  \\
+  \nabla_{\theta_1} J(\theta_0, \theta_1) &= \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1)  \\
   &= (f(x_i) - y_i)x
 \end{aligned}
 $$

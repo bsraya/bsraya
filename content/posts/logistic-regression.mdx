@@ -54,7 +54,7 @@ However, it also has the same limitations as Linear Regression, such as:
 First, Logistic Regression still uses Linear Equation used in Linear Regression, and it's expressed as:
 
 $$
-\hat{y} = \beta_0 + \beta_1x
+\hat{y} = \theta_0 + \theta_1x
 $$
 
 Second, we are going to need Sigmoid function.
@@ -64,10 +64,10 @@ $$
 \sigma(z) = \frac{1}{1 + e^{-z}}
 $$
 
-where $z = \beta_0 + \beta_1 \times x$. Then the sigmoid function can be rewritten as:
+where $z = \theta_0 + \theta_1 \times x$. Then the sigmoid function can be rewritten as:
 
 $$
-\sigma(\beta_0 + \beta_1x) = P(y | x) = \frac{1}{1 + e^{-(\beta_0 + \beta_1x)}}
+\sigma(\theta_0 + \theta_1x) = P(y | x) = \frac{1}{1 + e^{-(\theta_0 + \theta_1x)}}
 $$
 
 After acquiring the probability value from the Sigmoid function, we can use a threshold value to classify into one or another.
@@ -76,28 +76,28 @@ To generalize, we can use the following equation to predict the probability of a
 Once we have the probability of an event occuring, we then use a threshold value to round up the probability value to either $0$ or $1$.
 If $P(y | x) \geq 0.5$, then the data is classified as $1$, otherwise it is classified as $0$.
 
-Similar to what we did in [the Linear Regression post](/posts/linear-regression), we need to estimate the best $\beta_0$ and $\beta_1$ using the Gradient Descent algorithm.
-What the Gradient Descent algorithm does is to update the $\beta_0$ and $\beta_1$ values based on the cost function and the learning rate.
+Similar to what we did in [the Linear Regression post](/posts/linear-regression), we need to estimate the best $\theta_0$ and $\theta_1$ using the Gradient Descent algorithm.
+What the Gradient Descent algorithm does is to update the $\theta_0$ and $\theta_1$ values based on the cost function and the learning rate.
 
 This example is just a simple linear model, we are going to use the following equations to update `intercept` and `coefficient`:
 
 $$
 \begin{gather*}
-\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1, \dots, \beta_p) \\
-\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1, \dots, \beta_p)x_1 \\
+\theta_0 = \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1, \dots, \theta_p) \\
+\theta_1 = \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1, \dots, \theta_p)x_1 \\
 \cdots \\
-\beta_p = \beta_p - \alpha \frac{\partial}{\partial \beta_n} J(\beta_0, \beta_1, \dots, \beta_p)x_p \\
+\theta_p = \theta_p - \alpha \frac{\partial}{\partial \theta_n} J(\theta_0, \theta_1, \dots, \theta_p)x_p \\
 \end{gather*}
 $$
 
-where $\alpha$ is the learning rate, $\beta_p$ is the $p$-th parameter, $J$ is the cost function, and $x_p$ is the $p$-th feature.
+where $\alpha$ is the learning rate, $\theta_p$ is the $p$-th parameter, $J$ is the cost function, and $x_p$ is the $p$-th feature.
 
-Since we only have $\beta_0$ and $\beta_1$, we can simplify the equation above to:
+Since we only have $\theta_0$ and $\theta_1$, we can simplify the equation above to:
 
 $$
 \begin{gather*}
-\beta_0 = \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta_0, \beta_1) \\
-\beta_1 = \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta_0, \beta_1)x_1 \\
+\theta_0 = \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1) \\
+\theta_1 = \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1)x_1 \\
 \end{gather*}
 $$
 

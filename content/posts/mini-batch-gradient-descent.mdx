@@ -89,10 +89,10 @@ def mbgd(x, y, epochs, df, batch_size = 64, alpha = 0.01):
     for x, y in zip(x_batches, y_batches):
       sum_error = 0.0
       predictions = predict(intercept, coefficient, x)
-      b0_error = (1/batch_size) * np.sum(predictions - y)
-      b1_error = (1/batch_size) * np.sum((predictions - y) * x)
-      intercept = intercept - alpha * b0_error
-      coefficient = coefficient - alpha * b1_error
+      t0_error = (1/batch_size) * np.sum(predictions - y)
+      t1_error = (1/batch_size) * np.sum((predictions - y) * x)
+      intercept = intercept - alpha * t0_error
+      coefficient = coefficient - alpha * t1_error
       sum_error = sum_error + np.sum((predictions - y) ** 2) / (2 * batch_size)
       df.loc[index] = [int(epoch), intercept, coefficient, sum_error]
       index += 1
