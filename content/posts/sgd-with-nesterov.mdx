@@ -79,19 +79,44 @@ Where:
 - $\nabla J(\theta_i - \gamma v_{t-1})$ is the gradient of the cost function at the point $\theta_i - \gamma v_{i, t-1}$, or the lookahead point
 - $\theta_i$ is the parameter vector
 
+The gradient of the cost function w.r.t. to the intercept $\theta_0$
+and the coefficient $\theta_1$ are expressed as the following.
+
+$$
+\begin{aligned}
+  \nabla_{\theta_0} J(\theta) &= \frac{\partial}{\partial \theta_0} J(\theta) \\
+  &= \frac{1}{2} \frac{\partial}{\partial \theta_0} (\hat{y}_i - y_i)^2  \\
+  &= \hat{y}_i - y_i
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
+  &= \frac{1}{2} \frac{\partial}{\partial \theta_1} (\hat{y}_i - y_i)^2 \\
+  &= (\hat{y}_i - y_i)x
+\end{aligned}
+$$
+
+Notice that the gradient of the cost function w.r.t. the intercept $\theta_0$ is the error of the prediction.
+
 For simplicity, we are rewrite the generalized form of NAG as follows so that we
 can convert it to Python code easily.
 
 $$
+\hat{y}_i = \theta_0 - \gamma v_{0, t-1} + (\theta_1 - \gamma v_{1, t-1})x
+$$
+
+$$
 \begin{aligned}
-  v_{0, t} &= \gamma v_{0, t-1} + \alpha \nabla J(\theta_0 - \gamma v_{0, t-1}) \\
+  v_{0, t} &= \gamma v_{0, t-1} + \alpha (\hat{y}_i - y_i) \\
   \theta_0 &= \theta_0 - v_{0,t}
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-  v_{1, t} &= \gamma v_{1, t-1} + \alpha \nabla J(\theta_1 - \gamma v_{1, t-1}) \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha (\hat{y}_i - y_i)x \\
   \theta_1 &= \theta_1 - v_{1,t}
 \end{aligned}
 $$

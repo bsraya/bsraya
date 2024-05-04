@@ -50,7 +50,7 @@ type: Post
 
 ## Introduction
 
-In the [Mathematics of Gradient Descent](post), we have discussed what Gradient Descent is, how it works, 
+In the [Mathematics of Gradient Descent](post), we have discussed what Gradient Descent is, how it works,
 and how to derive the equations needed to update the parameters of the model.
 
 In this post, we are going to write Batch Gradient Descent from scratch in Python.
@@ -131,64 +131,66 @@ $$
 
 with MSE value around $0.191$. The equation above is going to be our base line for this experiment to determine how good our own Gradient Descent implementation.
 
+## Mathematics of Batch Gradient Descent
+
+The parameter update rule is expressed as
+
+$$
+\theta = \theta - \alpha \nabla_{\theta} J(\theta)
+$$
+
+where
+
+- $\theta$ is the parameter vector
+- $\alpha$ is the learning rate
+- $J(\theta)$ is the cost function
+- $\nabla_{\theta} J(\theta)$ is the gradient of the cost function
+
+The gradient of the cost function w.r.t. to the intercept $\theta_0$
+and the coefficient $\theta_1$ are expresed as the following.
+
+$$
+\begin{aligned}
+\nabla_{\theta_0} J(\theta) &= \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i) \\
+\nabla_{\theta_1} J(\theta) &= \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i) x \\
+\end{aligned}
+$$
+
+For more details, please refer to the [Mathematics of Gradient Descent](/posts/mathematics-of-gradient-descent) post.
+
 ## Implemetation of Batch Gradient Descent
 
-Before we implement Batch Gradient Descent, we need to define the prediction function.
+First, define the prediction function.
 
 ```python
 def predict(intercept, coefficient, dataset):
   return intercept + coefficient * x
 ```
 
-In order to update the intercept $\theta_0$ and the coefficient $\theta_1$ iteratively, we are going to use the following equations.
-
-$$
-\begin{aligned}
-  \theta_0 &= \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta) \\
-  \theta_1 &= \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta)
-\end{aligned}
-$$
-
-where
-
-$$
-\begin{aligned}
-\frac{\partial}{\partial \theta_0} J(\theta) &= \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i)^2 \\ 
-\frac{\partial}{\partial \theta_1} J(\theta) &= \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i)^2 x \\ 
-\end{aligned}
-$$
-
-First, let's determine the error term of the prediction.
+Second, determine the prediction error and the gradient of the cost function w.r.t the intercept $\theta_0$ and the coefficient $\theta_1$.
 
 ```python
 length = len(x)
 error = prediction - y
 
-t0_error = np.sum(error) / length
-t1_error = np.sum(error * x) / length
+intercept_gradient = np.sum(error) / length
+coefficient_gradient = np.sum(error * x) / length
 ```
 
-Second, we update the intercept $\theta_0$ and the coefficient $\theta_1$.
+Lastly, update the intercept $\theta_0$ and the coefficient $\theta_1$.
 
 ```python
-intercept = intercept - alpha * t0_error
-coefficient = coefficient - alpha * t1_error
-```
-
-Finally, we can calculate the MSE of the regression line.
-
-```python
-mse = np.sum(error ** 2) / (2 * length)
+intercept = intercept - alpha * intercept_gradient
+coefficient = coefficient - alpha * coefficient_gradient
 ```
 
 ## Conclusion
 
 ![BGD Loss Function Graph](/assets/posts/batch-gradient-descent/iterations.png "BGD Loss Function Graph")
 
-![Regression line changes over time](/assets/posts/batch-gradient-descent/regression-lines.png "Regression line changes over time")
+![The change of the regression line over time](/assets/posts/batch-gradient-descent/regression-lines.png "The change of the regression line over time")
 
 ![Regression line animation](/assets/posts/batch-gradient-descent/bgd.gif "Regression line animation")
-
 
 From the graph above, we can see that how the regression line changes from the time to time.
 After $10,000$ iterations, the MSE value of our own Gradient Descent is $0.195$ which is quite close to our baseline, $0.191$.
@@ -197,11 +199,9 @@ After $10,000$ iterations, the MSE value of our own Gradient Descent is $0.195$ 
 
 Here are some keypoints for Batch Gradient Descent:
 
-1. Batch Gradient Descent only updates the parameters once after considering all the data points.
-2. Since the parameters are updated once after considering all the data points, it takes longer time for the algorithm to converge.
-3. Not only does Batch Gradient Descent takes a significant amount time to converge due to the large number of data points, but it also takes up a lot of computational resources.
-4. Batch Gradient Descent is not the best algorithm for large datasets.
-5. Since the gradients we get over time are pretty much the same, then it may stuck in a local minima. Noisy gradients would allow the algorithm to escape local minima.
+1. Batch Gradient Descent only updates the parameters once after considering all the data points. Thus, it takes longer time for the algorithm to converge.
+2. Not only does it takes longer to converge, but it also takes up a lot of computational resources.
+3. Batch Gradient Descent is not the best algorithm for large datasets.
 
 ## Code
 
@@ -218,10 +218,10 @@ def bgd(x, y, epochs, df, alpha = 0.01):
   for epoch in range(1, epochs):
     predictions = predict(intercept, coefficient, x)
     error = predictions - y
-    t0_error = np.sum(error) / length
-    t1_error = np.sum(error * x) / length
-    intercept = intercept - alpha * t0_error
-    coefficient = coefficient - alpha * t1_error
+    intercept_gradient = np.sum(error) / length
+    coefficient_gradient = np.sum(error * x) / length
+    intercept = intercept - alpha * intercept_gradient
+    coefficient = coefficient - alpha * coefficient_gradient
     mse = np.sum(error ** 2) / (2 * length)
     df.loc[epoch] = [intercept, coefficient, mse]
   return df
@@ -229,10 +229,11 @@ def bgd(x, y, epochs, df, alpha = 0.01):
 
 ## References
 
-1. M. Jack. _3D Gradient Descent in Python_. Source [https://jackmckew.dev/3d-gradient-descent-in-python.html](https://jackmckew.dev/3d-gradient-descent-in-python.html)
-2. T. Arseny. _Gradient Descent From Scratch_. Source [https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc](https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc)
-3. O. Artem. _Stochastic, Batch, and Mini-Batch Gradient Descent_. Source [https://towardsdatascience.com/stochastic-batch-and-mini-batch-gradient-descent-demystified-8b28978f7f5](https://towardsdatascience.com/stochastic-batch-and-mini-batch-gradient-descent-demystified-8b28978f7f5)
-4. P. Sushant. _Batch, Mini Batch, and Stochastic Gradient Descent_. Source [https://towardsdatascience.com/batch-mini-batch-stochastic-gradient-descent-7a62ecba642a](https://towardsdatascience.com/batch-mini-batch-stochastic-gradient-descent-7a62ecba642a)
-5. Geeksforgeeks. _Difference between Batch Gradient Descent and Stochastic Gradient Descent_. Source [https://www.geeksforgeeks.org/difference-between-batch-gradient-descent-and-stochastic-gradient-descent/](https://www.geeksforgeeks.org/difference-between-batch-gradient-descent-and-stochastic-gradient-descent/)
-6. Sweta. _Batch, Mini Batch, and Stochastic Gradient Descent_. Source [https://sweta-nit.medium.com/batch-mini-batch-and-stochastic-gradient-descent-e9bc4cacd461](https://sweta-nit.medium.com/batch-mini-batch-and-stochastic-gradient-descent-e9bc4cacd461)
-7. Geeksforgeeks. _ML | Mini-Batch Gradient Descent with Python_. Source [https://www.geeksforgeeks.org/ml-mini-batch-gradient-descent-with-python/](https://www.geeksforgeeks.org/ml-mini-batch-gradient-descent-with-python/)
+1. Sebastian Ruder. "An overview of gradient descent optimization algorithms." [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016).
+2. M. Jack. _3D Gradient Descent in Python_. Source [https://jackmckew.dev/3d-gradient-descent-in-python.html](https://jackmckew.dev/3d-gradient-descent-in-python.html)
+3. T. Arseny. _Gradient Descent From Scratch_. Source [https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc](https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc)
+4. O. Artem. _Stochastic, Batch, and Mini-Batch Gradient Descent_. Source [https://towardsdatascience.com/stochastic-batch-and-mini-batch-gradient-descent-demystified-8b28978f7f5](https://towardsdatascience.com/stochastic-batch-and-mini-batch-gradient-descent-demystified-8b28978f7f5)
+5. P. Sushant. _Batch, Mini Batch, and Stochastic Gradient Descent_. Source [https://towardsdatascience.com/batch-mini-batch-stochastic-gradient-descent-7a62ecba642a](https://towardsdatascience.com/batch-mini-batch-stochastic-gradient-descent-7a62ecba642a)
+6. Geeksforgeeks. _Difference between Batch Gradient Descent and Stochastic Gradient Descent_. Source [https://www.geeksforgeeks.org/difference-between-batch-gradient-descent-and-stochastic-gradient-descent/](https://www.geeksforgeeks.org/difference-between-batch-gradient-descent-and-stochastic-gradient-descent/)
+7. Sweta. _Batch, Mini Batch, and Stochastic Gradient Descent_. Source [https://sweta-nit.medium.com/batch-mini-batch-and-stochastic-gradient-descent-e9bc4cacd461](https://sweta-nit.medium.com/batch-mini-batch-and-stochastic-gradient-descent-e9bc4cacd461)
+8. Geeksforgeeks. _ML | Mini-Batch Gradient Descent with Python_. Source [https://www.geeksforgeeks.org/ml-mini-batch-gradient-descent-with-python/](https://www.geeksforgeeks.org/ml-mini-batch-gradient-descent-with-python/)

@@ -53,8 +53,8 @@ type: Post
 Throughout this post, we are going to find out how the Gradient Descent algorithm
 can help us to find the best paremeters iteratively by minimizing the cost function of a model.
 
-Note that the term __loss Function__ and __cost function__ are used interchangeably.
-We should know that __loss unction__ is the error value of a single data point, while __cost function__ is the average of all loss functions of all data points.
+Note that the term **loss Function** and **cost function** are used interchangeably.
+We should know that **loss unction** is the error value of a single data point, while **cost function** is the average of all loss functions of all data points.
 
 ## Example
 
@@ -471,16 +471,30 @@ where $N$ is the number of data points, $f(x)$ is the predicted value, and $y_i$
 To acheive this, we have to update parameters using the following equation.
 
 $$
-  \theta_{i} = \theta_i - \alpha \cdot \frac{\partial}{\partial \theta_i} J(\theta)
+  \theta_{i} = \theta_i - \alpha \cdot \nabla_{\theta_i} J(\theta)
 $$
 
-where $\theta_i$ is the parameters we want to update and $\alpha$ is the learning rate.
+where $\theta_i$ is $i$-the parameter, or the parameter we want to update, and $\alpha$ is the learning rate.
+
+Some textbooks would write the equation above as
+
+$$
+\theta = \theta - \alpha \frac{\partial}{\partial \theta} J(\theta)
+$$
+
+$\nabla_{\theta}$ and $\frac{\partial}{\partial \theta}$ mean the gradient of the cost function w.r.t. the parameters.
+
+Note that the gradient of the cost function $\nabla_{\theta_i} J(\theta)$ points
+to the direction of the steepest ascent of the cost function.
+In order to move in the opposite direction of the gradient to minimize
+the cost functionm, we subtract $\theta_i$ with the gradient of the cost function.
+Thus, the minimum cost function can be reached.
 
 Let's partial differentiate the cost function that we want to minimize.
 
 $$
   \begin{aligned}
-    \frac{\partial}{\partial \theta_i} J(\theta)
+    \nabla_{\theta_i} J(\theta)
     &= \frac{\partial}{\partial \theta_i} (\frac{1}{N} \sum_{i=1}^N (f(x) - y_i)^2) \\
     &= \frac{1}{N} \frac{\partial}{\partial \theta_i} \sum_{i=1}^N (f(x) - y_i)^2
   \end{aligned}
@@ -519,8 +533,8 @@ Deriving the new cost function above, the scalar $2$ will be cancelled out from 
 
 $$
     \begin{aligned}
-        \frac{\partial}{\partial \theta_0} J(\theta) = \frac{1}{N} \sum_{i=1}^N (f(x) - y_i) \\
-        \frac{\partial}{\partial \theta_1} J(\theta) = \frac{1}{N} \sum_{i=1}^N (f(x) - y_i) x
+        \nabla_{\theta_i} J(\theta) = \frac{1}{N} \sum_{i=1}^N (f(x) - y_i) \\
+        \nabla_{\theta_i} J(\theta) = \frac{1}{N} \sum_{i=1}^N (f(x) - y_i) x
     \end{aligned}
 $$
 
