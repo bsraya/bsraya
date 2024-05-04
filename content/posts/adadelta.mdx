@@ -87,7 +87,7 @@ $$
 \text{RMS}[{\Delta \theta}]_{t-1} = \sqrt{E[\Delta \theta^2]_{t-1} + \epsilon}
 $$
 
-Where
+where $E[\Delta \theta^2]_{t-1}$ is the running average of the squared parameter updates up to time $t-1$.
 
 $$
 E[\Delta \theta^2]_{t-1} = \gamma E[\Delta \theta^2]_{t-2} + (1 - \gamma) \Delta \theta_{t-1}^2
@@ -99,7 +99,7 @@ $$
 \text{RMS}[g]_t = \sqrt{E[g^2]_t + \epsilon}
 $$
 
-Where
+where $E[g^2]_t$ is the running average of the squared gradients up to time $t$.
 
 $$
 E[g^2]_t = \gamma E[g^2]_{t-1} + (1 - \gamma) g_t^2
