@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
 interface SeriesPost {
-    title: string,
-    current: boolean
+  title: string,
+  current: boolean
 }
 
 export default function SeriesTable({ title, series }: { title: string, series: SeriesPost[] }) {
@@ -14,7 +14,7 @@ export default function SeriesTable({ title, series }: { title: string, series: 
           series.map(({ title, current }: SeriesPost) => {
             const slug = title.toLowerCase().replace(/ /g, '-');
             return (
-              <li key={slug} className={`hover:underline text-lg ${current ? 'font-bold' : ''}`}>
+              <li key={slug} className={`hover:underline text-lg ${current ? 'font-bold underline' : ''}`}>
                 <Link href={`/posts/${slug}`} as={`/posts/${slug}`}>
                   {title}
                 </Link>
