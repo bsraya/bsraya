@@ -1,6 +1,6 @@
 ---
 title: Adagrad
-description: Parameter updates with unique learning rate for each parameter.
+description: Parameter updates with unique learning rate for each parameter
 date: 2024-05-01
 tag: Optimization
 published: true
@@ -90,9 +90,33 @@ Where:
 - $\odot$ is the element-wise product
 - $g_{t,i}$ is the gradient of the $i$-th parameter at time $t$
 
-By dividing the learning rate by the square root of the sum of the squares of the gradients up to time $t$,
-it eliminates the need to manually tune the learning rate for each parameter.
-Most implementations leave the learning rate $\alpha$ value to $0.01$.
+Since we only have two parameters, we are going to need $g_{t,0}$
+to represent the gradient of the cost function with respect to the intercept,
+and $g_{t,1}$ to represent the gradient of the cost function with respect to the coefficient. 
+These two can be expressed as follows:
+
+$$
+\begin{aligned}
+  g_{t,0} &= \nabla_{\theta_0} J(\theta) \\
+  &= \frac{\partial}{\partial \theta_0} J(\theta) \\
+  &= \frac{1}{2} \frac{\partial}{\partial \theta_0} (\hat{y}_i - y_i)^2 \\
+  &= \hat{y}_i - y_i
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  g_{t,1} &= \nabla_{\theta_1} J(\theta) \\
+  &= \frac{\partial}{\partial \theta_1} J(\theta) \\
+  &= \frac{1}{2} \frac{\partial}{\partial \theta_1} (\hat{y}_i - y_i)^2 \\
+  &= (\hat{y}_i - y_i)x_i
+\end{aligned}
+$$
+
+Notice in the parameter update rule, Adagrad eliminates the need to manually 
+tune the learning rate for each parameter by dividing the learning rate by the 
+square  root of the sum of the squares of the gradients up to time $t$.
+In most cases, the learning rate $\alpha$ value can be set to $0.01$.
 
 From the equation above, we could see that the learning rate is divided by $\sqrt{G_{t,ii} + \epsilon}$.
 Meaning that, the learning rate will decrease rapidly as $G_{t,ii}$ increases.
@@ -109,27 +133,7 @@ accumulated_squared_intercept_gradient = 0.0
 accumulated_squared_coefficient_gradient = 0.0
 ```
 
-I know the variables are long, but it's better to be descriptive, and we will thank ourselves in the future.
-
-Remember that the gradient of the cost function with respect to the intercept and coefficient are:
-
-$$
-\begin{aligned}
-  \nabla_{\theta_0} J(\theta) &= \frac{\partial}{\partial \theta_0} J(\theta) \\
-  &= \frac{\partial}{\partial \theta_0} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
-  &= f(x_i) - y_i
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-  \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
-  &= \frac{\partial}{\partial \theta_1} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
-  &= (f(x_i) - y_i)x
-\end{aligned}
-$$
-
-We would notice that the gradient of $\theta_0$ is just the difference between the prediction and the target value.
+Remember that $g_{t,0}$ is just the prediction error at time $t$.
 
 ```python
 random_index = np.random.randint(len(features))

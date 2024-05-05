@@ -568,11 +568,11 @@ Here are the takeaway keypoints from this entire post.
    $$
 3. The update rule for $\theta_0$
    $$
-       \theta_0 = \theta_0 - \alpha \cdot \frac{1}{N} \sum_{i=1}^N (f(x) - y_i)
+       \theta_0 = \theta_0 - \alpha \cdot \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i)
    $$
 4. The update rule for $\theta_1$
    $$
-       \theta_1 = \theta_1 - \alpha \cdot \frac{1}{N} \sum_{i=1}^N (f(x) - y_i)x
+       \theta_1 = \theta_1 - \alpha \cdot \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i)x_i
    $$
 5. The weights $\theta_0$ and $\theta_1$ are updated iteratively.
 6. The learning rate $\alpha$ is a hyperparameter that controls the speed of the gradient descent on any slopes.

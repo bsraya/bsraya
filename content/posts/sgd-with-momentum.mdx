@@ -109,14 +109,15 @@ $$
 \begin{aligned}
   \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
   &= \frac{1}{2} \frac{\partial}{\partial \theta_1} (\hat{y}_i - y_i)^2 \\
-  &= (\hat{y}_i - y_i)x
+  &= (\hat{y}_i - y_i)x_i
 \end{aligned}
 $$
 
-Notice that the gradient of the cost function w.r.t. the intercept $\theta_0$ is the error of the prediction.
+Notice that the gradient of the cost function w.r.t. the intercept 
+$\theta_0$ is the error of the prediction.
 
-For simplicity, we are rewrite the generalized form of SGD with Momentum as follows so that we
-can convert it to Python code easily.
+Since there are two parameters to update, we are going 
+to need two parameter update rules.
 
 $$
 \begin{aligned}

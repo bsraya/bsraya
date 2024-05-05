@@ -1,6 +1,6 @@
 ---
 title: RMSprop
-description: Reducing the aggresive learning rate decay in Adagrad using the twin sibling of Adadelta.
+description: Reducing the aggresive learning rate decay in Adagrad using the twin sibling of Adadelta
 date: 2024-05-04
 tag: Optimization
 published: true
@@ -79,60 +79,73 @@ where
 
 - $\theta_t$ is the parameter at time $t$
 - $\alpha$ is the learning rate
-- $E[g^2]_t$ is the root mean squared of the decayed gradients up to time $t$
+- $\sqrt{E[g^2]_t + \epsilon}$ is the root mean squared of the decayed gradients up to time $t$
 
-If we expand $E[g^2]_t$ we get
+Collectively, $E[g^2]_t$, the decayed gradients up to time $t$, can be expressed as follows:
 
 $$
-E[g^2]_t = 0.9 E[g^2]_{t-1} + 0.1g_t^2
+\begin{aligned}
+E[g^2]_t &= (0.9 E[g^2]_{t-1} + 0.1g_t^2) + \ldots + (0.9 E[g^2]_{0} + 0.1g_0^2)
+\end{aligned}
+$$
+
+where
+
+$$
+E[g^2]_{t-1} = \frac{g_{t-1}^2 + ... + g_0^2}{t-1}
+$$
+
+Since there are two parameters, we are going to have two equations.
+$g_{0,t}$ is the gradient of the cost function at time $t$ w.r.t. to the intercept $\theta_0$,
+and $g_{1,t}$ is the gradient of the cost function at time $t$ w.r.t. to the coefficient $\theta_1$.
+
+$$
+\begin{aligned}
+g_{0, t} &= \nabla_{\theta_0} J(\theta) \\
+&= \frac{\partial}{\partial \theta_0} J(\theta) \\
+&= \frac{1}{2} \frac{\partial}{\partial \theta_0} (\hat{y}_i - y_i)^2\\
+&= \hat{y}_i - y_i
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+g_{1, t} &= \nabla_{\theta_1} J(\theta) \\
+&= \frac{\partial}{\partial \theta_1} J(\theta) \\
+&= \frac{1}{2} \frac{\partial}{\partial \theta_1} (\hat{y}_i - y_i)^2\\
+&= (\hat{y}_i - y_i)x_i
+\end{aligned}
 $$
 
 ## Implementation of RMSprop
 
-First, we need to derive the gradient of the loss function $g_t$ with respect to the
-intercept and the coefficient.
-
-$$
-\begin{aligned}
-  \nabla_{\theta_0} J(\theta) &= \frac{\partial}{\partial \theta_0} J(\theta) \\
-  &= \frac{\partial}{\partial \theta_0} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
-  &= f(x_i) - y_i
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-  \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
-  &= \frac{\partial}{\partial \theta_1} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
-  &= (f(x_i) - y_i)x
-\end{aligned}
-$$
-
-Notice that the gradient of the loss function with respect to the intercept is just the error of the prediction.
+First, get a random number from the dataset, retreive a random data from the dataset,
+and calculate the prediction. Remember, the gradient of the cost function
+w.r.t. to the intercept is just the predicion error.
 
 ```python
 random_index = np.random.randint(len(x))
 prediction = predict(intercept, coefficient, x[random_index])
 error = prediction - y[random_index]
+```
 
+Second, determine the gradient of the cost function w.r.t. to the intercept and coefficient
+with the prediction error term `error` assigned above.
+
+```
 new_intercept_gradient = error
 new_coefficient_gradient = error * x[random_index]
 ```
 
-Second, we need to calculate the running average of the squared gradients $E[g^2]_t$.
-Note that $E[g^2]_{t-1}$ is the root mean squared of the gradients up to time $t-1$,
-and $g_t$ is the gradient at time $t$.
-
-$$
-E[g^2]_t = 0.9 E[g^2]_{t-1} + 0.1g_t^2
-$$
+Third, calculate the running average of the squared gradients $E[g^2]_t$.
+$E[g^2]_{t-1}$ can be written as `np.mean(df['intercept_gradient'].values ** 2)`.
 
 ```python
 mean_squared_intercept = (0.9 * np.mean(df['intercept_gradient'].values ** 2)) + (0.1 * new_intercept_gradient ** 2)
 mean_squared_coefficient = (0.9 * np.mean(df['coefficient_gradient'].values ** 2)) + (0.1 * new_coefficient_gradient ** 2)
 ```
 
-Lastly, we can update the parameters immediately using the calculation we have done above.
+Lastly, update the parameters immediately using the calculation we have done above.
 
 ```python
 intercept -= (learning_rate / np.sqrt(mean_squared_intercept + eps)) * new_intercept_gradient

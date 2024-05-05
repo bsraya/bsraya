@@ -1,6 +1,6 @@
 ---
 title: Adadelta
-description: Reducing the aggresive learning rate decay in Adagrad.
+description: Reducing the aggresive learning rate decay in Adagrad
 date: 2024-05-03
 tag: Optimization
 published: true
@@ -86,36 +86,64 @@ Where:
 - $\text{RMS}[g]_t$ is the root mean square of the gradients up to time $t$
 - $g_t$ is the gradient at time $t$
 
-Remember in the introduction part, I said Adadelta uses the average of the decayed past gradients to update the parameters.
-Adadelta uses RMS, or Root Mean Squared, to calculate the average of the decayed past gradients.
-
-Let's expand the root mean square of parameters up to time $t$, $\text{RMS}[\Delta \theta]_{t-1}$.
+$\text{RMS}[\Delta \theta]_{t-1}$, the root mean square of parameters up to time $t$,
+can be expressed as follows:
 
 $$
 \text{RMS}[{\Delta \theta}]_{t-1} = \sqrt{E[\Delta \theta^2]_{t-1} + \epsilon}
 $$
 
-where $E[\Delta \theta^2]_{t-1}$ is the running average of the squared parameter updates up to time $t-1$.
+where $E[\Delta \theta^2]_{t-1}$ is the mean squared parameter updates up to time $t-1$.
 
 $$
 E[\Delta \theta^2]_{t-1} = \gamma E[\Delta \theta^2]_{t-2} + (1 - \gamma) \Delta \theta_{t-1}^2
 $$
 
-Again, let's expand the root mean square of gradients up to time $t$, $\text{RMS}[g]_t$.
+$$
+E[\theta^2]_{t-2} = \frac{\theta_{t-2}^2 + ... + \theta_0^2}{t-2}
+$$
+
+$\text{RMS}[g]_t$, the root mean square of gradients up to time $t$, can be expressed as follows:
 
 $$
 \text{RMS}[g]_t = \sqrt{E[g^2]_t + \epsilon}
 $$
 
-where $E[g^2]_t$ is the running average of the squared gradients up to time $t$.
+where $E[g^2]_t$ is the mean squared gradients up to time $t$.
 
 $$
 E[g^2]_t = \gamma E[g^2]_{t-1} + (1 - \gamma) g_t^2
 $$
 
+$$
+E[g^2]_{t-1} = \frac{g_{t-1}^2 + ... + g_0^2}{t-1}
+$$
+
+$g_{0,t}$ and $g_{1,t}$ are the gradients of the cost function with respect 
+to the intercept and the coefficient respectively, and can be expressed as follows:
+
+$$
+\begin{aligned}
+  g_{0,t} &= \nabla_{\theta_0} J(\theta) \\
+  &= \frac{\partial}{\partial \theta_0} J(\theta) \\
+  &= \frac{1}{2} \frac{\partial}{\partial \theta_0} (\hat{y}_i - y_i)^2 \\
+  &= \hat{y}_i - y_i
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  g_{1,t} &= \nabla_{\theta_1} J(\theta) \\
+  &= \frac{\partial}{\partial \theta_1} J(\theta) \\
+  &= \frac{1}{2} \frac{\partial}{\partial \theta_1} (\hat{y}_i - y_i)^2 \\
+  &= (\hat{y}_i - y_i)x_i
+\end{aligned}
+$$
+
+
 ## Implementation of Adadelta
 
-First, we need a custom function to calculate the Root Mean Squared.
+First, define a function that calculates the root mean square of the values.
 
 ```python
 def rms(past_values, current_value, momentum=0.9, eps=1e-8):
@@ -123,26 +151,8 @@ def rms(past_values, current_value, momentum=0.9, eps=1e-8):
   return np.sqrt(average + eps)
 ```
 
-Second, we need to calculate $g_t$. Remember that the gradient of the cost function with respect to the intercept and coefficient are:
-
-$$
-\begin{aligned}
-  \nabla_{\theta_0} J(\theta) &= \frac{\partial}{\partial \theta_0} J(\theta) \\
-  &= \frac{\partial}{\partial \theta_0} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
-  &= f(x_i) - y_i
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-  \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
-  &= \frac{\partial}{\partial \theta_1} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
-  &= (f(x_i) - y_i)x
-\end{aligned}
-$$
-
-Then we can store the gradients $g_t$ w.r.t. to the intercept and the coefficient into two separate variables,
-`new_intercept_gradient` and `new_coefficient_gradient`.
+Second, determine the gradient of the cost function w.r.t. to each parameter,
+and store them in into separate variables.
 
 ```python
 new_intercept_gradient = error

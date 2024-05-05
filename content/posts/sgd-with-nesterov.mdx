@@ -70,7 +70,7 @@ From this now on, I am gonna call **Nesterov Accelerated Gradient** as NAG.
 
 ## Mathematics of NAG
 
-The mathematics of NAG is quite similar with SGD with Momentum but with a slight modification.
+The parameter update rule is expressed as
 
 $$
 \begin{aligned}
@@ -79,7 +79,7 @@ $$
 \end{aligned}
 $$
 
-Where:
+where
 
 - $v_{i,t}$ is the $i$-th Momentum vector at time $t$
 - $\gamma$ is the momentum coefficient
@@ -102,18 +102,14 @@ $$
 \begin{aligned}
   \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
   &= \frac{1}{2} \frac{\partial}{\partial \theta_1} (\hat{y}_i - y_i)^2 \\
-  &= (\hat{y}_i - y_i)x
+  &= (\hat{y}_i - y_i)x_i
 \end{aligned}
 $$
 
 Notice that the gradient of the cost function w.r.t. the intercept $\theta_0$ is the error of the prediction.
 
-For simplicity, we are rewrite the generalized form of NAG as follows so that we
-can convert it to Python code easily.
-
-$$
-\hat{y}_i = \theta_0 - \gamma v_{0, t-1} + (\theta_1 - \gamma v_{1, t-1})x
-$$
+Since there are two parameters to update, we are going to need two parameter
+update rules.
 
 $$
 \begin{aligned}
@@ -124,9 +120,15 @@ $$
 
 $$
 \begin{aligned}
-  v_{1, t} &= \gamma v_{1, t-1} + \alpha (\hat{y}_i - y_i)x \\
+  v_{1, t} &= \gamma v_{1, t-1} + \alpha (\hat{y}_i - y_i)x_i \\
   \theta_1 &= \theta_1 - v_{1,t}
 \end{aligned}
+$$
+
+where 
+
+$$
+\hat{y}_i = \theta_0 - \gamma v_{0, t-1} + (\theta_1 - \gamma v_{1, t-1})x_i
 $$
 
 Similar to Momentum, NAG also helps in reducing the oscillations and accelerates the convergence of the model.
@@ -161,7 +163,7 @@ $$
 \begin{aligned}
   \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
   &= \frac{\partial}{\partial \theta_1} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
-  &= (f(x_i) - y_i)x
+  &= (\hat{y}_i - y_i)x_i
 \end{aligned}
 $$
 
