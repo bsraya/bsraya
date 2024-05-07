@@ -53,7 +53,7 @@ type: Post
     {
       title: "Adam",
       current: false,
-    }
+    },
   ]}
 />
 
@@ -64,11 +64,13 @@ However, the learning rate is rapidly decreasing as the number of iterations inc
 This can be a problem because the learning rate can become too small and the model stops learning.
 
 In this post, we will see how Adadelta prevents learning rate decreasing rapidly over time.
-Instead of inefficiently storing, or summing, all the past squared gradients, 
+Instead of inefficiently storing, or summing, all the past squared gradients,
 Adadelta calculates the average of the decayed past gradients and uses it to update parameters.
 Most importantly, Adadelta uses no learning rate.
 
 ## Mathematics of Adadelta
+
+The parameter update rule is expressed as
 
 $$
 \Delta \theta_t = - \frac{\text{RMS}[\Delta \theta]_{t-1}}{\text{RMS}[g]_t} \odot g_t
@@ -78,7 +80,7 @@ $$
 \theta_{t+1} = \theta_t + \Delta \theta_t
 $$
 
-Where:
+where
 
 - $\Delta \theta_t$ is the update at time $t$
 - $\theta_t$ is the parameter at time $t$
@@ -119,7 +121,7 @@ $$
 E[g^2]_{t-1} = \frac{g_{t-1}^2 + ... + g_0^2}{t-1}
 $$
 
-$g_{0,t}$ and $g_{1,t}$ are the gradients of the cost function with respect 
+$g_{0,t}$ and $g_{1,t}$ are the gradients of the cost function with respect
 to the intercept and the coefficient respectively, and can be expressed as follows:
 
 $$
@@ -139,7 +141,6 @@ $$
   &= (\hat{y}_i - y_i)x_i
 \end{aligned}
 $$
-
 
 ## Implementation of Adadelta
 
@@ -201,7 +202,7 @@ def adadelta(x, y, df, epochs=100):
   prediction = predict(intercept, coefficient, x[random_index])
   error = prediction - y[random_index]
   df.loc[0] = [intercept, coefficient, error, error * x[random_index], (error ** 2) / 2]
-  
+
   for epoch in range(1, epochs + 1):
     random_index = np.random.randint(len(features))
     prediction = predict(intercept, coefficient, x[random_index])

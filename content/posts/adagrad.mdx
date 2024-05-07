@@ -53,7 +53,7 @@ type: Post
     {
       title: "Adam",
       current: false,
-    }
+    },
   ]}
 />
 
@@ -73,6 +73,8 @@ While the parameters that are updated infrequently will experience larger update
 
 ## Mathematics of Adagrad
 
+The parameter update rule is expressed as
+
 $$
 \theta_{t+i, i} = \theta_t - \frac{\alpha}{\sqrt{G_{t,ii} + \epsilon}} \odot g_t
 $$
@@ -81,7 +83,7 @@ $$
 g_{t,i} = \nabla_{\theta_t} J(\theta_{t, i})
 $$
 
-Where:
+where
 
 - $\theta_{t+i, i}$ is the $i$-th parameter at time $t+i$
 - $\alpha$ is the learning rate
@@ -92,7 +94,7 @@ Where:
 
 Since we only have two parameters, we are going to need $g_{t,0}$
 to represent the gradient of the cost function with respect to the intercept,
-and $g_{t,1}$ to represent the gradient of the cost function with respect to the coefficient. 
+and $g_{t,1}$ to represent the gradient of the cost function with respect to the coefficient.
 These two can be expressed as follows:
 
 $$
@@ -113,9 +115,9 @@ $$
 \end{aligned}
 $$
 
-Notice in the parameter update rule, Adagrad eliminates the need to manually 
-tune the learning rate for each parameter by dividing the learning rate by the 
-square  root of the sum of the squares of the gradients up to time $t$.
+Notice in the parameter update rule, Adagrad eliminates the need to manually
+tune the learning rate for each parameter by dividing the learning rate by the
+square root of the sum of the squares of the gradients up to time $t$.
 In most cases, the learning rate $\alpha$ value can be set to $0.01$.
 
 From the equation above, we could see that the learning rate is divided by $\sqrt{G_{t,ii} + \epsilon}$.
