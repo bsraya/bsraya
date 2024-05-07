@@ -1,0 +1,28 @@
+---
+title: Setup Tensorflow Environment
+description: Running Tensorflow and Keras with GPU
+date: 2024-06-01
+tag: Deep Learning
+published: true
+type: Post
+---
+
+First, create a Conda Environment.
+
+```bash
+conda create -n tensorflow python=3.9
+conda activate tensorflow
+```
+
+Then, install `cudnn` and `cuda`.
+
+```bash
+conda install -c conda-forge cudatoolkit=11.2.2 cudnn=8.1.0
+```
+
+Finally, install `tensorflow`.
+
+```bash
+pip install --upgrade pip
+pip install tensorflow=2.5.0
+```
