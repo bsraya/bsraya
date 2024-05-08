@@ -53,7 +53,7 @@ type: Post
     {
       title: "Adam",
       current: false,
-    }
+    },
   ]}
 />
 
@@ -106,8 +106,6 @@ $$
 \end{aligned}
 $$
 
-Notice that the gradient of the cost function w.r.t. the intercept $\theta_0$ is the error of the prediction.
-
 Since there are two parameters to update, we are going to need two parameter
 update rules.
 
@@ -125,7 +123,7 @@ $$
 \end{aligned}
 $$
 
-where 
+where
 
 $$
 \hat{y}_i = \theta_0 - \gamma v_{0, t-1} + (\theta_1 - \gamma v_{1, t-1})x_i
@@ -136,7 +134,7 @@ However, NAG is more "conscience" and efficient than Momentum because it anticip
 
 ## Implementation of NAG
 
-First, we need to calculate the lookahead intercept $\theta_0 - \gamma v_{i, t-1}$
+First, calculate the lookahead intercept $\theta_0 - \gamma v_{i, t-1}$
 and the lookahead coefficient $\theta_1 - \gamma v_{i, t-1}$
 so that we can determine the lookahead prediction.
 
@@ -147,27 +145,13 @@ lookahead_coefficient = coefficient - gamma * v_coefficient
 lookahead_prediction = predict(lookahead_intercept, lookahead_coefficient, x)
 ```
 
-Second, we need to determine the value of the gradient of the cost function at the point
+Second, determine the value of the gradient of the cost function at the point
 $\theta_i - \gamma v_{i, t-1}$, $\nabla J(\theta_i - \gamma v_{i, t-1})$.
 Basically, it's the same as the gradient of the cost function w.r.t. to the parameters $\theta_0$ and $\theta_1$.
+The only difference is that we are using the lookahead prediction instead of the current prediction.
 
-$$
-\begin{aligned}
-  \nabla_{\theta_0} J(\theta) &= \frac{\partial}{\partial \theta_0} J(\theta) \\
-  &= \frac{\partial}{\partial \theta_0} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
-  &= f(x_i) - y_i
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-  \nabla_{\theta_1} J(\theta) &= \frac{\partial}{\partial \theta_1} J(\theta)  \\
-  &= \frac{\partial}{\partial \theta_1} \left( \frac{1}{2} (f(x_i) - y_i)^2 \right) \\
-  &= (\hat{y}_i - y_i)x_i
-\end{aligned}
-$$
-
-Notice that the gradient of the cost function w.r.t. to the intercept $\theta_0$ is the error of the prediction.
+Notice that the gradient of the cost function w.r.t. to the intercept $\theta_0$ is
+the prediction error. We can use that to speed up the computation.
 
 ```python
 error = lookahead_prediction - y[random_index]
@@ -175,7 +159,7 @@ t0_gradient = error
 t1_gradient = error * x[random_index]
 ```
 
-Next, we have to update the **Momentum** vectors.
+Third, update the **Momentum** vectors.
 For simplicity, we are not going to store the vector of $\theta_0$ and $\theta_1$ into a list.
 Instead, we are storing them into separate variables, `t0_vector` and `t1_vector` respectively.
 

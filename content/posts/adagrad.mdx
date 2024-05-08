@@ -127,33 +127,25 @@ Thus, the parameters that are updated infrequently will experience larger update
 
 ## Implementation of Adagrad
 
-First, we need to initialize four variables to keep track the summation of the squares of the gradients for the intercept and coefficient.
+First, calculate the intercept and the coefficient gradients.
+Notice that $g_{t,0}$ is just the prediction error at time $t$.
 
 ```python
-intercept, coefficient = -0.5, -0.75
-accumulated_squared_intercept_gradient = 0.0
-accumulated_squared_coefficient_gradient = 0.0
-```
-
-Remember that $g_{t,0}$ is just the prediction error at time $t$.
-
-```python
-random_index = np.random.randint(len(features))
-prediction = predict(intercept, coefficient, x[random_index])
 error = prediction - y[random_index]
 
 intercept_gradient = error
 coefficient_gradient = error * x[random_index]
 ```
 
-Remember that $G_{t,ii}$ is the sum of the squares of the gradients up to time $t$.
+Second, calculate the sum of the squares of the gradients up
+to time $t$ $G_{t,ii}$ and accumulate it over time.
 
 ```python
 accumulated_squared_intercept_gradient += intercept_gradient ** 2
 accumulated_squared_coefficient_gradient += coefficient_gradient ** 2
 ```
 
-To update the intercept and coefficient values,
+Finally, update the intercept and the coefficient.
 
 ```python
 intercept -= (learning_rate / np.sqrt(accumulated_squared_intercept + eps)) * intercept_gradient

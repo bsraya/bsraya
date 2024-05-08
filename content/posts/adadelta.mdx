@@ -152,8 +152,8 @@ def rms(past_values, current_value, momentum=0.9, eps=1e-8):
   return np.sqrt(average + eps)
 ```
 
-Second, determine the gradient of the cost function w.r.t. to each parameter,
-and store them in into separate variables.
+Second, calculate the intercept and the coefficient gradients.
+Notice that the intercept gradient $g_{0,t}$ is the prediction error.
 
 ```python
 new_intercept_gradient = error

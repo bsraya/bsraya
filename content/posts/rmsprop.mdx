@@ -119,25 +119,16 @@ $$
 
 ## Implementation of RMSprop
 
-First, get a random number from the dataset, retreive a random data from the dataset,
-and calculate the prediction. Remember, the gradient of the cost function
-w.r.t. to the intercept is just the predicion error.
+First, First, calculate the intercept and the coefficient gradient.
+Notice that the intercept gradient $g_{t,0}$ is the predicion error.
 
 ```python
-random_index = np.random.randint(len(x))
-prediction = predict(intercept, coefficient, x[random_index])
 error = prediction - y[random_index]
-```
-
-Second, determine the gradient of the cost function w.r.t. to the intercept and coefficient
-with the prediction error term `error` assigned above.
-
-```
 new_intercept_gradient = error
 new_coefficient_gradient = error * x[random_index]
 ```
 
-Third, calculate the running average of the squared gradients $E[g^2]_t$.
+Second, calculate the running average of the squared gradients $E[g^2]_t$.
 $E[g^2]_{t-1}$ can be written as `np.mean(df['intercept_gradient'].values ** 2)`.
 
 ```python
