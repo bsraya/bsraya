@@ -65,7 +65,7 @@ export default function Home() {
             </div>
             <Link
               href="/works"
-              className="font-baskervville py-2 px-5 text-lg w-fit rounded-full border border-2 hover:text-white hover:bg-black hover:border-black"
+              className="font-baskervville py-2 px-5 text-lg w-fit border border-2 hover:text-white hover:bg-slate-800 hover:border-slate-800"
             >
               See more
             </Link>
@@ -77,7 +77,7 @@ export default function Home() {
             <PostList posts={posts} />
             <Link
               href="/posts"
-              className="font-baskervville py-2 px-5 text-lg w-fit rounded-full border border-2 hover:text-white hover:bg-black hover:border-black"
+              className="font-baskervville py-2 px-5 text-lg w-fit border border-2 hover:text-white hover:bg-slate-800 hover:border-slate-800"
             >
               See more
             </Link>

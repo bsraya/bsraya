@@ -10,7 +10,7 @@ export default function SideMenu() {
                 <li className="hover:underline w-fit"><Link href="/posts">Posts</Link></li>
             </ul>
             <Link href="/works">
-                <div className="font-baskervville text-xl py-2 px-5 my-5 w-fit rounded-full border border-2 hover:text-white hover:bg-black hover:border-black">
+                <div className="font-baskervville text-xl py-2 px-5 my-5 w-fit border border-2 hover:text-white hover:bg-slate-800 hover:border-slate-800">
                     See my works
                 </div>
             </Link>
