@@ -5,13 +5,13 @@ export default function SideMenu() {
         <div className="hidden lg:w-1/4 lg:fixed h-[100vh] lg:p-10 lg:flex lg:flex-col border-r border-gray-300">
             <p className="font-novasquare text-4xl">Bijon<br />Setyawan<br />Raya</p>
             <ul className="font-baskervville mt-auto text-xl">
-                <li className="hover:underline w-fit"><Link href="/about">About</Link></li>
                 <li className="hover:underline w-fit"><Link href="/experience">Experience</Link></li>
                 <li className="hover:underline w-fit"><Link href="/posts">Posts</Link></li>
+                <li className="hover:underline w-fit"><Link href="/works">Works</Link></li>
             </ul>
-            <Link href="/works">
+            <Link href="/work-with-me">
                 <div className="font-baskervville text-xl py-2 px-5 my-5 w-fit border border-2 hover:text-white hover:bg-slate-800 hover:border-slate-800">
-                    See my works
+                    Work with me
                 </div>
             </Link>
             <div className="flex gap-2">
