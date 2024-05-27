@@ -1,16 +1,16 @@
 ---
-title: Local Personal Retrieval-Augmented Generation
+title: Personalized Retrieval-Augmented Generation System
 description: Developing a local RAG system using Llama Index
 date: 2024-05-30
 tag: LLM
-image: /assets/works/local-personal-rag/thumbnail.png
+image: /assets/works/personalized-retrieval-augmented-generation-system/thumbnail.png
 type: Work
 ---
 
-In this post, I am going to elaborate on how I made my own local
+In this post, I am going to elaborate on how I made my own local personalized
 Retrieval-Augmented Generation (RAG) system using Llama Index and Llama 3.
 
-![Local RAG prompt](/assets/works/local-personal-rag/prompt.png)
+![Local RAG prompt](/assets/works/personalized-retrieval-augmented-generation-system/prompt.png)
 
 Why would we need RAG? According to [Llama Index](https://docs.llamaindex.ai/en/stable/getting_started/concepts/),
 RAG helps processing and adding external or personal data in the generation process.
@@ -105,14 +105,14 @@ If too short, the model may not be able to generate relevant responses.
 Thus, I should get a balance between the two.
 In this project, I set the chunk size to 1500, and the chunk overlap 100.
 
-![1500 chunk size, and 100 chunk overlap.](/assets/works/local-personal-rag/chunk-visualization.png)
+![1500 chunk size, and 100 chunk overlap.](/assets/works/personalized-retrieval-augmented-generation-system/chunk-visualization.png)
 
 [https://chunkviz.up.railway.app/](https://chunkviz.up.railway.app/) can help visualize the chunking process.
 
 ## Observations
 
-![Prompt 2: "What skills required for those job descriptions?"](/assets/works/local-personal-rag/prompt2.png)
+![Prompt 2: "What skills required for those job descriptions?"](/assets/works/personalized-retrieval-augmented-generation-system/prompt2.png)
 
-![Prompt 3: "What are common responsibilities these jobs have?"](/assets/works/local-personal-rag/prompt3.png)
+![Prompt 3: "What are common responsibilities these jobs have?"](/assets/works/personalized-retrieval-augmented-generation-system/prompt3.png)
 
-![Prompt 4: "As a senior HR, how would you rate my resume?"](/assets/works/local-personal-rag/prompt4.png)
+![Prompt 4: "As a senior HR, how would you rate my resume?"](/assets/works/personalized-retrieval-augmented-generation-system/prompt4.png)
