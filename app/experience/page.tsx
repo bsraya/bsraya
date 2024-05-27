@@ -61,7 +61,6 @@ export default function Experience() {
                                 <p className="font-bebasneue text-lg text-gray-400">October 2022 - Present</p>
                                 <p className="font-ptserif text-3xl">Fullstack Developer</p>
                                 <p className="font-baskervville text-lg mb-1">Faria Education Group - Taipei, Taiwan</p>
-                                <p className="font-baskervville text-sm">Technologies: Ruby on Rails, Vue, MySQL, and ElasticSearch</p>
                             </div>
                             <div>
                                 <p className="font-bebasneue text-lg text-gray-400">February 2021 - December 2022</p>
