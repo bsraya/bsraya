@@ -1,0 +1,118 @@
+---
+title: Local Personal Retrieval-Augmented Generation
+description: Developing a local RAG system using Llama Index
+date: 2024-05-30
+tag: LLM
+image: /assets/works/local-personal-rag/thumbnail.png
+type: Work
+---
+
+In this post, I am going to elaborate on how I made my own local
+Retrieval-Augmented Generation (RAG) system using Llama Index and Llama 3.
+
+![Local RAG prompt](/assets/works/local-personal-rag/prompt.png)
+
+Why would we need RAG? According to [Llama Index](https://docs.llamaindex.ai/en/stable/getting_started/concepts/),
+RAG helps processing and adding external or personal data in the generation process.
+Adding this external data can help the model to generate more relevant and accurate responses.
+However, adding this external data to the model requires five stages: **loading**, **indexing**, **storing**, **querying**, and **evaluation**.
+
+In this project, I will be including my resume and job descriptions from a local job board in Taiwan
+and see how the RAG system can help generate more relevant responses to the job descriptions.
+The job descriptions are in markdown format, and here one example:
+
+```markdown
+# AI Engineer
+
+**Company:** ...
+**Industry:** IT  
+**Position:** AI Engineer
+**Job Updated:** about 1 month ago  
+**Type:** Full-time  
+**Level:** Entry level  
+**Experience Required:** 3 years  
+**Salary:** $$$ TWD / month  
+**Remote Work:** Optional
+
+## Job Description
+
+...
+
+### Responsibilities:
+
+- Research and share new AI-related technologies.
+- Prepare and deliver in-house training course materials.
+- Guide and execute AI-related projects.
+
+## Requirements
+
+**Mandatory Requirements:**
+
+1. Bachelor's degree or above, any major.
+2. Proactive, highly cooperative, with analytical problem-solving and communication skills.
+3. Proficient in Python programming.
+4. Experience in machine learning/deep learning/statistical analysis.
+5. Willingness to travel occasionally to partner companies or institutions.
+
+**Preferred Requirements:**
+
+1. Experience in data visualization.
+2. Familiarity with TensorFlow/Keras/Scikit-learn/Pytorch.
+3. Familiarity with various data analysis algorithms.
+```
+
+My local RAG system is limited only to dealing with
+markdown files.
+
+In order to get the local RAG system to work, three components are needed:
+**an embedding model**, **a vector index**, and **a retrieval model**.
+
+As for the embedding mode, I am using `BAAI/bge-large-en-v1.5` from Hugging Face
+As for the vector index, I am using Llama Index.
+As for the retrieval model, I am using Llama 3 from Meta.
+
+In order to get a better retrieval result, splitting the job descriptions into
+smaller parts and giving the LLM model contexts are necessary.
+
+These are the contexts given to the LLM model:
+
+```markdown
+# Context No. 1
+
+Always answer the question directly and concisely.
+If you need more information, ask for clarification.
+If you are not sure, look into the files provided.
+If you do not know the answer, admit it.
+
+# Context No. 2
+
+You are a HR manager with 20+ years of experience
+recruiting top talent for Fortune 500 companies.
+You can help me with my job search, resume writing,
+and interview preparation.
+You are here to help me in refining your resume
+and preparing for your next job interview.
+
+# Context No. 3
+
+You are a career coach with 20+ years of
+experience helping professionals find their dream job.
+```
+
+Note that LLM models process information in chunks.
+If the job descriptions are too long, the model may not be able to process them.
+If too short, the model may not be able to generate relevant responses.
+Thus, I should get a balance between the two.
+In this project, I set the chunk size to 1500, and the chunk overlap 100.
+
+![1500 chunk size, and 100 chunk overlap.](/assets/works/local-personal-rag/chunk-visualization.png)
+
+[https://chunkviz.up.railway.app/](https://chunkviz.up.railway.app/) can help visualize the chunking process.
+
+## Observations
+
+![Prompt 2: "What skills required for those job descriptions?"](/assets/works/local-personal-rag/prompt2.png)
+
+![Prompt 3: "What are common responsibilities these jobs have?"](/assets/works/local-personal-rag/prompt3.png)
+
+![Prompt 4: "As a senior HR, how would you rate my resume?"](/assets/works/local-personal-rag/prompt4.png)
