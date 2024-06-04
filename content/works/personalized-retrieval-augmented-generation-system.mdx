@@ -7,10 +7,17 @@ image: /assets/works/personalized-retrieval-augmented-generation-system/thumbnai
 type: Work
 ---
 
-In this post, I am going to elaborate on how I made my own local personalized
-Retrieval-Augmented Generation (RAG) system using Llama Index and Llama 3.
+I created this project to gain insight into the job market and the specific requirements of industries
+like Machine Learning or Front-end Development. However, I want to take it a step further by designing
+my own Local Retrieval Augmented Generation (RAG) system that can generate more relevant responses to
+the job descriptions I've collected.
 
-![Local RAG prompt](/assets/works/personalized-retrieval-augmented-generation-system/prompt.png)
+![What Llama Index and Langchain focus on (Source: https://superwise.ai/blog/lets-talk-about-llamaindex-and-langchain/)](/assets/works/personalized-retrieval-augmented-generation-system/langchain-llama-index.png)
+
+You might be wondering why use Llama Index? Why not Langchain?
+Looking at the image above, we can see that Llama Index focuses on the indexing, storing, and
+retrieving data. While Langchain focuses on prompting and the output of the query.
+Since I am only focusing on indexing and retrieving data, Llama Index is the choice for this project.
 
 Why would we need RAG? According to [Llama Index](https://docs.llamaindex.ai/en/stable/getting_started/concepts/),
 RAG helps processing and adding external or personal data in the generation process.
@@ -116,3 +123,53 @@ In this project, I set the chunk size to 1500, and the chunk overlap 100.
 ![Prompt 3: "What are common responsibilities these jobs have?"](/assets/works/personalized-retrieval-augmented-generation-system/prompt3.png)
 
 ![Prompt 4: "As a senior HR, how would you rate my resume?"](/assets/works/personalized-retrieval-augmented-generation-system/prompt4.png)
+
+## Challenges
+
+### User Interface
+
+It is challenging for users who do not have a technical background
+to interact with the RAG system on the command line.
+
+### Limited Control
+
+The RAG system is only capable of retrieving job descriptions from 2-3 documents
+at a time. That is the default setting of Llama Index.
+User should be able to have more control over how many documents they want to retrieve.
+
+### Memory
+
+Llama Index converts documents into vector embeddings and stores them in memory by default.
+This will be a problem if the number of documents increases.
+Thus a vector database is needed to store the vector embeddings to avoid the over reliance on memory.
+
+## Improvements
+
+To improve the RAG system, I incorporated Weaviate, a vector database, to store the
+job descriptions that have converted into verctor embeddings.
+This way, the RAG system can retrieve job descriptions efficiently regardless of the number of documents.
+
+I also made a web interface for the RAG system using Gradio, so that users
+can type in their queries, set how many relevant documents they want to retrieve,
+and set the alpha parameter for the retrieval model.
+
+### What does the alpha parameter do?
+
+The alpha parameter is used to determine the retrieval mode of the model.
+If the alpha parameter is 0, the model will retrieve data using the bm25 approach,
+meaning the model will retrieve data based on the similarity of the query and the document.
+
+If the alpha parameter is 1, the model will retrieve data using the vector approach,
+meaning the model will retrieve data based on the similarity of the query and the vector embeddings.
+By default, the alpha parameter is set to $0.75$.
+
+![Local RAG System Web Interface](/assets/works/personalized-retrieval-augmented-generation-system/improved-ui.png)
+
+## Tools
+
+1. Ollama
+2. Llama Index
+3. Llama 3
+4. Hugging Face Embedding Model: `BAAI/bge-large-en-v1.5`
+5. Weaviate
+6. Gradio
