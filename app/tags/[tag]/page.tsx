@@ -38,7 +38,7 @@ export default async function Tags({ params }: { params: { tag: string } }) {
       <div>
         <div className="w-fit">
           <Link href="/">
-            <div className="flex px-5 py-2 border rounded-full hover:border-gray-500 items-center mb-10">
+            <div className="flex px-5 py-2 border items-center mb-10 hover:text-white hover:bg-slate-800 hover:border-slate-800">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 mr-2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
               </svg>

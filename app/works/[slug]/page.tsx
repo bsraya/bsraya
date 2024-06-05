@@ -65,7 +65,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
                     {
                         work.tag && (
                             <Link href={`/tags/${work.tagAsParams}`}>
-                                <div className="hover:underline cursor-pointer">
+                                <div className="hover:underline cursor-pointer ml-2">
                                     <p>{work.tag}</p>
                                 </div>
                             </Link>
