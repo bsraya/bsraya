@@ -75,46 +75,20 @@ In order to get the local RAG system to work, three components are needed:
 **an embedding model**, **a vector index**, and **a retrieval model**.
 
 As for the embedding mode, I am using `BAAI/bge-large-en-v1.5` from Hugging Face
-As for the vector index, I am using Llama Index.
-As for the retrieval model, I am using Llama 3 from Meta.
-
-In order to get a better retrieval result, splitting the job descriptions into
-smaller parts and giving the LLM model contexts are necessary.
-
-These are the contexts given to the LLM model:
-
-```markdown
-# Context No. 1
-
-Always answer the question directly and concisely.
-If you need more information, ask for clarification.
-If you are not sure, look into the files provided.
-If you do not know the answer, admit it.
-
-# Context No. 2
-
-You are a HR manager with 20+ years of experience
-recruiting top talent for Fortune 500 companies.
-You can help me with my job search, resume writing,
-and interview preparation.
-You are here to help me in refining your resume
-and preparing for your next job interview.
-
-# Context No. 3
-
-You are a career coach with 20+ years of
-experience helping professionals find their dream job.
-```
+As for the data processor and indexing, I am using Llama Index.
+As for the language model, I am using Llama 3 from Meta.
 
 Note that LLM models process information in chunks.
 If the job descriptions are too long, the model may not be able to process them.
 If too short, the model may not be able to generate relevant responses.
-Thus, I should get a balance between the two.
-In this project, I set the chunk size to 1500, and the chunk overlap 100.
 
 ![1500 chunk size, and 100 chunk overlap.](/assets/works/personalized-retrieval-augmented-generation-system/chunk-visualization.png)
 
 [https://chunkviz.up.railway.app/](https://chunkviz.up.railway.app/) can help visualize the chunking process.
+
+Since all job descriptions are separated in different markdown files,
+I did not need to split the job descriptions into chunks.
+In addition to that, the job descriptions are quite short, so the model should be able to process with no hassle.
 
 ## Observations
 
@@ -124,18 +98,12 @@ In this project, I set the chunk size to 1500, and the chunk overlap 100.
 
 ![Prompt 4: "As a senior HR, how would you rate my resume?"](/assets/works/personalized-retrieval-augmented-generation-system/prompt4.png)
 
-## Challenges
+## Limitations
 
 ### User Interface
 
 It is challenging for users who do not have a technical background
 to interact with the RAG system on the command line.
-
-### Limited Control
-
-The RAG system is only capable of retrieving job descriptions from 2-3 documents
-at a time. That is the default setting of Llama Index.
-User should be able to have more control over how many documents they want to retrieve.
 
 ### Memory
 
@@ -143,17 +111,39 @@ Llama Index converts documents into vector embeddings and stores them in memory 
 This will be a problem if the number of documents increases.
 Thus a vector database is needed to store the vector embeddings to avoid the over reliance on memory.
 
+### Limited Control
+
+The RAG system is only capable of retrieving job descriptions from 2-3 documents
+at a time. That is the default setting of Llama Index.
+User should be able to have more control over how many documents
+and how the documents are retrieved.
+
+### Hallucination
+
+In the case of this project, the model produces irrelevent responses even
+though the one of the documents retrieved is relevant.
+I later found out that, as the number of retrieved documents increases,
+the model captures a lot of noises from irrelevant documents and
+produces irrelevant responses.
+
 ## Improvements
 
-To improve the RAG system, I incorporated Weaviate, a vector database, to store the
-job descriptions that have converted into verctor embeddings.
-This way, the RAG system can retrieve job descriptions efficiently regardless of the number of documents.
+### User Interface
 
-I also made a web interface for the RAG system using Gradio, so that users
-can type in their queries, set how many relevant documents they want to retrieve,
-and set the alpha parameter for the retrieval model.
+To improve the user experience, I created a web interface for the RAG system using Gradio.
 
-### What does the alpha parameter do?
+![Local RAG System Web Interface](/assets/works/personalized-retrieval-augmented-generation-system/thumbnail.png)
+
+### Vector Database
+
+In order to reduce the RAM usage, I incorporated Weaviate, a vector database,
+to store the documents that have been converted into vector embeddings.
+Not only the RAM usage is reduced significantly, but the retrieval process is also faster.
+
+### More Control
+
+From the figure above, you can see that uses can determine how many relevant documents
+they want to retrieve, as well as the alpha parameter for the retrieval model.
 
 The alpha parameter is used to determine the retrieval mode of the model.
 If the alpha parameter is 0, the model will retrieve data using the [bm25](https://en.wikipedia.org/wiki/Okapi_BM25) approach,
@@ -163,13 +153,53 @@ If the alpha parameter is 1, the model will retrieve data using the vector appro
 meaning the model will retrieve data based on the similarity of the query and the vector embeddings.
 By default, the alpha parameter is set to $0.75$.
 
-![Local RAG System Web Interface](/assets/works/personalized-retrieval-augmented-generation-system/thumbnail.png)
+### Hallucination
+
+By default, the model retrieves documents using `compact` mode.
+Meaning the model will combine texts into a big chunk of text and compose the relevant answer.
+However, this mode is very accurate when the number of documents is small.
+Conversely, the model may produce irrelevant responses as the number of documents increases.
+
+I also tried the `refine` mode. As result, the model will refine its response as it sees a new document.
+Meaning, if there were 5 documents retrieved, the model will refine its response 5 times.
+In addition to that, the generation process is slower since the model has to generate 5 different responses.
+
+To fix this issue, I used the `tree_summarize` mode. From the code base, this is what it does
+
+> Build a tree index over the set of candidate nodes, with a summary prompt seeded
+> with the query. The tree is built in a bottoms-up fashion, and in the end the root node is
+> returned as the response.
+
+Instead of
+
+```python
+query_engine = RetrieverQueryEngine.from_args(
+  retriever,
+  llm=llm,
+)
+```
+
+The retriever engine should be configured as follows:
+
+```python
+query_engine = RetrieverQueryEngine.from_args(
+  retriever,
+  llm=llm,
+  response_mode="tree_summarize",
+  refine_template=PromptTemplate(
+    "The original query is as follows: {query_str}. Here are the sources: {sources}"
+    "Given the sources, refine the answer to better answer the original query."
+    "If the answer is in the sources, please provide the answer or refine the answer."
+    "If the answer is not in the sources, return the original answer."
+  )
+)
+```
 
 ## Tools
 
-1. Ollama
-2. Llama Index
-3. Llama 3
-4. Hugging Face Embedding Model: `BAAI/bge-large-en-v1.5`
-5. Weaviate
-6. Gradio
+1. [Ollama](https://ollama.com/)
+2. [Llama Index](https://www.llamaindex.ai/)
+3. [Llama 3](https://ai.meta.com/blog/meta-llama-3/)
+4. [Embedding model](https://huggingface.co/BAAI/bge-large-en-v1.5) from Hugging Face: `BAAI/bge-large-en-v1.5`
+5. [Weaviate](https://weaviate.io/)
+6. [Gradio](https://www.gradio.app/)
