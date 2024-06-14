@@ -1,12 +1,9 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Metadata } from 'next';
-import PostList from '../components/posts';
-import Footer from '../components/footer';
-import SideMenu from '../components/side-menu';
-import MobileMenu from '@/components/mobile-menu';
-import { allPosts } from '../.contentlayer/generated';
-import { Post } from '../.contentlayer/generated/types';
+import Time from '@/components/time';
+import { MdOutlineEmail } from "react-icons/md";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { IoBriefcaseOutline, IoLocationOutline, IoTimeOutline } from "react-icons/io5";
 
 export const metadata: Metadata = {
     openGraph: {
@@ -27,67 +24,62 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  const posts = allPosts.sort((a: Post, b: Post) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  }).filter((post) => post.published === true).splice(0, 3);
-
   return (
-    <div className="flex h-full">
-      <SideMenu />
-      <div className="w-full lg:w-3/4 absolute lg:left-1/4 lg:p-10 p-5">
-        <MobileMenu />
-        <div>
-          <h1 className="font-ptserif mb-5 underline xl:text-3xl lg:text-2xl text-xl">Recent Works</h1>
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
-            <div className="h-full">
-              <Image
-                src="/assets/works/personalized-retrieval-augmented-generation-system/thumbnail.png"
-                alt="The user interface of Spotify"
-                className="rounded-lg"
-                width={500}
-                height={500}
-              />
-              <Link href="/works/personalized-retrieval-augmented-generation-system" className="hover:underline">
-                <p className="mt-3 text-lg">
-                  <span className="font-inter font-bold">A Local RAG System</span>: <span className="font-baskervville">A job insight provider made with Llama 3, Llama Index, and Weaviate</span>
-                </p>
-              </Link>
-            </div>
-            <div className="h-full">
-              <Image
-                src="/assets/works/image-search-engine/thumbnail.png"
-                alt="AI Coding Assistant demo"
-                className="rounded-lg"
-                width={500}
-                height={500}
-              />
-              <Link href="/works/image-search-engine" className="hover:underline">
-                <p className="mt-3 text-lg">
-                  <span className="font-inter font-bold">Image Search Engine</span>: <span className="font-baskervville">A search engine for fast meme retrieval using FastAPI and PyTorch</span>
-                </p>
-              </Link>
-            </div>
-            <Link
-              href="/works"
-              className="font-baskervville py-2 px-5 text-lg w-fit border border-2 hover:text-white hover:bg-slate-800 hover:border-slate-800"
-            >
-              See more
-            </Link>
+    <div className="h-full">
+      <div className="flex flex-col justify-between min-h-screen">
+        <nav className="flex p-5">
+          <div className="font-baskervville mr-auto md:text-[2rem] text-[1.25rem]">BSR</div>
+          <ul className="font-inter text-right md:text-[2rem] text-[1.25rem]">
+            <li><Link href="/experience">Experience</Link></li>
+            <li><Link href="/projects">Projects</Link></li>
+            <li><Link href="/posts">Posts</Link></li>
+          </ul>
+        </nav>
+
+        <div className="flex flex-col gap-2 p-5">
+          <div className="font-baskervville uppercase md:text-[4rem] text-[2rem]">
+            Bijon makes<br />websites and <br />machines learn.
           </div>
+          <button className="bg-slate-800 hover:bg-slate-700 text-white px-5 py-3 w-fit rounded">
+            <Link href="/projects">Learn more</Link>
+          </button>
         </div>
-        <div className="my-32">
-          <h1 className="font-ptserif underline mb-5 xl:text-3xl lg:text-2xl text-xl">Latest Posts</h1>
-          <div className="flex flex-col gap-10">
-            <PostList posts={posts} />
-            <Link
-              href="/posts"
-              className="font-baskervville py-2 px-5 text-lg w-fit border border-2 hover:text-white hover:bg-slate-800 hover:border-slate-800"
-            >
-              See more
-            </Link>
+
+        <div className="grid md:grid-cols-2 grid-cols-1 font-inter h-1/4 p-5 gap-10">
+          <div className="flex gap-5">
+            <div>
+              <IoLocationOutline className="h-5 w-5 mb-1" />
+              <div className="flex">Location</div>
+              <div className="text-slate-500">Taipei, Taiwan</div>
+            </div>
+
+            <div>
+              <IoTimeOutline className="h-5 w-5 mb-1" />
+              <div className="flex">Time</div>
+              <div className="text-slate-500"><Time /></div>
+            </div>
+
+            <div>
+              <IoBriefcaseOutline className="h-5 w-5 mb-1" />
+              <div className="flex"> Working on</div>
+              <div className="text-slate-500">M-Cubes</div>
+            </div>
           </div>
+          
+          {/* <div className="flex gap-5 items-end justify-left md:justify-end">
+            <a href="mailto:bijonsetyawan@gmail.com">
+              <MdOutlineEmail className="h-10 w-10"/>
+            </a>
+
+            <a href="https://www.linkedin.com/in/bijonsetyawan" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin className="h-10 w-10"/>
+            </a>
+            
+            <a href="https://github.com/bsraya" target="_blank" rel="noopener noreferrer">
+              <FaGithub className="h-10 w-10"/>
+            </a>
+          </div> */}
         </div>
-        <Footer />
       </div>
     </div>
   )
