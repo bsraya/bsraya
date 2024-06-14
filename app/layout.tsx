@@ -1,4 +1,5 @@
 import './globals.css';
+import { cn } from '@/lib/utils';
 import '../styles/katex.min.css';
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
@@ -49,7 +50,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${ptSerif.variable} ${inter.variable} ${baskervville.variable} ${bebasNeue.variable} ${novaSquare.variable}`}>
+      <body className={cn(ptSerif.variable, inter.variable, baskervville.variable, bebasNeue.variable, novaSquare.variable)} >
         {children}
         <Analytics />
         <SpeedInsights />
