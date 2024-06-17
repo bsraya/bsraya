@@ -89,7 +89,7 @@ const components: any = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <p
-      className={cn("font-khula leading-8 [&:not(:first-child)]:my-10", className)}
+      className={cn("font-khula md:leading-8 leading-6 [&:not(:first-child)]:my-10", className)}
       {...props}
     />
   ),
