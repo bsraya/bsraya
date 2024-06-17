@@ -14,11 +14,10 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        inter: ["var(--font-inter)"],
-        ptserif: ["var(--font-pt-serif)"],
-        bebasneue: ["var(--font-bebas-neue)"],
-        novasquare: ["var(--font-nova-square)"],
-        baskervville: ["var(--font-baskervville)"],
+        merriweather: ["var(--font-merriweather)", "serif"],
+        lalezar: ["var(--font-lalezar)", "cursive"],
+        khula: ["var(--font-khula)", "sans-serif"],
+        fira: ["var(--font-fira-code)", "monospace"],
       }
     },
   },

@@ -2,9 +2,11 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import '../styles/katex.min.css';
 import type { Metadata } from 'next';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ptSerif, inter, baskervville, bebasNeue, novaSquare } from './fonts'
+import { merriweather, khula, lalezar, fira } from './fonts'
 
 export const metadata: Metadata = {
   viewport: 'width=device-width, initial-scale=1',
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
       url: '/',
     },
   ],
-  alternates:{
+  alternates: {
     canonical: '/',
   },
   robots: {
@@ -50,11 +52,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(ptSerif.variable, inter.variable, baskervville.variable, bebasNeue.variable, novaSquare.variable)} >
+      <body className={cn(merriweather.variable, khula.variable, lalezar.variable, fira.variable, "max-w-3xl mx-auto py-5")}>
+        < Header />
         {children}
+        < Footer />
         <Analytics />
         <SpeedInsights />
       </body>
-    </html>
+    </html >
   )
 }
