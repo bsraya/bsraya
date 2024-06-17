@@ -1,6 +1,8 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
+import { MdMenu, MdClose } from "react-icons/md";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const HamburgerMenu = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,77 +13,56 @@ const HamburgerMenu = () => {
 
     return (
         <div className="relative">
-            <button
-                aria-label="toggle menu"
-                className="focus:outline-none mt-1"
-                onClick={toggleMenu}
-            >
-                <svg
-                    className="w-5 h-5"
-                    height="32"
-                    width="32"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path>
-                </svg>
+            <button className="focus:outline-none" onClick={toggleMenu}>
+                {menuOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
             </button>
 
             {menuOpen && (
-                <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
-                    <div className="absolute inset-0 bg-white shadow-md lg:p-10 p-5 flex flex-col">
-                        <div className="flex">
-                            <div className='font-ptserif text-2xl'>
-                                <Link href='/' className="font-novasquare text-3xl">Bijon S. Raya</Link>
-                            </div>
-                            <button
-                                className="ml-auto items-center"
-                                onClick={toggleMenu}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5"><path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z"></path></svg>
-                            </button>
-                        </div>
-                        <div className="font-ptserif mt-auto grid grid-cols-1 md:grid-cols-2">
-                            <div>
-                                <Link 
-                                    href="/" 
-                                    onClick={toggleMenu} 
-                                    className="block mb-2 text-4xl md:text-6xl hover:underline"
+                <div className="w-fit h-fit bg-gray-900 flex w-1/2">
+                    <div className="absolute px-5 py-8 flex flex-col top-10 right-0 border-2 rounded-lg bg-slate-50">
+                        <div className="font-khula">
+                            <div className="text-3xl font-semibold text-right">
+                                <Link
+                                    href="/"
+                                    onClick={toggleMenu}
+                                    className="block mb-2 hover:underline"
                                 >
                                     Home
                                 </Link>
-                                <Link 
-                                    href="/about" 
-                                    onClick={toggleMenu} 
-                                    className="block mb-2 text-4xl md:text-6xl hover:underline"
-                                >
-                                    About
-                                </Link>
-                                <Link 
-                                    href="/experience" 
-                                    onClick={toggleMenu} 
-                                    className="block mb-2 text-4xl md:text-6xl hover:underline"
+                                <Link
+                                    href="/experience"
+                                    onClick={toggleMenu}
+                                    className="block mb-2 hover:underline"
                                 >
                                     Experience
                                 </Link>
-                            </div>
-                            <div>
-                                <Link 
-                                    href="/posts" 
-                                    onClick={toggleMenu} 
-                                    className="block mb-2 text-4xl md:text-6xl hover:underline"
+                                <Link
+                                    href="/posts"
+                                    onClick={toggleMenu}
+                                    className="block mb-2 hover:underline"
                                 >
                                     Posts
                                 </Link>
-                                <Link 
-                                    href="/works" 
-                                    onClick={toggleMenu} 
-                                    className="block mb-2 text-4xl md:text-6xl hover:underline"
+                                <Link
+                                    href="/works"
+                                    onClick={toggleMenu}
+                                    className="block mb-2 hover:underline"
                                 >
                                     Works
                                 </Link>
                             </div>
-                        </div>    
+                            <div className="text-md mt-10 text-slate-500">
+                                <div className="flex justify-end mb-2">
+                                    <a href="https://github.com/bsraya" target="_blank" rel="noreferrer noopener">
+                                        <FaGithub size={24} className="hover:text-slate-800" />
+                                    </a>
+                                    <a href="https://linkedin.com/in/bijonsetyawan" target="_blank" rel="noreferrer noopener" className='ml-2'>
+                                        <FaLinkedin size={24} className="hover:text-slate-800" />
+                                    </a>
+                                </div>
+                                <a href="mailto:bijonsetyawan@gmail.com" className="text-right hover:underline">bijonsetyawan@gmail.com</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}

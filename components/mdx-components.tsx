@@ -14,7 +14,7 @@ const customLink = (classes: string, props: any) => {
 
   if (isInternalLink) {
     return (
-      <Link href={href} {...props} /> 
+      <Link href={href} {...props} />
     )
   }
 
@@ -36,7 +36,7 @@ const components: any = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "font-bebasneue mt-2 scroll-m-20 text-4xl font-bold",
+        "font-merriweather mt-2 scroll-m-20 text-4xl font-bold",
         className
       )}
       {...props}
@@ -45,7 +45,7 @@ const components: any = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        `font-bebasneue scroll-m-20 border-b pb-1 text-3xl font-semibold mt-10 {&[class*="footnote-label"]}:mt-10`,
+        `font-merriweather scroll-m-20 border-b pb-1 text-3xl font-semibold mt-10 {&[class*="footnote-label"]}:mt-10`,
         className
       )}
       {...props}
@@ -54,7 +54,7 @@ const components: any = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "font-bebasneue mt-8 scroll-m-20 text-2xl font-semibold",
+        "font-merriweather mt-8 scroll-m-20 text-2xl font-semibold",
         className
       )}
       {...props}
@@ -63,7 +63,7 @@ const components: any = {
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
       className={cn(
-        "font-bebasneue mt-8 scroll-m-20 text-xl font-semibold",
+        "font-merriweather mt-8 scroll-m-20 text-xl font-semibold",
         className
       )}
       {...props}
@@ -72,7 +72,7 @@ const components: any = {
   h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h5
       className={cn(
-        "font-bebasneue mt-8 scroll-m-20 text-lg font-semibold",
+        "font-merriweather mt-8 scroll-m-20 text-lg font-semibold",
         className
       )}
       {...props}
@@ -81,7 +81,7 @@ const components: any = {
   h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h6
       className={cn(
-        "font-bebasneue mt-8 scroll-m-20 text-base font-semibold",
+        "font-merriweather mt-8 scroll-m-20 text-base font-semibold",
         className
       )}
       {...props}
@@ -89,15 +89,15 @@ const components: any = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <p
-      className={cn("font-baskervville leading-8 [&:not(:first-child)]:my-10 max-w-prose", className)}
+      className={cn("font-khula leading-8 [&:not(:first-child)]:my-10", className)}
       {...props}
     />
   ),
   ul: ({ className, ...props }: any) => (
-    <ul className={cn("font-baskervville my-6 ml-6 list-disc", className)} {...props} />
+    <ul className={cn("font-khula my-6 ml-6 list-disc", className)} {...props} />
   ),
   ol: ({ className, ...props }: any) => (
-    <ol className={cn("font-baskervville my-6 ml-6 list-decimal", className)} {...props} />
+    <ol className={cn("font-khula my-6 ml-6 list-decimal", className)} {...props} />
   ),
   li: ({ className, ...props }: any) => (
     <li className={cn("mt-2 max-w-prose", className)} {...props} />
@@ -105,7 +105,7 @@ const components: any = {
   blockquote: ({ className, ...props }: any) => (
     <blockquote
       className={cn(
-        "font-baskervville mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground",
+        "font-khula mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground",
         className
       )}
       {...props}
@@ -172,7 +172,7 @@ const components: any = {
   code: ({ className, ...props }: any) => (
     <code
       className={cn(
-        "relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm  [&>*]:my-[0.2rem] break-words",
+        "relative rounded px-[0.3rem] py-[0.2rem] font-fira text-sm [&>*]:my-[0.2rem] break-words",
         className
       )}
       {...props}

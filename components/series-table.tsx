@@ -7,14 +7,14 @@ interface SeriesPost {
 
 export default function SeriesTable({ title, series }: { title: string, series: SeriesPost[] }) {
   return (
-    <div className="mb-32 p-5 rounded-lg border not-prose w-full text-gray-800">
-      <p className="font-bebasneue text-2xl mb-5 underline">{title}: {series.length} Part&#40;s&#41;</p>
-      <ol className="font-baskervville list-decimal list-inside flex flex-col gap-3 ml-3">
+    <div className="mb-32 p-5 rounded-lg border not-prose w-3/4 mx-auto text-gray-800 grid grid-cols gap-3">
+      <p className="font-merriweather text-xl">{title}: {series.length} Part&#40;s&#41;</p>
+      <ol className="font-khula list-decimal list-inside flex flex-col gap-1 ml-3">
         {
           series.map(({ title, current }: SeriesPost) => {
             const slug = title.toLowerCase().replace(/ /g, '-');
             return (
-              <li key={slug} className={`hover:underline text-lg ${current ? 'font-bold underline' : ''}`}>
+              <li key={slug} className={`hover:underline ${current ? 'font-bold underline' : ''}`}>
                 <Link href={`/posts/${slug}`} as={`/posts/${slug}`}>
                   {title}
                 </Link>
