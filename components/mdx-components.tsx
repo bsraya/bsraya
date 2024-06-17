@@ -116,7 +116,7 @@ const components: any = {
     alt,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <figure>
+    <>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className={
@@ -125,10 +125,10 @@ const components: any = {
         alt={alt}
         {...props}
       />
-      <figcaption className="text-sm text-center text-muted-foreground">
+      <span className="text-sm text-muted-foreground">
         {alt}
-      </figcaption>
-    </figure>
+      </span>
+    </>
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
