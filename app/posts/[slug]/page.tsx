@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { Metadata } from 'next';
-import { format } from 'date-fns';
+import Link from "next/link";
+import { Metadata } from "next";
+import { format } from "date-fns";
 import { notFound } from 'next/navigation';
-import Mdx from "../../../components/mdx-components"
-import { allPosts } from '../../../.contentlayer/generated'
+import Mdx from "../../../components/mdx-components";
+import { allPosts } from "../../../.contentlayer/generated";
 
 export async function generateMetadata(
     { params }: { params: { slug: string } }
