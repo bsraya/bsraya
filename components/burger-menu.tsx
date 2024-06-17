@@ -32,12 +32,12 @@ const HamburgerMenu = () => {
 
     return (
         <div className="relative">
-            <button className="focus:outline-none" onClick={toggleMenu}>
+            <button className="focus:outline-none text-slate-600" onClick={toggleMenu}>
                 {menuOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
             </button>
 
             {menuOpen && (
-                <div className="absolute px-5 py-8 flex flex-col top-10 right-0 border-2 rounded-lg bg-slate-50" ref={menuRef}>
+                <div className="absolute px-5 py-8 flex flex-col top-10 right-0 border-2 rounded-lg bg-slate-50 text-slate-600" ref={menuRef}>
                     <div className="font-khula">
                         <div className="text-3xl font-semibold text-right">
                             <Link
