@@ -116,7 +116,7 @@ const components: any = {
     alt,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <>
+    <span className="w-full flex flex-col">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className={
@@ -125,10 +125,10 @@ const components: any = {
         alt={alt}
         {...props}
       />
-      <span className="text-sm text-muted-foreground">
+      <span className="mx-auto text-sm text-muted-foreground">
         {alt}
       </span>
-    </>
+    </span>
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
