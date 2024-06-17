@@ -37,7 +37,7 @@ export default function Posts() {
     return (
         <>
             <h1 className="font-lalezar mb-5 text-3xl">All Posts</h1>
-            <div className="flex flex-col gap-10 mb-10">
+            <div className="flex flex-col gap-10">
                 <PostList posts={posts} />
             </div>
         </>

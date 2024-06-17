@@ -37,7 +37,7 @@ export default function Experience() {
         <>
             <p className='font-khula mb-10 text-lg'>Need something on the go? Worry not, you can download my resume <ExternalLink text="here" url="https://drive.google.com/file/d/1jC-51cyHc-xOxdgyzh787VEHsWKMdQM7/view?usp=sharing" />.</p>
 
-            <div className="flex flex-col gap-20 mb-10">
+            <div className="flex flex-col gap-20">
                 <div>
                     <h1 className="font-lalezar mb-5 text-3xl">Experience</h1>
                     <div className="flex flex-col gap-10">

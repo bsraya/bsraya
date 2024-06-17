@@ -34,7 +34,7 @@ export default async function Tags({ params }: { params: { tag: string } }) {
   return (
     <>
       <h1 className="font-lalezar mb-5 text-3xl">{category}</h1>
-      <div className="flex flex-col gap-10 mb-10">
+      <div className="flex flex-col gap-10">
         <PostList posts={posts} />
       </div>
     </>

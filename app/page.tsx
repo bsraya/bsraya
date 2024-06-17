@@ -36,7 +36,7 @@ export default function Home() {
   }).slice(0, 3);
 
   return (
-    <div className="h-full mb-10">
+    <div className="h-full">
       <div className="flex flex-col gap-20">
         <div className="grid grid-col gap-2 text-xl">
           <div className="font-merriweather font-semibold">Bijon Setyawan Raya</div>
