@@ -7,6 +7,7 @@ import Footer from '@/components/footer';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { merriweather, khula, lalezar, fira } from './fonts'
+import BackToTop from '@/components/back-to-top';
 
 export const metadata: Metadata = {
   viewport: 'width=device-width, initial-scale=1',
@@ -53,9 +54,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(merriweather.variable, khula.variable, lalezar.variable, fira.variable, "max-w-3xl mx-auto py-5 px-5")}>
-        < Header />
+        <Header />
         {children}
-        < Footer />
+        <Footer />
+        <BackToTop />
         <Analytics />
         <SpeedInsights />
       </body>
