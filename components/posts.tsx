@@ -21,7 +21,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
                             >
                                 <h1 className="font-merriweather font-thin md:text-2xl text-xl">{post.title}</h1>
                             </Link>
-                            <p className="font-khula text-lg mt-auto text-slate-500">{post.description}</p>
+                            <p className="font-khula md:text-lg text-md mt-auto text-slate-500">{post.description}</p>
                         </div>
                     )
                 })

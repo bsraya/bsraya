@@ -17,7 +17,7 @@ export default function Works({ works }: { works: Work[] }) {
                             >
                                 <h1 className="font-merriweather font-thin md:text-2xl text-xl">{work.title}</h1>
                             </Link>
-                            <p className="font-khula text-lg mt-auto text-slate-500">{work.description}</p>
+                            <p className="font-khula md:text-lg text-md mt-auto text-slate-500">{work.description}</p>
                         </div>
                     )
                 })
