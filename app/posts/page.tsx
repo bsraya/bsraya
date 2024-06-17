@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
-import PostList from '../../components/posts';
-import { allPosts } from '../../.contentlayer/generated';
+import SearchPosts from '@/components/search-posts';
 
 export const metadata: Metadata = {
     title: 'Posts',
@@ -27,19 +26,13 @@ export const metadata: Metadata = {
         'Bijon Setyawan Raya posts',
     ]
 }
-export default function Posts() {
-    const posts = allPosts.filter(
-        (post) => post.published === true
-    ).sort((a, b) => {
-        return Number(new Date(b.date)) - Number(new Date(a.date))
-    });
 
+export default function Posts() {
     return (
         <>
             <h1 className="font-lalezar mb-5 text-3xl">All Posts</h1>
-            <div className="flex flex-col gap-10">
-                <PostList posts={posts} />
-            </div>
+            
+            <SearchPosts />
         </>
     )
 }
