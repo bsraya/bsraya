@@ -1,15 +1,34 @@
 "use client";
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MdMenu, MdClose } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const HamburgerMenu = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+            setMenuOpen(false);
+        }
+    }
+
+    useEffect(() => {
+        if (menuOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+        
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, [menuOpen]);
 
     return (
         <div className="relative">
@@ -18,7 +37,7 @@ const HamburgerMenu = () => {
             </button>
 
             {menuOpen && (
-                <div className="absolute px-5 py-8 flex flex-col top-10 right-0 border-2 rounded-lg bg-slate-50">
+                <div className="absolute px-5 py-8 flex flex-col top-10 right-0 border-2 rounded-lg bg-slate-50" ref={menuRef}>
                     <div className="font-khula">
                         <div className="text-3xl font-semibold text-right">
                             <Link
