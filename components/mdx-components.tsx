@@ -125,7 +125,7 @@ const components: any = {
         alt={alt}
         {...props}
       />
-      <span className="mx-auto text-sm text-muted-foreground">
+      <span className="mx-auto text-sm text-muted-foreground text-slate-500">
         {alt}
       </span>
     </span>
