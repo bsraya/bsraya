@@ -21,9 +21,9 @@ export default function TableOfContent({ headings }: { headings: { [key: string]
   }
 
   return (
-    <div className="font-khula text-lg fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-50 w-[350px] rounded border-2">
-      <div className="py-3 px-5">
-        <button className="flex w-full" onClick={toggleToc}>
+    <div className="font-khula text-lg fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-50 w-[250px] rounded border-2">
+      <div className="py-2 px-5">
+        <button className="flex w-full text-slate-600" onClick={toggleToc}>
           <span className="font-bold h-[24px]">Table of Content</span>
           <span className="ml-auto" >
             {
@@ -33,7 +33,7 @@ export default function TableOfContent({ headings }: { headings: { [key: string]
         </button>
         <motion.ol
           id="toc"
-          className={`overflow-hidden ${tocOpen ? "mt-5" : ""}`}
+          className={`overflow-hidden text-slate-500 hover:text-slate-600 ${tocOpen ? "mt-5" : ""}`}
           animate={tocOpen ? "open" : "closed"}
           variants={variants}
           initial="closed"
