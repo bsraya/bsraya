@@ -52,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <body className={cn(merriweather.variable, khula.variable, lalezar.variable, fira.variable, "max-w-3xl mx-auto py-5 px-5")}>
         <Header />
         {children}
