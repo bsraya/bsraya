@@ -29,7 +29,7 @@ and see how the RAG system can help generate more relevant responses to the job 
 The job descriptions are in markdown format, and here one example:
 
 ```markdown
-# AI Engineer
+AI Engineer
 
 **Company:** ...
 **Industry:** IT  
@@ -41,17 +41,17 @@ The job descriptions are in markdown format, and here one example:
 **Salary:** $$$ TWD / month  
 **Remote Work:** Optional
 
-## Job Description
+Job Description
 
 ...
 
-### Responsibilities:
+Responsibilities:
 
 - Research and share new AI-related technologies.
 - Prepare and deliver in-house training course materials.
 - Guide and execute AI-related projects.
 
-## Requirements
+Requirements
 
 **Mandatory Requirements:**
 
@@ -100,12 +100,12 @@ In addition to that, the job descriptions are quite short, so the model should b
 
 ## Limitations
 
-### User Interface
+### No UI
 
 It is challenging for users who do not have a technical background
 to interact with the RAG system on the command line.
 
-### Memory
+### Insufficent Memory
 
 Llama Index converts documents into vector embeddings and stores them in memory by default.
 This will be a problem if the number of documents increases.
@@ -153,7 +153,7 @@ If the alpha parameter is 1, the model will retrieve data using the vector appro
 meaning the model will retrieve data based on the similarity of the query and the vector embeddings.
 By default, the alpha parameter is set to $0.75$.
 
-### Hallucination
+### Better Responses
 
 By default, the model retrieves documents using `compact` mode.
 Meaning the model will combine texts into a big chunk of text and compose the relevant answer.
