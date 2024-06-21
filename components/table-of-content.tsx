@@ -27,7 +27,7 @@ export default function TableOfContent({ headings }: { headings: { [key: string]
           <span className="font-bold h-[24px]">Table of Content</span>
           <span className="ml-auto" >
             {
-              tocOpen ? <GoTriangleDown size={24} className="text-slate-600" /> : <GoTriangleUp size={24} className="text-slate-600" />
+              tocOpen ? <GoTriangleDown size={24} /> : <GoTriangleUp size={24} />
             }
           </span>
         </button>
