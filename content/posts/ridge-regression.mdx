@@ -1,6 +1,6 @@
 ---
 title: Ridge Regression
-description: Redoing Ridge Regression from scratch in Python
+description: Detecting and handling multicollinearity using L2 regularization
 date: 2024-02-08
 tag: Machine Learning
 type: Post
@@ -32,7 +32,7 @@ type: Post
     {
       title: "Polynomial Regression",
       current: false,
-    }
+    },
   ]}
 />
 
@@ -86,9 +86,10 @@ $$
 $$
 
 where
+
 1. $\frac{1}{N} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2$ is Mean Squared Error.
 2. $\lambda$ is the regularization parameter.
-2. $\sum_{j=1}^{p} |\theta_j^2|$ is the L2 norm of the weights.
+3. $\sum_{j=1}^{p} |\theta_j^2|$ is the L2 norm of the weights.
 
 ## What's Wrong with the Data?
 
@@ -103,11 +104,12 @@ feature_names = ['age', 'sex', 'body_mass_index', 'blood_pressure', 'serum_chole
 ```
 
 There are ten features in the dataset. Let's decipher what some features represent:
+
 1. `body_mass_index`: It's a measure of body fat based on height and weight.
 2. `serum_cholesterol`: The amount of cholesterol present in the blood.
 3. `ldl`: Low-density lipoprotein cholesterol, often referred to as "bad" cholesterol.
 4. `hdl`: High-density lipoprotein cholesterol, often referred to as "good" cholesterol.
-5. `cholesterol_ratio`:  A ratio calculated by dividing the total cholesterol by the HDL cholesterol level. 
+5. `cholesterol_ratio`: A ratio calculated by dividing the total cholesterol by the HDL cholesterol level.
 6. `triglycerides`: A type of fat found in the blood, expressed in logaritm.
 7. `blood_sugar`: The amount of glucose present in the blood.
 
@@ -116,6 +118,7 @@ Let's plot the heatmap to see the correlation between the features.
 ![Diabetes Dataset Heatmap](/assets/posts/ridge-regression/heatmap.png "Diabetes Dataset Heatmap")
 
 Here is a guide on how to interpret the values in the table above:
+
 1. Two or more features said to have a **strong positive** correlation if the correlation coefficient is close to $1$.
 2. Two or more features said to have a **moderate positive** correlation if the correlation coefficient is close to $0.5$.
 3. Two or more features said to have a **weak positive** correlation if the correlation coefficient is close to $0$.
@@ -123,10 +126,11 @@ Here is a guide on how to interpret the values in the table above:
 5. Two or more features said to have a **strong negative** correlation if the correlation coefficient is close to $-1$.
 
 Looking at the heatmap, we can determine easily what features are correlated with each other.
+
 1. `ldl` and `serum_cholesterol` have a **strong positive** correlation.
 2. `ldl` and `cholesterol_ratio` have a **strong positive** correlation.
-2. `serum_cholesterol` and `cholesterol_ratio` have a **moderate positive** correlation.
-3. `serum_cholesterol` and `triglycerides` have a **moderate negative** correlation.
+3. `serum_cholesterol` and `cholesterol_ratio` have a **moderate positive** correlation.
+4. `serum_cholesterol` and `triglycerides` have a **moderate negative** correlation.
 
 These are the features that can be detected easily from the heatmap.
 With the following code, we can list out all the correlation values between the features.
@@ -139,18 +143,17 @@ df.corr()[df.corr() < 1]
   .drop_duplicates()
 ```
 
-|      Variable 1      |       Variable 2       |   Correlation   |
-|----------------------|------------------------|-----------------|
-|         ldl          |   serum_cholesterol    |    0.896663     |
-|                      |    cholesterol_ratio   |    0.659817     |
-|  cholesterol_ratio   |       triglycerides    |    0.617859     |
-|  serum_cholesterol   |    cholesterol_ratio   |    0.542207     |
-|                      |       triglycerides    |    0.515503     |
-|         ...          |           ...          |       ...       |
-|         sex          |           hdl          |   -0.379090     |
-|   triglycerides      |           hdl          |   -0.398577     |
-|         hdl          |   cholesterol_ratio    |   -0.738493     |
-
+| Variable 1        | Variable 2        | Correlation |
+| ----------------- | ----------------- | ----------- |
+| ldl               | serum_cholesterol | 0.896663    |
+|                   | cholesterol_ratio | 0.659817    |
+| cholesterol_ratio | triglycerides     | 0.617859    |
+| serum_cholesterol | cholesterol_ratio | 0.542207    |
+|                   | triglycerides     | 0.515503    |
+| ...               | ...               | ...         |
+| sex               | hdl               | -0.379090   |
+| triglycerides     | hdl               | -0.398577   |
+| hdl               | cholesterol_ratio | -0.738493   |
 
 We can also use Variance Inflation Factor (VIF) to determine the multicollinearity between the features.
 
@@ -163,20 +166,21 @@ vif_data["VIF"] = [variance_inflation_factor(df.values, i) for i in range(len(da
 print(vif_data)
 ```
 
-|       feature      |    VIF     |
-|--------------------|------------|
-|        age         |  1.217307  |
-|        sex         |  1.278071  |
-| body_mass_index    |  1.509437  |
-|  blood_pressure    |  1.459428  |
-| serum_cholesterol  | 59.202510  |
-|        ldl         | 39.193370  |
-|        hdl         | 15.402156  |
-| cholesterol_ratio  |  8.890986  |
-|   triglycerides    | 10.075967  |
-|     blood_sugar    |  1.484623  |
+| feature           | VIF       |
+| ----------------- | --------- |
+| age               | 1.217307  |
+| sex               | 1.278071  |
+| body_mass_index   | 1.509437  |
+| blood_pressure    | 1.459428  |
+| serum_cholesterol | 59.202510 |
+| ldl               | 39.193370 |
+| hdl               | 15.402156 |
+| cholesterol_ratio | 8.890986  |
+| triglycerides     | 10.075967 |
+| blood_sugar       | 1.484623  |
 
 Here is a guide on how to interpret VIF values:
+
 1. $\text{VIF} = 1$: The feature is said to have **no multicollinearity**.
 2. $1 < \text{VIF} < 5$: The feature is said to have a **moderate multicollinearity**.
 3. $\text{VIF} > 5$: The feature is said to have a **severe multicollinearity**.
@@ -228,6 +232,7 @@ def loss_function(coefficients, errors, regularization_term):
 ```
 
 We also need a function called `soft_threshold` to update the coefficients. There are three conditions:
+
 1. If the coefficient is less than the negative of the regularization term, then we subtract the regularization term from the coefficient.
 2. If the coefficient is greater than the regularization term, then we subtract the regularization term from the coefficient.
 3. If the coefficient is between the negative and positive regularization term, then we set the coefficient to zero.
@@ -246,7 +251,7 @@ def soft_threshold(rho, lambda_):
 def ridge_regression(
     x, y,
     epochs,
-    learning_rate = 0.1, 
+    learning_rate = 0.1,
     regularization_term = 0.001
 ):
     intercept, coefficients = 0, np.zeros(x.shape[1])
@@ -261,17 +266,17 @@ def ridge_regression(
         errors = predictions - y
         intercept = intercept - learning_rate * np.sum(errors) / length
         intercept_history.append(intercept)
-        
+
         for j in range(len(coefficients)):
             gradient = np.dot(x[:, j], errors) / length
             temp_coef = coefficients[j] - learning_rate * gradient
             coefficients[j] = soft_threshold(temp_coef, regularization_term)
             coefficients_history[j, i] = coefficients[j]
-        
+
         loss_history.append(
             loss_function(
-                coefficients, 
-                errors, 
+                coefficients,
+                errors,
                 regularization_term
             )
         )
@@ -283,21 +288,21 @@ intercept, coefficients = ridge_regression(scaled_X, data.target, epochs)
 
 ## Model Comparison
 
-|                    | Baseline               | Ours                   |
-|--------------------|------------------------|------------------------|
-| MSE                |        2900.07         |         2878.51        |
-| age                |           1.75         |           -0.35        |
-| sex                |         -11.51         |          -11.29        |
-| body_mass_index    |          25.61         |           24.77        |
-| blood_pressure     |          16.83         |           15.31        |
-| serum_cholesterol  |         -44.32         |          -28.79        |
-| ldl                |          24.54         |           15.84        |
-| hdl                |           7.62         |            0.56        |
-| cholesterol_ratio  |          13.12         |            6.86        |
-| triglycerides      |          35.11         |           32.53        |
-| blood_sugar        |           2.35         |            3.19        |
+|                   | Baseline | Ours    |
+| ----------------- | -------- | ------- |
+| MSE               | 2900.07  | 2878.51 |
+| age               | 1.75     | -0.35   |
+| sex               | -11.51   | -11.29  |
+| body_mass_index   | 25.61    | 24.77   |
+| blood_pressure    | 16.83    | 15.31   |
+| serum_cholesterol | -44.32   | -28.79  |
+| ldl               | 24.54    | 15.84   |
+| hdl               | 7.62     | 0.56    |
+| cholesterol_ratio | 13.12    | 6.86    |
+| triglycerides     | 35.11    | 32.53   |
+| blood_sugar       | 2.35     | 3.19    |
 
-By comparing the baseline model and our model, you would be able to see the 
+By comparing the baseline model and our model, you would be able to see the
 noticeable differences in the coefficients of the features.
 However, the Mean Squared Error values differ only by a small amount.
 
@@ -308,6 +313,7 @@ However, the Mean Squared Error values differ only by a small amount.
 ## Conclusion
 
 Here are the key takeaways from this post:
+
 1. Ridge Regression is a type of linear regression that uses a regularization term to prevent overfitting.
 2. It uses the sum of the squares of the weights multiplied by the regularization term to minimize coefficients.
 3. It will set coefficients close to zero but not exactly zero.
