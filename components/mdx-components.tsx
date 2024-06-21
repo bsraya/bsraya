@@ -1,11 +1,11 @@
 import Flow from "./flow";
 import Link from "next/link";
+import Video from "./video";
 import * as React from "react";
 import { cn } from "../lib/utils";
 import LineGraph from "./line-graph";
 import SeriesTable from './series-table';
 import ScatterGraph from "./scatter-graph";
-import Video from "./video";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
 const customLink = (classes: string, props: any) => {
