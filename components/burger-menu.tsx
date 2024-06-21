@@ -24,7 +24,7 @@ const HamburgerMenu = () => {
         } else {
             document.removeEventListener("mousedown", handleClickOutside);
         }
-        
+
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         }
@@ -32,12 +32,12 @@ const HamburgerMenu = () => {
 
     return (
         <div className="relative">
-            <button className="focus:outline-none text-slate-600" onClick={toggleMenu}>
+            <button className="focus:outline-none text-slate-800" onClick={toggleMenu}>
                 {menuOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
             </button>
 
             {menuOpen && (
-                <div className="absolute px-5 py-8 flex flex-col top-10 right-0 border-2 rounded-lg bg-slate-50 text-slate-600" ref={menuRef}>
+                <div className="absolute px-5 py-8 flex flex-col top-10 right-0 border-2 rounded-lg shadow-md bg-white z-10" ref={menuRef}>
                     <div className="font-khula">
                         <div className="text-3xl font-semibold text-right">
                             <Link
@@ -78,7 +78,7 @@ const HamburgerMenu = () => {
                                     <FaLinkedin size={24} className="hover:text-slate-800" />
                                 </a>
                             </div>
-                            <a href="mailto:bijonsetyawan@gmail.com" className="text-right hover:underline">bijonsetyawan@gmail.com</a>
+                            <a href="mailto:bijonsetyawan@gmail.com" className="text-right hover:text-slate-800">bijonsetyawan@gmail.com</a>
                         </div>
                     </div>
                 </div>

@@ -15,15 +15,15 @@ const variants = {
 
 export default function TableOfContent({ headings }: { headings: { [key: string]: string[] } }) {
   const [tocOpen, setTocOpen] = useState(false);
-  
+
   const toggleToc = () => {
     setTocOpen(!tocOpen);
   }
 
   return (
-    <div className="font-khula text-lg fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-50 w-[250px] rounded border-2">
+    <div className="font-khula text-lg fixed bottom-5 left-1/2 -translate-x-1/2 bg-white w-[250px] rounded border-2 shadow-md">
       <div className="py-2 px-5">
-        <button className="flex w-full text-slate-600" onClick={toggleToc}>
+        <button className="flex w-full text-slate-800" onClick={toggleToc}>
           <span className="font-bold h-[24px]">Table of Content</span>
           <span className="ml-auto" >
             {

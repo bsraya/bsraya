@@ -25,7 +25,7 @@ export default function BackToTop() {
   }, [isAtTop, isScrolling]);
 
   const scrollToTop = () => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   useEffect(() => {
@@ -40,8 +40,11 @@ export default function BackToTop() {
     <>
       {
         isVisible && (
-          <button onClick={scrollToTop} className="fixed bottom-5 right-5 z-10 bg-slate-50 p-2 border-2 rounded">
-            <GoTriangleUp size={24} className="text-slate-600" />
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-5 right-5 z-10 p-2 border-2 rounded bg-white shadow-md"
+          >
+            <GoTriangleUp size={24} className="text-slate-800" />
           </button>
         )
       }
