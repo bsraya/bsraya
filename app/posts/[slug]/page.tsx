@@ -69,7 +69,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
             <h1 className="text-center justify-center xl:text-5xl text-4xl font-thin font-merriweather my-5">{post.title}</h1>
 
-            <div className="prose lg:prose-xl my-20 prose-a:underline-offset-4">
+            <div className="prose md:prose-xl my-20 prose-a:underline-offset-4 mx-auto">
                 <Mdx code={post.body.code} />
             </div>
         </>
