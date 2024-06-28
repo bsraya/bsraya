@@ -89,15 +89,15 @@ const components: any = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <p
-      className={cn("font-khula md:leading-8 leading-6 [&:not(:first-child)]:my-10", className)}
+      className={cn("font-khula leading-8 lg:[&:not(:first-child)]:my-10 [&:not(:first-child)]:my-5", className)}
       {...props}
     />
   ),
   ul: ({ className, ...props }: any) => (
-    <ul className={cn("font-khula my-6 ml-6 list-disc", className)} {...props} />
+    <ul className={cn("font-khula list-disc", className)} {...props} />
   ),
   ol: ({ className, ...props }: any) => (
-    <ol className={cn("font-khula my-6 ml-6 list-decimal", className)} {...props} />
+    <ol className={cn("font-khula list-decimal", className)} {...props} />
   ),
   li: ({ className, ...props }: any) => (
     <li className={cn("mt-2 max-w-prose", className)} {...props} />
