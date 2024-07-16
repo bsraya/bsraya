@@ -1,0 +1,520 @@
+---
+title: Regression Algorithms in C++ and Python
+description: Comparing speed and code complexity of regression algorithms written in C++ and Python
+date: 2024-06-30
+tag: Machine Learning
+published: true
+type: Post
+---
+
+## Introduction
+
+Previously in [the regression](/posts/linear-regression) and [the gradient descent](/posts/introduction-to-gradient-descent-algorithms) series,
+I have walked through readers on writing linear regression algorithms and optimizers from scratch mathematically and programmatically.
+
+The objective of this post is to rewrite Logistic Regression and Gradient
+Descent in C++ to speed up the computation, and we are going to compare
+the speed of the Python and C++ implementations.
+
+First and foremost, we are going to need a library called [Eigen](https://eigen.tuxfamily.org/dox/), similar to Numpy.
+We can install it by running:
+
+```bash
+sudo apt install libeigen3-dev
+```
+
+Then, we are going to need `CMakeLists.txt` and create a new folder called `build` in the parent working directory.
+Most importantly, the `eigen3` location has to be included in the `CMakeLists.txt` file.
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+
+project(MachineLearning)
+
+set(EIGEN_INCLUDE_DIR /usr/include/eigen3)
+
+include_directories(${EIGEN_INCLUDE_DIR})
+
+add_executable(main main.cpp optimizer.cpp regression.cpp)
+
+set(CMAKE_CXX_COMPILER "g++")
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_VERBOSE_MAKEFILE ON)
+```
+
+Once we have the `CMakeLists.txt` file, we can run the following commands:
+
+```bash
+cd build
+cmake ..
+make
+```
+
+You'd see a `main` executable file in the `build` directory. Then,
+
+```bash
+./main
+```
+
+## CSV Reader
+
+First, we are going to make an object called `Iris` using `struct`.
+
+```cpp
+struct Iris
+{
+    float sepal_length;
+    float sepal_width;
+    float petal_length;
+    float petal_width;
+    float target;
+};
+```
+
+The reason why I used `struct` instead of `class` object is everything in `struct` is public by default.
+Besides, we only want to retain values. I personally think `struct` is good enough without overcomplicating the code.
+
+Then, we would need a class called `IrisReader`.
+
+```cpp
+class IrisReader
+{
+public:
+    vector<Iris> flowers;
+    ifstream file;
+
+    # constructor
+    IrisReader(const string &filename)
+    {
+        file.open(filename);
+    }
+
+    # deconstructor
+    ~IrisReader()
+    {
+        file.close();
+    }
+
+    vector<Iris> load()
+    {
+        string line;
+        for (auto i=0; getline(file, line); i++)
+        {
+            Iris iris;
+            sscanf(
+                line.c_str(),
+                "%f,%f,%f,%f,%f",
+                &iris.sepal_length,
+                &iris.sepal_width,
+                &iris.petal_length,
+                &iris.petal_width,
+                &iris.target
+            );
+            flowers.push_back(iris);
+        }
+
+        return flowers;
+    }
+}
+```
+
+There are two things we should pay attention to: `constructor` and `deconstructor`.
+`constructor` is a member function that is going to be run when the `class` is initialized.
+`deconstructor` is a member function that is going to be run when the `class` is out of scope,
+or when the class has reached its end of its execution.
+
+What the `IrisHeader` class does is that it reads a CSV file passed when it's being initialized.
+If the `load()` function is called, then read the CSV file line by line and store the values in a vector called `flowers`.
+Finally, close the file when the class has reached the end of its execution.
+
+To see if it's working, initialize an `IrisReader` object and call the `load()` function.
+
+```cpp
+int main() {
+    IrisReader reader("iris.csv");
+    vector<Iris> iris = raader.load();
+
+    for (Iris &i : iris) {
+        cout << i.sepal_length << " "
+            << i.sepal_width << " "
+            << i.petal_length << " "
+            << i.petal_width << " "
+            << i.target << endl;
+    }
+
+    return 0;
+}
+```
+
+Since we are working on Logistic Regression, which is good at binary classification, we are going to modify the `target` values.
+If the `target` value is **setosa** then it's going to be $0$, otherwise $1$. This is how you prepare the dataset in Python:
+
+```python
+import pandas as pd
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+
+X = iris.data
+y = iris.target
+
+is_setosa = [1.0 if i == 0 else 0.0 for i in y]
+
+df = pd.DataFrame(data= X, columns= iris.feature_names)
+df['is_setosa'] = is_setosa
+
+df.to_csv("./iris.csv", index = False)
+```
+
+## Implementation
+
+### C++
+
+As for the Python implementation, please refer to this [Logistic Regression](/posts/logistic-regression) implementation post
+that I have written previously. In this post, we are going to focus more on the C++ implementation.
+
+First, let's define a class called `LogisticRegression` with its constructor and deconstructor.
+
+Remember `constructor` is a member function that is going to be run when the `class` is initialized.
+While `deconstructor` is a member function that is going to be run when the `class` is out of scope.
+
+```cpp
+class LogisticRegression
+{
+public:
+    float learning_rate;
+    int iterations;
+    float intercept = 0.0;
+    Vector4f coefficients = Vector4f::Zero();
+
+    # Constructor
+    LogisticRegression(float learning_rate = 0.01, int iterations = 100) : learning_rate(learning_rate), iterations(iterations)
+    {
+    }
+
+    # Deconstructor
+    ~LogisticRegression()
+    {
+        cout << "Intercept: "
+            << intercept
+            << endl;
+
+        cout << "Coefficients: "
+            << "["
+            << coefficients(0) << ", "
+            << coefficients(1) << ", "
+            << coefficients(2) << ", "
+            << coefficients(3)
+            << "]"
+            << endl;
+    }
+}
+```
+
+Now, we should make `fit()`, `predict()`, and `loss()`
+so that users can interact with the model object easily.
+Let's extend the class above.
+
+```cpp
+class LogisticRegression
+{
+public:
+    ...
+    void fit(vector<Iris> flowers)
+    {
+        int rows = flowers.size();
+        MatrixXf X(rows, 4);
+        VectorXf y(rows);
+
+        for (int i=0; i<rows; i++)
+        {
+            X(i, 0) = flowers[i].sepal_length;
+            X(i, 1) = flowers[i].sepal_width;
+            X(i, 2) = flowers[i].petal_length;
+            X(i, 3) = flowers[i].petal_width;
+            y(i) = flowers[i].target;
+        }
+
+        optimize(X, y);
+    }
+
+    RowVectorXf predict(float intercept, VectorXf coefficients)
+    {
+        RowVectorXf predictions = RowVectorXf::Constant(features.rows(), intercept_value) + RowVectorXf(features * coefficients);
+
+        for (float &prediction : predictions)
+        {
+            prediction = threshold(sigmoid(prediction));
+        }
+
+        return predictions
+    }
+
+    float loss(RowVectorXf predictions, RowVectorXf trueValues)
+    {
+        RowVectorXf error = RowVectorXf(predictions - targets);
+        RowVectorXf squared_error = error.array().pow(2);
+        return squared_error.sum() / targets.size();
+    }
+    ...
+}
+```
+
+After that, we need to create three private functions for the class:
+`sigmoid()`, `threshold()`, and `optimize()`.
+
+```cpp
+class LogisticRegression
+{
+public:
+    ...
+private:
+    float sigmoid(float x)
+    {
+        return 1 / (1 + exp(-x));
+    }
+
+    float threshold(float prediction)
+    {
+        return prediction >= 0.5 ? 1 : 0;
+    }
+
+    void optimize(MatrixX4f X, VectorXf y)
+    {
+        float length = X.rows();
+        for (int i = 0; i < iterations)
+    }
+}
+```
+
+The C++ implementation only one file: `main.cpp`.
+I could have separated the implementation into multiple files,
+but I wanted to keep it simple and easy to understand
+for the sake of experimentation.
+
+### Python
+
+Here is the structure of the Python implementation:
+
+```
+.
+├── Regressions
+│   ├── __init__.py
+│   ├── linear_regression.py
+│   └── logistic_regression.py
+└── main.py
+```
+
+Let's implement the `LogisticRegression` class
+in `logistic_regression.py`.
+
+```python
+import numpy as np
+
+class LogisticRegression:
+    def __init__(self, epochs: int = 100, learning_rate: float = 0.01):
+        self.iterations: int = 1_000
+        self.intercept: float = 0.0
+        self.coefficients: list = list()
+        self.optimizer: str = "sgd"
+        self.loss_history: list = list()
+        self.epochs: int = epochs
+        self.learning_rate: float = learning_rate
+
+    def intercept_(self):
+        return self.intercept
+    
+    def coef_(self):
+        return self.coefficients
+    
+    def loss_history_(self):
+        return self.loss_history
+    
+    def sigmoid(self, x: float):
+        return 1 / (1 + np.exp(-x))
+    
+    def linear_function(self, intercept: float, coefficients: np.array, x):
+        return intercept + np.dot(coefficients, x.T)
+    
+    def threshold(self, x):
+        return np.where(x > 0.5, 1, 0)
+    
+    def predict(self, intercept: float, coefficients: np.array, x: np.array):
+        linear_predictions = intercept + np.dot(coefficients, x.T)
+        return self.threshold(self.sigmoid(linear_predictions)).flatten()
+
+    def fit(self, X, y):
+        length = len(y)
+        self.coefficients = np.zeros((1, X.shape[1]))
+
+        for i in range(self.epochs):
+            predictions = self.predict(self.intercept, self.coefficients, X)
+            predictions_error = (predictions - y)
+            self.intercept = self.intercept - self.learning_rate * sum(predictions_error) / length
+            self.coefficients = self.coefficients - ((self.learning_rate * np.dot(predictions_error, X)) / length)
+            self.loss_history.append(
+                np.sum(predictions_error ** 2) / length
+            )
+```
+
+## Comparison
+
+### Time
+
+To measure the execution time of the Python implementation, I made a Python function decorator called `time_it`
+in `linear_regression.py`.
+
+```python
+...
+from time import time
+from functools import wraps
+
+def time_it(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time()
+        result = func(*args, **kwargs)
+        end = time()
+        print(f"Function {func.__name__} took {end - start} seconds")
+        return result
+    return wrapper
+
+class LogisticRegression:
+    ...
+
+    @time_it
+    def fit(self, X, y):
+        ...
+```
+
+To measure the execution time of C++ implementation,
+we can use `chrono`.
+
+```cpp
+#inlcude <chrono>
+
+int main()
+{
+    ...
+    vector<int> iterations = {
+        1, 10, 100, 1000, 10000, 100000, 1000000
+    }
+
+    for (int iter : iterations)
+    {
+        auto start = chrono::high_resolution_clock::now();
+        ...
+        auto stop = chrono::high_resolution_clock::now();
+        cout << iter << " iteration(s) took " << duration<double>(stop - start).count() << "s\n";
+    }
+
+    ...
+}
+```
+
+<LineGraph
+  data={{
+    labels: [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000],
+    datasets: [
+      {
+        label: "C++",
+        data: [0.0000812, 0.0002587, 0.0022539, 0.0218322, 0.218749, 2.15804, 21.5836, 217.28],
+        borderColor: "blue",
+      },
+      {
+        label: "Python",
+        data: [0.0001232, 0.0004122, 0.0038478, 0.0380868, 0.348146, 3.24117, 32.3477, 322.5744],
+        borderColor: "#F7DC6B",
+      }
+    ],
+  }}
+  options={{
+    elements: {
+        line: {
+            tension: 0.4
+        }
+    },
+    plugins: {
+        title: {
+            display: true,
+            text: "Execution Time of Logistic Regression in C++ and Python",
+        },
+        legend: {
+            display: true,
+            position: "bottom",
+        },
+    },
+    scales: {
+        x: {
+            title: {
+                display: true,
+                text: "Iterations",
+            }
+        },
+        y: {
+            title: {
+                display: true,
+                text: "Second(s)",
+            }
+        }
+    }
+  }}
+/>
+
+### Lines of Code
+
+To determine the number of lines of code (LoC),
+we can use the following commands:
+
+```
+# For C++
+find . -name '*.cpp' | xargs wc -l
+
+# For Python
+find . -name '*.cpp' | xargs wc -l
+```
+
+#### C++
+
+```bash
+...
+171 ./main.cpp
+...
+```
+
+#### Python
+
+```bash
+59 ./Regressions/logistic_regression.py
+...
+22 ./main.py
+...
+```
+
+It requires 171 LoC to implement Logistic Regression in C++.
+While, it requires 59 LoC to implement Logistic Regression in Python.
+
+## Conclusion
+
+In this post, we have implemented Logistic Regression both
+in C++ and Python. From the execution time graph,
+we can see the execution time of C++ is less than one third until
+10,000,000 iterations. After that, the difference of execution time
+between two implementations just differs by &#177; 1/3.
+
+Besides the insignificant difference of execution time,
+it takes a relatively longer time to write C++ code since 
+programmers should define the data types of all functions and variables.
+Not only that, but the C++ code is also more verbose than Python code 
+and a little knowledge of CMake is required to compile the code.
+With C++, we might end up with a lot of prerequisites knowledge and
+other overheads.
+
+Due to the simplicity of Python, we can see why most of
+the Machine Learning libraries are written in Python.
+It's easier to make prototypes and estimate model
+parameters in Python by giving up a little bit of performance.
+
+## References
+
+1. Stackoverflow. _How can I count all the lines of code in a directory recursively?_ [https://stackoverflow.com/questions/1358540/how-can-i-count-all-the-lines-of-code-in-a-directory-recursively](https://stackoverflow.com/questions/1358540/how-can-i-count-all-the-lines-of-code-in-a-directory-recursively)
