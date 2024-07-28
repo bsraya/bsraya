@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function Experience() {
     return (
         <>
-            <p className='font-khula mb-10 text-lg'>Need something on the go? Worry not, you can download my resume <ExternalLink text="here" url="https://drive.google.com/file/d/1jC-51cyHc-xOxdgyzh787VEHsWKMdQM7/view?usp=sharing" />.</p>
+            <p className='font-khula mb-10 text-lg'>Need something on the go? Worry not, you can download my resume <ExternalLink text="here" url="/resume.pdf" />.</p>
 
             <div className="flex flex-col gap-20">
                 <div>
