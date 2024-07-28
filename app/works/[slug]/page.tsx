@@ -48,7 +48,7 @@ async function getWorkFromParams(slug: string) {
 export default async function Work({ params }: { params: { slug: string } }) {
     const work = await getWorkFromParams(params.slug)
     const headings = getHeadings(work.body.raw)
-    
+
     return (
         <>
             <div className="justify-center flex text-center gap-3 font-khula text-slate-500">
@@ -59,7 +59,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
             <h1 className="text-center justify-center xl:text-5xl text-4xl font-thin font-merriweather my-5">{work.title}</h1>
 
-            <div className="prose lg:prose-xl my-20 prose-a:underline-offset-4 text-justify mx-auto">
+            <div className="prose lg:prose-xl my-20 prose-a:underline-offset-4 mx-auto">
                 <Mdx code={work.body.code} />
             </div>
 
