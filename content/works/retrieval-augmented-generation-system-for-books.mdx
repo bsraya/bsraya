@@ -10,6 +10,7 @@ type: Work
 **Tech stack**: [Gradio](https://www.gradio.app/), [Hugging Face](https://huggingface.co/BAAI/bge-large-en-v1.5), [Llama 3.1](https://llama.meta.com/), [Llama Index](https://www.llamaindex.ai/), [Ollama](https://ollama.com/), Python, and [Weaviate](https://weaviate.io/)
 
 **Update**:
+
 1. Developed a user interface.
 2. Incorporated a vector embedding database to improve the efficiency of the retrieval process.
 3. Instead of analyzing the current job openings, I decided to develop a RAG system that summarizes books.
@@ -36,7 +37,7 @@ Since I am only focusing on indexing and retrieving data, I am going to incorpor
 Why would we need RAG? According to [Llama Index](https://docs.llamaindex.ai/en/stable/getting_started/concepts/),
 RAG helps processing and adding external or personal data in the generation process.
 Adding this external data can help the model to generate more relevant and accurate responses.
-However, adding this external data to the model requires five stages: 
+However, adding this external data to the model requires five stages:
 **loading**, **indexing**, **storing**, **querying**, and **evaluation**.
 
 In order to get the local RAG system to work, three components are needed:
@@ -47,7 +48,7 @@ If documents are too long, the model may be slow to find relevant or, worse, not
 due to memory constraints.
 If too short, the model would generate irrelevant responses, or halluciante, due to lack of context.
 
-![1024 chunk size, and 100 chunk overlap.](/assets/works/personalized-retrieval-augmented-generation-system/chunk-visualization.png)
+![1024 chunk size, and 100 chunk overlap](/assets/works/retrieval-augmented-generation-system-for-books/chunk-visualization.png)
 
 [https://chunkviz.up.railway.app/](https://chunkviz.up.railway.app/) can help visualize the chunking process.
 
