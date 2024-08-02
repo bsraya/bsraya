@@ -19,11 +19,11 @@ retrieving similar images from a dataset of memes.
 
 ## How It Works?
 
-Image feature extraction is done by removing the last layer of the pre-trained ResNet model.
-Thus, the model outputs a feature vector of $2048 \times 1$ dimensions for each image.
+ResNet50 without the output layer, which is the last layer, is used to extract image features.
+Thus, the output of this modified ResNet50 model is a 2048-dimensional vector.
 
-When a user uploads an image, the image is processed and its features are extracted.
-The newly uploaded image's features are then compared with the features of the meme images in the database.
+When a user uploads an image, the image is then preprocessed and a 2048-dimensional vector will be assigned to this image.
+The newly uploaded image's features are then compared with the features of the meme images that resides in the database.
 
 ![Distracted boyfriend meme search result](/assets/works/image-search-engine/distracted-boyfriend.png "Distracted boyfriend meme search result")
 
