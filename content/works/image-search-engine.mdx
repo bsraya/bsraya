@@ -19,17 +19,11 @@ retrieving similar images from a dataset of memes.
 
 ## How It Works?
 
-This image search engine relies heavily on the images that I collected over the internet.
-However, I did not collect the images that much at the beginning.
-Instead, the search engine relies on those images uploaded by the users to improve the search results.
-The server only receives image files with types of `image/jpg`, `image/jpeg`, and `image/png`.
-Unfortunately, the server does not support other types of image files, e.g. `image/gif` or `image/webp`.
+Image feature extraction is done by removing the last layer of the pre-trained ResNet model.
+Thus, the model outputs a feature vector of $2048 \times 1$ dimensions for each image.
 
-Say that a user is at the homepage and wants to search for an image, they can upload an image file via the input form.
-As soon as the uploaded image is received by the server, the server will extract features from the image using the pre-trained ResNet18 model.
-Once the features are extracted, the pre-trained model will turn the features into a vector of $512x1$ dimension.
-
-Once we have that vector, we can compare it with the vectors of the images in the dataset using cosine similarity.
+When a user uploads an image, the image is processed and its features are extracted.
+The newly uploaded image's features are then compared with the features of the meme images in the database.
 
 ![Distracted boyfriend meme search result](/assets/works/image-search-engine/distracted-boyfriend.png "Distracted boyfriend meme search result")
 
