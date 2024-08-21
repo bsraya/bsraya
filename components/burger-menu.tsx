@@ -48,13 +48,6 @@ const HamburgerMenu = () => {
                                 Home
                             </Link>
                             <Link
-                                href="/experience"
-                                onClick={toggleMenu}
-                                className="block mb-2 hover:underline"
-                            >
-                                Experience
-                            </Link>
-                            <Link
                                 href="/posts"
                                 onClick={toggleMenu}
                                 className="block mb-2 hover:underline"
