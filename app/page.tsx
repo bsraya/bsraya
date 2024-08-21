@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import WorkList from '@/components/works';
 import PostList from '@/components/posts';
+import ExternalLink from '@/components/external-link';
 import { allWorks, allPosts } from '../.contentlayer/generated';
 
 export const metadata: Metadata = {
@@ -38,9 +39,10 @@ export default function Home() {
   return (
     <div className="h-full">
       <div className="flex flex-col gap-20">
-        <div className="grid grid-col gap-2 text-xl">
-          <div className="font-merriweather font-semibold">Bijon Setyawan Raya</div>
-          <div className="text-slate-500 font-khula">I make machines learn and write about it</div>
+        <div className="grid grid-col gap-2">
+          <div className="font-merriweather font-semibold text-2xl">Bijon Setyawan Raya</div>
+          <div className="text-slate-600 font-khula text-xl">I make machines learn and write about it</div>
+          <div>Get my resume <ExternalLink text="here" url="/resume.pdf" /></div>
         </div>
 
         <div>
