@@ -11,11 +11,10 @@ type: Work
 
 **Update**:
 
-1. Changed the image feature extraction model from the smaller model `ResNet18` to the larger model `ResNet50`
-   for better image feature extraction.
-2. Utilized PCA to reduce the dimensionality of the image features from $2048$ to smaller dimensions,
-   and thus sped up the cosine similarity calculation and reduced the memory usage.
+1. Changed the image feature extraction model from the smaller model to the larger model for better image feature extraction.
+2. Reduced image features dimensionality using PCA to speed up the search process and reduce memory usage.
 3. Incorporated DuckDB to store the image features and the image paths to improve the search speed.
+4. Enabled keyword search to find images based on image descriptions.
 
 **_TL;DR_**: An image search engine powered by ResNet, allowing users to upload an image and instantly
 retrieve similar matches from its database, leveraging cosine similarity and PCA for efficient feature extraction and rapid search results.
@@ -35,7 +34,9 @@ For the backend database, I chose DuckDB because of its speed and plugins suppor
 
 ## How It Works?
 
-This image search engine allows users to find images in the database using a single image.
+### Reverse Image Search
+
+The image search engine allows users to find images in the database using a single image.
 Once the query image is uploaded, the system would preprocess the image and extract its
 features with a modified `ResNet` model and represent them in a $2048$-dimensional vector.
 
@@ -46,6 +47,17 @@ with $0$ indicating _not identical_ and $1$ indicating _identical_.
 !["For the better right?" similar memes](/assets/works/image-search-engine/for-the-better-right.png)
 
 !["Batman slaps Robin" similar memes](/assets/works/image-search-engine/batman-slaps-robin.png)
+
+### Keyword Search
+
+Every image that gets uploaded to the search engine will be assigned a description using a multi-modal language model
+before being stored in the database. This allows users to search for images based on their descriptions.
+
+When users input keywords into the search bar, the search engine will turn
+the keywords into an embedding vector and compare it with the embedding vectors of the image descriptions in the database.
+The closer the distance between the keyword embedding vector and the image description embedding vector, the more relevant the image is.
+
+!["batman" keyword search results](/assets/works/image-search-engine/keyword-search.png)
 
 ## Improvements
 
@@ -135,3 +147,14 @@ and the time to search for similar images is $0.20620$ seconds.
 
 While storing the image features of the same $79$ images with a dimension of $1 \times 200$ in DuckDB would require $0.27$ MB of space,
 and the time to search for similar images is $0.01016$ seconds.
+
+## Challenges
+
+1. **Memory usage**: The image feature extraction model and a multi-modal model require a lot of memory and computational power.
+2. **Relevant result**: Image keyword search sometimes provides irrelevant results due to the nature of a multi-modal language model and the 
+descriptions its generates.
+
+## Future Work
+
+1. Include [SQLModel](https://sqlmodel.tiangolo.com/) to manage the database schema and prevent SQL injections.
+2. Reduce memory usage by using a smaller model for image feature extraction, but still maintain the accuracy of the search results.
