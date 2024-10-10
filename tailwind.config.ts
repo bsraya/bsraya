@@ -25,6 +25,7 @@ const config: Config = {
     require('tailwindcss-animate'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    require('daisyui')
   ],
 }
 export default config
