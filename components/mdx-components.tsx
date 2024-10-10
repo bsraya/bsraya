@@ -1,4 +1,5 @@
 import Flow from "./flow";
+import Diff from "./diff";
 import Link from "next/link";
 import Video from "./video";
 import * as React from "react";
@@ -188,7 +189,8 @@ const components: any = {
   LineGraph,
   SeriesTable,
   Flow,
-  Video
+  Video,
+  Diff
 }
 
 export default function Mdx({ code }: { code: string }) {
