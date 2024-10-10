@@ -28,13 +28,13 @@ export default function Home() {
     (work) => work.published === true
   ).sort((a, b) => {
     return Number(new Date(b.date)) - Number(new Date(a.date))
-  }).slice(0, 3);
+  }).slice(0, 5);
 
   const posts = allPosts.filter(
     (post) => post.published === true
   ).sort((a, b) => {
     return Number(new Date(b.date)) - Number(new Date(a.date))
-  }).slice(0, 3);
+  }).slice(0, 5);
 
   return (
     <div className="h-full">
