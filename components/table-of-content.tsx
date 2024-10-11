@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import { motion } from 'framer-motion';
 
@@ -33,7 +33,7 @@ export default function TableOfContent({ headings }: { headings: { [key: string]
         </button>
         <motion.ol
           id="toc"
-          className={`overflow-hidden text-slate-500 hover:text-slate-600 ${tocOpen ? "mt-5" : ""}`}
+          className={`overflow-hidden font-merriweather text-slate-500 hover:text-slate-600 ${tocOpen ? "mt-5" : ""}`}
           animate={tocOpen ? "open" : "closed"}
           variants={variants}
           initial="closed"
@@ -54,9 +54,9 @@ export default function TableOfContent({ headings }: { headings: { [key: string]
                     }
                   }}
                 >
-                  {key}
+                  {index + 1}. {key}
                 </Link>
-                <ul className="list-disc pl-5">
+                <ul className="list-disc pl-7 my-2">
                   {headings[key].map((subHeading, subIndex) => (
                     <li key={`${index}-${subIndex}`} className="hover:text-slate-500">
                       <Link
