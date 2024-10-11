@@ -5,7 +5,7 @@ export default function Diff(
 ) {
   return (
     <div className="w-full flex flex-col">
-      <div className="diff aspect-[1.2/1] my-10">
+      <div className="diff aspect-[1.2/1] mb-5">
         <div className="diff-item-1">
           <img
             alt={img1.alt}
@@ -20,9 +20,9 @@ export default function Diff(
         </div>
         <div className="diff-resizer"></div>
       </div>
-      <span className="mx-auto text-sm text-muted-foreground text-slate-500">
+      <p className="mx-auto mb-10 text-sm text-muted-foreground text-slate-500">
         {alt}
-      </span>
+      </p>
     </div>
   )
 }
