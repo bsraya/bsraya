@@ -7,11 +7,11 @@ image: /assets/works/retrieval-augmented-generation-system-for-books/thumbnail.p
 type: Work
 ---
 
-**Tech stack**: [Gradio](https://www.gradio.app/), [Hugging Face](https://huggingface.co/BAAI/bge-large-en-v1.5), [Llama 3.1](https://llama.meta.com/), [Llama Index](https://www.llamaindex.ai/), [Ollama](https://ollama.com/), Python, and [Weaviate](https://weaviate.io/)
+**Tech stack**: [Gradio](https://www.gradio.app/), [HuggingFace](https://huggingface.co/BAAI/bge-large-en-v1.5), [Llama 3.1](https://llama.meta.com/), [Llama Index](https://www.llamaindex.ai/), [Ollama](https://ollama.com/), Python, and [ElasticSearch](https://www.elastic.co/elasticsearch)
 
 **Update**:
 
-1. Developed a user interface.
+1. Developed a user interface using Gradio.
 2. Incorporated a vector embedding database to improve the efficiency of the retrieval process.
 3. Instead of analyzing the current job openings, I decided to develop a RAG system that summarizes books.
 4. Stored each book's metadata into the vector database.
@@ -157,3 +157,32 @@ From the codebase tells me, this is what it does:
 > Build a tree index over the set of candidate nodes, with a summary prompt seeded
 > with the query. The tree is built in a bottoms-up fashion, and in the end the root node is
 > returned as the response.
+
+## Challenges
+
+### Weaviate
+
+Given Weaviate is a new technology, I am hesitant to invest in it
+Unlike ElasticSearch who has been in the game for many years,
+Weaviate community is still small, and it's quite challenging for me
+to find threads or forums that discuss issues that I am facing
+while using Weaviate.
+
+The only issue I had is when I wanted to implement the metadata filter
+for books using Llama Index. At the end, I noticed that each metadata of a book is
+stored together along with its text after getting chunked, making the metadata filter
+challenging to implement.
+
+### User Interface
+
+The UI looks nice as a prototype. I personally think
+the UI can be improved so that users can see which documents
+are used for the response generation and see the referenced documents
+side by side.
+
+### Parameters
+
+The user interface contains many parameters that users can adjust, and
+not many users would understand what each parameter does.
+In the next iterations, I would like to reduce the number of parameters
+that users can see and interact with.
