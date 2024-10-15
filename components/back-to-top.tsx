@@ -42,9 +42,9 @@ export default function BackToTop() {
         isVisible && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-5 right-5 z-10 p-2 border-2 rounded bg-white shadow-md"
+            className="fixed bottom-5 right-5 z-10 p-2 border-2 rounded bg-white dark:bg-neutral-900 shadow-md"
           >
-            <GoTriangleUp size={24} className="text-slate-800" />
+            <GoTriangleUp size={24} className="text-slate-800 dark:text-slate-300" />
           </button>
         )
       }
