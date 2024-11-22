@@ -46,7 +46,7 @@ async function getWorkFromParams(slug: string) {
     return post
 }
 
-export default async function Work({ params }: { params: { slug: string } }) {
+export default async function Work({ params }: { params: Promise<{ slug: string }> }) {
     const slug = (await params).slug;
     const work = await getWorkFromParams(slug)
     const headings = getHeadings(work.body.raw)

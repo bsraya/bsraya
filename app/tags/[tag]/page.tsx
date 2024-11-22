@@ -6,7 +6,7 @@ import PostList from '@/components/posts';
 import { allPosts } from '../../../.contentlayer/generated';
 
 export async function generateMetadata(
-  { params }: { params: { tag: string } }
+  { params }: { params: Promise<{ tag: string }> }
 ): Promise<Metadata> {
   const rawTag = (await params).tag;
   const processedTag = rawTag.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
