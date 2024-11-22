@@ -5,7 +5,7 @@ import rehypeKatex from 'rehype-katex';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import { defineDocumentType, makeSource } from 'contentlayer2/source-files';
 
 /** @type {import('contentlayer/types').ContentLayerConfig}*/
 const computedFields = {

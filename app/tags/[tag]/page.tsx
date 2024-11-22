@@ -8,28 +8,30 @@ import { allPosts } from '../../../.contentlayer/generated';
 export async function generateMetadata(
   { params }: { params: { tag: string } }
 ): Promise<Metadata> {
-  const tag = params.tag.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  const rawTag = (await params).tag;
+  const processedTag = rawTag.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   return {
-    title: `${tag}`,
-    description: `All posts related to ${tag}`,
+    title: `${processedTag}`,
+    description: `All posts related to ${processedTag}`,
     keywords: [
-      `${tag}`,
-      `Bsraya ${tag}`,
-      `Bijon Setyawan Raya ${tag}`,
+      `${processedTag}`,
+      `Bsraya ${processedTag}`,
+      `Bijon Setyawan Raya ${processedTag}`,
     ],
     openGraph: {
-        url: `/tags/${params.tag}`,
-        title: `${tag}`,
-        description: `All posts related to ${tag}`,
+        url: `/tags/${rawTag}`,
+        title: `${processedTag}`,
+        description: `All posts related to ${processedTag}`,
         siteName: 'Bijon Setyawan Raya',
         creators: ['Bijon Setyawan Raya'],
     }
   }
 }
 
-export default async function Tags({ params }: { params: { tag: string } }) {
-  const posts = allPosts.filter((post) => post.published && post.tagAsParams === params.tag)
-  const category = params.tag.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+export default async function Tags({ params }: { params: Promise<{ tag: string }> }) {
+  const rawTag = (await params).tag;
+  const posts = allPosts.filter((post) => post.published && post.tagAsParams === rawTag)
+  const category = rawTag.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 
   return (
     <>

@@ -7,9 +7,10 @@ import TableOfContent from '@/components/table-of-content';
 import { allWorks } from '../../../.contentlayer/generated';
 
 export async function generateMetadata(
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
-    const work = await getWorkFromParams(params.slug)
+    const slug = (await params).slug
+    const work = await getWorkFromParams(slug);
     return {
         title: work.title,
         description: work.description,
@@ -46,7 +47,8 @@ async function getWorkFromParams(slug: string) {
 }
 
 export default async function Work({ params }: { params: { slug: string } }) {
-    const work = await getWorkFromParams(params.slug)
+    const slug = (await params).slug;
+    const work = await getWorkFromParams(slug)
     const headings = getHeadings(work.body.raw)
 
     return (

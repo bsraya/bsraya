@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Viewport } from 'next';
 import { Metadata } from "next";
 import { format } from "date-fns";
 import { notFound } from 'next/navigation';
@@ -6,9 +7,10 @@ import Mdx from "../../../components/mdx-components";
 import { allPosts } from "../../../.contentlayer/generated";
 
 export async function generateMetadata(
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
-    const post = await getPostFromParams(params.slug)
+    const slug = (await params).slug
+    const post = await getPostFromParams(slug)
     return {
         title: post.title,
         description: post.description,
@@ -44,8 +46,9 @@ async function getPostFromParams(slug: string) {
     return post
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
-    const post = await getPostFromParams(params.slug)
+export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
+    const slug = (await params).slug;
+    const post = await getPostFromParams(slug)
 
     return (
         <>

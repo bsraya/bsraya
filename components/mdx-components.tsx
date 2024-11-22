@@ -7,7 +7,7 @@ import { cn } from "../lib/utils";
 import LineGraph from "./line-graph";
 import SeriesTable from './series-table';
 import ScatterGraph from "./scatter-graph";
-import { useMDXComponent } from "next-contentlayer/hooks";
+import { useMDXComponent } from "next-contentlayer2/hooks";
 
 const customLink = (classes: string, props: any) => {
   const href = props.href
