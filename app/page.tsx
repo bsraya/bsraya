@@ -41,7 +41,7 @@ export default function Home() {
       <div className="flex flex-col gap-20">
         <div className="grid grid-col gap-2">
           <div className="font-merriweather font-semibold text-2xl">Bijon Setyawan Raya</div>
-          <div className="text-slate-600 font-khula text-xl">I make machines learn and write about it</div>
+          <div className="text-slate-600 font-khula text-xl">I make machines learn, and I write about it</div>
           <div>Get my resume <ExternalLink text="here" url="/resume.pdf" /></div>
         </div>
 
