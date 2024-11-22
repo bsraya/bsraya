@@ -13,17 +13,17 @@ on the [Carvana Image Masking Challenge](https://www.kaggle.com/c/carvana-image-
 and the [Dubai Aerial Imagery](https://www.kaggle.com/datasets/humansintheloop/semantic-segmentation-of-aerial-imagery) datasets.
 
 What is image segmentation? It is a process of partitioning, or dividing,
-an image into multiple segments, thus called "image segmentation". 
+an image into multiple segments, thus called "image segmentation".
 The goal of image segmentation is to identify objects in an image.
 
 <Diff
   img1={{
     url: "/assets/works/image-segmentation-with-unet/sat1-true.png",
-    alt: "Satellite true image"
+    alt: "Satellite true image",
   }}
   img2={{
     url: "/assets/works/image-segmentation-with-unet/sat1-mask.png",
-    alt: "Satellite mask"
+    alt: "Satellite mask",
   }}
   alt="Figure 1: Side by side visualization of the masked image and its true image"
 />
@@ -44,7 +44,7 @@ As result, the entire architecture looks like a "U" shape.
 
 ## Results
 
-### Dubai Aerial Imagery 
+### Dubai Aerial Imagery
 
 With 50 iterations, the model was only able to reduce its loss to $0.523$.
 In other words, the model still needs more iterations and parameter tuning.
@@ -52,11 +52,11 @@ In other words, the model still needs more iterations and parameter tuning.
 <Diff
   img1={{
     url: "/assets/works/image-segmentation-with-unet/sat1-true.png",
-    alt: "Satellite true image"
+    alt: "Satellite true image",
   }}
   img2={{
     url: "/assets/works/image-segmentation-with-unet/sat1-pred.png",
-    alt: "Satellite predicted image"
+    alt: "Satellite predicted image",
   }}
   alt="Figure 2: Satellite predicted image vs. true image"
 />
@@ -64,11 +64,11 @@ In other words, the model still needs more iterations and parameter tuning.
 <Diff
   img1={{
     url: "/assets/works/image-segmentation-with-unet/sat2-true.png",
-    alt: "Satellite true image"
+    alt: "Satellite true image",
   }}
   img2={{
     url: "/assets/works/image-segmentation-with-unet/sat2-pred.png",
-    alt: "Satellite predicted image"
+    alt: "Satellite predicted image",
   }}
   alt="Figure 3: Satellite predicted image vs. true image"
 />
@@ -82,11 +82,11 @@ and DICE score to $0.99$ with only 50 iterations.
 <Diff
   img1={{
     url: "/assets/works/image-segmentation-with-unet/car1-true.png",
-    alt: "Car 1 True Mask"
+    alt: "Car 1 True Mask",
   }}
   img2={{
     url: "/assets/works/image-segmentation-with-unet/car1-pred.png",
-    alt: "Car 1 Predicted Mask"
+    alt: "Car 1 Predicted Mask",
   }}
   alt="Figure 4: Predicted mask vs. true image"
 />
@@ -94,17 +94,17 @@ and DICE score to $0.99$ with only 50 iterations.
 <Diff
   img1={{
     url: "/assets/works/image-segmentation-with-unet/car2-true.png",
-    alt: "Car 2 True Mask"
+    alt: "Car 2 True Mask",
   }}
   img2={{
     url: "/assets/works/image-segmentation-with-unet/car2-pred.png",
-    alt: "Car 2 Predicted Mask"
+    alt: "Car 2 Predicted Mask",
   }}
   alt="Figure 5: Predicted mask vs. true image"
 />
 
 ## References
 
-1. Olaf Ronneberger, Philipp Fischer, Thomas Brox. U-Net: Convolutional Networks for Biomedical Image Segmentation. [arXiv:1505.04597](https://arxiv.org/abs/1505.04597)
-2. Carvana Image Masking Challenge. [Kaggle](https://www.kaggle.com/c/carvana-image-masking-challenge)
-3. Dubai Aerial Imagery. [Kaggle](https://www.kaggle.com/datasets/humansintheloop/semantic-segmentation-of-aerial-imagery)
+1. Olaf Ronneberger, Philipp Fischer, Thomas Brox. U-Net: Convolutional Networks for Biomedical Image Segmentation. [arXiv:1505.04597](https://arxiv.org/abs/1505.04597).
+2. Carvana Image Masking Challenge. [Kaggle](https://www.kaggle.com/c/carvana-image-masking-challenge).
+3. Dubai Aerial Imagery. [Kaggle](https://www.kaggle.com/datasets/humansintheloop/semantic-segmentation-of-aerial-imagery).

@@ -194,7 +194,7 @@ coefficient = coefficient - learning_rate * corrected_momentum / (np.sqrt(correc
 
 From the figure above, we can see that the pathway Adam took a direct path down the hill compared to the other two.
 That proves that Adam can accelerate convergence especially in the area with small gradients and avoid
-frequent updates with the help of __Momentum__.
+frequent updates with the help of **Momentum**.
 
 ## Code
 
@@ -233,5 +233,5 @@ def adam(x, y, df, epochs=1000, learning_rate=0.01, eps=1e-8):
 
 ## References
 
-1. Sebastian Ruder. "An overview of gradient descent optimization algorithms." [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016).
-2. Diederik P. Kingma, Jimmy Ba. "Adam: A Method for Stochastic Optimization." [arXiv:1412.6980](https://arxiv.org/abs/1412.6980) (2014).
+1. Sebastian Ruder. An overview of gradient descent optimization algorithms. [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016).
+2. Diederik P. Kingma and Jimmy Ba. Adam: A Method for Stochastic Optimization. [arXiv:1412.6980](https://arxiv.org/abs/1412.6980) (2014).

@@ -53,7 +53,7 @@ type: Post
     {
       title: "Adam",
       current: false,
-    }
+    },
   ]}
 />
 
@@ -113,10 +113,10 @@ $$
 \end{aligned}
 $$
 
-Notice that the gradient of the cost function w.r.t. the intercept 
+Notice that the gradient of the cost function w.r.t. the intercept
 $\theta_0$ is the error of the prediction.
 
-Since there are two parameters to update, we are going 
+Since there are two parameters to update, we are going
 to need two parameter update rules.
 
 $$
@@ -222,5 +222,5 @@ def sgd_momentum(x, y, df, epochs=100, alpha=0.01, gamma=0.9):
 
 ## References
 
-1. Sebastian Ruder. "An overview of gradient descent optimization algorithms." [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016)
-2. Ning Qian. "On the momentum term in gradient descent learning algorithms." [Neural Networks](https://www.sciencedirect.com/science/article/abs/pii/089360809190021Q) (1999)
+1. Sebastian Ruder. An overview of gradient descent optimization algorithms. [arXiv:1609.04747](https://arxiv.org/abs/1609.04747) (2016).
+2. Ning Qian. On the momentum term in gradient descent learning algorithms. [https://www.sciencedirect.com/science/article/pii/S0893608098001166](https://www.sciencedirect.com/science/article/pii/S0893608098001166) (1999).
