@@ -6,6 +6,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 // import { merriweather, khula, lalezar, fira } from './fonts'
 import BackToTop from '@/components/back-to-top';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   category: 'Personal Website',
@@ -55,6 +56,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <BackToTop />
+        <Analytics />
       </body>
     </html >
   )
