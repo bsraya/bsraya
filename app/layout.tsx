@@ -4,9 +4,9 @@ import '../styles/katex.min.css';
 import type { Metadata } from 'next';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-// import { merriweather, khula, lalezar, fira } from './fonts'
 import BackToTop from '@/components/back-to-top';
 import { Analytics } from '@vercel/analytics/next';
+import { merriweather, khula, lalezar, fira } from './fonts'
 
 export const metadata: Metadata = {
   category: 'Personal Website',
@@ -51,7 +51,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-      <body className={cn("max-w-3xl mx-auto py-5 px-5")}>
+      <body className={cn(merriweather.variable, khula.variable, lalezar.variable, fira.variable, "max-w-3xl mx-auto py-5 px-5")}>
         <Header />
         {children}
         <Footer />
