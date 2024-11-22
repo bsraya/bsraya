@@ -57,7 +57,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
                 {work.date && (<div>{format(new Date(work.date), 'dd MMMM yyyy')}</div>)}
             </div>
 
-            <h1 className="text-center justify-center xl:text-5xl text-4xl font-thin font-merriweather my-5">{work.title}</h1>
+            <h1 className="text-center justify-center xl:text-5xl text-4xl font-merriweather my-5">{work.title}</h1>
 
             <div className="prose lg:prose-xl my-20 prose-a:underline-offset-4 mx-auto">
                 <Mdx code={work.body.code} />
