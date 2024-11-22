@@ -5,7 +5,6 @@ import rehypeKatex from 'rehype-katex';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 
 /** @type {import('contentlayer/types').ContentLayerConfig}*/
@@ -118,8 +117,7 @@ export default makeSource ({
                     }
                 }
             ],
-            rehypeKatex,
-            rehypeAccessibleEmojis
+            rehypeKatex
         ],
     },
     watch: process.env.NODE_ENV === 'development',
